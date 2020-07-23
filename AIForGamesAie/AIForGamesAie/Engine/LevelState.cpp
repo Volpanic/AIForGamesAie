@@ -45,27 +45,6 @@ void LevelState::Update(float deltaTime)
 			(*obj)->Update(deltaTime);
 		}
 	}
-
-	if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
-	{
-		Vector2 bigMousePos = Vector2Divide(GetMousePosition(), { 4,4 });
-		bigMousePos = Vector2Divide(bigMousePos, { 16,16 });
-		bigMousePos.x = floor(bigMousePos.x);
-		bigMousePos.y = floor(bigMousePos.y);
-
-		m_levelGrid->Set((int)bigMousePos.x, (int)bigMousePos.y, 1);
-	}
-
-	if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
-	{
-		Vector2 bigMousePos = Vector2Divide(GetMousePosition(), { 4,4 });
-		bigMousePos = Vector2Divide(bigMousePos, { 16,16 });
-		bigMousePos.x = floor(bigMousePos.x);
-		bigMousePos.y = floor(bigMousePos.y);
-
-		m_levelGrid->Set((int)bigMousePos.x, (int)bigMousePos.y, 0);
-	}
-
 }
 
 void LevelState::Draw()
@@ -91,16 +70,6 @@ void LevelState::Draw()
 			}
 		}
 	}
-
-	Vector2 bigMousePos = Vector2Divide(GetMousePosition(), {4,4});
-	bigMousePos = Vector2Divide(bigMousePos, {16,16});
-	bigMousePos.x = floor(bigMousePos.x);
-	bigMousePos.y = floor(bigMousePos.y);
-	bigMousePos = Vector2Multiply(bigMousePos, {16,16});
-
-	DrawRectangleLinesEx({bigMousePos.x,bigMousePos.y,16,16},1,RED);
-
-	DrawText("Level", 32, 32, 12, LIGHTGRAY);
 
 	EndMode2D();
 }

@@ -18,6 +18,15 @@ Application::~Application()
 	UnloadRenderTexture(m_gameSurface);
 }
 
+void Application::Create()
+{
+	//Games States
+	m_gameStateManager->SetState("Splash", new SplashState(this));
+
+	m_gameStateManager->SetState("Level", new LevelState(this));
+	m_gameStateManager->PushState("Splash");
+}
+
 void Application::Run()
 {
 	InitWindow(m_gameWidth * m_gameZoom, m_gameHeight * m_gameZoom, "Voyage ep");
@@ -25,14 +34,9 @@ void Application::Run()
 
 	//Render textures
 	m_gameSurface = LoadRenderTexture(m_gameWidth,m_gameHeight);
-
-	//Games States
 	m_gameStateManager = new GameStateManager();
-
-	m_gameStateManager->SetState("Splash", new SplashState(this));
-
-	m_gameStateManager->SetState("Level", new LevelState(this));
-	m_gameStateManager->PushState("Splash");
+	
+	Create();
 
 	while (!WindowShouldClose())
 	{

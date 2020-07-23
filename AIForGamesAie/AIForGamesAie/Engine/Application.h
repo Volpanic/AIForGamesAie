@@ -7,8 +7,9 @@ class Application
 {
 public:
 	Application(int gameWidth, int gameHeight, int gameZoom);
-	~Application();
+	virtual ~Application();
 
+	virtual void Create();
 	void Run();
 	void Update(float deltaTime);
 	void Draw();
@@ -16,13 +17,14 @@ public:
 	GameStateManager* GetGameStateManager() { return m_gameStateManager; }
 
 protected:
-
-private:
 	int m_gameWidth;
 	int m_gameHeight;
 	int m_gameZoom;
 
 	RenderTexture2D m_gameSurface;
 	GameStateManager* m_gameStateManager = nullptr;
+
+private:
+	
 
 };

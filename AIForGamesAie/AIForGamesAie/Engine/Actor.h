@@ -14,9 +14,10 @@ public:
 	virtual void MoveY(float y);
 
 protected:
+	Vector2 m_velocity = { 0,0 };
 
 private:
-	Vector2 m_velocity = {0,0};
+	
 	bool m_solid = true;
 	Drawable* drawable;
 };
