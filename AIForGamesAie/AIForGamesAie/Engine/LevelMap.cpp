@@ -40,7 +40,6 @@ std::list<Rectangle> LevelMap::GetSolids(Rectangle boundingBox, Vector2 position
 		{
 			if (m_levelGrid->Get(xx, yy) == 1)
 			{
-				DrawRectangleLinesEx({ (float)(xx * TILE_SIZE),(float)(yy * TILE_SIZE),(float)TILE_SIZE ,(float)TILE_SIZE },2,BLACK);
 				returnList.push_back({ (float)(xx * TILE_SIZE),(float)(yy * TILE_SIZE),(float)TILE_SIZE ,(float)TILE_SIZE });
 			}
 		}

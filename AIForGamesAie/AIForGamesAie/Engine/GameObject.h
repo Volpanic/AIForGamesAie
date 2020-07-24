@@ -19,8 +19,12 @@ struct Transform2D
 class GameObject
 {
 public:
+	
 	GameObject() {};
-	virtual ~GameObject() {};
+	virtual ~GameObject() 
+	{
+		delete m_collider;
+	}
 
 	template<typename T>
 	void AddComponent(const T& component)
@@ -53,7 +57,7 @@ public:
 	}
 
 	//Getters
-	Collider GetCollider() { return m_collider;};
+	Collider GetCollider() { return *m_collider;};
 
 	Vector2& GetPosition() { return m_position;};
 	Vector2& GetScale() { return m_scale; };
@@ -71,10 +75,11 @@ public:
 
 protected:
 	std::map<std::type_index,ComponentPtr> m_components;
-	Collider m_collider;
 
 	Vector2 m_scale = { 1,1 };
 	Vector2 m_origin = {0,0};
 	Vector2 m_position = { 0,0 };
 	float m_rotation = 0;
+
+	Collider* m_collider;
 };

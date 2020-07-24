@@ -31,7 +31,8 @@ public:
 	bool CollideAt(std::list<Collider> colls, const Vector2& position);
 
 private:
-	GameObject* m_parent;
-	Rectangle m_boundingBox;
+	GameObject* m_parent = nullptr;
+	int m_boxWidth = 1;
+	int m_boxHeight = 1;
 };
 

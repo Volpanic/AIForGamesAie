@@ -1,9 +1,12 @@
 #include "Agent.h"
 
-Agent::Agent(LevelState* levelState) : Actor::Actor(levelState)
+
+Agent::Agent(LevelState* level)
 {
-	SetOrigin(4, 4);
-	GetCollider().Setup(this, 32, 32);
+	m_level = level; 
+	SetOrigin(8, 8);
+	m_collider = new Collider();
+	m_collider->Setup(this,16,16);
 }
 
 Agent::~Agent()
@@ -13,12 +16,14 @@ Agent::~Agent()
 
 void Agent::Update(float deltaTime)
 {
+	
+
 	SetFriction(2.0f);
 
 	if (IsKeyDown(KEY_A)) ApplyForce({ -100, 0 });
-	if (IsKeyDown(KEY_D)) ApplyForce({ 100, 0 });
-	if (IsKeyDown(KEY_W)) ApplyForce({ 0,  -100 });
-	if (IsKeyDown(KEY_S)) ApplyForce({ 0,   100 });
+	if (IsKeyDown(KEY_D)) ApplyForce({  100, 0 });
+	if (IsKeyDown(KEY_W)) ApplyForce({  0,  -100 });
+	if (IsKeyDown(KEY_S)) ApplyForce({  0,   100 });
 
 	//MoveToward(m_targetPos,250);
 
@@ -26,7 +31,6 @@ void Agent::Update(float deltaTime)
 
 	m_velocity = Vector2Add(m_velocity, Vector2Scale(m_acceleration, deltaTime));
 
-	//For collision later
 	MoveX(m_velocity.x * deltaTime);
 	MoveY(m_velocity.y * deltaTime);
 

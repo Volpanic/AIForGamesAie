@@ -3,19 +3,21 @@
 
 Collider::Collider()
 {
-	m_boundingBox = { 0,0,1,1};
+	
 }
 
 void Collider::Setup(GameObject* parent, int width, int height)
 {
 	m_parent = parent;
-	m_boundingBox.width = width;
-	m_boundingBox.height = height;
+	m_boxWidth = width;
+	m_boxHeight = height;
 }
 
 Rectangle Collider::GetBBox()
 {
-	return {m_parent->GetPosition().x - m_parent->GetOrigin().x, m_parent->GetPosition().y - m_parent->GetOrigin().y,m_boundingBox.width,m_boundingBox.height};
+	if (m_parent == nullptr) return {-4,-4,1,1};
+
+	return {m_parent->GetPosition().x - m_parent->GetOrigin().x, m_parent->GetPosition().y - m_parent->GetOrigin().y,(float)m_boxWidth,(float)m_boxHeight};
 }
 
 
@@ -26,7 +28,7 @@ float Collider::BBoxLeft()
 
 float Collider::BBoxRight()
 {
-	return GetBBox().x + m_boundingBox.width;
+	return GetBBox().x + m_boxWidth;
 }
 
 float Collider::BBoxTop()
@@ -36,29 +38,29 @@ float Collider::BBoxTop()
 
 float Collider::BBoxBottom()
 {
-	return GetBBox().y + m_boundingBox.height;
+	return GetBBox().y + m_boxHeight;
 }
 
 float Collider::BBoxWidth()
 {
-	return m_boundingBox.width;
+	return m_boxWidth;
 }
 
 float Collider::BBoxHeight()
 {
-	return m_boundingBox.height;
+	return m_boxHeight;
 }
 
 Vector2 Collider::BBoxCenter()
 {
-	return { GetBBox().x + (m_boundingBox.width/2),GetBBox().y + (m_boundingBox.height / 2) };
+	return { GetBBox().x + (m_boxWidth/2),GetBBox().y + (m_boxHeight / 2) };
 }
 
 bool Collider::CollideAt(Rectangle rect, const Vector2& position)
 {
 	Rectangle box = GetBBox();
-	box.x = position.x;
-	box.y = position.y;
+	box.x = position.x - m_parent->GetOrigin().x;
+	box.y = position.y - m_parent->GetOrigin().y;
 
 	return CheckCollisionRecs(rect, box);
 }

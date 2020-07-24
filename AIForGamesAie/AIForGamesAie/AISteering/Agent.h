@@ -4,7 +4,8 @@
 class Agent : public Actor
 {
 public:
-	Agent(LevelState* levelState);
+	
+	Agent(LevelState* level);
 	virtual ~Agent();
 	virtual void Update(float deltaTime);
 	virtual void Draw();

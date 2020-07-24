@@ -6,7 +6,8 @@
 class Actor : public GameObject
 {
 public:
-	Actor(LevelState* level);
+	
+	Actor();
 	virtual ~Actor();
 	virtual void Update(float deltaTime);
 	virtual void Draw();
@@ -16,12 +17,12 @@ public:
 
 protected:
 	Vector2 m_velocity = { 0,0 };
+	LevelState* m_level;
 
 private:
-	LevelState* m_level;
+	
 
 	Vector2 m_subPixelMovement = { 0,0 };
 	bool m_solid = true;
-	Drawable* drawable;
 };
 

@@ -2,11 +2,9 @@
 #include "raymath.h"
 #include "Numbers.h"
 
-Actor::Actor(LevelState* level) : m_level(level)
+Actor::Actor()
 {
-	AddComponent(new Drawable(LoadTexture("Sprites/spr_save.png"), 16, 16));
-	m_collider.Setup(this,8,8);
-	drawable = GetComponent<Drawable>();
+
 }
 
 Actor::~Actor()
