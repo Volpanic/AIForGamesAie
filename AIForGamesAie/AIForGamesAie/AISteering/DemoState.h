@@ -2,6 +2,7 @@
 #include "LevelState.h"
 #include "Application.h"
 #include "Agent.h"
+#include "Path.h"
 
 class DemoState : public LevelState
 {
@@ -13,5 +14,6 @@ public:
 
 private:
 	Application* m_app;
+	Path m_path;
 };
 
