@@ -8,19 +8,16 @@
 
 LevelState::LevelState(Application* app) : m_app(app)
 {
-	m_objectTracker[typeid(Actor)].push_back(new Actor());
-
 	m_camera.zoom = 1;
 }
 
 LevelState::~LevelState()
 {
-	delete m_levelGrid;
 	for (auto const& objList : m_objectTracker)
 	{
 		for (auto obj = objList.second.begin(); obj != objList.second.end(); obj++)
 		{
-			delete (*obj);
+			//delete* obj;
 		}
 	}
 }
@@ -57,17 +54,6 @@ void LevelState::Draw()
 		for (auto obj = objList.second.begin(); obj != objList.second.end(); obj++)
 		{
 			(*obj)->Draw();
-		}
-	}
-
-	for(int x = 0; x < m_levelGrid->GetWidth(); x++)
-	{
-		for (int y = 0; y < m_levelGrid->GetWidth(); y++)
-		{
-			if (m_levelGrid->Get(x, y) == 1)
-			{
-				DrawRectangle(x*16,y*16,16,16,DARKGRAY);
-			}
 		}
 	}
 

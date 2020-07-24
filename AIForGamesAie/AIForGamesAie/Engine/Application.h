@@ -1,4 +1,5 @@
 #pragma once
+#include "raymath.h"
 #include "raylib.h"
 
 class GameStateManager;
@@ -13,6 +14,8 @@ public:
 	void Run();
 	void Update(float deltaTime);
 	void Draw();
+
+	Vector2 GetScaledMousePos() { return Vector2Divide(GetMousePosition(), { (float)m_gameZoom,(float)m_gameZoom }); };
 
 	GameStateManager* GetGameStateManager() { return m_gameStateManager; }
 

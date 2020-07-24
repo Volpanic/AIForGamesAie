@@ -3,6 +3,7 @@
 #include <iostream>
 #include <map>
 #include <typeindex>
+#include "Collider.h"
 #include "Component.h"
 #include "raylib.h"
 #include "Drawable.h"
@@ -52,8 +53,7 @@ public:
 	}
 
 	//Getters
-	Rectangle GetBBox() { return {m_position.x + m_origin.x,m_position.y + m_origin.y,m_boundingBox.width,m_boundingBox.height}; };
-	float InRectangle(Rectangle otherRec) { return CheckCollisionRecs(m_boundingBox, otherRec); }
+	Collider GetCollider() { return m_collider;};
 
 	Vector2& GetPosition() { return m_position;};
 	Vector2& GetScale() { return m_scale; };
@@ -71,7 +71,7 @@ public:
 
 protected:
 	std::map<std::type_index,ComponentPtr> m_components;
-	Rectangle m_boundingBox = {0,0,1,1};
+	Collider m_collider;
 
 	Vector2 m_scale = { 1,1 };
 	Vector2 m_origin = {0,0};

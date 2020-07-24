@@ -1,5 +1,10 @@
 #include "Agent.h"
 
+Agent::Agent(LevelState* levelState) : Actor::Actor(levelState)
+{
+	SetOrigin(4, 4);
+	GetCollider().Setup(this, 32, 32);
+}
 
 Agent::~Agent()
 {
@@ -15,9 +20,7 @@ void Agent::Update(float deltaTime)
 	if (IsKeyDown(KEY_W)) ApplyForce({ 0,  -100 });
 	if (IsKeyDown(KEY_S)) ApplyForce({ 0,   100 });
 
-	Vector2 mousePos = Vector2Scale(GetMousePosition(),0.25f);
-
-	MoveToward(mousePos,250);
+	//MoveToward(m_targetPos,250);
 
 	ApplyForce(Vector2Scale(Vector2Negate(m_velocity), m_friciton));
 
@@ -34,6 +37,13 @@ void Agent::Draw()
 {
 	DrawCircleV(m_position,8,DARKGRAY);
 	DrawLineV(m_position,Vector2Add(m_position,m_velocity),DARKGRAY);
+
+	DrawCircleV(GetCollider().BBoxTopLeft(), 2, RED);
+	DrawCircleV(GetCollider().BBoxTopRight(), 2, RED);
+	DrawCircleV(GetCollider().BBoxBottomLeft(), 2, RED);
+	DrawCircleV(GetCollider().BBoxBottomRight(), 2, RED);
+
+	DrawRectangleRec(GetCollider().GetBBox(), { 128,128,128,128 });
 }
 
 void Agent::ApplyForce(const Vector2& force)

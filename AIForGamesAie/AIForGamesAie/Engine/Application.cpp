@@ -41,7 +41,7 @@ void Application::Run()
 	while (!WindowShouldClose())
 	{
 		float dt = GetFrameTime();
-		Update(dt);
+		
 		Draw();
 	}
 
@@ -61,8 +61,9 @@ void Application::Draw()
 	BeginTextureMode(m_gameSurface);
 
 	ClearBackground(WHITE);
-
+	
 	m_gameStateManager->Draw();
+	Update(GetFrameTime());
 
 	EndTextureMode();
 

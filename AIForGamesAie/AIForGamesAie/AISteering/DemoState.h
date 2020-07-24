@@ -1,9 +1,9 @@
 #pragma once
-#include "IGameState.h"
+#include "LevelState.h"
 #include "Application.h"
 #include "Agent.h"
 
-class DemoState : public IGameState
+class DemoState : public LevelState
 {
 public:
 	DemoState(Application* application);
@@ -13,6 +13,6 @@ public:
 
 private:
 	Application* m_app;
-	Agent agent;
+	Vector2 m_targetPos = { 0,0 };
 };
 

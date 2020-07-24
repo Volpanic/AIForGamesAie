@@ -1,7 +1,7 @@
 #pragma once
 #include <map>
 #include <list>
-#include "Grid.h"
+#include "LevelMap.h"
 #include <typeindex>
 #include "IGameState.h"
 #include "GameObject.h"
@@ -21,13 +21,13 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
+	std::list<Rectangle> GetSolids(Rectangle worldRec, Vector2 offset) { return m_levelMap.GetSolids(worldRec, offset); };
 
 protected:
-private:
 	Application* m_app;
-
-	Camera2D m_camera = {0};
-	Grid<int>* m_levelGrid = new Grid<int>(20,12);
-
-	std::map<std::type_index,std::list<GameObject*>> m_objectTracker;
+	Camera2D m_camera = { 0 };
+	LevelMap m_levelMap = LevelMap(20,12);
+	std::map<std::type_index, std::list<GameObject*>> m_objectTracker;
+private:
+	
 };
