@@ -1,5 +1,5 @@
 #include "Agent.h"
-
+#include "SteeringBehaviour.h"
 
 Agent::Agent(LevelState* level)
 {
@@ -11,26 +11,27 @@ Agent::Agent(LevelState* level)
 
 Agent::~Agent()
 {
-
+	delete m_behaviour;
 }
 
 void Agent::Update(float deltaTime)
 {
-	
+	if (m_behaviour != nullptr)
+	{
+		m_behaviour->Update(this, deltaTime);
+	}
+
+	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+	{
+		SetBehaviour(new SteeringBehaviour(m_level->GetScaledMousePos(),250));
+	}
+
 
 	SetFriction(2.0f);
-
-	if (IsKeyDown(KEY_A)) ApplyForce({ -100, 0 });
-	if (IsKeyDown(KEY_D)) ApplyForce({  100, 0 });
-	if (IsKeyDown(KEY_W)) ApplyForce({  0,  -100 });
-	if (IsKeyDown(KEY_S)) ApplyForce({  0,   100 });
-
-	//MoveToward(m_targetPos,250);
-
 	ApplyForce(Vector2Scale(Vector2Negate(m_velocity), m_friciton));
 
+	//Collisions and stuff
 	m_velocity = Vector2Add(m_velocity, Vector2Scale(m_acceleration, deltaTime));
-
 	MoveX(m_velocity.x * deltaTime);
 	MoveY(m_velocity.y * deltaTime);
 
@@ -39,30 +40,31 @@ void Agent::Update(float deltaTime)
 
 void Agent::Draw()
 {
+	if (m_behaviour != nullptr)
+	{
+		m_behaviour->Draw(this);
+	}
+
 	DrawCircleV(m_position,8,DARKGRAY);
 	DrawLineV(m_position,Vector2Add(m_position,m_velocity),DARKGRAY);
+}
 
-	DrawCircleV(GetCollider().BBoxTopLeft(), 2, RED);
-	DrawCircleV(GetCollider().BBoxTopRight(), 2, RED);
-	DrawCircleV(GetCollider().BBoxBottomLeft(), 2, RED);
-	DrawCircleV(GetCollider().BBoxBottomRight(), 2, RED);
+void Agent::SetBehaviour(Behaviour* behaviour)
+{
+	if (m_behaviour != nullptr)
+	{
+		delete m_behaviour;
+	}
+	m_behaviour = behaviour;
+}
 
-	DrawRectangleRec(GetCollider().GetBBox(), { 128,128,128,128 });
+void Agent::PopBehaviour()
+{
+	delete m_behaviour;
+	m_behaviour = nullptr;
 }
 
 void Agent::ApplyForce(const Vector2& force)
 {
 	m_acceleration = Vector2Add(m_acceleration,force);
-}
-
-void Agent::MoveToward(const Vector2& targetPos, float speed)
-{
-	Vector2 heading = Vector2Add(m_position,m_velocity);
-	Vector2 dirvec = Vector2Subtract(targetPos, m_position);
-
-	float dir = atan2(dirvec.y,dirvec.x);
-
-	Vector2 force = { cos(dir),sin(dir)};
-
-	ApplyForce(Vector2Scale(force,speed));
 }

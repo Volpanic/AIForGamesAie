@@ -5,6 +5,7 @@
 #include <typeindex>
 #include "IGameState.h"
 #include "GameObject.h"
+#include "Application.h"
 
 class Application;
 
@@ -20,6 +21,8 @@ public:
 
 	virtual void Update(float deltaTime);
 	virtual void Draw();
+
+	Vector2 GetScaledMousePos() { return m_app->GetScaledMousePos(); };
 
 	std::list<Rectangle> GetSolids(Rectangle worldRec, Vector2 offset) { return m_levelMap.GetSolids(worldRec, offset); };
 

@@ -13,6 +13,5 @@ public:
 
 private:
 	Application* m_app;
-	Vector2 m_targetPos = { 0,0 };
 };
 

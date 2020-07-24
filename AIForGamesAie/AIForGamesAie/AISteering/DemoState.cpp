@@ -1,4 +1,5 @@
 #include "DemoState.h"
+#include "Behaviour.h"
 #include "raylib.h"
 
 DemoState::DemoState(Application* application) : m_app(application ),LevelState::LevelState(application)
@@ -21,7 +22,7 @@ void DemoState::Update(float deltaTime)
 {
 	Vector2 gridPos = m_levelMap.ToGridPos(m_app->GetScaledMousePos());
 	
-	if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+	if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
 	{
 		m_levelMap.Set((int)gridPos.x, (int)gridPos.y, 1);
 	}
@@ -32,7 +33,6 @@ void DemoState::Update(float deltaTime)
 void DemoState::Draw()
 {
 	LevelState::Draw();
-	DrawCircleV(m_targetPos, 4, LIGHTGRAY);
 	DrawText("Demo",4,4,12,GRAY);
 
 	m_levelMap.Draw();

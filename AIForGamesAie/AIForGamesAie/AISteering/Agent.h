@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include "Behaviour.h"
 
 class Agent : public Actor
 {
@@ -13,14 +14,14 @@ public:
 	//setters
 	void SetFriction(float fricc) { m_friciton = fricc;};
 	void ApplyForce(const Vector2& force);
-	void SetTargetPosition(const Vector2& targetPos) { m_targetPos = targetPos; };
+	void SetBehaviour(Behaviour* behaviour);
+	void PopBehaviour();
 
 protected:
-	void MoveToward(const Vector2& targetPos, float speed);
+	Behaviour* m_behaviour = nullptr;
 
 private:
 	Vector2 m_acceleration = { 0,0 };
-	Vector2 m_targetPos = { 0,0 };
 	float m_friciton = 0;
 };
 
