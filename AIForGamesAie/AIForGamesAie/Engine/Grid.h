@@ -46,7 +46,14 @@ void Grid<T>::Set(int xPos, int yPos, T value)
 template<typename T>
 T& Grid<T>::Get(int xPos, int yPos)
 {
-	return m_gridArray[PositionToInt(xPos, yPos)];
+	int x = xPos;
+	int y = yPos;
+	if (xPos < 0) { x = 0;};
+	if (yPos < 0) { y = 0;};
+	if (xPos > m_width) { x = m_width; };
+	if (yPos > m_height) { y = m_height; };
+
+	return m_gridArray[PositionToInt(x, y)];
 }
 
 template<typename T>

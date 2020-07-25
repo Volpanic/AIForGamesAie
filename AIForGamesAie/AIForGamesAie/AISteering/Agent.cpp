@@ -27,7 +27,7 @@ void Agent::Update(float deltaTime)
 	}
 
 
-	SetFriction(2.0f);
+	SetFriction(3.0f);
 	ApplyForce(Vector2Scale(Vector2Negate(m_velocity), m_friciton));
 
 	//Collisions and stuff

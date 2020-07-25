@@ -28,7 +28,7 @@ void DemoState::Update(float deltaTime)
 		m_levelMap.Set((int)gridPos.x, (int)gridPos.y, 1);
 	}
 
-	if (IsMouseButtonDown(MOUSE_MIDDLE_BUTTON))
+	if (IsMouseButtonPressed(MOUSE_MIDDLE_BUTTON))
 	{
 		m_path.PathAddNode(GetScaledMousePos());
 	}

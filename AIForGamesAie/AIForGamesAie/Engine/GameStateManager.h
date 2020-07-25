@@ -4,6 +4,8 @@
 #include <functional>
 #include "IGameState.h"
 
+class StateTransition;
+
 class GameStateManager
 {
 public:
@@ -16,6 +18,7 @@ public:
 	void SetState(const char* name, IGameState* state);
 	IGameState* GetState(const char* name);
 	void PushState(const char* name);
+	void PushState(const char* name, StateTransition* transition);
 	void PopState();
 
 protected:
@@ -24,5 +27,6 @@ protected:
 	std::list<std::function<void()>> m_commands;
 
 private:
+	StateTransition* m_transition = nullptr;
 	
 };

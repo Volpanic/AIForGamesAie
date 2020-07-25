@@ -1,4 +1,5 @@
 #include "GameStateManager.h"
+#include "StateTransition.h"
 
 GameStateManager::GameStateManager()
 {
@@ -13,6 +14,11 @@ GameStateManager::~GameStateManager()
         delete state;
     }
     m_stateStack.clear();
+
+    if (m_transition != nullptr)
+    {
+        delete m_transition;
+    }
 }
 
 void GameStateManager::Update(float deltaTime)
@@ -29,6 +35,18 @@ void GameStateManager::Update(float deltaTime)
     {
         state->Update(deltaTime);
     }
+
+    if (m_transition != nullptr)
+    {
+        m_transition->Update(deltaTime);
+
+        //Delete transition if finished.
+        if (m_transition->IsComplete())
+        {
+            delete m_transition;
+            m_transition = nullptr;
+        }
+    }
 }
 
 void GameStateManager::Draw()
@@ -36,6 +54,11 @@ void GameStateManager::Draw()
     for (auto state : m_stateStack)
     {
         state->Draw();
+    }
+
+    if (m_transition != nullptr)
+    {
+        m_transition->Draw();
     }
 }
 
@@ -68,6 +91,11 @@ void GameStateManager::PushState(const char* name)
     m_commands.push_back([=]() {
         m_stateStack.push_back(m_states[name]);
     });
+}
+
+void GameStateManager::PushState(const char* name, StateTransition* transition)
+{
+    m_transition = transition;
 }
 
 void GameStateManager::PopState()
