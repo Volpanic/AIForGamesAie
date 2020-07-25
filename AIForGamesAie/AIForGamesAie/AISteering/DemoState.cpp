@@ -36,7 +36,7 @@ void DemoState::Update(float deltaTime)
 	if (IsKeyDown(KEY_SPACE))
 	{
 		Agent* myAge = dynamic_cast<Agent*>(m_objectTracker[typeid(Agent)].front());
-		myAge->SetBehaviour(new FollowPathBehavior(m_path,250));
+		myAge->SetBehaviour(new FollowPathBehavior(m_path,500));
 	}
 
 	LevelState::Update(deltaTime);

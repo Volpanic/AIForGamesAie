@@ -13,5 +13,5 @@ Game::~Game()
 void Game::Create()
 {
 	m_gameStateManager->SetState("Demo",new DemoState(this));
-	m_gameStateManager->PushState("Demo",new FadeTransition(this,"Demo",1.0f));
+	m_gameStateManager->PushState("Demo",new FadeTransition(this,"Demo",0.25f));
 }

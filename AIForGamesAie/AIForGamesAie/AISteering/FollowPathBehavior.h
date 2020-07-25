@@ -14,6 +14,7 @@ public:
 
 protected:
 	float m_speed;
+	int m_direction = 1;
 	int m_pathPos = 0;
 	Path m_path;
 };
