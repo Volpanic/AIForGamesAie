@@ -59,11 +59,7 @@ public:
 	//SimpleCollision
 	bool InRectangle(Rectangle rect)
 	{
-		if (m_collider == nullptr)
-		{
-			return false;
-		}
-		return m_collider->CollideAt(rect, m_position);
+		return CheckCollisionPointRec(m_position,rect);
 	}
 
 	//Getters

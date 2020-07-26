@@ -46,7 +46,7 @@ void Agent::Draw()
 	}
 
 	DrawCircleV(m_position,8,DARKGRAY);
-	DrawLineV(m_position,Vector2Add(m_position,m_velocity),DARKGRAY);
+	DrawLineV(m_position,Vector2Add(m_position,Vector2Scale(m_velocity,0.25f)),DARKGRAY);
 }
 
 void Agent::SetBehaviour(Behaviour* behaviour)
