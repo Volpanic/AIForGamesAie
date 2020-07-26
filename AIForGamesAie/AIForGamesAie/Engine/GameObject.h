@@ -56,6 +56,16 @@ public:
 		}
 	}
 
+	//SimpleCollision
+	bool InRectangle(Rectangle rect)
+	{
+		if (m_collider == nullptr)
+		{
+			return false;
+		}
+		return m_collider->CollideAt(rect, m_position);
+	}
+
 	//Getters
 	Collider GetCollider() { return *m_collider;};
 
@@ -81,5 +91,5 @@ protected:
 	Vector2 m_position = { 0,0 };
 	float m_rotation = 0;
 
-	Collider* m_collider;
+	Collider* m_collider = nullptr;
 };

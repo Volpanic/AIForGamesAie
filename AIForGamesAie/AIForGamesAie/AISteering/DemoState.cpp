@@ -5,7 +5,7 @@
 
 DemoState::DemoState(Application* application) : m_app(application ),LevelState::LevelState(application)
 {
-	m_objectTracker[typeid(Agent)].push_back(new Agent(this));
+	Add<Agent>(new Agent(this));
 }
 
 DemoState::~DemoState()
@@ -35,8 +35,14 @@ void DemoState::Update(float deltaTime)
 
 	if (IsKeyDown(KEY_SPACE))
 	{
-		Agent* myAge = dynamic_cast<Agent*>(m_objectTracker[typeid(Agent)].front());
+		Agent* myAge = GetAll<Agent>().front();
 		myAge->SetBehaviour(new FollowPathBehavior(m_path,500));
+	}
+
+	if (IsKeyPressed(KEY_BACKSPACE))
+	{
+		Agent* myAge = GetAll<Agent>().front();
+		Remove<Agent>(myAge);
 	}
 
 	LevelState::Update(deltaTime);
