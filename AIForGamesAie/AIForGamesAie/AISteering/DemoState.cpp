@@ -31,6 +31,13 @@ void DemoState::Update(float deltaTime)
 	if (IsMouseButtonPressed(MOUSE_MIDDLE_BUTTON))
 	{
 		m_path.PathAddNode(GetScaledMousePos());
+
+	}
+
+	if (IsKeyPressed(KEY_Z))
+	{
+		Agent* agent = Add<Agent>(new Agent(this));
+		agent->SetPosition(GetScaledMousePos().x, GetScaledMousePos().y);
 	}
 
 	if (IsKeyDown(KEY_SPACE))

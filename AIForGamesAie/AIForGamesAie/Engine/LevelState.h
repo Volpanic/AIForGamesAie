@@ -30,7 +30,7 @@ public:
 	//Template stubs
 	//Tracking
 	template<typename T>
-	void Add(T* gameObject);
+	T* Add(T* gameObject);
 
 	template<typename T>
 	void Remove(T* gameObject);
@@ -54,3 +54,66 @@ protected:
 private:
 	std::vector<std::function<void()>> m_commands;
 };
+
+//Template defs
+template<typename T>
+T* LevelState::Add(T* gameObject)
+{
+	m_commands.push_back([=]()
+	{
+		m_objectTracker[typeid(T)].push_back(gameObject);
+	});
+
+	return gameObject;
+}
+
+template<typename T>
+void LevelState::Remove(T* gameObject)
+{
+	m_commands.push_back([=]()
+	{
+		m_objectTracker[typeid(T)].remove(gameObject);
+		delete gameObject;
+	});
+}
+
+template<typename T>
+int LevelState::Count()
+{
+	if (m_objectTracker.find(typeid(T)) == m_objectTracker.end())
+	{
+		//No Entry
+		return -1;
+	}
+
+	return m_objectTracker[typeid(T)].size();
+}
+
+template<typename T>
+std::list<T*> LevelState::GetAll()
+{
+	std::list<T*> newList;
+
+	for (auto const& oldItm : m_objectTracker[typeid(T)])
+	{
+		newList.push_back(dynamic_cast<T*>(oldItm));
+	}
+
+	return newList;
+}
+
+template<typename T>
+std::list<T*> LevelState::GetAllRect(Rectangle rect)
+{
+	std::list<T*> newList;
+
+	for (auto const& oldItm : m_objectTracker[typeid(T)])
+	{
+		if (oldItm->InRectangle(rect))
+		{
+			newList.push_back(dynamic_cast<T*>(oldItm));
+		}
+	}
+
+	return newList;
+}
