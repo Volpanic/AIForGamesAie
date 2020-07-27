@@ -62,4 +62,6 @@ void DemoState::Draw()
 
 	m_path.DrawPath();
 	m_levelMap.Draw();
+
+	DrawFPS(8,8);
 }

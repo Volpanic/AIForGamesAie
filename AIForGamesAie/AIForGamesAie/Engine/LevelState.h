@@ -43,6 +43,12 @@ public:
 
 	template<typename T>
 	std::list<T*> GetAllRect(Rectangle rect);
+
+	template<typename T>
+	T* GetNearest(GameObject* self,const Vector2& position);
+
+	template<typename T>
+	bool Exists(T* gameObject);
 	
 
 protected:
@@ -55,7 +61,7 @@ private:
 	std::vector<std::function<void()>> m_commands;
 };
 
-//Template defs
+//Template defs, breaks if not in header sorry.
 template<typename T>
 T* LevelState::Add(T* gameObject)
 {
@@ -116,4 +122,54 @@ std::list<T*> LevelState::GetAllRect(Rectangle rect)
 	}
 
 	return newList;
+}
+
+template<typename T>
+T* LevelState::GetNearest(GameObject* self,const Vector2& position)
+{
+	GameObject* nearest = nullptr;
+	int dist = 0;
+
+	for (auto const& oldItm : m_objectTracker[typeid(T)])
+	{
+		if (oldItm == self)
+		{
+			continue;
+		}
+
+		if (nearest == nullptr)
+		{
+			nearest = oldItm;
+			dist = Vector2Distance(position, oldItm->GetPosition());
+		}
+		else
+		{
+			if (Vector2Distance(position, oldItm->GetPosition()) < dist)
+			{
+				nearest = oldItm;
+				dist = Vector2Distance(position, oldItm->GetPosition());
+			}
+		}
+	}
+
+	return dynamic_cast<T*>(nearest);
+}
+
+template<typename T>
+bool LevelState::Exists(T* gameObject)
+{
+	if (m_objectTracker.find(typeid(T)) == m_objectTracker.end())
+	{
+		return false;
+	}
+
+	for (auto const& oldItm : m_objectTracker[typeid(T)])
+	{
+		if (oldItm == gameObject)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
