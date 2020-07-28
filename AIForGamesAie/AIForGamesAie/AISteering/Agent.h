@@ -8,6 +8,7 @@ public:
 	
 	Agent(LevelState* level);
 	virtual ~Agent();
+	virtual std::type_index GetCategory() { return typeid(Agent); };
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 

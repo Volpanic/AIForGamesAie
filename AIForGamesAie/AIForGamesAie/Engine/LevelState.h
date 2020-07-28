@@ -67,7 +67,7 @@ T* LevelState::Add(T* gameObject)
 {
 	m_commands.push_back([=]()
 	{
-		m_objectTracker[typeid(T)].push_back(gameObject);
+		m_objectTracker[gameObject->GetCategory()].push_back(gameObject);
 	});
 
 	return gameObject;
@@ -78,7 +78,7 @@ void LevelState::Remove(T* gameObject)
 {
 	m_commands.push_back([=]()
 	{
-		m_objectTracker[typeid(T)].remove(gameObject);
+		m_objectTracker[gameObject->GetCategory()].remove(gameObject);
 		delete gameObject;
 	});
 }
@@ -130,7 +130,7 @@ T* LevelState::GetNearest(GameObject* self,const Vector2& position)
 	GameObject* nearest = nullptr;
 	int dist = 0;
 
-	for (auto const& oldItm : m_objectTracker[typeid(T)])
+	for (auto const& oldItm : m_objectTracker[self->GetCategory()])
 	{
 		if (oldItm == self)
 		{
@@ -158,12 +158,12 @@ T* LevelState::GetNearest(GameObject* self,const Vector2& position)
 template<typename T>
 bool LevelState::Exists(T* gameObject)
 {
-	if (m_objectTracker.find(typeid(T)) == m_objectTracker.end())
+	if (m_objectTracker.find(gameObject->GetCategory()) == m_objectTracker.end())
 	{
 		return false;
 	}
 
-	for (auto const& oldItm : m_objectTracker[typeid(T)])
+	for (auto const& oldItm : m_objectTracker[gameObject->GetCategory()])
 	{
 		if (oldItm == gameObject)
 		{

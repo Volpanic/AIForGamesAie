@@ -7,6 +7,7 @@
 #include "Component.h"
 #include "raylib.h"
 #include "Drawable.h"
+#include <typeindex>
 
 struct Transform2D
 {
@@ -25,6 +26,8 @@ public:
 	{
 		delete m_collider;
 	}
+
+	virtual std::type_index GetCategory() { return typeid(GameObject); };
 
 	template<typename T>
 	void AddComponent(const T& component)

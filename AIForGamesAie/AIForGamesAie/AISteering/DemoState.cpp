@@ -3,6 +3,10 @@
 #include "raylib.h"
 #include "FollowPathBehavior.h"
 
+#define RAYGUI_IMPLEMENTATION
+#define RAYGUI_SUPPORT_ICONS
+#include "raygui.h"
+
 DemoState::DemoState(Application* application) : m_app(application ),LevelState::LevelState(application)
 {
 	Add<Agent>(new Agent(this));
@@ -57,11 +61,13 @@ void DemoState::Update(float deltaTime)
 
 void DemoState::Draw()
 {
+	guiFont.baseSize = 12;
+
 	LevelState::Draw();
 	DrawText("Demo",4,4,12,GRAY);
 
 	m_path.DrawPath();
 	m_levelMap.Draw();
 
-	DrawFPS(8,8);
+	DrawCircleV(GetScaledMousePos(), 4, RED);
 }

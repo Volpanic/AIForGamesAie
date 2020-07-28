@@ -30,6 +30,8 @@ public:
 	bool CollideAt(Collider coll, const Vector2& position);
 	bool CollideAt(std::list<Collider> colls, const Vector2& position);
 
+	void DrawCollider();
+
 private:
 	GameObject* m_parent = nullptr;
 	int m_boxWidth = 1;

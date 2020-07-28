@@ -10,7 +10,6 @@ Application::Application(int gameWidth, int gameHeight, int gameZoom)
 	m_gameWidth = gameWidth;
 	m_gameHeight = gameHeight;
 	m_gameZoom = gameZoom;
-	
 }
 
 Application::~Application()
@@ -37,6 +36,8 @@ void Application::Run()
 	m_gameStateManager = new GameStateManager();
 	
 	Create();
+
+	SetMouseScale(1.0f/m_gameZoom, 1.0f/m_gameZoom);
 
 	while (!WindowShouldClose())
 	{

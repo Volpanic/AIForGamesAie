@@ -18,7 +18,7 @@ public:
 	//Getters
 	const int& GetGameWidth() { return m_gameWidth; };
 	const int& GetGameHeight() { return m_gameHeight; };
-	Vector2 GetScaledMousePos() { return Vector2Divide(GetMousePosition(), { (float)m_gameZoom,(float)m_gameZoom }); };
+	Vector2 GetScaledMousePos() { return GetMousePosition(); };
 	GameStateManager* GetGameStateManager() { return m_gameStateManager; }
 
 protected:

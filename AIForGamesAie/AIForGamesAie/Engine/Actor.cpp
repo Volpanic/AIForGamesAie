@@ -2,9 +2,9 @@
 #include "raymath.h"
 #include "Numbers.h"
 
-Actor::Actor()
+Actor::Actor(LevelState* level)
 {
-
+	m_level = level;
 }
 
 Actor::~Actor()

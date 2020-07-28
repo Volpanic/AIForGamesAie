@@ -1,12 +1,11 @@
 #include "Agent.h"
 #include "SteeringBehaviour.h"
 
-Agent::Agent(LevelState* level)
+Agent::Agent(LevelState* level) : Actor::Actor(level)
 {
-	m_level = level; 
-	SetOrigin(8, 8);
+	SetOrigin(7, 7);
 	m_collider = new Collider();
-	m_collider->Setup(this,16,16);
+	m_collider->Setup(this,14,14);
 }
 
 Agent::~Agent()

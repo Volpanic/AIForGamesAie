@@ -98,3 +98,13 @@ bool Collider::CollideAt(std::list<Collider> colls, const Vector2& position)
 	}
 	return false;
 }
+
+void Collider::DrawCollider()
+{
+	DrawRectangleRec(GetBBox(), {GRAY.r,GRAY.g,GRAY.b,64});
+
+	DrawCircleV(BBoxTopLeft(), 2, RED);
+	DrawCircleV(BBoxTopRight(), 2, RED);
+	DrawCircleV(BBoxBottomLeft(), 2, RED);
+	DrawCircleV(BBoxBottomRight(), 2, RED);
+}

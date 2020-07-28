@@ -15,5 +15,6 @@ public:
 private:
 	Application* m_app;
 	Path m_path =  Path(PathType::Reverse);
+
 };
 

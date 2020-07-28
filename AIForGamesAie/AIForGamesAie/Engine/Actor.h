@@ -7,8 +7,9 @@ class Actor : public GameObject
 {
 public:
 	
-	Actor();
+	Actor(LevelState* level);
 	virtual ~Actor();
+	virtual std::type_index GetCategory() { return typeid(Actor); };
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
@@ -20,8 +21,6 @@ protected:
 	LevelState* m_level;
 
 private:
-	
-
 	Vector2 m_subPixelMovement = { 0,0 };
 	bool m_solid = true;
 };
