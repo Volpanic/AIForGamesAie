@@ -4,7 +4,7 @@
 #include "GameStateManager.h"
 #include <iostream>
 
-MenuState::MenuState(Application* app) : m_app(app)
+MenuState::MenuState(Application* app) : IGameState::IGameState(app)
 {
 
 }

@@ -6,7 +6,7 @@
 #include <iostream>
 #include "Actor.h"
 
-LevelState::LevelState(Application* app) : m_app(app)
+LevelState::LevelState(Application* app) : IGameState::IGameState(app)
 {
 	m_camera.zoom = 1;
 }

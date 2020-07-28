@@ -20,5 +20,4 @@ public:
 protected:
 private:
 	float m_timer = 0.0f;
-	Application* m_app;
 };

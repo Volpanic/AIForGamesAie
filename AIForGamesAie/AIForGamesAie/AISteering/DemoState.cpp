@@ -7,7 +7,7 @@
 #define RAYGUI_SUPPORT_ICONS
 #include "raygui.h"
 
-DemoState::DemoState(Application* application) : m_app(application ),LevelState::LevelState(application)
+DemoState::DemoState(Application* app) : LevelState::LevelState(app)
 {
 	Add<Agent>(new Agent(this));
 }
@@ -64,10 +64,14 @@ void DemoState::Draw()
 	guiFont.baseSize = 12;
 
 	LevelState::Draw();
-	DrawText("Demo",4,4,12,GRAY);
 
 	m_path.DrawPath();
 	m_levelMap.Draw();
 
 	DrawCircleV(GetScaledMousePos(), 4, RED);
+
+	if (GuiButton({ 8,8,64,24 }, "Wander."))
+	{
+		
+	}
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "raymath.h"
 #include "raylib.h"
+#include "ResourceManager.h"
 
 class GameStateManager;
 
@@ -18,6 +19,7 @@ public:
 	//Getters
 	const int& GetGameWidth() { return m_gameWidth; };
 	const int& GetGameHeight() { return m_gameHeight; };
+	ResourceManager* GetResources() { return m_resourceManger; };
 	Vector2 GetScaledMousePos() { return GetMousePosition(); };
 	GameStateManager* GetGameStateManager() { return m_gameStateManager; }
 
@@ -28,6 +30,7 @@ protected:
 
 	RenderTexture2D m_gameSurface;
 	GameStateManager* m_gameStateManager = nullptr;
+	ResourceManager* m_resourceManger = new ResourceManager();
 
 private:
 	

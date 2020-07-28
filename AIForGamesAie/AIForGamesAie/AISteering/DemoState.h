@@ -7,13 +7,12 @@
 class DemoState : public LevelState
 {
 public:
-	DemoState(Application* application);
+	DemoState(Application* app);
 	virtual ~DemoState();
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
 private:
-	Application* m_app;
 	Path m_path =  Path(PathType::Reverse);
 
 };

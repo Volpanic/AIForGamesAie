@@ -15,6 +15,8 @@ Application::Application(int gameWidth, int gameHeight, int gameZoom)
 Application::~Application()
 {
 	UnloadRenderTexture(m_gameSurface);
+	m_resourceManger->Unload();
+	delete m_resourceManger;
 }
 
 void Application::Create()
@@ -35,6 +37,7 @@ void Application::Run()
 	m_gameSurface = LoadRenderTexture(m_gameWidth,m_gameHeight);
 	m_gameStateManager = new GameStateManager();
 	
+	m_resourceManger->Init();
 	Create();
 
 	SetMouseScale(1.0f/m_gameZoom, 1.0f/m_gameZoom);

@@ -1,10 +1,11 @@
 #pragma once
-
+#include "Application.h"
+#include "ResourceManager.h"
 
 class IGameState
 {
 public:
-	IGameState() { };
+	IGameState(Application* app) { m_app = app; };
 	virtual ~IGameState() { };
 
 	virtual void Load() { };
@@ -13,6 +14,9 @@ public:
 	virtual void Update(float deltaTime) { };
 	virtual void Draw() { };
 
+	ResourceManager* GetResources() { return m_app->GetResources(); };
+
 protected:
+	Application* m_app;
 private:
 };

@@ -3,7 +3,7 @@
 #include "Application.h"
 #include "GameStateManager.h"
 
-SplashState::SplashState(Application* app) : m_app(app)
+SplashState::SplashState(Application* app) : IGameState::IGameState(app)
 {
 
 }
