@@ -70,8 +70,4 @@ void DemoState::Draw()
 
 	DrawCircleV(GetScaledMousePos(), 4, RED);
 
-	if (GuiButton({ 8,8,64,24 }, "Wander."))
-	{
-		
-	}
 }

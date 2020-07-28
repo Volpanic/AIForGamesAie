@@ -6,6 +6,8 @@ Agent::Agent(LevelState* level) : Actor::Actor(level)
 	SetOrigin(7, 7);
 	m_collider = new Collider();
 	m_collider->Setup(this,14,14);
+
+	AddComponent<Drawable>(new Drawable(m_level->GetResources()->GetTexture("spr_player.png"),16,16));
 }
 
 Agent::~Agent()
@@ -15,6 +17,8 @@ Agent::~Agent()
 
 void Agent::Update(float deltaTime)
 {
+	GameObject::Update(deltaTime);
+
 	if (m_behaviour != nullptr)
 	{
 		m_behaviour->Update(this, deltaTime);
@@ -31,6 +35,9 @@ void Agent::Update(float deltaTime)
 
 	//Collisions and stuff
 	m_velocity = Vector2Add(m_velocity, Vector2Scale(m_acceleration, deltaTime));
+
+	m_rotation = atan2(m_velocity.y, m_velocity.x);
+
 	MoveX(m_velocity.x * deltaTime);
 	MoveY(m_velocity.y * deltaTime);
 
@@ -44,8 +51,9 @@ void Agent::Draw()
 		m_behaviour->Draw(this);
 	}
 
-	DrawCircleV(m_position,8,DARKGRAY);
 	DrawLineV(m_position,Vector2Add(m_position,Vector2Scale(m_velocity,0.25f)),DARKGRAY);
+
+	GameObject::Draw();
 }
 
 void Agent::SetBehaviour(Behaviour* behaviour)

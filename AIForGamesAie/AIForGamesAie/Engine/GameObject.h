@@ -25,14 +25,20 @@ public:
 	virtual ~GameObject() 
 	{
 		delete m_collider;
+
+		//Comps
+		for (auto const com : m_components)
+		{
+			delete com.second;
+		}
 	}
 
 	virtual std::type_index GetCategory() { return typeid(GameObject); };
 
 	template<typename T>
-	void AddComponent(const T& component)
+	void AddComponent(Component* component)
 	{
-		m_components[typeid(T)] = (ComponentPtr)component;
+		m_components[typeid(T)] = component;
 	}
 
 	template<typename T>
@@ -83,7 +89,7 @@ public:
 	bool m_active = true;
 
 protected:
-	std::map<std::type_index,ComponentPtr> m_components;
+	std::map<std::type_index,Component*> m_components;
 
 	Vector2 m_scale = { 1,1 };
 	Vector2 m_origin = {0,0};

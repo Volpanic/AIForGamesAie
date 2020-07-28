@@ -13,7 +13,7 @@ public:
 	virtual void Draw();
 
 private:
-	Path m_path =  Path(PathType::Reverse);
+	Path m_path =  Path(PathType::Closed);
 
 };
 
