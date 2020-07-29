@@ -9,13 +9,14 @@
 #include "ricons.h"
 #include "tinyxml2.h"
 
-#include <fstream>
 LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(app)
 {
 	m_graphEditor = new Graph2DEditor();
 	m_graph = new Graph2D();
 
 	m_graphEditor->SetGrapth(m_graph);
+
+	Load("");
 }
 
 LevelEditorState::~LevelEditorState()
@@ -32,8 +33,8 @@ Vector2 LevelEditorState::EditorMousePos()
 
 	if (m_snappedToGrid)
 	{
-		Vector2 gridPos = m_levelMap.ToGridPos(pos);
-		return Vector2Scale(gridPos,m_levelMap.TILE_SIZE);
+		Vector2 gridPos = m_levelMap->ToGridPos(pos);
+		return Vector2Scale(gridPos,m_levelMap->TILE_SIZE);
 	}
 	else
 	{
@@ -54,18 +55,18 @@ void LevelEditorState::Update(float deltaTime)
 	{
 		case EditorStates::Tiles:
 		{
-			Vector2 gridPos = m_levelMap.ToGridPos(EditorMousePos());
+			Vector2 gridPos = m_levelMap->ToGridPos(EditorMousePos());
 
 			//Create
 			if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 			{
-				m_levelMap.Set((int)gridPos.x, (int)gridPos.y, 1);
+				m_levelMap->Set((int)gridPos.x, (int)gridPos.y, 1);
 			}
 
 			//Delete
 			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
 			{
-				m_levelMap.Set((int)gridPos.x, (int)gridPos.y, 0);
+				m_levelMap->Set((int)gridPos.x, (int)gridPos.y, 0);
 			}
 
 			break;
@@ -87,19 +88,19 @@ void LevelEditorState::Draw()
 
 	if (m_drawGrid)
 	{
-		for (int xx = 0; xx < m_levelMap.GetWidth(); xx++)
+		for (int xx = 0; xx < m_levelMap->GetWidth(); xx++)
 		{
-			DrawLine(xx * m_levelMap.TILE_SIZE, 0, xx * m_levelMap.TILE_SIZE, m_levelMap.GetHeight() * m_levelMap.TILE_SIZE, RAYWHITE);
+			DrawLine(xx * m_levelMap->TILE_SIZE, 0, xx * m_levelMap->TILE_SIZE, m_levelMap->GetHeight() * m_levelMap->TILE_SIZE, RAYWHITE);
 		}
 
-		for (int yy = 0; yy < m_levelMap.GetHeight(); yy++)
+		for (int yy = 0; yy < m_levelMap->GetHeight(); yy++)
 		{
-			DrawLine(0, yy * m_levelMap.TILE_SIZE, m_levelMap.GetWidth() * m_levelMap.TILE_SIZE, yy * m_levelMap.TILE_SIZE, RAYWHITE);
+			DrawLine(0, yy * m_levelMap->TILE_SIZE, m_levelMap->GetWidth() * m_levelMap->TILE_SIZE, yy * m_levelMap->TILE_SIZE, RAYWHITE);
 		}
 	}
 
 	LevelState::Draw();
-	m_levelMap.Draw();
+	m_levelMap->Draw();
 
 	if (m_drawNodes && m_editorState != EditorStates::Nodes)
 	{
@@ -142,6 +143,19 @@ void LevelEditorState::Draw()
 		{
 			m_drawNodes = !m_drawNodes;
 		}
+		toggleRec.x += 20;
+
+		if (GuiButton(toggleRec, GuiIconText(RICON_FILE_SAVE, "")))
+		{
+			Save("");
+		}
+		toggleRec.x += 20;
+
+		if (GuiButton(toggleRec, GuiIconText(RICON_FILE_OPEN, "")))
+		{
+			Load("");
+		}
+		toggleRec.x += 20;
 	}
 	else
 	{
@@ -149,9 +163,9 @@ void LevelEditorState::Draw()
 		{
 			case EditorStates::Tiles:
 			{
-				Vector2 gridPos = m_levelMap.ToGridPos(m_app->GetScaledMousePos());
+				Vector2 gridPos = m_levelMap->ToGridPos(m_app->GetScaledMousePos());
 
-				DrawRectangleLinesEx({gridPos.x * m_levelMap.TILE_SIZE,gridPos.y * m_levelMap.TILE_SIZE,(float)m_levelMap.TILE_SIZE ,(float)m_levelMap.TILE_SIZE },1,LIGHTGRAY);
+				DrawRectangleLinesEx({gridPos.x * m_levelMap->TILE_SIZE,gridPos.y * m_levelMap->TILE_SIZE,(float)m_levelMap->TILE_SIZE ,(float)m_levelMap->TILE_SIZE },1,LIGHTGRAY);
 
 				break;
 			}
@@ -167,10 +181,81 @@ void LevelEditorState::Draw()
 
 void LevelEditorState::Save(std::string fileName)
 {
+	tinyxml2::XMLDocument level;
 
+	//Root
+	tinyxml2::XMLNode* pRoot = level.NewElement("Root");
+	level.InsertFirstChild(pRoot);
+
+		//Map
+		{
+			tinyxml2::XMLNode* pMap = level.NewElement("Map");
+			pRoot->InsertFirstChild(pMap);
+
+			tinyxml2::XMLElement* gridSize = level.NewElement("MapGridSize");
+			gridSize->SetAttribute("Width", m_levelMap->GetWidth());
+			gridSize->SetAttribute("Height", m_levelMap->GetHeight());
+
+			tinyxml2::XMLElement* gridData = level.NewElement("MapData");
+
+			//Write tile data
+			for (int i = 0; i < m_levelMap->GetSize(); i++)
+			{
+				tinyxml2::XMLElement* gridDataElement = level.NewElement("Tile");
+				gridDataElement->SetText(m_levelMap->Get(i));
+
+				gridData->InsertEndChild(gridDataElement);
+			}
+
+			pMap->InsertEndChild(gridSize);
+			pMap->InsertEndChild(gridData);
+
+			pRoot->InsertEndChild(pMap);
+		}
+
+	level.SaveFile("data.xml");
 }
 
 void LevelEditorState::Load(std::string fileName)
 {
+	tinyxml2::XMLDocument level;
 
+	level.LoadFile("data.xml");
+
+	tinyxml2::XMLNode* pRoot = level.FirstChild();
+
+		{
+			tinyxml2::XMLNode* pMap = pRoot->FirstChildElement("Map");
+
+			int mWidth = 1;
+			int mHeight = 1;
+
+			tinyxml2::XMLElement* mapGridSize = pMap->FirstChildElement("MapGridSize");
+
+			mapGridSize->QueryIntAttribute("Width", &mWidth);
+			mapGridSize->QueryIntAttribute("Height", &mHeight);
+
+			std::cout << mWidth << " : " << mHeight << std::endl;
+
+			tinyxml2::XMLElement* mapData = pMap->FirstChildElement("MapData");
+			tinyxml2::XMLElement* mapDataListElement = mapData->FirstChildElement("Tile");
+
+			LevelMap* newerMap = new LevelMap(mWidth, mHeight);
+
+			int pos = 0;
+			while (mapDataListElement != nullptr)
+			{
+				int tileValue = 0;
+				mapDataListElement->QueryIntText(&tileValue);
+				newerMap->Set(pos, tileValue);
+				//std::cout << tileValue << std::endl;
+
+				mapDataListElement = mapDataListElement->NextSiblingElement("Tile");
+
+				pos++;
+			}
+
+			delete m_levelMap;
+			m_levelMap = newerMap;
+		}
 }

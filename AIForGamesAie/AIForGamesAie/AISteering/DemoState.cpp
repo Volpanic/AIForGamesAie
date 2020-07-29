@@ -19,11 +19,11 @@ DemoState::~DemoState()
 
 void DemoState::Update(float deltaTime)
 {
-	Vector2 gridPos = m_levelMap.ToGridPos(m_app->GetScaledMousePos());
+	Vector2 gridPos = m_levelMap->ToGridPos(m_app->GetScaledMousePos());
 	
 	if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
 	{
-		m_levelMap.Set((int)gridPos.x, (int)gridPos.y, 1);
+		m_levelMap->Set((int)gridPos.x, (int)gridPos.y, 1);
 	}
 
 	if (IsMouseButtonPressed(MOUSE_MIDDLE_BUTTON))
@@ -60,7 +60,7 @@ void DemoState::Draw()
 	LevelState::Draw();
 
 	m_path.DrawPath();
-	m_levelMap.Draw();
+	m_levelMap->Draw();
 
 	DrawCircleV(GetScaledMousePos(), 4, RED);
 

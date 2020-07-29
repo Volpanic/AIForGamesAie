@@ -12,6 +12,12 @@ public:
 
 	LevelMap(int width, int height);
 	void Set(int x, int y, int value);
+	void Set(int pos, int value);
+	int Get(int x, int y);
+	int Get(int pos);
+
+	int GetSize();
+
 	std::list<Rectangle> GetSolids(Rectangle worldRec, Vector2 offset);
 	void Draw();
 	Vector2 ToGridPos(const Vector2& pos);

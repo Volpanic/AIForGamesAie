@@ -20,6 +20,7 @@ LevelState::~LevelState()
 			delete* obj;
 		}
 	}
+	delete m_levelMap;
 }
 
 void LevelState::Load()

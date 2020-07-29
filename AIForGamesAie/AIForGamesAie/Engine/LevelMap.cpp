@@ -3,6 +3,14 @@
 LevelMap::LevelMap(int width, int height)
 {
 	m_levelGrid = new Grid<int>(width, height);
+
+	for (int xx = 0; xx < GetWidth(); xx++)
+	{
+		for (int yy = 0; yy < GetWidth(); yy++)
+		{
+			Set(xx, yy, 0);
+		}
+	}
 }
 
 void LevelMap::Set(int x, int y, int value)
@@ -11,6 +19,30 @@ void LevelMap::Set(int x, int y, int value)
 	{
 		m_levelGrid->Set(x, y, value);
 	}
+}
+
+void LevelMap::Set(int pos, int value)
+{
+	m_levelGrid->Set(pos,value);
+}
+
+int LevelMap::Get(int x, int y)
+{
+	if ((x >= 0 && x < m_levelGrid->GetWidth()) && (y >= 0 && y < m_levelGrid->GetHeight()))
+	{
+		return m_levelGrid->Get(x,y);
+	}
+	return 0;
+}
+
+int LevelMap::Get(int pos)
+{
+	return m_levelGrid->Get(pos);
+}
+
+int LevelMap::GetSize()
+{
+	return m_levelGrid->GetSize();
 }
 
 std::list<Rectangle> LevelMap::GetSolids(Rectangle boundingBox, Vector2 position)

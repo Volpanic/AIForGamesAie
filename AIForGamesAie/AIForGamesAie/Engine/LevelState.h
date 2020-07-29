@@ -25,7 +25,7 @@ public:
 
 	Vector2 GetScaledMousePos() { return m_app->GetScaledMousePos(); };
 
-	std::list<Rectangle> GetSolids(Rectangle worldRec, Vector2 offset) { return m_levelMap.GetSolids(worldRec, offset); };
+	std::list<Rectangle> GetSolids(Rectangle worldRec, Vector2 offset) { return m_levelMap->GetSolids(worldRec, offset); };
 
 	//Template stubs
 	//Tracking
@@ -53,7 +53,7 @@ public:
 
 protected:
 	Camera2D m_camera = { 0 };
-	LevelMap m_levelMap = LevelMap(20,12);
+	LevelMap* m_levelMap = new LevelMap(20,12);
 	std::map<std::type_index, std::list<GameObject*>> m_objectTracker;
 	std::string m_levelName = "Black";
 
