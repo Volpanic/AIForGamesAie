@@ -59,13 +59,21 @@ public:
 	// == == == == == == == == == == == == 
 	void AddEdge(Node* nodeA, Node* nodeB, const TEdgeData& data)
 	{
-		nodeA->connections.push_back({ nodeB,data });
+		if (nodeB != nodeA)
+		{
+			nodeA->connections.push_back({ nodeB,data });
+		}
 	}
 
 	// == == == == == == == == == == == == 
 	// Get Nodes
 	// == == == == == == == == == == == == 
 	const std::vector<Node*>& GetNodes() { return m_nodes; };
+
+	// == == == == == == == == == == == == 
+	// Get Node
+	// == == == == == == == == == == == == 
+	Node* GetNode(int index) { return m_nodes[index]; };
 
 	// == == == == == == == == == == == == 
 	// Connect nodes

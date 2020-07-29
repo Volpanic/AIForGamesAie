@@ -1,6 +1,5 @@
 <Root>
-    <Map>
-        <MapGridSize Width="20" Height="12"/>
+    <Map Width="20" Height="12">
         <MapData>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -25,29 +24,7 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -148,6 +125,28 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>1</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -246,13 +245,30 @@
     </Map>
     <Nodes>
         <NodeData>
-            <Node>0®4ó‹</Node>
-            <Node>∞ù4ó‹</Node>
-            <Node>Ä©4ó‹</Node>
-            <Node>@ù4ó‹</Node>
-            <Node> û4ó‹</Node>
-            <Node>¿ß4ó‹</Node>
-            <Node>pü4ó‹</Node>
+            <NodeEntry PositionX="33" PositionY="23">
+                <NodeConnection OtherPositionX="64" OtherPositionY="32" Weight="32.280025"/>
+                <NodeConnection OtherPositionX="32" OtherPositionY="48" Weight="35.777088"/>
+                <NodeConnection OtherPositionX="32" OtherPositionY="80" Weight="35.777088"/>
+                <NodeConnection OtherPositionX="64" OtherPositionY="96" Weight="35.777088"/>
+                <NodeConnection OtherPositionX="32" OtherPositionY="112" Weight="35.777088"/>
+            </NodeEntry>
+            <NodeEntry PositionX="64" PositionY="32">
+                <NodeConnection OtherPositionX="32" OtherPositionY="48" Weight="25.019993"/>
+                <NodeConnection OtherPositionX="64" OtherPositionY="64" Weight="35.777088"/>
+                <NodeConnection OtherPositionX="32" OtherPositionY="112" Weight="32"/>
+            </NodeEntry>
+            <NodeEntry PositionX="32" PositionY="48">
+                <NodeConnection OtherPositionX="64" OtherPositionY="64" Weight="32"/>
+                <NodeConnection OtherPositionX="64" OtherPositionY="96" Weight="32"/>
+            </NodeEntry>
+            <NodeEntry PositionX="64" PositionY="64">
+                <NodeConnection OtherPositionX="32" OtherPositionY="80" Weight="32"/>
+            </NodeEntry>
+            <NodeEntry PositionX="32" PositionY="80"/>
+            <NodeEntry PositionX="64" PositionY="96"/>
+            <NodeEntry PositionX="32" PositionY="112"/>
+            <NodeEntry PositionX="272" PositionY="32"/>
+            <NodeEntry PositionX="280" PositionY="87"/>
         </NodeData>
     </Nodes>
 </Root>

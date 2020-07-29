@@ -16,7 +16,7 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 
 	m_graphEditor->SetGrapth(m_graph);
 
-	Load("");
+	//Load("");
 }
 
 LevelEditorState::~LevelEditorState()
@@ -189,12 +189,10 @@ void LevelEditorState::Save(std::string fileName)
 
 		//Map Tiles
 		{
-			tinyxml2::XMLNode* pMap = level.NewElement("Map");
-			pRoot->InsertFirstChild(pMap);
+			tinyxml2::XMLElement* pMap = level.NewElement("Map");
 
-			tinyxml2::XMLElement* gridSize = level.NewElement("MapGridSize");
-			gridSize->SetAttribute("Width", m_levelMap->GetWidth());
-			gridSize->SetAttribute("Height", m_levelMap->GetHeight());
+			pMap->SetAttribute("Width", m_levelMap->GetWidth());
+			pMap->SetAttribute("Height", m_levelMap->GetHeight());
 
 			tinyxml2::XMLElement* gridData = level.NewElement("MapData");
 
@@ -207,7 +205,6 @@ void LevelEditorState::Save(std::string fileName)
 				gridData->InsertEndChild(gridDataElement);
 			}
 
-			pMap->InsertEndChild(gridSize);
 			pMap->InsertEndChild(gridData);
 
 			pRoot->InsertEndChild(pMap);
@@ -223,10 +220,27 @@ void LevelEditorState::Save(std::string fileName)
 			//Write node data
 			for (auto const& node : m_graphEditor->GetGraph()->GetNodes())
 			{
-				tinyxml2::XMLElement* nodeElement = level.NewElement("Node");
-				nodeElement->SetText((char*)(&node));
+				tinyxml2::XMLElement* nodeEntry = level.NewElement("NodeEntry");
 
-				nodeData->InsertEndChild(nodeElement);
+				{
+					//NodeData
+					nodeEntry->SetAttribute("PositionX", node->data.x);
+					nodeEntry->SetAttribute("PositionY", node->data.y);
+
+					//Node Connections
+					for (auto const& connect : node->connections)
+					{
+						
+						tinyxml2::XMLElement* nodeConnection = level.NewElement("NodeConnection");
+						nodeConnection->SetAttribute("OtherPositionX", connect.to->data.x);
+						nodeConnection->SetAttribute("OtherPositionY", connect.to->data.y);
+						nodeConnection->SetAttribute("Weight", connect.data);
+
+						nodeEntry->InsertEndChild(nodeConnection);
+					}
+				}
+
+				nodeData->InsertEndChild(nodeEntry);
 			}
 
 			pNodes->InsertEndChild(nodeData);
@@ -245,17 +259,16 @@ void LevelEditorState::Load(std::string fileName)
 
 	tinyxml2::XMLNode* pRoot = level.FirstChild();
 
+
 	//Load Tiles
 		{
-			tinyxml2::XMLNode* pMap = pRoot->FirstChildElement("Map");
+			tinyxml2::XMLElement* pMap = pRoot->FirstChildElement("Map");
 
 			int mWidth = 1;
 			int mHeight = 1;
 
-			tinyxml2::XMLElement* mapGridSize = pMap->FirstChildElement("MapGridSize");
-
-			mapGridSize->QueryIntAttribute("Width", &mWidth);
-			mapGridSize->QueryIntAttribute("Height", &mHeight);
+			pMap->QueryIntAttribute("Width", &mWidth);
+			pMap->QueryIntAttribute("Height", &mHeight);
 
 			std::cout << mWidth << " : " << mHeight << std::endl;
 
@@ -283,23 +296,70 @@ void LevelEditorState::Load(std::string fileName)
 
 		//Load Nodes
 		{
-			tinyxml2::XMLNode* pMap = pRoot->FirstChildElement("Nodes");
+			tinyxml2::XMLNode* pNodes = pRoot->FirstChildElement("Nodes");
+			tinyxml2::XMLElement* nodeData = pNodes->FirstChildElement("NodeData");
+			tinyxml2::XMLElement* nodeListElement = nodeData->FirstChildElement("NodeEntry");
 
-			tinyxml2::XMLElement* mapData = pMap->FirstChildElement("NodeData");
-			tinyxml2::XMLElement* mapDataListElement = mapData->FirstChildElement("Node");
+			Graph2D* newGraph = new Graph2D();
 
-			std::vector<Graph2D::Node*> nodes;
-			while (mapDataListElement != nullptr)
+			//Load all nodes into Place
+			while (nodeListElement != nullptr)
 			{
-				const char* tileValue = mapDataListElement->Attribute("Node");
+				//Load Position
+				Vector2 pos;
+				nodeListElement->QueryFloatAttribute("PositionX", &pos.x);
+				nodeListElement->QueryFloatAttribute("PositionY", &pos.y);
 
-				nodes.push_back(const_cast<Graph2D::Node*>(reinterpret_cast<const Graph2D::Node*>(tileValue)));
+				//AddNode to Graph
+				newGraph->AddNode(pos);
 
-				mapDataListElement = mapDataListElement->NextSiblingElement("Node");
+				//Next
+				nodeListElement = nodeListElement->NextSiblingElement("NodeEntry");
 			}
 
-			Graph2D *gra = new Graph2D(nodes);
-			delete m_graphEditor->GetGraph();
-			m_graphEditor->SetGrapth(gra);
+			
+			//Connect nodes
+			nodeListElement = nodeData->FirstChildElement("NodeEntry");
+			int pos = 0;
+
+			while (nodeListElement != nullptr)
+			{
+				//Connections
+				tinyxml2::XMLElement* connectionListElement = nodeListElement->FirstChildElement("NodeConnection");
+
+				//AddConnections
+				while (connectionListElement != nullptr)
+				{
+					Vector2 otherPos;
+					float weight = 0;
+					connectionListElement->QueryFloatAttribute("OtherPositionX", &otherPos.x);
+					connectionListElement->QueryFloatAttribute("OtherPositionY", &otherPos.y);
+					connectionListElement->QueryFloatAttribute("Weight", &weight);
+					Graph2D::Node* nodeToCheck = (newGraph->GetNode(pos));
+
+					std::cout << "Node Connections: " << otherPos.x << " : " << otherPos.y << " - " << weight << std::endl;
+					
+					//Check who to connect
+					for (auto const& isConnectNode : newGraph->GetNodes())
+					{
+						if ((otherPos.x == isConnectNode->data.x) && (otherPos.y == isConnectNode->data.y))
+						{
+							newGraph->AddEdge(nodeToCheck, isConnectNode, weight);
+							break;
+						}
+					}
+					connectionListElement = connectionListElement->NextSiblingElement("NodeConnection");
+					pos++;
+				}
+
+				//Next
+				nodeListElement = nodeListElement->NextSiblingElement("NodeEntry");
+				pos = 0;
+			}
+
+			//SetGraph
+			delete m_graph;
+			m_graph = newGraph;
+			m_graphEditor->SetGrapth(m_graph);
 		}
 }
