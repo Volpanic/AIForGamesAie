@@ -2,9 +2,6 @@
     <Map>
         <MapGridSize Width="20" Height="12"/>
         <MapData>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -22,9 +19,6 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -37,7 +31,6 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -56,9 +49,6 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -76,8 +66,7 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
+            <Tile>0</Tile>
             <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -96,8 +85,8 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
             <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -116,8 +105,8 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
             <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -136,9 +125,8 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
             <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -154,11 +142,11 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
             <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -173,65 +161,19 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -239,9 +181,78 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
-            <Tile>1</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
+            <Tile>0</Tile>
         </MapData>
     </Map>
+    <Nodes>
+        <NodeData>
+            <Node>0®4ó‹</Node>
+            <Node>∞ù4ó‹</Node>
+            <Node>Ä©4ó‹</Node>
+            <Node>@ù4ó‹</Node>
+            <Node> û4ó‹</Node>
+            <Node>¿ß4ó‹</Node>
+            <Node>pü4ó‹</Node>
+        </NodeData>
+    </Nodes>
 </Root>

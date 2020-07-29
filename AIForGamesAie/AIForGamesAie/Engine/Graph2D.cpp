@@ -7,6 +7,15 @@ Graph2D::Graph2D()
 
 }
 
+Graph2D::Graph2D(std::vector <Graph2D::Node*> nodes)
+{
+	m_nodes.clear();
+	for (auto const& node : nodes)
+	{
+		m_nodes.push_back(node);
+	}
+}
+
 Graph2D::~Graph2D()
 {
 

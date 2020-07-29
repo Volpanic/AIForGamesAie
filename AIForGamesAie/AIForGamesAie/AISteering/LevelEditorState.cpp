@@ -187,7 +187,7 @@ void LevelEditorState::Save(std::string fileName)
 	tinyxml2::XMLNode* pRoot = level.NewElement("Root");
 	level.InsertFirstChild(pRoot);
 
-		//Map
+		//Map Tiles
 		{
 			tinyxml2::XMLNode* pMap = level.NewElement("Map");
 			pRoot->InsertFirstChild(pMap);
@@ -213,6 +213,27 @@ void LevelEditorState::Save(std::string fileName)
 			pRoot->InsertEndChild(pMap);
 		}
 
+		//NODES 
+		{
+			tinyxml2::XMLNode* pNodes = level.NewElement("Nodes");
+			pRoot->InsertFirstChild(pNodes);
+
+			tinyxml2::XMLElement* nodeData = level.NewElement("NodeData");
+
+			//Write node data
+			for (auto const& node : m_graphEditor->GetGraph()->GetNodes())
+			{
+				tinyxml2::XMLElement* nodeElement = level.NewElement("Node");
+				nodeElement->SetText((char*)(&node));
+
+				nodeData->InsertEndChild(nodeElement);
+			}
+
+			pNodes->InsertEndChild(nodeData);
+
+			pRoot->InsertEndChild(pNodes);
+		}
+
 	level.SaveFile("data.xml");
 }
 
@@ -224,6 +245,7 @@ void LevelEditorState::Load(std::string fileName)
 
 	tinyxml2::XMLNode* pRoot = level.FirstChild();
 
+	//Load Tiles
 		{
 			tinyxml2::XMLNode* pMap = pRoot->FirstChildElement("Map");
 
@@ -257,5 +279,27 @@ void LevelEditorState::Load(std::string fileName)
 
 			delete m_levelMap;
 			m_levelMap = newerMap;
+		}
+
+		//Load Nodes
+		{
+			tinyxml2::XMLNode* pMap = pRoot->FirstChildElement("Nodes");
+
+			tinyxml2::XMLElement* mapData = pMap->FirstChildElement("NodeData");
+			tinyxml2::XMLElement* mapDataListElement = mapData->FirstChildElement("Node");
+
+			std::vector<Graph2D::Node*> nodes;
+			while (mapDataListElement != nullptr)
+			{
+				const char* tileValue = mapDataListElement->Attribute("Node");
+
+				nodes.push_back(const_cast<Graph2D::Node*>(reinterpret_cast<const Graph2D::Node*>(tileValue)));
+
+				mapDataListElement = mapDataListElement->NextSiblingElement("Node");
+			}
+
+			Graph2D *gra = new Graph2D(nodes);
+			delete m_graphEditor->GetGraph();
+			m_graphEditor->SetGrapth(gra);
 		}
 }
