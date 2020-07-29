@@ -7,7 +7,9 @@
 
 #include "raygui.h"
 #include "ricons.h"
+#include "tinyxml2.h"
 
+#include <fstream>
 LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(app)
 {
 	m_graphEditor = new Graph2DEditor();
@@ -81,6 +83,8 @@ void LevelEditorState::Update(float deltaTime)
 
 void LevelEditorState::Draw()
 {
+	ClearBackground(WHITE);
+
 	if (m_drawGrid)
 	{
 		for (int xx = 0; xx < m_levelMap.GetWidth(); xx++)
@@ -97,6 +101,12 @@ void LevelEditorState::Draw()
 	LevelState::Draw();
 	m_levelMap.Draw();
 
+	if (m_drawNodes && m_editorState != EditorStates::Nodes)
+	{
+		m_graphEditor->DrawOnlyNodes();
+	}
+
+	//Controls
 	if (IsKeyDown(KEY_C))
 	{
 		Rectangle buttonRect = { 8,8,48,16 };
@@ -119,11 +129,18 @@ void LevelEditorState::Draw()
 		}
 		buttonRect.y += 20;
 
-		Rectangle toggleRed = { 8,m_app->GetGameHeight() - 20,16,16 };
+		//Toggels
+		Rectangle toggleRec = { 8,m_app->GetGameHeight() - 20,16,16 };
 
-		if (GuiButton(toggleRed, GuiIconText(RICON_GRID,"")))
+		if (GuiButton(toggleRec, GuiIconText(RICON_GRID,"")))
 		{
 			m_drawGrid = !m_drawGrid;
+		}
+		toggleRec.x += 20;
+
+		if (GuiButton(toggleRec, GuiIconText((m_drawNodes)? RICON_EYE_OFF : RICON_EYE_ON, "")))
+		{
+			m_drawNodes = !m_drawNodes;
 		}
 	}
 	else
@@ -146,4 +163,14 @@ void LevelEditorState::Draw()
 			}
 		}
 	}
+}
+
+void LevelEditorState::Save(std::string fileName)
+{
+
+}
+
+void LevelEditorState::Load(std::string fileName)
+{
+
 }

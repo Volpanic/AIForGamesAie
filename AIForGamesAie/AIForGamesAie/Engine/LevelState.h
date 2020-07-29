@@ -55,6 +55,7 @@ protected:
 	Camera2D m_camera = { 0 };
 	LevelMap m_levelMap = LevelMap(20,12);
 	std::map<std::type_index, std::list<GameObject*>> m_objectTracker;
+	std::string m_levelName = "Black";
 
 private:
 	std::vector<std::function<void()>> m_commands;

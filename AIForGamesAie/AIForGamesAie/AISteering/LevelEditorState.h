@@ -21,6 +21,9 @@ public:
 	virtual ~LevelEditorState();
 	virtual void Update(float deltaTime);
 	virtual void Draw();
+
+	void Save(std::string fileName);
+	void Load(std::string fileName);
 	
 	Vector2 EditorMousePos();
 
@@ -28,6 +31,7 @@ private:
 	EditorStates m_editorState = EditorStates::Tiles;
 
 	bool m_drawGrid = true;
+	bool m_drawNodes = true;
 	bool m_snappedToGrid = false;
 
 	Graph2DEditor* m_graphEditor = nullptr;

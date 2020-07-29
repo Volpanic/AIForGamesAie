@@ -10,6 +10,7 @@ public:
 
 	void Update(Vector2 mousePos,float deltaTime);
 	void Draw();
+	void DrawOnlyNodes();
 
 	Graph2D* GetGraph();
 	void SetGrapth(Graph2D* graph);
@@ -20,6 +21,7 @@ protected:
 
 	Graph2D::Node* m_hoverOnNode = nullptr;
 	Graph2D::Node* m_selectedNode = nullptr;
+	bool m_connectingNodes = false;
 
 	float m_nodeRadius = 4;
 	Color m_nodeCol = { 190,60,99,255 };

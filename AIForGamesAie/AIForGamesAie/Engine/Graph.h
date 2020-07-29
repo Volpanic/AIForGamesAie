@@ -76,6 +76,35 @@ public:
 		AddEdge(nodeB, nodeA, data);
 	}
 
+	// == == == == == == == == == == == == 
+	// Remove nodes
+	// == == == == == == == == == == == == 
+	void RemoveNode(Node* node)
+	{
+		for (auto nd : node->connections)
+		{
+			for (int i = 0; i < nd.to->connections.size(); i++)
+			{
+				if (nd.to->connections[i].to == node)
+				{
+					nd.to->connections.erase(nd.to->connections.begin()+i);
+					break;
+				}
+			}
+		}
+
+		for (int i = 0; i < m_nodes.size(); i++)
+		{
+			if (m_nodes[i] == node)
+			{
+				m_nodes.erase(m_nodes.begin()+i);
+				break;
+			}
+		}
+		
+		delete node;
+	}
+
 protected:
 
 	std::vector<Node*> m_nodes;

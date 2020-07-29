@@ -25,7 +25,6 @@ std::vector<Graph2D::Node*> Graph2D::GetNearbyNodes(Vector2 position, float radi
 			returnList.push_back(node);
 		}
 	}
-
 	return returnList;
 }
 

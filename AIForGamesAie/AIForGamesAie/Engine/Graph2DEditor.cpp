@@ -1,6 +1,7 @@
 #include "Graph2DEditor.h"
 #include "Graph2D.h"
 #include "raymath.h"
+#include <string>
 
 Graph2DEditor::Graph2DEditor()
 {
@@ -51,6 +52,48 @@ void Graph2DEditor::Update(Vector2 mousePos,float deltaTime)
 			m_selectedNode = m_hoverOnNode;
 		}
 	}
+	
+	if (!m_connectingNodes && IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
+	{
+		if (m_hoverOnNode != nullptr)
+		{
+			if (m_hoverOnNode == m_selectedNode)
+			{
+				m_selectedNode = nullptr;
+			}
+			m_graph->RemoveNode(m_hoverOnNode);
+			m_hoverOnNode = nullptr;
+		}
+	}
+
+	//Conncet
+	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+	{
+		if (!m_connectingNodes && m_selectedNode != nullptr)
+		{
+			if (CheckCollisionPointCircle(m_mousePos, Vector2Add(m_selectedNode->data, { m_nodeRadius * 2,0 }), ceil(m_nodeRadius / 2)))
+			{
+				m_connectingNodes = true;
+			}
+		}
+
+		if(m_hoverOnNode == nullptr && !m_connectingNodes)
+		{
+			m_selectedNode = nullptr;
+		}
+	}
+
+	if (IsMouseButtonUp(MOUSE_LEFT_BUTTON))
+	{
+		if (m_connectingNodes)
+		{
+			if (m_hoverOnNode != m_selectedNode && m_hoverOnNode != nullptr)
+			{
+				m_graph->ConnectNodes(m_selectedNode, m_hoverOnNode,Vector2Distance(m_selectedNode->data,m_hoverOnNode->data));
+			}
+			m_connectingNodes = false;
+		}
+	}
 }
 
 void Graph2DEditor::Draw()
@@ -60,7 +103,7 @@ void Graph2DEditor::Draw()
 	{
 		for (auto connection : node->connections)
 		{
-			DrawLineV(node->data,connection.to->data, m_nodeLineCol);
+			DrawLineV(node->data, connection.to->data, m_nodeLineCol);
 		}
 	}
 
@@ -72,8 +115,20 @@ void Graph2DEditor::Draw()
 			DrawCircleV(node->data, m_nodeRadius+2, BLACK);
 		}
 
-		DrawCircleV(node->data, m_nodeRadius+1, m_nodeOutlineCol);
-		DrawCircleV(node->data, m_nodeRadius, m_nodeCol);
+		if (node != m_selectedNode)
+		{
+			DrawCircleV(node->data, m_nodeRadius + 1, m_nodeOutlineCol);
+			DrawCircleV(node->data, m_nodeRadius, m_nodeCol);
+		}
+		else
+		{
+			DrawCircleV(node->data, m_nodeRadius + 1, m_nodeCol);
+			DrawCircleV(node->data, m_nodeRadius, m_nodeOutlineCol);
+
+			//Draw Handle
+			DrawCircleV(Vector2Add(node->data, { m_nodeRadius * 2,0 }), ceil(m_nodeRadius / 2), m_nodeOutlineCol);
+		}
+		
 	}
 
 	//Draw Preview
@@ -86,10 +141,44 @@ void Graph2DEditor::Draw()
 			DrawLineV(m_mousePos, nearby->data, LIGHTGRAY);
 		}
 
-		DrawCircleV(m_mousePos, m_nearbyRadius, { GRAY.r,GRAY.g,GRAY.g,64 });
+		if (IsKeyDown(KEY_LEFT_CONTROL))
+		{
+			DrawCircleV(m_mousePos, m_nearbyRadius, { GRAY.r,GRAY.g,GRAY.g,64 });
+		}
+	}
+
+	if (m_connectingNodes)
+	{
+		if (m_hoverOnNode != m_selectedNode)
+		{
+			DrawLineV(m_selectedNode->data, m_mousePos, m_nodeOutlineCol);
+		}
+		else if(m_hoverOnNode != nullptr)
+		{
+			
+			DrawLineV(m_selectedNode->data, m_hoverOnNode->data, m_nodeOutlineCol);
+		}
 	}
 }
 
+void Graph2DEditor::DrawOnlyNodes()
+{
+	for (auto node : m_graph->GetNodes())
+	{
+		for (auto connection : node->connections)
+		{
+			DrawLineV(node->data, connection.to->data, RAYWHITE);
+		}
+	}
+
+	//Draw Nodes
+	for (auto node : m_graph->GetNodes())
+	{
+		DrawCircleV(node->data, m_nodeRadius + 1, WHITE);
+		DrawCircleV(node->data, m_nodeRadius, RAYWHITE);
+	}
+
+}
 
 Graph2D* Graph2DEditor::GetGraph()
 {

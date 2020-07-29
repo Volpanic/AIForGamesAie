@@ -66,7 +66,7 @@ void Application::Draw()
 	BeginDrawing();
 	BeginTextureMode(m_gameSurface);
 
-	ClearBackground(WHITE);
+	ClearBackground(BLACK);
 	
 	m_gameStateManager->Draw();
 
