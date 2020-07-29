@@ -15,6 +15,10 @@ public:
 	std::list<Rectangle> GetSolids(Rectangle worldRec, Vector2 offset);
 	void Draw();
 	Vector2 ToGridPos(const Vector2& pos);
+
+	int GetWidth() { return m_levelGrid->GetWidth(); };
+	int GetHeight() { return m_levelGrid->GetHeight(); };
+
 	~LevelMap();
 
 private:

@@ -3,9 +3,9 @@
 
 Agent::Agent(LevelState* level) : Actor::Actor(level)
 {
-	SetOrigin(7, 7);
+	SetOrigin(8, 8);
 	m_collider = new Collider();
-	m_collider->Setup(this,14,14);
+	m_collider->Setup(this,16,16);
 
 	AddComponent<Drawable>(new Drawable(m_level->GetResources()->GetTexture("spr_player.png"),16,16));
 }

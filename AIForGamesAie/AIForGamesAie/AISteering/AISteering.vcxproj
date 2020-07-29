@@ -191,6 +191,7 @@
     <ClCompile Include="DemoState.cpp" />
     <ClCompile Include="FollowPathBehavior.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="LevelEditorState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Path.cpp" />
     <ClCompile Include="SteeringBehaviour.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="DemoState.h" />
     <ClInclude Include="FollowPathBehavior.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="LevelEditorState.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="SteeringBehaviour.h" />
   </ItemGroup>

@@ -3,6 +3,7 @@
 #include "GameStateManager.h"
 #include "DemoState.h"
 #include "FadeTransition.h"
+#include "LevelEditorState.h"
 
 Game::~Game()
 {
@@ -12,6 +13,6 @@ Game::~Game()
 
 void Game::Create()
 {
-	m_gameStateManager->SetState("Demo",new DemoState(this));
-	m_gameStateManager->PushState("Demo",new FadeTransition(this,"Demo",0.25f));
+	m_gameStateManager->SetState("Editor",new LevelEditorState(this));
+	m_gameStateManager->PushState("Editor",new FadeTransition(this,"Editor",0.25f));
 }

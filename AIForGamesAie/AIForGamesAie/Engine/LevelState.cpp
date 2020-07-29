@@ -17,7 +17,7 @@ LevelState::~LevelState()
 	{
 		for (auto obj = objList.second.begin(); obj != objList.second.end(); obj++)
 		{
-			//delete* obj;
+			delete* obj;
 		}
 	}
 }

@@ -14,13 +14,7 @@ DemoState::DemoState(Application* app) : LevelState::LevelState(app)
 
 DemoState::~DemoState()
 {
-	for (auto const& objList : m_objectTracker)
-	{
-		for (auto obj = objList.second.begin(); obj != objList.second.end(); obj++)
-		{
-			delete (*obj);
-		}
-	}
+
 }
 
 void DemoState::Update(float deltaTime)

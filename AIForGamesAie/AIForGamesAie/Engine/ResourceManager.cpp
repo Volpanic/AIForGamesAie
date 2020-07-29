@@ -21,14 +21,14 @@ void ResourceManager::Init()
 	}
 
 	//Fonts
-	for (const auto& entry : std::filesystem::directory_iterator(currentDir + m_fontPath))
-	{
-		std::string key = entry.path().filename().generic_string().c_str();
-		m_fonts[key] = LoadFont(entry.path().generic_string().c_str());
-		std::cout << "Font: " << entry.path().filename().generic_string().c_str() << " : " << entry.path().generic_string().c_str() << std::endl;
+	//for (const auto& entry : std::filesystem::directory_iterator(currentDir + m_fontPath))
+	//{
+	//	std::string key = entry.path().filename().generic_string().c_str();
+	//	m_fonts[key] = LoadFont(entry.path().generic_string().c_str());
+	//	std::cout << "Font: " << entry.path().filename().generic_string().c_str() << " : " << entry.path().generic_string().c_str() << std::endl;
 
-		SetTextureFilter(m_fonts[key].texture, TextureFilterMode::FILTER_POINT);
-	}
+	//	SetTextureFilter(m_fonts[key].texture, TextureFilterMode::FILTER_POINT);
+	//}
 }
 
 void ResourceManager::Unload()
