@@ -10,6 +10,8 @@
 #include "ricons.h"
 #include "tinyxml2.h"
 
+#include "cimgui_impl_raylib.h"
+
 LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(app)
 {
 	m_graphEditor = new Graph2DEditor();
@@ -18,12 +20,36 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 	m_graphEditor->SetGrapth(m_graph);
 
 	Load("");
+	
+
+	//ImGui
+	ImGui::CreateContext();
+	ImGui::StyleColorsDark(NULL);
+	ImGui_ImplRaylib_Init();
+
+	//Build Texture atlas
+	int width = m_app->GetGameWidth();
+	int height = m_app->GetGameHeight();
+
+	ImGuiContext* ctx;
+	auto io = ImGui::GetIO();
+	ImGui::GetIO().DisplaySize = { m_app->GetGameWidth()*8.0f,m_app->GetGameHeight() * 8.0f };
+
+	unsigned char* pixels = NULL;
+
+	io.Fonts->GetTexDataAsRGBA32(&pixels,&width,&height,NULL);
+	Image image = LoadImageEx((Color*)pixels, width, height);
+	Texture2D texture = LoadTextureFromImage(image);
+	io.Fonts->TexID = (void*)&texture.id;
+
+	//ImGui
 }
 
 LevelEditorState::~LevelEditorState()
 {
 	delete m_graphEditor;
 	delete m_graph;
+	//delete m_drawData;
 }
 
 Vector2 LevelEditorState::EditorMousePos()
@@ -48,6 +74,8 @@ void LevelEditorState::Update(float deltaTime)
 	{
 		return;
 	}
+
+	
 
 	m_snappedToGrid = IsKeyDown(KEY_LEFT_CONTROL);
 
@@ -108,6 +136,29 @@ void LevelEditorState::Draw()
 	m_levelMap->Draw();
 
 	//Controls
+	//ImGui
+	ImGui_ImplRaylib_NewFrame();
+	ImGui_ImplRaylib_ProcessEvent();
+	ImGui::NewFrame();
+	//ImGui
+
+	ImGui::Begin("Start Menu");
+
+	if (ImGui::Button("Yes"))
+	{
+
+	}
+
+	ImGui::End();
+
+	//ImGui
+
+	ImGui::ShowDemoWindow(NULL);
+	ImGui::Render();
+	m_drawData = ImGui::GetDrawData();
+	raylib_render_cimgui(m_drawData);
+	//ImGui
+
 	if (IsKeyDown(KEY_C))
 	{
 		Rectangle buttonRect = { 8,8,48,16 };

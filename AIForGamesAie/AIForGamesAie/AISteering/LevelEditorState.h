@@ -5,6 +5,8 @@
 #include "Path.h"
 #include "raylib.h"
 
+struct ImDrawData;
+
 class Graph2D;
 class Graph2DEditor;
 
@@ -36,4 +38,5 @@ private:
 
 	Graph2DEditor* m_graphEditor = nullptr;
 	Graph2D* m_graph = nullptr;
+	ImDrawData* m_drawData;
 };

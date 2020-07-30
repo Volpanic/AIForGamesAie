@@ -68,5 +68,8 @@
     <ClInclude Include="LevelEditorState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cimgui_impl_raylib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
