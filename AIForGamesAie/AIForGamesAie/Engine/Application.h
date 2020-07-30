@@ -24,11 +24,11 @@ public:
 	GameStateManager* GetGameStateManager() { return m_gameStateManager; }
 
 protected:
-	int m_gameWidth;
-	int m_gameHeight;
-	int m_gameZoom;
+	int m_gameWidth = 320;
+	int m_gameHeight = 180;
+	int m_gameZoom = 4;
 
-	RenderTexture2D m_gameSurface;
+	RenderTexture2D m_gameSurface = {};
 	GameStateManager* m_gameStateManager = nullptr;
 	ResourceManager* m_resourceManger = new ResourceManager();
 

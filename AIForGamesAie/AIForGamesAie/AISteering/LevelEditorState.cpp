@@ -86,6 +86,11 @@ void LevelEditorState::Draw()
 {
 	ClearBackground(WHITE);
 
+	if (m_drawNodes)
+	{
+		m_graphEditor->DrawOnlyNodes();
+	}
+
 	if (m_drawGrid)
 	{
 		for (int xx = 0; xx < m_levelMap->GetWidth(); xx++)
@@ -101,9 +106,6 @@ void LevelEditorState::Draw()
 
 	LevelState::Draw();
 	m_levelMap->Draw();
-
-	m_graphEditor->DrawOnlyNodes();
-	
 
 	//Controls
 	if (IsKeyDown(KEY_C))
@@ -129,7 +131,7 @@ void LevelEditorState::Draw()
 		buttonRect.y += 20;
 
 		//Toggels
-		Rectangle toggleRec = { 8,m_app->GetGameHeight() - 20,16,16 };
+		Rectangle toggleRec = { 8,(float)m_app->GetGameHeight() - 20,16,16 };
 
 		if (GuiButton(toggleRec, GuiIconText(RICON_GRID,"")))
 		{

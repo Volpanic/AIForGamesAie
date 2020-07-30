@@ -1,8 +1,27 @@
 <Root>
     <Map Width="20" Height="12">
         <MapData>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -17,27 +36,58 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -46,6 +96,8 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -58,8 +110,17 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -69,8 +130,24 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -83,6 +160,14 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
@@ -95,295 +180,98 @@
             <Tile>0</Tile>
             <Tile>0</Tile>
             <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
-            <Tile>0</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
+            <Tile>1</Tile>
         </MapData>
     </Map>
     <Nodes>
         <NodeData>
-            <NodeEntry PositionX="48" PositionY="112">
-                <NodeConnection OtherPositionX="48" OtherPositionY="112" Weight="0"/>
-                <NodeConnection OtherPositionX="48" OtherPositionY="112" Weight="0"/>
-                <NodeConnection OtherPositionX="80" OtherPositionY="112" Weight="32"/>
+            <NodeEntry PositionX="8" PositionY="96">
+                <NodeConnection OtherPositionX="8" OtherPositionY="96" Weight="0"/>
+                <NodeConnection OtherPositionX="8" OtherPositionY="96" Weight="0"/>
+                <NodeConnection OtherPositionX="48" OtherPositionY="96" Weight="40"/>
             </NodeEntry>
-            <NodeEntry PositionX="80" PositionY="112">
-                <NodeConnection OtherPositionX="48" OtherPositionY="112" Weight="32"/>
-                <NodeConnection OtherPositionX="80" OtherPositionY="112" Weight="0"/>
-                <NodeConnection OtherPositionX="80" OtherPositionY="112" Weight="0"/>
-                <NodeConnection OtherPositionX="112" OtherPositionY="112" Weight="32"/>
+            <NodeEntry PositionX="48" PositionY="96">
+                <NodeConnection OtherPositionX="8" OtherPositionY="96" Weight="40"/>
+                <NodeConnection OtherPositionX="48" OtherPositionY="96" Weight="0"/>
+                <NodeConnection OtherPositionX="48" OtherPositionY="96" Weight="0"/>
+                <NodeConnection OtherPositionX="48" OtherPositionY="64" Weight="32"/>
             </NodeEntry>
-            <NodeEntry PositionX="112" PositionY="112">
-                <NodeConnection OtherPositionX="80" OtherPositionY="112" Weight="32"/>
-                <NodeConnection OtherPositionX="112" OtherPositionY="112" Weight="0"/>
-                <NodeConnection OtherPositionX="112" OtherPositionY="112" Weight="0"/>
-                <NodeConnection OtherPositionX="128" OtherPositionY="96" Weight="22.627417"/>
+            <NodeEntry PositionX="48" PositionY="64">
+                <NodeConnection OtherPositionX="48" OtherPositionY="96" Weight="32"/>
+                <NodeConnection OtherPositionX="48" OtherPositionY="64" Weight="0"/>
+                <NodeConnection OtherPositionX="48" OtherPositionY="64" Weight="0"/>
+                <NodeConnection OtherPositionX="48" OtherPositionY="24" Weight="40"/>
             </NodeEntry>
-            <NodeEntry PositionX="128" PositionY="96">
-                <NodeConnection OtherPositionX="112" OtherPositionY="112" Weight="22.627417"/>
-                <NodeConnection OtherPositionX="128" OtherPositionY="96" Weight="0"/>
-                <NodeConnection OtherPositionX="128" OtherPositionY="96" Weight="0"/>
-                <NodeConnection OtherPositionX="144" OtherPositionY="80" Weight="22.627417"/>
+            <NodeEntry PositionX="48" PositionY="24">
+                <NodeConnection OtherPositionX="48" OtherPositionY="64" Weight="40"/>
+                <NodeConnection OtherPositionX="48" OtherPositionY="24" Weight="0"/>
+                <NodeConnection OtherPositionX="48" OtherPositionY="24" Weight="0"/>
+                <NodeConnection OtherPositionX="96" OtherPositionY="24" Weight="48"/>
             </NodeEntry>
-            <NodeEntry PositionX="144" PositionY="80">
-                <NodeConnection OtherPositionX="128" OtherPositionY="96" Weight="22.627417"/>
-                <NodeConnection OtherPositionX="144" OtherPositionY="80" Weight="0"/>
-                <NodeConnection OtherPositionX="144" OtherPositionY="80" Weight="0"/>
-                <NodeConnection OtherPositionX="160" OtherPositionY="64" Weight="22.627417"/>
-            </NodeEntry>
-            <NodeEntry PositionX="160" PositionY="64">
-                <NodeConnection OtherPositionX="144" OtherPositionY="80" Weight="22.627417"/>
-                <NodeConnection OtherPositionX="160" OtherPositionY="64" Weight="0"/>
-                <NodeConnection OtherPositionX="160" OtherPositionY="64" Weight="0"/>
-                <NodeConnection OtherPositionX="160" OtherPositionY="32" Weight="32"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="64" Weight="32"/>
-            </NodeEntry>
-            <NodeEntry PositionX="160" PositionY="32">
-                <NodeConnection OtherPositionX="160" OtherPositionY="64" Weight="32"/>
-                <NodeConnection OtherPositionX="160" OtherPositionY="32" Weight="0"/>
-                <NodeConnection OtherPositionX="160" OtherPositionY="32" Weight="0"/>
-                <NodeConnection OtherPositionX="176" OtherPositionY="16" Weight="22.627417"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="32" Weight="32"/>
-            </NodeEntry>
-            <NodeEntry PositionX="176" PositionY="16">
-                <NodeConnection OtherPositionX="160" OtherPositionY="32" Weight="22.627417"/>
-                <NodeConnection OtherPositionX="176" OtherPositionY="16" Weight="0"/>
-                <NodeConnection OtherPositionX="176" OtherPositionY="16" Weight="0"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="32" Weight="22.627417"/>
-            </NodeEntry>
-            <NodeEntry PositionX="192" PositionY="32">
-                <NodeConnection OtherPositionX="160" OtherPositionY="32" Weight="32"/>
-                <NodeConnection OtherPositionX="176" OtherPositionY="16" Weight="22.627417"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="32" Weight="0"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="32" Weight="0"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="64" Weight="32"/>
-            </NodeEntry>
-            <NodeEntry PositionX="192" PositionY="64">
-                <NodeConnection OtherPositionX="160" OtherPositionY="64" Weight="32"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="32" Weight="32"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="64" Weight="0"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="64" Weight="0"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="80" Weight="16"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="96" Weight="32"/>
-            </NodeEntry>
-            <NodeEntry PositionX="192" PositionY="80">
-                <NodeConnection OtherPositionX="192" OtherPositionY="64" Weight="16"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="80" Weight="0"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="80" Weight="0"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="96" Weight="16"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="112" Weight="32"/>
-            </NodeEntry>
-            <NodeEntry PositionX="192" PositionY="96">
-                <NodeConnection OtherPositionX="192" OtherPositionY="64" Weight="32"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="80" Weight="16"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="96" Weight="0"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="96" Weight="0"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="112" Weight="16"/>
-                <NodeConnection OtherPositionX="208" OtherPositionY="112" Weight="22.627417"/>
-            </NodeEntry>
-            <NodeEntry PositionX="192" PositionY="112">
-                <NodeConnection OtherPositionX="192" OtherPositionY="80" Weight="32"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="96" Weight="16"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="112" Weight="0"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="112" Weight="0"/>
-                <NodeConnection OtherPositionX="208" OtherPositionY="112" Weight="16"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="144" Weight="32"/>
-            </NodeEntry>
-            <NodeEntry PositionX="208" PositionY="112">
-                <NodeConnection OtherPositionX="192" OtherPositionY="96" Weight="22.627417"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="112" Weight="16"/>
-                <NodeConnection OtherPositionX="208" OtherPositionY="112" Weight="0"/>
-                <NodeConnection OtherPositionX="208" OtherPositionY="112" Weight="0"/>
-                <NodeConnection OtherPositionX="240" OtherPositionY="112" Weight="32"/>
-            </NodeEntry>
-            <NodeEntry PositionX="240" PositionY="112">
-                <NodeConnection OtherPositionX="208" OtherPositionY="112" Weight="32"/>
-                <NodeConnection OtherPositionX="240" OtherPositionY="112" Weight="0"/>
-                <NodeConnection OtherPositionX="240" OtherPositionY="112" Weight="0"/>
-            </NodeEntry>
-            <NodeEntry PositionX="192" PositionY="144">
-                <NodeConnection OtherPositionX="192" OtherPositionY="112" Weight="32"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="144" Weight="0"/>
-                <NodeConnection OtherPositionX="192" OtherPositionY="144" Weight="0"/>
-            </NodeEntry>
-            <NodeEntry PositionX="256" PositionY="32">
-                <NodeConnection OtherPositionX="256" OtherPositionY="32" Weight="0"/>
-                <NodeConnection OtherPositionX="256" OtherPositionY="32" Weight="0"/>
-                <NodeConnection OtherPositionX="256" OtherPositionY="64" Weight="32"/>
-                <NodeConnection OtherPositionX="288" OtherPositionY="32" Weight="32"/>
-                <NodeConnection OtherPositionX="272" OtherPositionY="48" Weight="22.627417"/>
-            </NodeEntry>
-            <NodeEntry PositionX="256" PositionY="64">
-                <NodeConnection OtherPositionX="256" OtherPositionY="32" Weight="32"/>
-                <NodeConnection OtherPositionX="256" OtherPositionY="64" Weight="0"/>
-                <NodeConnection OtherPositionX="256" OtherPositionY="64" Weight="0"/>
-                <NodeConnection OtherPositionX="288" OtherPositionY="64" Weight="32"/>
-                <NodeConnection OtherPositionX="272" OtherPositionY="48" Weight="22.627417"/>
-            </NodeEntry>
-            <NodeEntry PositionX="288" PositionY="64">
-                <NodeConnection OtherPositionX="256" OtherPositionY="64" Weight="32"/>
-                <NodeConnection OtherPositionX="288" OtherPositionY="64" Weight="0"/>
-                <NodeConnection OtherPositionX="288" OtherPositionY="64" Weight="0"/>
-                <NodeConnection OtherPositionX="288" OtherPositionY="32" Weight="32"/>
-                <NodeConnection OtherPositionX="272" OtherPositionY="48" Weight="22.627417"/>
-            </NodeEntry>
-            <NodeEntry PositionX="288" PositionY="32">
-                <NodeConnection OtherPositionX="256" OtherPositionY="32" Weight="32"/>
-                <NodeConnection OtherPositionX="288" OtherPositionY="64" Weight="32"/>
-                <NodeConnection OtherPositionX="288" OtherPositionY="32" Weight="0"/>
-                <NodeConnection OtherPositionX="288" OtherPositionY="32" Weight="0"/>
-                <NodeConnection OtherPositionX="272" OtherPositionY="48" Weight="22.627417"/>
-            </NodeEntry>
-            <NodeEntry PositionX="272" PositionY="48">
-                <NodeConnection OtherPositionX="256" OtherPositionY="32" Weight="22.627417"/>
-                <NodeConnection OtherPositionX="256" OtherPositionY="64" Weight="22.627417"/>
-                <NodeConnection OtherPositionX="288" OtherPositionY="64" Weight="22.627417"/>
-                <NodeConnection OtherPositionX="288" OtherPositionY="32" Weight="22.627417"/>
-                <NodeConnection OtherPositionX="272" OtherPositionY="48" Weight="0"/>
-                <NodeConnection OtherPositionX="272" OtherPositionY="48" Weight="0"/>
+            <NodeEntry PositionX="96" PositionY="24">
+                <NodeConnection OtherPositionX="48" OtherPositionY="24" Weight="48"/>
+                <NodeConnection OtherPositionX="96" OtherPositionY="24" Weight="0"/>
+                <NodeConnection OtherPositionX="96" OtherPositionY="24" Weight="0"/>
             </NodeEntry>
         </NodeData>
     </Nodes>

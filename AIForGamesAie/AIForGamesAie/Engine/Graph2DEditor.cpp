@@ -94,7 +94,10 @@ void Graph2DEditor::Update(Vector2 mousePos,float deltaTime)
 		{
 			if (m_hoverOnNode != m_selectedNode && m_hoverOnNode != nullptr)
 			{
-				m_graph->ConnectNodes(m_selectedNode, m_hoverOnNode,Vector2Distance(m_selectedNode->data,m_hoverOnNode->data));
+				if (m_selectedNode != nullptr)
+				{
+					m_graph->ConnectNodes(m_selectedNode, m_hoverOnNode, Vector2Distance(m_selectedNode->data, m_hoverOnNode->data));
+				}
 			}
 			m_connectingNodes = false;
 		}
@@ -134,14 +137,11 @@ void Graph2DEditor::Draw()
 			DrawCircleV(Vector2Add(node->data, { m_nodeRadius * 2,0 }), ceil(m_nodeRadius / 2), m_nodeOutlineCol);
 		}
 
+		//Draw Depth Search
 		if (m_selectedNode != nullptr)
 		{
 			m_graph->ForEachDFS(m_selectedNode, [](Graph2D::Node* nde) {
 				DrawCircleV(nde->data, 2, SKYBLUE);
-				});
-
-			m_graph->ForEachBFS(m_selectedNode, [](Graph2D::Node* nde) {
-				DrawCircleV(nde->data, 1, RED);
 				});
 		}
 		
@@ -167,7 +167,10 @@ void Graph2DEditor::Draw()
 	{
 		if (m_hoverOnNode != m_selectedNode)
 		{
-			DrawLineV(m_selectedNode->data, m_mousePos, m_nodeOutlineCol);
+			if (m_selectedNode != nullptr)
+			{
+				DrawLineV(m_selectedNode->data, m_mousePos, m_nodeOutlineCol);
+			}
 		}
 		else if(m_hoverOnNode != nullptr)
 		{

@@ -16,7 +16,7 @@ public:
 	void SetGrapth(Graph2D* graph);
 
 protected:
-	Graph2D* m_graph;
+	Graph2D* m_graph =  nullptr;
 	Vector2 m_mousePos = {0,0};
 
 	Graph2D::Node* m_hoverOnNode = nullptr;

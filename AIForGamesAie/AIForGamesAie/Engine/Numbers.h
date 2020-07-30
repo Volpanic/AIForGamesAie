@@ -38,7 +38,7 @@ public:
 
 	static int FloorMultiple(int value, int multiple)
 	{
-		return floor((value / multiple))*multiple;
+		return (int)floor((value / multiple))*multiple;
 	}
 
 	static float FloorMultiple(float value, int multiple)

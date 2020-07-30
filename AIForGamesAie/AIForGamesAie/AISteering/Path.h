@@ -17,7 +17,7 @@ public:
 
 	void PathAddNode(Vector2 newPos);
 	Vector2 GetPathNodePosition(int nodeNum);
-	int GetPathSize() { return m_positions.size(); };
+	int GetPathSize() { return (m_positions.size()); };
 	void DrawPath();
 
 protected:
