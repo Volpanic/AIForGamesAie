@@ -4,6 +4,7 @@
 #include "FollowPathBehavior.h"
 #include "Graph2D.h"
 #include "Graph2DEditor.h"
+#include "Numbers.h"
 
 #include "raygui.h"
 #include "ricons.h"
@@ -33,8 +34,7 @@ Vector2 LevelEditorState::EditorMousePos()
 
 	if (m_snappedToGrid)
 	{
-		Vector2 gridPos = m_levelMap->ToGridPos(pos);
-		return Vector2Scale(gridPos,m_levelMap->TILE_SIZE);
+		return Numbers::FloorMultiple(pos,8);
 	}
 	else
 	{
@@ -299,9 +299,13 @@ void LevelEditorState::Load(std::string fileName)
 			tinyxml2::XMLNode* pNodes = pRoot->FirstChildElement("Nodes");
 			tinyxml2::XMLElement* nodeData = pNodes->FirstChildElement("NodeData");
 			tinyxml2::XMLElement* nodeListElement = nodeData->FirstChildElement("NodeEntry");
+			
+			std::vector<Graph2D::Node*> newNodes;
 
-			Graph2D* newGraph = new Graph2D();
+			//Kinda Gross
+			std::vector<std::vector<std::tuple<Vector2,float>>> otherConnections;
 
+			int nodeListPos = 0;
 			//Load all nodes into Place
 			while (nodeListElement != nullptr)
 			{
@@ -309,52 +313,59 @@ void LevelEditorState::Load(std::string fileName)
 				Vector2 pos;
 				nodeListElement->QueryFloatAttribute("PositionX", &pos.x);
 				nodeListElement->QueryFloatAttribute("PositionY", &pos.y);
+				
+				//AddNode to vector
+				Graph2D::Node* newNode = new Graph2D::Node();
+				newNode->data = pos;
+				newNodes.push_back(newNode);
 
-				//AddNode to Graph
-				newGraph->AddNode(pos);
-
-				//Next
-				nodeListElement = nodeListElement->NextSiblingElement("NodeEntry");
-			}
-
-			
-			//Connect nodes
-			nodeListElement = nodeData->FirstChildElement("NodeEntry");
-			int pos = 0;
-
-			while (nodeListElement != nullptr)
-			{
 				//Connections
 				tinyxml2::XMLElement* connectionListElement = nodeListElement->FirstChildElement("NodeConnection");
 
+				otherConnections.push_back(std::vector<std::tuple<Vector2, float>>());
 				//AddConnections
 				while (connectionListElement != nullptr)
 				{
-					Vector2 otherPos;
+					//Get data
+					Vector2 otherPos = {0,0};
 					float weight = 0;
 					connectionListElement->QueryFloatAttribute("OtherPositionX", &otherPos.x);
 					connectionListElement->QueryFloatAttribute("OtherPositionY", &otherPos.y);
 					connectionListElement->QueryFloatAttribute("Weight", &weight);
-					Graph2D::Node* nodeToCheck = (newGraph->GetNode(pos));
 
-					std::cout << "Node Connections: " << otherPos.x << " : " << otherPos.y << " - " << weight << std::endl;
-					
-					//Check who to connect
-					for (auto const& isConnectNode : newGraph->GetNodes())
-					{
-						if ((otherPos.x == isConnectNode->data.x) && (otherPos.y == isConnectNode->data.y))
-						{
-							newGraph->AddEdge(nodeToCheck, isConnectNode, weight);
-							break;
-						}
-					}
+					//Enter data
+					(otherConnections[nodeListPos]).push_back(std::make_tuple(otherPos,weight));
+
 					connectionListElement = connectionListElement->NextSiblingElement("NodeConnection");
-					pos++;
 				}
 
 				//Next
+				nodeListPos++;
 				nodeListElement = nodeListElement->NextSiblingElement("NodeEntry");
-				pos = 0;
+			}
+
+			
+			Graph2D* newGraph = new Graph2D(newNodes);
+			//Connect nodes
+			nodeListPos = 0;
+			for (auto const& node : newNodes)
+			{
+				//Loop through connections list
+				for (auto const& connection : otherConnections[nodeListPos])
+				{
+					//Check if should connect nodes
+					Vector2 otherPos = connection._Myfirst._Val;
+					for (auto const& nodeOth : newNodes)
+					{
+						if ((nodeOth->data.x == otherPos.x) && (nodeOth->data.y == otherPos.y))
+						{
+							newGraph->ConnectNodes(node,nodeOth,std::get<1>(connection));
+							continue;
+						}
+					}
+				}
+
+				nodeListPos++;
 			}
 
 			//SetGraph

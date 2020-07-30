@@ -35,4 +35,19 @@ public:
 		}
 		return value;
 	}
+
+	static int FloorMultiple(int value, int multiple)
+	{
+		return floor((value / multiple))*multiple;
+	}
+
+	static float FloorMultiple(float value, int multiple)
+	{
+		return floor((value / multiple)) * multiple;
+	}
+
+	static Vector2 FloorMultiple(Vector2 value, int multiple)
+	{
+		return {FloorMultiple(value.x,multiple),FloorMultiple(value.y,multiple)};
+	}
 };
