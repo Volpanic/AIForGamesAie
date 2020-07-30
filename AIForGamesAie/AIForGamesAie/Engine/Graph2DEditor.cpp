@@ -1,6 +1,7 @@
 #include "Graph2DEditor.h"
 #include "Graph2D.h"
 #include "raymath.h"
+#include <iostream>
 #include <string>
 
 Graph2DEditor::Graph2DEditor()
@@ -81,6 +82,10 @@ void Graph2DEditor::Update(Vector2 mousePos,float deltaTime)
 		{
 			m_selectedNode = nullptr;
 		}
+		else if(m_hoverOnNode != m_selectedNode)
+		{
+			m_selectedNode = m_hoverOnNode;
+		}
 	}
 
 	if (IsMouseButtonUp(MOUSE_LEFT_BUTTON))
@@ -127,6 +132,17 @@ void Graph2DEditor::Draw()
 
 			//Draw Handle
 			DrawCircleV(Vector2Add(node->data, { m_nodeRadius * 2,0 }), ceil(m_nodeRadius / 2), m_nodeOutlineCol);
+		}
+
+		if (m_selectedNode != nullptr)
+		{
+			m_graph->ForEachDFS(m_selectedNode, [](Graph2D::Node* nde) {
+				DrawCircleV(nde->data, 2, SKYBLUE);
+				});
+
+			m_graph->ForEachBFS(m_selectedNode, [](Graph2D::Node* nde) {
+				DrawCircleV(nde->data, 1, RED);
+				});
 		}
 		
 	}

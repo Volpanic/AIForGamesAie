@@ -6,7 +6,7 @@ LevelMap::LevelMap(int width, int height)
 
 	for (int xx = 0; xx < GetWidth(); xx++)
 	{
-		for (int yy = 0; yy < GetWidth(); yy++)
+		for (int yy = 0; yy < GetHeight(); yy++)
 		{
 			Set(xx, yy, 0);
 		}

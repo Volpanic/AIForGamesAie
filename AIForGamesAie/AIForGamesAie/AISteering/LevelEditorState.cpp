@@ -17,7 +17,7 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 
 	m_graphEditor->SetGrapth(m_graph);
 
-	//Load("");
+	Load("");
 }
 
 LevelEditorState::~LevelEditorState()
@@ -102,10 +102,8 @@ void LevelEditorState::Draw()
 	LevelState::Draw();
 	m_levelMap->Draw();
 
-	if (m_drawNodes && m_editorState != EditorStates::Nodes)
-	{
-		m_graphEditor->DrawOnlyNodes();
-	}
+	m_graphEditor->DrawOnlyNodes();
+	
 
 	//Controls
 	if (IsKeyDown(KEY_C))
@@ -154,6 +152,23 @@ void LevelEditorState::Draw()
 		if (GuiButton(toggleRec, GuiIconText(RICON_FILE_OPEN, "")))
 		{
 			Load("");
+		}
+		toggleRec.x += 20;
+
+		if (GuiButton(toggleRec, GuiIconText(RICON_BIN, "")))
+		{
+			Graph2D* graph = new Graph2D();
+			delete m_graph;
+			m_graph = graph;
+			m_graphEditor->SetGrapth(graph);
+
+			for (int xx = 0; xx < m_levelMap->GetWidth(); xx++)
+			{
+				for (int yy = 0; yy < m_levelMap->GetHeight(); yy++)
+				{
+					m_levelMap->Set(xx, yy, 0);
+				}
+			}
 		}
 		toggleRec.x += 20;
 	}
@@ -359,7 +374,7 @@ void LevelEditorState::Load(std::string fileName)
 					{
 						if ((nodeOth->data.x == otherPos.x) && (nodeOth->data.y == otherPos.y))
 						{
-							newGraph->ConnectNodes(node,nodeOth,std::get<1>(connection));
+							newGraph->AddEdge(node,nodeOth,std::get<1>(connection));
 							continue;
 						}
 					}

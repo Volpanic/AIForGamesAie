@@ -1,5 +1,8 @@
 #pragma once
 #include <vector>
+#include <functional>
+#include <set>
+#include <queue>
 
 template<class TNodeData, class TEdgeData>
 class Graph
@@ -57,12 +60,9 @@ public:
 	// == == == == == == == == == == == == 
 	// Add Edge
 	// == == == == == == == == == == == == 
-	void AddEdge(Node* nodeA, Node* nodeB, const TEdgeData& data)
+	void AddEdge(Node* nodeFrom, Node* nodeTo, const TEdgeData& data)
 	{
-		if (nodeB != nodeA)
-		{
-			nodeA->connections.push_back({ nodeB,data });
-		}
+		nodeFrom->connections.push_back({ nodeTo,data });
 	}
 
 	// == == == == == == == == == == == == 
@@ -112,6 +112,82 @@ public:
 		
 		delete node;
 	}
+
+	// == == == == == == == == == == == == 
+	// ForEachDFS
+	// == == == == == == == == == == == == 
+	void ForEachDFS(Node* startNode, std::function<void(Node * n)> process)
+	{
+		std::vector<Node* > stack;
+		std::vector<Node* > visited;
+
+		stack.push_back(startNode);
+
+		int bre = 0;
+		while (!stack.empty())
+		{
+			Node* node = stack.back();
+			stack.pop_back();
+			visited.push_back(node);
+
+			process(node);
+
+			for (auto const& edge : node->connections)
+			{
+				//Add
+				if (std::find(stack.begin(), stack.end(), edge.to) != stack.end() || std::find(visited.begin(), visited.end(), edge.to) != visited.end())
+				{
+					continue;
+				}
+				else
+				{
+					stack.push_back(edge.to);
+				}
+			}
+		}
+	}
+
+	// == == == == == == == == == == == == 
+	// ForEachBFS
+	// == == == == == == == == == == == == 
+	void ForEachBFS(Node* startNode, std::function<void(Node * n)> process)
+	{
+		std::list<Node* > stack;
+		std::vector<Node* > visited;
+
+		stack.push_back(startNode);
+
+		while (!stack.empty())
+		{
+			Node* node = stack.front();
+			stack.pop_front();
+			visited.push_back(node);
+
+			process(node);
+
+			for (auto const& edge : node->connections)
+			{
+				//Add
+				if (std::find(stack.begin(), stack.end(), edge.to) != stack.end() || std::find(visited.begin(), visited.end(), edge.to) != visited.end())
+				{
+					continue;
+				}
+				else
+				{
+					stack.push_front(edge.to);
+				}
+
+			}
+		}
+	}
+
+	// == == == == == == == == == == == == 
+	// Find Path
+	// == == == == == == == == == == == == 
+	//bool FindPath(Node* nodeA, Node* nodeB, std::vector<Nodes*>& output)
+	//{
+
+	//}
 
 protected:
 
