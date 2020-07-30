@@ -33,7 +33,7 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 
 	ImGuiContext* ctx;
 	auto io = ImGui::GetIO();
-	ImGui::GetIO().DisplaySize = { m_app->GetGameWidth()*8.0f,m_app->GetGameHeight() * 8.0f };
+	ImGui::GetIO().DisplaySize = { m_app->GetGameWidth() * 4.0f,m_app->GetGameHeight() * 4.0f };
 
 	unsigned char* pixels = NULL;
 
@@ -141,19 +141,13 @@ void LevelEditorState::Draw()
 	ImGui_ImplRaylib_ProcessEvent();
 	ImGui::NewFrame();
 	//ImGui
+	ImGui::ShowDemoWindow();
 
-	ImGui::Begin("Start Menu");
-
-	if (ImGui::Button("Yes"))
-	{
-
-	}
-
+	ImGui::Begin("Test Window");
+	ImGui::Button("Yeah");
+	ImGui::SetWindowPos({10,10});
 	ImGui::End();
-
 	//ImGui
-
-	ImGui::ShowDemoWindow(NULL);
 	ImGui::Render();
 	m_drawData = ImGui::GetDrawData();
 	raylib_render_cimgui(m_drawData);
