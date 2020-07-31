@@ -38,5 +38,5 @@ private:
 
 	Graph2DEditor* m_graphEditor = nullptr;
 	Graph2D* m_graph = nullptr;
-	ImDrawData* m_drawData;
+	
 };

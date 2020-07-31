@@ -52,7 +52,7 @@ bool ImGui_ImplRaylib_Init()
     io.KeyMap[ImGuiKey_Y] = KEY_Y;
     io.KeyMap[ImGuiKey_Z] = KEY_Z;
 
-    io.MousePos = {-FLT_MAX, -FLT_MAX};
+    io.MousePos = { (float)GetMouseX(), (float)GetMouseY() };
     io.SetClipboardTextFn = ImGui_ImplRaylib_SetClipboardText;
     io.GetClipboardTextFn = ImGui_ImplRaylib_GetClipboardText;
     io.ClipboardUserData = NULL;
@@ -94,7 +94,7 @@ static void ImGui_ImplRaylib_UpdateMousePosAndButtons()
     if (io.WantSetMousePos)
         SetMousePosition(io.MousePos.x, io.MousePos.y);
     else
-        io.MousePos = {-FLT_MAX, -FLT_MAX};
+        io.MousePos = {(float)GetMouseX(), (float)GetMouseY()};
 
     io.MouseDown[0] = IsMouseButtonDown(MOUSE_LEFT_BUTTON) || oldTouchX != GetTouchX() || oldTouchY != GetTouchY();
     io.MouseDown[1] = IsMouseButtonDown(MOUSE_RIGHT_BUTTON);

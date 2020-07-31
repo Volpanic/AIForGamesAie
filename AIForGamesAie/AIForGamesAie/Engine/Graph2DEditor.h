@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "Graph2D.h"
+#include "Path.h"
 
 class Graph2DEditor
 {
@@ -21,6 +22,7 @@ protected:
 
 	Graph2D::Node* m_hoverOnNode = nullptr;
 	Graph2D::Node* m_selectedNode = nullptr;
+	Graph2D::Node* m_targetNode = nullptr;
 	bool m_connectingNodes = false;
 
 	float m_nodeRadius = 4;
@@ -29,6 +31,7 @@ protected:
 	Color m_nodeLineCol = {255,179,179,255};
 
 	float m_nearbyRadius = 32;
+	Path* m_path = nullptr;
 
 private:
 };

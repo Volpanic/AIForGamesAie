@@ -16,6 +16,12 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
+	//Stuff for childern
+	virtual void StartUpdate(float deltaTime) {};
+	virtual void EndUpdate(float deltaTime) {};
+	virtual void StartDraw() {};
+	virtual void EndDraw() {};
+
 	//Getters
 	const int& GetGameWidth() { return m_gameWidth; };
 	const int& GetGameHeight() { return m_gameHeight; };

@@ -3,14 +3,29 @@
 #include <functional>
 #include <set>
 #include <queue>
+#include <algorithm>
 
 template<class TNodeData, class TEdgeData>
 class Graph
 {
 public:
 
+	
+	struct PathfindNode;
 	struct Node;
 	struct Edge;
+
+	struct PathfindNode
+	{
+		Node* graphNode;
+		PathfindNode* parent;
+		float cost;
+
+		bool operator<(const PathfindNode& other)
+		{
+			return (cost > other.cost);
+		}
+	};
 
 	struct Node
 	{
@@ -181,13 +196,10 @@ public:
 		}
 	}
 
-	// == == == == == == == == == == == == 
-	// Find Path
-	// == == == == == == == == == == == == 
-	//bool FindPath(Node* nodeA, Node* nodeB, std::vector<Nodes*>& output)
-	//{
-
-	//}
+	bool ComparePathNodesByCost(const PathfindNode& a, const PathfindNode& b)
+	{
+		return (a.cost > b.cost);
+	}
 
 protected:
 

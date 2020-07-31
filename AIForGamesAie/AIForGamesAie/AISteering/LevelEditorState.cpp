@@ -9,8 +9,7 @@
 #include "raygui.h"
 #include "ricons.h"
 #include "tinyxml2.h"
-
-#include "cimgui_impl_raylib.h"
+#include "imgui.h"
 
 LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(app)
 {
@@ -20,29 +19,6 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 	m_graphEditor->SetGrapth(m_graph);
 
 	Load("");
-	
-
-	//ImGui
-	ImGui::CreateContext();
-	ImGui::StyleColorsDark(NULL);
-	ImGui_ImplRaylib_Init();
-
-	//Build Texture atlas
-	int width = m_app->GetGameWidth();
-	int height = m_app->GetGameHeight();
-
-	ImGuiContext* ctx;
-	auto io = ImGui::GetIO();
-	ImGui::GetIO().DisplaySize = { m_app->GetGameWidth() * 4.0f,m_app->GetGameHeight() * 4.0f };
-
-	unsigned char* pixels = NULL;
-
-	io.Fonts->GetTexDataAsRGBA32(&pixels,&width,&height,NULL);
-	Image image = LoadImageEx((Color*)pixels, width, height);
-	Texture2D texture = LoadTextureFromImage(image);
-	io.Fonts->TexID = (void*)&texture.id;
-
-	//ImGui
 }
 
 LevelEditorState::~LevelEditorState()
@@ -136,21 +112,15 @@ void LevelEditorState::Draw()
 	m_levelMap->Draw();
 
 	//Controls
-	//ImGui
-	ImGui_ImplRaylib_NewFrame();
-	ImGui_ImplRaylib_ProcessEvent();
-	ImGui::NewFrame();
-	//ImGui
-	ImGui::ShowDemoWindow();
+	//ImGui::ShowDemoWindow();
 
-	ImGui::Begin("Test Window");
-	ImGui::Button("Yeah");
-	ImGui::SetWindowPos({10,10});
-	ImGui::End();
+	//ImGui::Begin("Test Window");
+	//ImGui::Button("Yeah");
+	//ImGui::SetWindowPos({ 0,0 });
+	//ImGui::SetWindowPos({10,10});
+	//ImGui::End();
 	//ImGui
-	ImGui::Render();
-	m_drawData = ImGui::GetDrawData();
-	raylib_render_cimgui(m_drawData);
+	
 	//ImGui
 
 	if (IsKeyDown(KEY_C))

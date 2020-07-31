@@ -1,26 +1,27 @@
 #include "FollowPathBehavior.h"
 #include "Agent.h"
+#include "Path.h"
 
-FollowPathBehavior::FollowPathBehavior(const Path& path, const float& speed) : m_path(path), m_speed(speed)
+FollowPathBehavior::FollowPathBehavior(Path* path, const float& speed) :  m_speed(speed)
 {
-
+	m_path = path;
 }
 
 FollowPathBehavior::~FollowPathBehavior()
 {
-
+	delete m_path;
 }
 
 void FollowPathBehavior::Update(Agent* obj, float deltaTime)
 {
-	if(MoveTowards(obj, m_path.GetPathNodePosition(m_pathPos), deltaTime))
+	if(MoveTowards(obj, m_path->GetPathNodePosition(m_pathPos), deltaTime))
 	{
 		m_pathPos += m_direction;
 
-		if (m_pathPos >= m_path.GetPathSize() || m_pathPos < 0)
+		if (m_pathPos >= m_path->GetPathSize() || m_pathPos < 0)
 		{
 			//DoPath
-			switch (m_path.GetPathType())
+			switch (m_path->GetPathType())
 			{
 				case PathType::Open:
 				{

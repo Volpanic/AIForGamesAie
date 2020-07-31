@@ -102,6 +102,19 @@ void Graph2DEditor::Update(Vector2 mousePos,float deltaTime)
 			m_connectingNodes = false;
 		}
 	}
+
+	//Select secondary node
+	if (IsMouseButtonPressed(MOUSE_MIDDLE_BUTTON))
+	{
+		if (m_hoverOnNode != nullptr && m_hoverOnNode != m_selectedNode)
+		{
+			m_targetNode = m_hoverOnNode;
+		}
+		else
+		{
+			m_targetNode = nullptr;
+		}
+	}
 }
 
 void Graph2DEditor::Draw()
@@ -143,6 +156,32 @@ void Graph2DEditor::Draw()
 			m_graph->ForEachDFS(m_selectedNode, [](Graph2D::Node* nde) {
 				DrawCircleV(nde->data, 2, SKYBLUE);
 				});
+		}
+
+		//DrawTargetNode
+		if (m_targetNode != nullptr)
+		{
+			DrawCircleV(m_targetNode->data, 2, BLUE);
+
+			if (m_selectedNode != nullptr)
+			{
+
+				auto nodes = m_graph->ForEachDijkstra(m_selectedNode,m_targetNode,NULL);
+
+				if (m_path != nullptr) delete m_path;
+				m_path = new Path();
+
+				for (auto const node : nodes)
+				{
+					m_path->PathAddNode(node->data);
+				}
+				m_targetNode = nullptr;
+			}
+		}
+
+		if (m_path != nullptr)
+		{
+			m_path->DrawPath();
 		}
 		
 	}

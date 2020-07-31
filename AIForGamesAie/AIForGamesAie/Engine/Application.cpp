@@ -46,7 +46,11 @@ void Application::Run()
 	{
 		float dt = GetFrameTime();
 		
-		Update(dt);
+		StartUpdate(dt);
+
+			Update(dt);
+
+		EndUpdate(dt);
 
 		Draw();
 	}
@@ -64,6 +68,8 @@ void Application::Update(float deltaTime)
 void Application::Draw()
 {
 	BeginDrawing();
+	StartDraw();
+
 	BeginTextureMode(m_gameSurface);
 
 	ClearBackground(BLACK);
@@ -76,6 +82,7 @@ void Application::Draw()
 	DrawTexturePro(m_gameSurface.texture, { 0.0f,0.0f,(float)m_gameWidth,(float)-m_gameHeight },
 		{ 0.0f,0.0f,(float)(m_gameWidth * m_gameZoom),(float)(m_gameHeight * m_gameZoom) }, { 0,0 }, 0.0f, WHITE);
 
+	EndDraw();
 
 	EndDrawing();
 }

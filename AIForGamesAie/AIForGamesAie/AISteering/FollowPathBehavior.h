@@ -1,11 +1,13 @@
 #pragma once
 #include "Behaviour.h"
-#include "Path.h"
+#include "raylib.h"
+
+class Path;
 
 class FollowPathBehavior : public Behaviour
 {
 public:
-	FollowPathBehavior(const Path& path, const float& speed);
+	FollowPathBehavior(Path* path, const float& speed);
 	virtual ~FollowPathBehavior();
 
 	bool MoveTowards(Agent* obj,Vector2 target, float deltaTime);
@@ -16,6 +18,6 @@ protected:
 	float m_speed;
 	int m_direction = 1;
 	int m_pathPos = 0;
-	Path m_path;
+	Path* m_path;
 };
 

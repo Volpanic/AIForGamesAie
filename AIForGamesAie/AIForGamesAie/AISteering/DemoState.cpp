@@ -41,7 +41,7 @@ void DemoState::Update(float deltaTime)
 	if (IsKeyDown(KEY_SPACE))
 	{
 		Agent* myAge = GetAll<Agent>().front();
-		myAge->SetBehaviour(new FollowPathBehavior(m_path,500));
+		//myAge->SetBehaviour(new FollowPathBehavior(&m_path,500));
 	}
 
 	if (IsKeyPressed(KEY_BACKSPACE))
