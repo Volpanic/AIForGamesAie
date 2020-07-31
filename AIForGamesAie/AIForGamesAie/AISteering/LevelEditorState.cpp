@@ -51,6 +51,7 @@ void LevelEditorState::Update(float deltaTime)
 	if (m_graphEditor->m_path != nullptr)
 	{
 		auto testAgent = Add<Agent>(new Agent(this));
+		m_graphEditor->m_path->SetPathType(PathType::Open);
 		testAgent->SetPosition(m_graphEditor->m_selectedNode->data.x, m_graphEditor->m_selectedNode->data.y);
 		testAgent->SetBehaviour(new FollowPathBehavior(m_graphEditor->m_path,250.0f));
 		m_graphEditor->m_path = nullptr;
@@ -116,7 +117,6 @@ void LevelEditorState::Draw()
 		}
 	}
 
-	LevelState::Draw();
 	m_levelMap->Draw();
 
 	//Controls
@@ -217,6 +217,8 @@ void LevelEditorState::Draw()
 			}
 		}
 	}
+
+	LevelState::Draw();
 }
 
 void LevelEditorState::Save(std::string fileName)

@@ -50,6 +50,7 @@ std::vector<Graph2D::Node*> Graph2D::ForEachDijkstra(Graph2D::Node* startNode, G
 			}
 			returnNodes.push_back(current->graphNode);
 
+			std::reverse(returnNodes.begin(), returnNodes.end());
 			return returnNodes;
 		}
 

@@ -178,6 +178,7 @@ void Graph2DEditor::Draw()
 
 				for (auto const node : nodes)
 				{
+					m_path->SetPathType(PathType::Open);
 					m_path->PathAddNode(node->data);
 				}
 				m_targetNode = nullptr;

@@ -3,9 +3,9 @@
 
 Agent::Agent(LevelState* level) : Actor::Actor(level)
 {
-	SetOrigin(8, 8);
+	SetOrigin(7, 7);
 	m_collider = new Collider();
-	m_collider->Setup(this,16,16);
+	m_collider->Setup(this,14,14);
 
 	AddComponent<Drawable>(new Drawable(m_level->GetResources()->GetTexture("spr_player.png"),16,16));
 }
@@ -23,12 +23,15 @@ void Agent::Update(float deltaTime)
 	{
 		m_behaviour->Update(this, deltaTime);
 	}
+	else
+	{
+		m_level->Remove<Agent>(this);
+	}
 
 	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 	{
 		SetBehaviour(new SteeringBehaviour(m_level->GetScaledMousePos(),250));
 	}
-
 
 	SetFriction(3.0f);
 	ApplyForce(Vector2Scale(Vector2Negate(m_velocity), m_friciton));
@@ -36,7 +39,7 @@ void Agent::Update(float deltaTime)
 	//Collisions and stuff
 	m_velocity = Vector2Add(m_velocity, Vector2Scale(m_acceleration, deltaTime));
 
-	m_rotation = atan2(m_velocity.y, m_velocity.x);
+	m_rotation = Vector2Angle(Vector2Zero(), m_velocity) * DEG2RAD;
 
 	MoveX(m_velocity.x * deltaTime);
 	MoveY(m_velocity.y * deltaTime);

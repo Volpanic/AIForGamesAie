@@ -14,6 +14,7 @@ public:
 	~Path();
 
 	PathType& GetPathType() { return m_pathType; };
+	void SetPathType(PathType pathType) { m_pathType = pathType; };
 
 	void PathAddNode(Vector2 newPos);
 	Vector2 GetPathNodePosition(int nodeNum);

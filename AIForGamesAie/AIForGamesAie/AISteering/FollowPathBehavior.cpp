@@ -67,5 +67,5 @@ bool FollowPathBehavior::MoveTowards(Agent* obj,Vector2 target,float deltaTime)
 
 void FollowPathBehavior::Draw(Agent* obj)
 {
-	
+	m_path->DrawPath();
 }
