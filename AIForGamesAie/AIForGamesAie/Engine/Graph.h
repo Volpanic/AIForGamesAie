@@ -20,11 +20,6 @@ public:
 		Node* graphNode;
 		PathfindNode* parent;
 		float cost;
-
-		bool operator<(const PathfindNode& other)
-		{
-			return (cost > other.cost);
-		}
 	};
 
 	struct Node

@@ -1,6 +1,7 @@
 #include "Graph2D.h"
 #include "Graph.h"
 #include "raymath.h"
+#include <iostream>
 #include <functional>
 
 Graph2D::Graph2D()
@@ -24,62 +25,77 @@ Graph2D::~Graph2D()
 
 std::vector<Graph2D::Node*>  Graph2D::ForEachDijkstra(Graph2D::Node* startNode, Graph2D::Node* endNode, std::function<void(Graph2D::Node * n)> process)
 {
-	std::vector<Graph2D::PathfindNode*> openList;
-	std::vector<Graph2D::Node* > closedList;
+	std::list<Graph2D::PathfindNode* > openList;
+	std::vector<Graph2D::PathfindNode* > closedList;
 
-	openList.push_back(new PathfindNode({ startNode ,nullptr,0 }));
+	std::vector<Node*> returnNodes;
 
-	int gScore = 0;
+	openList.push_front(new Graph2D::PathfindNode({ startNode ,nullptr,0 }));
+
 	while (!openList.empty())
 	{
-		Graph2D::PathfindNode* node = openList.back();
-		openList.pop_back();
-		closedList.push_back(node->graphNode);
+		Graph2D::PathfindNode* current = openList.front();
+		openList.pop_front();
+		closedList.push_back(current);
 
-		//process(node);
-
-		for (auto const& edge : node->graphNode->connections)
+		//End
+		if (current->graphNode == endNode)
 		{
-			//Check if All ready
+			std::cout << current->cost << std::endl;
+			while (current->parent != nullptr)
+			{
+				returnNodes.push_back(current->graphNode);
+				current = current->parent;
+			}
+			returnNodes.push_back(current->graphNode);
+
+			return returnNodes;
+		}
+
+		//Edges
+		for (auto const& edge : current->graphNode->connections)
+		{
 			bool doAdd = true;
-			for (auto const& onOpenList : openList)
+
+			//Check Q
+			for (auto const& opened : openList)
 			{
-				if (onOpenList->graphNode == edge.to)
+				if (opened ->graphNode == edge.to)
 				{
 					doAdd = false;
+					break;
 				}
 			}
 
-			for (auto const& onClosedList : closedList)
+			//Check closed
+			for (auto const& closed : closedList)
 			{
-				if (onClosedList == edge.to)
+				if (closed->graphNode == edge.to)
 				{
-					doAdd = false;
-				}
-			}
-
-			if(doAdd)
-			{
-				openList.push_back(new PathfindNode({ edge.to,node,edge.data }));
-
-				if (edge.to == endNode)
-				{
-					std::vector<Graph2D::Node*> nodesToReturn;
-					Graph2D::PathfindNode* check = openList.back();
-
-					while (check->parent != nullptr)
+					if (closed->cost > current->cost + edge.data)
 					{
-						nodesToReturn.push_back(check->graphNode);
-						check = check->parent;
+						closed->cost = current->cost + edge.data;
+						closed->parent = current;
 					}
-					nodesToReturn.push_back(check->graphNode);
-					return nodesToReturn;
+					doAdd = false;
+					break;
 				}
+			}
+
+			if (doAdd)
+			{
+				openList.push_front(new Graph2D::PathfindNode({ edge.to ,current,current->cost + edge.data }));
 			}
 		}
-		std::sort(openList.begin(), openList.end());
 
+
+		openList.sort([](const Graph2D::PathfindNode* a, const Graph2D::PathfindNode* b) {
+			return a->cost < b->cost;
+		});
+	
 	}
+
+	return returnNodes;
 }
 
 std::vector<Graph2D::Node*> Graph2D::GetNearbyNodes(Vector2 position, float radius)
