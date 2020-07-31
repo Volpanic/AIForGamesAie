@@ -5,6 +5,8 @@
 #include "Graph2D.h"
 #include "Graph2DEditor.h"
 #include "Numbers.h"
+#include "Agent.h"
+#include "FollowPathBehavior.h"
 
 #include "raygui.h"
 #include "ricons.h"
@@ -13,7 +15,7 @@
 
 LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(app)
 {
-	m_graphEditor = new Graph2DEditor();
+	m_graphEditor = new Graph2DEditor(this);
 	m_graph = new Graph2D();
 
 	m_graphEditor->SetGrapth(m_graph);
@@ -46,12 +48,18 @@ Vector2 LevelEditorState::EditorMousePos()
 
 void LevelEditorState::Update(float deltaTime)
 {
+	if (m_graphEditor->m_path != nullptr)
+	{
+		auto testAgent = Add<Agent>(new Agent(this));
+		testAgent->SetPosition(m_graphEditor->m_selectedNode->data.x, m_graphEditor->m_selectedNode->data.y);
+		testAgent->SetBehaviour(new FollowPathBehavior(m_graphEditor->m_path,250.0f));
+		m_graphEditor->m_path = nullptr;
+	}
+
 	if (IsKeyDown(KEY_C))
 	{
 		return;
 	}
-
-	
 
 	m_snappedToGrid = IsKeyDown(KEY_LEFT_CONTROL);
 
@@ -83,7 +91,7 @@ void LevelEditorState::Update(float deltaTime)
 		}
 	}
 
-	//LevelState::Update(deltaTime);
+	LevelState::Update(deltaTime);
 }
 
 void LevelEditorState::Draw()
@@ -399,6 +407,8 @@ void LevelEditorState::Load(std::string fileName)
 
 				nodeListPos++;
 			}
+
+			LevelState::Draw();
 
 			//SetGraph
 			delete m_graph;

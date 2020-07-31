@@ -5,12 +5,12 @@
 #include "FadeTransition.h"
 #include "LevelEditorState.h"
 #include "cimgui_impl_raylib.h"
+#include "Numbers.h"
 
 Game::~Game()
 {
 
 }
-
 
 void Game::Create()
 {

@@ -3,6 +3,7 @@
 #include "raymath.h"
 #include <iostream>
 #include <functional>
+#include <map>
 
 Graph2D::Graph2D()
 {
@@ -23,10 +24,10 @@ Graph2D::~Graph2D()
 
 }
 
-std::vector<Graph2D::Node*>  Graph2D::ForEachDijkstra(Graph2D::Node* startNode, Graph2D::Node* endNode, std::function<void(Graph2D::Node * n)> process)
+std::vector<Graph2D::Node*> Graph2D::ForEachDijkstra(Graph2D::Node* startNode, Graph2D::Node* endNode, std::function<void(Graph2D::Node * n)> process)
 {
 	std::list<Graph2D::PathfindNode* > openList;
-	std::vector<Graph2D::PathfindNode* > closedList;
+	std::map<Graph2D::Node*,Graph2D::PathfindNode* > closedList;
 
 	std::vector<Node*> returnNodes;
 
@@ -36,7 +37,7 @@ std::vector<Graph2D::Node*>  Graph2D::ForEachDijkstra(Graph2D::Node* startNode, 
 	{
 		Graph2D::PathfindNode* current = openList.front();
 		openList.pop_front();
-		closedList.push_back(current);
+		closedList[current->graphNode] = current;
 
 		//End
 		if (current->graphNode == endNode)
@@ -68,19 +69,17 @@ std::vector<Graph2D::Node*>  Graph2D::ForEachDijkstra(Graph2D::Node* startNode, 
 			}
 
 			//Check closed
-			for (auto const& closed : closedList)
+			if(closedList.find(edge.to) != closedList.end())
 			{
-				if (closed->graphNode == edge.to)
+				PathfindNode* closed = closedList[edge.to];
+				if (closed->cost > current->cost + edge.data)
 				{
-					if (closed->cost > current->cost + edge.data)
-					{
-						closed->cost = current->cost + edge.data;
-						closed->parent = current;
-					}
-					doAdd = false;
-					break;
+					closed->cost = current->cost + edge.data;
+					closed->parent = current;
 				}
+				doAdd = false;
 			}
+			
 
 			if (doAdd)
 			{

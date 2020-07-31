@@ -9,6 +9,11 @@ Graph2DEditor::Graph2DEditor()
 
 }
 
+Graph2DEditor::Graph2DEditor(LevelState* levelState) : m_level(levelState)
+{
+
+}
+
 Graph2DEditor::~Graph2DEditor()
 {
 
@@ -176,6 +181,11 @@ void Graph2DEditor::Draw()
 					m_path->PathAddNode(node->data);
 				}
 				m_targetNode = nullptr;
+
+				//if (m_level != nullptr)
+				//{
+				//	m_level->Add<>
+				//}
 			}
 		}
 
