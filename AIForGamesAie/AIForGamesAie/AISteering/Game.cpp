@@ -8,6 +8,11 @@
 #include "Numbers.h"
 #include "rlgl.h"
 
+Game::Game(int gameWidth, int gameHeight, int gameZoom) : Application::Application(gameWidth,gameHeight,gameZoom)
+{
+	
+}
+
 Game::~Game()
 {
 
@@ -20,7 +25,7 @@ void Game::Create()
 
 	//ImGui
 	ImGui::CreateContext();
-	//ImGui::StyleColorsClassic();
+	ImGui::StyleColorsDark();
 	ImGui_ImplRaylib_Init();
 
 	//Build Texture atlas

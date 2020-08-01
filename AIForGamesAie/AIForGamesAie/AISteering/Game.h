@@ -6,7 +6,7 @@ struct ImDrawData;
 class Game : public Application
 {
 public:
-	using Application::Application;
+	Game(int gameWidth, int gameHeight, int gameZoom);
 	virtual ~Game();
 	virtual void Create();
 
@@ -14,6 +14,6 @@ public:
 	virtual void EndDraw();
 
 private:
-	ImDrawData* m_drawData;
+	ImDrawData* m_drawData = nullptr;
 };
 

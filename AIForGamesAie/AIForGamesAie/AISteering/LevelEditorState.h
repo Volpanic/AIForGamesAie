@@ -32,10 +32,22 @@ public:
 private:
 	EditorStates m_editorState = EditorStates::Tiles;
 
+	//Data
+	char m_saveFileName[32] = "";
+
+	bool m_loadMenuOpen = false;
+	bool m_saveMenuOpen = false;
+	int m_selectedLoadFile = 0;
+
+	//Toggels
 	bool m_drawGrid = true;
 	bool m_drawNodes = true;
 	bool m_snappedToGrid = false;
 
+	//Navigation
+	Vector2 m_panPosition = { 0,0 };
+
+	//Graph
 	Graph2DEditor* m_graphEditor = nullptr;
 	Graph2D* m_graph = nullptr;
 	

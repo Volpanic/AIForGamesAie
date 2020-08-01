@@ -20,19 +20,25 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 
 	m_graphEditor->SetGrapth(m_graph);
 
+	m_camera.zoom = 1;
+
 	Load("");
+	
 }
 
 LevelEditorState::~LevelEditorState()
 {
 	delete m_graphEditor;
 	delete m_graph;
+
 	//delete m_drawData;
 }
 
 Vector2 LevelEditorState::EditorMousePos()
 {
 	Vector2 pos = m_app->GetScaledMousePos();
+	pos.x += m_camera.target.x;
+	pos.y += m_camera.target.y;
 	pos.x = floor(pos.x);
 	pos.y = floor(pos.y);
 
@@ -51,6 +57,19 @@ void LevelEditorState::Update(float deltaTime)
 	if (ImGui::GetIO().WantCaptureMouse)
 	{
 		return;
+	}
+
+	//View Panning
+	if (IsMouseButtonPressed(MOUSE_MIDDLE_BUTTON))
+	{
+		m_panPosition.x = GetMousePosition().x + m_camera.target.x;
+		m_panPosition.y = GetMousePosition().y + m_camera.target.y;
+	}
+
+	if (IsMouseButtonDown(MOUSE_MIDDLE_BUTTON))
+	{
+		m_camera.target.x = m_panPosition.x - GetMousePosition().x;
+		m_camera.target.y = m_panPosition.y - GetMousePosition().y;
 	}
 
 	if (m_graphEditor->m_path != nullptr)
@@ -102,6 +121,7 @@ void LevelEditorState::Update(float deltaTime)
 
 void LevelEditorState::Draw()
 {
+	BeginMode2D(m_camera);
 	ClearBackground(WHITE);
 
 	if (m_drawNodes)
@@ -124,81 +144,106 @@ void LevelEditorState::Draw()
 
 	m_levelMap->Draw();
 
-	//Controls
-	ImGui::ShowDemoWindow();
-
-	ImGui::Begin("Test Window");
-	ImGui::Text("Test text box.");
-	ImGui::Button("Yeah");
-	ImGui::End();
-	
-	//ImGui
-
-	if (IsKeyDown(KEY_C) && !ImGui::GetIO().WantCaptureMouse)
+	//Main Tab
+	if (ImGui::BeginMainMenuBar())
 	{
-		Rectangle buttonRect = { 8,8,48,16 };
-
-		if (GuiButton(buttonRect, GuiIconText(RICON_BOX_GRID,"")))
+		if (ImGui::BeginMenu("File"))
 		{
-			m_editorState = EditorStates::Tiles;
-		}
-		buttonRect.y += 20;
-
-		if (GuiButton(buttonRect, GuiIconText(RICON_CURSOR_HAND, "")))
-		{
-			m_editorState = EditorStates::Nodes;
-		}
-		buttonRect.y += 20;
-
-		if (GuiButton(buttonRect, GuiIconText(RICON_PLAYER_PLAY, "")))
-		{
-			m_editorState = EditorStates::Entities;
-		}
-		buttonRect.y += 20;
-
-		//Toggels
-		Rectangle toggleRec = { 8,(float)m_app->GetGameHeight() - 20,16,16 };
-
-		if (GuiButton(toggleRec, GuiIconText(RICON_GRID,"")))
-		{
-			m_drawGrid = !m_drawGrid;
-		}
-		toggleRec.x += 20;
-
-		if (GuiButton(toggleRec, GuiIconText((m_drawNodes)? RICON_EYE_OFF : RICON_EYE_ON, "")))
-		{
-			m_drawNodes = !m_drawNodes;
-		}
-		toggleRec.x += 20;
-
-		if (GuiButton(toggleRec, GuiIconText(RICON_FILE_SAVE, "")))
-		{
-			Save("");
-		}
-		toggleRec.x += 20;
-
-		if (GuiButton(toggleRec, GuiIconText(RICON_FILE_OPEN, "")))
-		{
-			Load("");
-		}
-		toggleRec.x += 20;
-
-		if (GuiButton(toggleRec, GuiIconText(RICON_BIN, "")))
-		{
-			Graph2D* graph = new Graph2D();
-			delete m_graph;
-			m_graph = graph;
-			m_graphEditor->SetGrapth(graph);
-
-			for (int xx = 0; xx < m_levelMap->GetWidth(); xx++)
+			if (ImGui::MenuItem("Save"))
 			{
-				for (int yy = 0; yy < m_levelMap->GetHeight(); yy++)
+				m_saveMenuOpen = true;
+			}
+
+			
+			if (ImGui::MenuItem("Load"))
+			{
+				m_loadMenuOpen = true;
+			}
+			ImGui::EndMenu();
+		}
+		ImGui::EndMainMenuBar();
+	}
+
+	//Save Menu
+	if (m_saveMenuOpen)
+	{
+		ImGui::Begin("Save Options");
+
+		ImGui::InputText("File Name: Rooms/",m_saveFileName,IM_ARRAYSIZE(m_saveFileName));
+
+		if (ImGui::Button("Save"))
+		{
+			Save(m_saveFileName);
+			m_saveMenuOpen = false;
+		}
+
+		ImGui::End();
+	}
+
+	if (m_loadMenuOpen)
+	{
+		ImGui::Begin("Save Options");
+
+		//ImGui::ListBox("Rooms",&m_selectedLoadFile,)
+
+		ImGui::End();
+	}
+
+	if (IsKeyDown(KEY_C))
+	{
+		//Controls
+
+		ImGui::Begin("Controls Window");
+		{
+			if (ImGui::Button("Tiles"))
+			{
+				m_editorState = EditorStates::Tiles;
+			}
+
+			if (ImGui::Button("Nodes"))
+			{
+				m_editorState = EditorStates::Nodes;
+			}
+
+			if (ImGui::Button("Entities"))
+			{
+				m_editorState = EditorStates::Entities;
+			}
+
+			ImGui::Text("Toggels");
+			ImGui::Checkbox("Draw Grid", &m_drawGrid);
+			ImGui::Checkbox("Draw Nodes", &m_drawNodes);
+
+			ImGui::Text("Commands");
+
+			if (ImGui::Button("Save"))
+			{
+				Save("");
+			}
+
+			if (ImGui::Button("Load"))
+			{
+				Load("");
+			}
+
+			if (ImGui::Button("Clear"))
+			{
+				Graph2D* graph = new Graph2D();
+				delete m_graph;
+				m_graph = graph;
+				m_graphEditor->SetGrapth(graph);
+
+				for (int xx = 0; xx < m_levelMap->GetWidth(); xx++)
 				{
-					m_levelMap->Set(xx, yy, 0);
+					for (int yy = 0; yy < m_levelMap->GetHeight(); yy++)
+					{
+						m_levelMap->Set(xx, yy, 0);
+					}
 				}
 			}
 		}
-		toggleRec.x += 20;
+			ImGui::End();
+		
 	}
 	else
 	{
@@ -206,7 +251,7 @@ void LevelEditorState::Draw()
 		{
 			case EditorStates::Tiles:
 			{
-				Vector2 gridPos = m_levelMap->ToGridPos(m_app->GetScaledMousePos());
+				Vector2 gridPos = m_levelMap->ToGridPos(EditorMousePos());
 
 				DrawRectangleLinesEx({gridPos.x * m_levelMap->TILE_SIZE,gridPos.y * m_levelMap->TILE_SIZE,(float)m_levelMap->TILE_SIZE ,(float)m_levelMap->TILE_SIZE },1,LIGHTGRAY);
 
@@ -222,6 +267,8 @@ void LevelEditorState::Draw()
 	}
 
 	LevelState::Draw();
+
+	EndMode2D();
 }
 
 void LevelEditorState::Save(std::string fileName)
@@ -293,12 +340,17 @@ void LevelEditorState::Save(std::string fileName)
 			pRoot->InsertEndChild(pNodes);
 		}
 
-	level.SaveFile("data.xml");
+	level.SaveFile(("Rooms\\" + fileName + ".xml").c_str());
 }
 
 void LevelEditorState::Load(std::string fileName)
 {
 	tinyxml2::XMLDocument level;
+
+	if (!FileExists(fileName.c_str()))
+	{
+		return;
+	}
 
 	level.LoadFile("data.xml");
 
