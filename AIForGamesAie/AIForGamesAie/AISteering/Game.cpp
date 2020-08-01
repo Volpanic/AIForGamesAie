@@ -6,6 +6,7 @@
 #include "LevelEditorState.h"
 #include "cimgui_impl_raylib.h"
 #include "Numbers.h"
+#include "rlgl.h"
 
 Game::~Game()
 {
@@ -19,29 +20,29 @@ void Game::Create()
 
 	//ImGui
 	ImGui::CreateContext();
-	ImGui::StyleColorsClassic();
+	//ImGui::StyleColorsClassic();
 	ImGui_ImplRaylib_Init();
 
 	//Build Texture atlas
-	int width = GetGameWidth() * m_gameZoom;
-	int height = GetGameHeight() * m_gameZoom;
+	int width;
+	int height;
 
 	ImGuiContext* ctx;
-	auto io = ImGui::GetIO();
+	ImGuiIO& io = ImGui::GetIO();
 	ImGui::GetIO().DisplaySize = {(float)(GetGameWidth() * m_gameZoom),(float)(GetGameHeight() * m_gameZoom)};
 
-	unsigned char* pixels = NULL;
+	unsigned char* pixels;
 
 	io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height, NULL);
-	Image image = LoadImageEx((Color*)pixels, width, height);
-	Texture2D texture = LoadTextureFromImage(image);
-	io.Fonts->TexID = (void*)&texture.id;
+	unsigned int texID = rlLoadTexture(pixels,width,height,PixelFormat::UNCOMPRESSED_R8G8B8A8,1);
+
+	io.Fonts->TexID = (ImTextureID)texID;
 	//ImGui
 }
 
 void Game::StartDraw()
 {
-	ImGui_ImplRaylib_NewFrame();
+	ImGui_ImplRaylib_NewFrame(m_gameZoom);
 	ImGui_ImplRaylib_ProcessEvent();
 	ImGui::NewFrame();
 }

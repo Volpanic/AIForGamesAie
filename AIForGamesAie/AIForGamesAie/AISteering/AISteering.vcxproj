@@ -187,7 +187,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
-    <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="DemoState.cpp" />
     <ClCompile Include="FollowPathBehavior.cpp" />
     <ClCompile Include="Game.cpp" />

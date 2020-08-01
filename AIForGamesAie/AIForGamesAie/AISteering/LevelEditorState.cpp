@@ -48,6 +48,11 @@ Vector2 LevelEditorState::EditorMousePos()
 
 void LevelEditorState::Update(float deltaTime)
 {
+	if (ImGui::GetIO().WantCaptureMouse)
+	{
+		return;
+	}
+
 	if (m_graphEditor->m_path != nullptr)
 	{
 		auto testAgent = Add<Agent>(new Agent(this));
@@ -120,18 +125,16 @@ void LevelEditorState::Draw()
 	m_levelMap->Draw();
 
 	//Controls
-	//ImGui::ShowDemoWindow();
+	ImGui::ShowDemoWindow();
 
-	//ImGui::Begin("Test Window");
-	//ImGui::Button("Yeah");
-	//ImGui::SetWindowPos({ 0,0 });
-	//ImGui::SetWindowPos({10,10});
-	//ImGui::End();
-	//ImGui
+	ImGui::Begin("Test Window");
+	ImGui::Text("Test text box.");
+	ImGui::Button("Yeah");
+	ImGui::End();
 	
 	//ImGui
 
-	if (IsKeyDown(KEY_C))
+	if (IsKeyDown(KEY_C) && !ImGui::GetIO().WantCaptureMouse)
 	{
 		Rectangle buttonRect = { 8,8,48,16 };
 

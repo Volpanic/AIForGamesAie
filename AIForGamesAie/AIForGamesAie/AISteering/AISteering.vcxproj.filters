@@ -27,9 +27,6 @@
     <ClCompile Include="Agent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Behaviour.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SteeringBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

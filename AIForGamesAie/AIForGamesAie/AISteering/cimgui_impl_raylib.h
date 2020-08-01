@@ -25,7 +25,7 @@ static void ImGui_ImplRaylib_SetClipboardText(void* _, const char* text)
 bool ImGui_ImplRaylib_Init()
 {
     rlEnableScissorTest(); 
-    ImGuiIO io = ImGui::GetIO();
+    ImGuiIO& io = ImGui::GetIO();
 
     io.BackendPlatformName = "cimgui_impl_raylib";
 
@@ -67,7 +67,7 @@ void ImGui_ImplRaylib_Shutdown()
 
 static void ImGui_ImplRaylib_UpdateMouseCursor()
 {
-    ImGuiIO io = ImGui::GetIO();
+    ImGuiIO& io = ImGui::GetIO();
     if (io.ConfigFlags & ImGuiConfigFlags_NoMouseCursorChange)
         return;
 
@@ -84,33 +84,26 @@ static void ImGui_ImplRaylib_UpdateMouseCursor()
     }
 }
 
-static void ImGui_ImplRaylib_UpdateMousePosAndButtons()
+static void ImGui_ImplRaylib_UpdateMousePosAndButtons(float mouseScale)
 {
     static int oldTouchX = 0;
     static int oldTouchY = 0;
-    ImGuiIO io = ImGui::GetIO();
+    ImGuiIO& io = ImGui::GetIO();
 
     // Set OS mouse position if requested (rarely used, only when ImGuiConfigFlags_NavEnableSetMousePos is enabled by user)
     if (io.WantSetMousePos)
         SetMousePosition(io.MousePos.x, io.MousePos.y);
     else
-        io.MousePos = {(float)GetMouseX(), (float)GetMouseY()};
+        io.MousePos = {(float)GetMouseX()* mouseScale, (float)GetMouseY()* mouseScale };
 
-    io.MouseDown[0] = IsMouseButtonDown(MOUSE_LEFT_BUTTON) || oldTouchX != GetTouchX() || oldTouchY != GetTouchY();
+    io.MouseDown[0] = IsMouseButtonDown(MOUSE_LEFT_BUTTON);
     io.MouseDown[1] = IsMouseButtonDown(MOUSE_RIGHT_BUTTON);
     io.MouseDown[2] = IsMouseButtonDown(MOUSE_MIDDLE_BUTTON);
-
-    if (!IsWindowMinimized()){
-        io.MousePos = {(float)GetTouchX(), (float)GetTouchY()};
-    }
-
-    oldTouchX = GetTouchX();
-    oldTouchY = GetTouchY();
 }
 
-void ImGui_ImplRaylib_NewFrame()
+void ImGui_ImplRaylib_NewFrame(float mouseScale)
 {
-    ImGuiIO io = ImGui::GetIO();
+    ImGuiIO& io = ImGui::GetIO();
 
     io.DisplaySize = {(float) GetScreenWidth(), (float) GetScreenHeight()};
 
@@ -123,7 +116,7 @@ void ImGui_ImplRaylib_NewFrame()
     io.KeyAlt = IsKeyDown(KEY_RIGHT_ALT) || IsKeyDown(KEY_LEFT_ALT);
     io.KeySuper = IsKeyDown(KEY_RIGHT_SUPER) || IsKeyDown(KEY_LEFT_SUPER);
 
-    ImGui_ImplRaylib_UpdateMousePosAndButtons();
+    ImGui_ImplRaylib_UpdateMousePosAndButtons(mouseScale);
     ImGui_ImplRaylib_UpdateMouseCursor();
 
     if (GetMouseWheelMove() > 0)
@@ -244,7 +237,7 @@ void ImGui_ImplRaylib_NewFrame()
 
 bool ImGui_ImplRaylib_ProcessEvent()
 {
-    ImGuiIO io = ImGui::GetIO();
+    ImGuiIO& io = ImGui::GetIO();
 
     //FOR_ALL_KEYS(SET_KEY_DOWN);
     for (auto const& key : io.KeysDown)
