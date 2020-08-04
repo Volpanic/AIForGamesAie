@@ -28,10 +28,20 @@ public:
 	void Save(std::string fileName);
 	void Load(std::string fileName);
 	
-	Vector2 EditorMousePos();
+	Vector2 GetWorldMousePos();
 
 private:
 	EditorStates m_editorState = EditorStates::Tiles;
+	Vector2 m_gameWindowMousePos = {};
+
+	//GameWindow
+	bool m_mouseInGameWindow;
+
+	//Controls
+		//Map Window
+		int m_levelMapWidth;
+		int m_levelMapHeight;
+		Color m_clearColour = BLACK;
 
 	//Data
 	char m_saveFileName[32] = "";
@@ -39,6 +49,7 @@ private:
 	bool m_loadMenuOpen = false;
 	bool m_saveMenuOpen = false;
 	int m_selectedLoadFile = 0;
+	float m_gameViewZoom = 2;
 
 	//Toggels
 	bool m_drawGrid = true;

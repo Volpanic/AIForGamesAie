@@ -18,6 +18,8 @@ public:
 
 	int GetSize();
 
+	void Resize(int newWidth, int newHeight);
+
 	std::list<Rectangle> GetSolids(Rectangle worldRec, Vector2 offset);
 	void Draw();
 	Vector2 ToGridPos(const Vector2& pos);

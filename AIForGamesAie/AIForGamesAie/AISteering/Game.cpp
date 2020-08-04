@@ -10,7 +10,7 @@
 
 Game::Game(int gameWidth, int gameHeight, int gameZoom) : Application::Application(gameWidth,gameHeight,gameZoom)
 {
-	
+	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 }
 
 Game::~Game()
@@ -44,6 +44,10 @@ void Game::Create()
 
 	io.Fonts->TexID = (ImTextureID)texID;
 
+	ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_WindowBorderSize, -1.0f);
+	ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_ChildBorderSize, -1.0f);
+	ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_PopupBorderSize, -1.0f);
+	ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_FrameBorderSize, -1.0f);
 	
 	//ImGui
 }
@@ -57,8 +61,6 @@ void Game::StartDraw()
 
 void Game::EndDraw()
 {
-	ClearBackground({0,0,0,0});
-
 	ImGui::Render();
 	m_drawData = ImGui::GetDrawData();
 	raylib_render_cimgui(m_drawData);

@@ -45,6 +45,22 @@ int LevelMap::GetSize()
 	return m_levelGrid->GetSize();
 }
 
+void LevelMap::Resize(int newWidth, int newHeight)
+{
+	Grid<int>* newlevelGrid = new Grid<int>(newWidth,newHeight);
+
+	for (int xx = 0; xx < GetWidth() && xx < newWidth; xx++)
+	{
+		for (int yy = 0; yy < GetHeight() && xx < newHeight; yy++)
+		{
+			newlevelGrid->Set(xx,yy,Get(xx,yy));
+		}
+	}
+
+	delete m_levelGrid;
+	m_levelGrid = newlevelGrid;
+}
+
 std::list<Rectangle> LevelMap::GetSolids(Rectangle boundingBox, Vector2 position)
 {
 	std::list<Rectangle> returnList;
@@ -84,7 +100,7 @@ void LevelMap::Draw()
 {
 	for (int x = 0; x < m_levelGrid->GetWidth(); x++)
 	{
-		for (int y = 0; y < m_levelGrid->GetWidth(); y++)
+		for (int y = 0; y < m_levelGrid->GetHeight(); y++)
 		{
 			if (m_levelGrid->Get(x, y) == 1)
 			{

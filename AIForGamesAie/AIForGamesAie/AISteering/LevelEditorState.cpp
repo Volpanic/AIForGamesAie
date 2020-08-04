@@ -27,7 +27,9 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 	m_camera.zoom = 1;
 
 	Load("");
-	
+
+	m_levelMapWidth = m_levelMap->GetWidth();
+	m_levelMapHeight = m_levelMap->GetHeight();
 }
 
 LevelEditorState::~LevelEditorState()
@@ -38,9 +40,9 @@ LevelEditorState::~LevelEditorState()
 	//delete m_drawData;
 }
 
-Vector2 LevelEditorState::EditorMousePos()
+Vector2 LevelEditorState::GetWorldMousePos()
 {
-	Vector2 pos = m_app->GetScaledMousePos();
+	Vector2 pos = Vector2Scale(m_gameWindowMousePos,1.0f/m_gameViewZoom);
 	pos.x += m_camera.target.x;
 	pos.y += m_camera.target.y;
 	pos.x = floor(pos.x);
@@ -58,7 +60,7 @@ Vector2 LevelEditorState::EditorMousePos()
 
 void LevelEditorState::Update(float deltaTime)
 {
-	if (ImGui::GetIO().WantCaptureMouse)
+	if (!m_mouseInGameWindow)
 	{
 		return;
 	}
@@ -96,7 +98,7 @@ void LevelEditorState::Update(float deltaTime)
 	{
 		case EditorStates::Tiles:
 		{
-			Vector2 gridPos = m_levelMap->ToGridPos(EditorMousePos());
+			Vector2 gridPos = m_levelMap->ToGridPos(GetWorldMousePos());
 
 			//Create
 			if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
@@ -115,7 +117,7 @@ void LevelEditorState::Update(float deltaTime)
 
 		case EditorStates::Nodes:
 		{
-			m_graphEditor->Update(EditorMousePos(),deltaTime);
+			m_graphEditor->Update(GetWorldMousePos(),deltaTime);
 			break;
 		}
 	}
@@ -257,7 +259,7 @@ void LevelEditorState::Draw()
 		{
 			case EditorStates::Tiles:
 			{
-				Vector2 gridPos = m_levelMap->ToGridPos(EditorMousePos());
+				Vector2 gridPos = m_levelMap->ToGridPos(GetWorldMousePos());
 
 				DrawRectangleLinesEx({gridPos.x * m_levelMap->TILE_SIZE,gridPos.y * m_levelMap->TILE_SIZE,(float)m_levelMap->TILE_SIZE ,(float)m_levelMap->TILE_SIZE },1,LIGHTGRAY);
 
@@ -279,15 +281,67 @@ void LevelEditorState::Draw()
 
 void LevelEditorState::EndDraw()
 {
-	ImGui::ShowMetricsWindow();
-	ImGui::ShowStyleEditor();
-	ImGui::ShowDemoWindow();
+	DrawRectangle(0,0,GetScreenWidth(),GetScreenHeight(),BLACK);
 
+	//Controls Window
+	ImGui::Begin("Controls (2)");
+	{
+		ImGui::BeginTabBar("Editors");
+		{
+			ImGui::BeginTabItem("Map Details");
+			{
+				//Resize the map grid cells
+				bool gridResize = false;
+				if (ImGui::InputInt("Map Width", &m_levelMapWidth))
+				{
+					gridResize = true;
+				}
+
+				if (ImGui::InputInt("Map Height", &m_levelMapHeight))
+				{
+					gridResize = true;
+				}
+
+				if (gridResize)
+				{
+					m_levelMap->Resize(m_levelMapWidth,m_levelMapHeight);
+				}
+
+				//Saving and loading
+				if (ImGui::Button("Save Map"))
+				{
+					m_saveMenuOpen = true;
+				}
+
+				if (ImGui::Button("Load Map"))
+				{
+					m_loadMenuOpen = true;
+				}
+
+				ImGui::EndTabItem();
+			}
+
+			ImGui::EndTabBar();
+		}
+		ImGui::End();
+	}
+
+	//Map Window
 	ImGui::Begin("Game Window");
 	{
-		ImGui::BeginChild("Level Batch");
+		ImGui::BeginChild("Level Batch", {0,0}, ImGuiWindowFlags_AlwaysHorizontalScrollbar);
 		{
-			ImGui::Image((void*)m_app->GetRenderTexture().texture.id, { (float)m_app->GetGameWidth(),(float)m_app->GetGameHeight()}, { 0,1 }, { 1,0 });
+			ImGui::ImageButton((void*)m_app->GetRenderTexture().texture.id, { (float)m_app->GetGameWidth() * m_gameViewZoom,(float)m_app->GetGameHeight() * m_gameViewZoom }, { 0,1 }, { 1,0 },0);
+			
+			//Get mouse pos
+			ImVec2 editorTopLeft = ImGui::GetItemRectMin();
+
+			m_mouseInGameWindow = ImGui::IsItemHovered();
+
+			ImGui::SliderFloat("Zoom",&m_gameViewZoom,1,3,"",0.25f);
+
+			m_gameWindowMousePos.x = ImGui::GetMousePos().x - editorTopLeft.x;
+			m_gameWindowMousePos.y = ImGui::GetMousePos().y - editorTopLeft.y;
 
 			ImGui::EndChild();
 		}
