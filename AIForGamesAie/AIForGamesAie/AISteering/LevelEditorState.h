@@ -4,6 +4,8 @@
 #include "Agent.h"
 #include "Path.h"
 #include "raylib.h"
+#include <vector>
+#include <filesystem>
 
 struct ImDrawData;
 
@@ -25,6 +27,8 @@ public:
 	virtual void Draw();
 	virtual void EndDraw();
 
+	void UpdateRoomFilePaths();
+
 	void Save(std::string fileName);
 	void Load(std::string fileName);
 	
@@ -33,6 +37,8 @@ public:
 private:
 	EditorStates m_editorState = EditorStates::Tiles;
 	Vector2 m_gameWindowMousePos = {};
+
+	std::vector<std::filesystem::path> m_RoomFilePaths;
 
 	//GameWindow
 	bool m_mouseInGameWindow;

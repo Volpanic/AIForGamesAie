@@ -23,10 +23,9 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 	m_graph = new Graph2D();
 
 	m_graphEditor->SetGrapth(m_graph);
-
 	m_camera.zoom = 1;
 
-	Load("");
+	UpdateRoomFilePaths();
 
 	m_levelMapWidth = m_levelMap->GetWidth();
 	m_levelMapHeight = m_levelMap->GetHeight();
@@ -182,6 +181,7 @@ void LevelEditorState::Draw()
 		if (ImGui::Button("Save"))
 		{
 			Save(m_saveFileName);
+			UpdateRoomFilePaths();
 			m_saveMenuOpen = false;
 		}
 
@@ -192,7 +192,21 @@ void LevelEditorState::Draw()
 	{
 		ImGui::Begin("Load Options");
 
-		//ImGui::ListBox("Rooms",&m_selectedLoadFile,)
+		ImGui::ListBoxHeader("Rooms");
+		{
+			for (auto item : m_RoomFilePaths)
+			{
+				ImGui::Selectable(item.filename().generic_string().c_str());
+				if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
+				{
+					m_loadMenuOpen = false;
+					Load(item.generic_string());
+					break;
+				}
+			}
+
+			ImGui::ListBoxFooter();
+		}
 
 		ImGui::End();
 	}
@@ -350,6 +364,15 @@ void LevelEditorState::EndDraw()
 	}
 }
 
+void LevelEditorState::UpdateRoomFilePaths()
+{
+	m_RoomFilePaths.clear();
+	for (const auto& entry : std::filesystem::directory_iterator("Rooms"))
+	{
+		m_RoomFilePaths.push_back(entry.path());
+	}
+}
+
 void LevelEditorState::Save(std::string fileName)
 {
 	tinyxml2::XMLDocument level;
@@ -431,7 +454,7 @@ void LevelEditorState::Load(std::string fileName)
 		return;
 	}
 
-	level.LoadFile("data.xml");
+	level.LoadFile(fileName.c_str());
 
 	tinyxml2::XMLNode* pRoot = level.FirstChild();
 
