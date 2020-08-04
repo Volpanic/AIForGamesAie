@@ -7,7 +7,9 @@
 #include "Component.h"
 #include "raylib.h"
 #include "Drawable.h"
-#include <typeindex>
+
+#include "tinyxml2.h"
+#include "imgui.h"
 
 struct Transform2D
 {
@@ -63,6 +65,18 @@ public:
 		{
 			component.second->Draw(this);
 		}
+	}
+
+	virtual void Save(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement) {};
+	virtual void Load(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement) {};
+	
+	virtual void ImGuiEditorMenu()
+	{
+		ImGui::BeginMenu("Entity Edtior");
+
+		ImGui::Text("No custom properties to edit.");
+
+		ImGui::End();
 	}
 
 	//SimpleCollision

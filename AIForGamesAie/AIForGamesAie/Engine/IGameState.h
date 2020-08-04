@@ -13,6 +13,7 @@ public:
 
 	virtual void Update(float deltaTime) { };
 	virtual void Draw() { };
+	virtual void EndDraw() {};
 
 	ResourceManager* GetResources() { return m_app->GetResources(); };
 

@@ -14,6 +14,7 @@ public:
 
 	void Update(float deltaTime);
 	void Draw();
+	void EndDraw();
 
 	void SetState(const char* name, IGameState* state);
 	IGameState* GetState(const char* name);

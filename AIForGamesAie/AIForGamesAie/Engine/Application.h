@@ -25,6 +25,8 @@ public:
 	//Getters
 	const int& GetGameWidth() { return m_gameWidth; };
 	const int& GetGameHeight() { return m_gameHeight; };
+	const int& GetGameZoom() { return m_gameZoom; };
+	const RenderTexture2D& GetRenderTexture() { return m_gameSurface; };
 	ResourceManager* GetResources() { return m_resourceManger; };
 	Vector2 GetScaledMousePos() { return GetMousePosition(); };
 	GameStateManager* GetGameStateManager() { return m_gameStateManager; }

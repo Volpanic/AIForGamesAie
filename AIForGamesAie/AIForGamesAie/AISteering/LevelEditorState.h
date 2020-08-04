@@ -23,6 +23,7 @@ public:
 	virtual ~LevelEditorState();
 	virtual void Update(float deltaTime);
 	virtual void Draw();
+	virtual void EndDraw();
 
 	void Save(std::string fileName);
 	void Load(std::string fileName);

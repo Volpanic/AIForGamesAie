@@ -37,11 +37,14 @@ void Game::Create()
 	ImGui::GetIO().DisplaySize = {(float)(GetGameWidth() * m_gameZoom),(float)(GetGameHeight() * m_gameZoom)};
 
 	unsigned char* pixels;
-
+	io.Fonts->AddFontDefault();
 	io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height, NULL);
+	
 	unsigned int texID = rlLoadTexture(pixels,width,height,PixelFormat::UNCOMPRESSED_R8G8B8A8,1);
 
 	io.Fonts->TexID = (ImTextureID)texID;
+
+	
 	//ImGui
 }
 

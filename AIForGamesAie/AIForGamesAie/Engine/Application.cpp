@@ -82,6 +82,8 @@ void Application::Draw()
 	DrawTexturePro(m_gameSurface.texture, { 0.0f,0.0f,(float)m_gameWidth,(float)-m_gameHeight },
 		{ 0.0f,0.0f,(float)(m_gameWidth * m_gameZoom),(float)(m_gameHeight * m_gameZoom) }, { 0,0 }, 0.0f, WHITE);
 
+	m_gameStateManager->EndDraw();
+
 	EndDraw();
 
 	EndDrawing();

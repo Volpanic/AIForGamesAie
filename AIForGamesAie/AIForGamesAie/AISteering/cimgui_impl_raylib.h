@@ -6,9 +6,9 @@
 #define CIMGUI_DEFINE_ENUMS_AND_STRUCTS
 #include <imconfig.h>
 #include <imgui.h>
-#include <float.h>
 #include <raylib.h>
 #include <rlgl.h>
+
 
 static double g_Time = 0.0;
 
@@ -267,7 +267,7 @@ void draw_triangle_vertex(ImDrawVert idx_vert)
 void raylib_render_draw_triangles(unsigned int count, const ImDrawIdx *idx_buffer, const ImDrawVert *idx_vert, unsigned int texture_id)
 {
     // Draw the imgui triangle data
-    for (unsigned int i = 0; i < (count - 3); i += 3)
+    for (unsigned int i = 0; i <= (count - 3); i += 3)
     {
         rlPushMatrix();
         rlBegin(RL_TRIANGLES);
@@ -287,6 +287,7 @@ void raylib_render_draw_triangles(unsigned int count, const ImDrawIdx *idx_buffe
         index = idx_buffer[i + 1];
         vertex = idx_vert[index];
         draw_triangle_vertex(vertex);
+
         rlDisableTexture();
         rlEnd();
         rlPopMatrix();
@@ -316,8 +317,8 @@ void raylib_render_cimgui(ImDrawData *draw_data)
                 int rectH = (int)(pcmd->ClipRect.w - rectY);
                 BeginScissorMode(rectX, rectY, rectW, rectH);
                 {
-                    unsigned int *ti = new unsigned int((unsigned int)pcmd->TextureId);
-                    raylib_render_draw_triangles(pcmd->ElemCount, idx_buffer, vtx_buffer, *ti);
+                    //unsigned int ti = (unsigned int)pcmd->TextureId;
+                    raylib_render_draw_triangles(pcmd->ElemCount, idx_buffer, vtx_buffer, (unsigned int)pcmd->TextureId);
                 }
             }
             idx_buffer += pcmd->ElemCount;

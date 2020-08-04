@@ -7,10 +7,14 @@
 #include "Numbers.h"
 #include "Agent.h"
 #include "FollowPathBehavior.h"
+#include "rlgl.h"
 
 #include "raygui.h"
 #include "ricons.h"
 #include "tinyxml2.h"
+
+
+
 #include "imgui.h"
 
 LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(app)
@@ -144,6 +148,8 @@ void LevelEditorState::Draw()
 
 	m_levelMap->Draw();
 
+	ClearBackground(BLACK);
+
 	//Main Tab
 	if (ImGui::BeginMainMenuBar())
 	{
@@ -182,7 +188,7 @@ void LevelEditorState::Draw()
 
 	if (m_loadMenuOpen)
 	{
-		ImGui::Begin("Save Options");
+		ImGui::Begin("Load Options");
 
 		//ImGui::ListBox("Rooms",&m_selectedLoadFile,)
 
@@ -242,7 +248,7 @@ void LevelEditorState::Draw()
 				}
 			}
 		}
-			ImGui::End();
+		ImGui::End();
 		
 	}
 	else
@@ -269,6 +275,25 @@ void LevelEditorState::Draw()
 	LevelState::Draw();
 
 	EndMode2D();
+}
+
+void LevelEditorState::EndDraw()
+{
+	ImGui::ShowMetricsWindow();
+	ImGui::ShowStyleEditor();
+	ImGui::ShowDemoWindow();
+
+	ImGui::Begin("Game Window");
+	{
+		ImGui::BeginChild("Level Batch");
+		{
+			ImGui::Image((void*)m_app->GetRenderTexture().texture.id, { (float)m_app->GetGameWidth(),(float)m_app->GetGameHeight()}, { 0,1 }, { 1,0 });
+
+			ImGui::EndChild();
+		}
+
+		ImGui::End();
+	}
 }
 
 void LevelEditorState::Save(std::string fileName)

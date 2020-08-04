@@ -62,6 +62,14 @@ void GameStateManager::Draw()
     }
 }
 
+void GameStateManager::EndDraw()
+{
+    for (auto state : m_stateStack)
+    {
+        state->EndDraw();
+    }
+}
+
 void GameStateManager::SetState(const char* name, IGameState* state)
 {
     m_commands.push_back([=]() {
