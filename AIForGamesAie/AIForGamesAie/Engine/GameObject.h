@@ -69,6 +69,8 @@ public:
 
 	virtual void Save(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement) {};
 	virtual void Load(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement) {};
+
+	virtual void DrawInEditor() {};
 	
 	virtual void ImGuiEditorMenu()
 	{

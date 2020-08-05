@@ -88,20 +88,6 @@ void LevelEditorState::Update(float deltaTime)
 		m_camera.target.y = m_panPosition.y - GetMousePosition().y;
 	}
 
-	if (m_graphEditor->m_path != nullptr)
-	{
-		auto testAgent = Add<Agent>(new Agent(this));
-		m_graphEditor->m_path->SetPathType(PathType::Open);
-		testAgent->SetPosition(m_graphEditor->m_selectedNode->data.x, m_graphEditor->m_selectedNode->data.y);
-		testAgent->SetBehaviour(new FollowPathBehavior(m_graphEditor->m_path,250.0f));
-		m_graphEditor->m_path = nullptr;
-	}
-
-	if (IsKeyDown(KEY_C))
-	{
-		return;
-	}
-
 	m_snappedToGrid = IsKeyDown(KEY_LEFT_CONTROL);
 
 	switch (m_editorState)
@@ -197,27 +183,54 @@ void LevelEditorState::Draw()
 		ImGui::EndMainMenuBar();
 	}
 
-	//Save Menu
 	if (m_saveMenuOpen)
 	{
-		ImGui::Begin("Save Options");
+		ImGui::OpenPopup("SaveMenu");
+		m_saveMenuOpen = false;
+	}
 
-		ImGui::InputText("File Name: Rooms/",m_saveFileName,IM_ARRAYSIZE(m_saveFileName));
+	if (m_loadMenuOpen)
+	{
+		ImGui::OpenPopup("LoadMenu");
+		m_loadMenuOpen = false;
+	}
+
+	//Save Menu
+	// Always center this window when appearing
+	ImVec2 center(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f);
+	ImGui::SetNextWindowPos(center, ImGuiCond_::ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+
+	if (ImGui::BeginPopupModal("SaveMenu",NULL, ImGuiWindowFlags_AlwaysAutoResize))
+	{
+		//set focus on text box
+		if (ImGui::IsWindowAppearing())
+		{
+			ImGui::SetKeyboardFocusHere(0);
+		}
+		ImGui::InputText("File Name: Rooms/", m_saveFileName, IM_ARRAYSIZE(m_saveFileName));
 
 		if (ImGui::Button("Save"))
 		{
 			Save(m_saveFileName);
 			UpdateRoomFilePaths();
-			m_saveMenuOpen = false;
+			ImGui::CloseCurrentPopup();
 		}
 
-		ImGui::End();
+		ImGui::SameLine();
+
+		if (ImGui::Button("Close"))
+		{
+			ImGui::CloseCurrentPopup();
+		}
+
+		ImGui::EndPopup();
 	}
 
-	if (m_loadMenuOpen)
-	{
-		ImGui::Begin("Load Options");
+	// Always center this window when appearing
+	ImGui::SetNextWindowPos(center, ImGuiCond_::ImGuiCond_Always, ImVec2(0.5f, 0.5f));
 
+	if (ImGui::BeginPopupModal("LoadMenu", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+	{
 		ImGui::ListBoxHeader("Rooms");
 		{
 			for (auto item : m_RoomFilePaths)
@@ -234,7 +247,13 @@ void LevelEditorState::Draw()
 			ImGui::ListBoxFooter();
 		}
 
-		ImGui::End();
+		ImGui::SameLine();
+		if (ImGui::Button("Close"))
+		{
+			ImGui::CloseCurrentPopup();
+		}
+
+		ImGui::EndPopup();
 	}
 
 	if (IsKeyDown(KEY_C))
