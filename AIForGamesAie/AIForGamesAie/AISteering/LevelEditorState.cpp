@@ -70,6 +70,8 @@ Vector2 LevelEditorState::GetWorldMousePos()
 
 void LevelEditorState::Update(float deltaTime)
 {
+	LevelState::Update(deltaTime);
+
 	if (!m_mouseInGameWindow)
 	{
 		return;
@@ -84,8 +86,8 @@ void LevelEditorState::Update(float deltaTime)
 
 	if (IsMouseButtonDown(MOUSE_MIDDLE_BUTTON))
 	{
-		m_camera.target.x = m_panPosition.x - GetMousePosition().x;
-		m_camera.target.y = m_panPosition.y - GetMousePosition().y;
+		m_camera.target.x = floorf(m_panPosition.x - GetMousePosition().x);
+		m_camera.target.y = floorf(m_panPosition.y - GetMousePosition().y);
 	}
 
 	m_snappedToGrid = IsKeyDown(KEY_LEFT_CONTROL);
@@ -123,8 +125,6 @@ void LevelEditorState::Update(float deltaTime)
 			break;
 		}
 	}
-
-	LevelState::Update(deltaTime);
 }
 
 void LevelEditorState::Draw()
@@ -209,7 +209,7 @@ void LevelEditorState::Draw()
 		}
 		ImGui::InputText("File Name: Rooms/", m_saveFileName, IM_ARRAYSIZE(m_saveFileName));
 
-		if (ImGui::Button("Save"))
+		if (ImGui::Button("Save") || ImGui::IsKeyPressed(ImGuiKey_Enter))
 		{
 			Save(m_saveFileName);
 			UpdateRoomFilePaths();
@@ -218,7 +218,7 @@ void LevelEditorState::Draw()
 
 		ImGui::SameLine();
 
-		if (ImGui::Button("Close"))
+		if (ImGui::Button("Close") || ImGui::IsKeyPressed(ImGuiKey_Escape))
 		{
 			ImGui::CloseCurrentPopup();
 		}
@@ -240,6 +240,7 @@ void LevelEditorState::Draw()
 				{
 					m_loadMenuOpen = false;
 					Load(item.generic_string());
+					ImGui::CloseCurrentPopup();
 					break;
 				}
 			}
@@ -256,82 +257,24 @@ void LevelEditorState::Draw()
 		ImGui::EndPopup();
 	}
 
-	if (IsKeyDown(KEY_C))
+	switch (m_editorState)
 	{
-		//Controls
-
-		ImGui::Begin("Controls Window");
+		case EditorStates::Tiles:
 		{
-			if (ImGui::Button("Tiles"))
-			{
-				m_editorState = EditorStates::Tiles;
-			}
+			Vector2 gridPos = m_levelMap->ToGridPos(GetWorldMousePos());
 
-			if (ImGui::Button("Nodes"))
-			{
-				m_editorState = EditorStates::Nodes;
-			}
+			DrawRectangleLinesEx({gridPos.x * m_levelMap->TILE_SIZE,gridPos.y * m_levelMap->TILE_SIZE,(float)m_levelMap->TILE_SIZE ,(float)m_levelMap->TILE_SIZE },1,LIGHTGRAY);
 
-			if (ImGui::Button("Entities"))
-			{
-				m_editorState = EditorStates::Entities;
-			}
-
-			ImGui::Text("Toggels");
-			ImGui::Checkbox("Draw Grid", &m_drawGrid);
-			ImGui::Checkbox("Draw Nodes", &m_drawNodes);
-
-			ImGui::Text("Commands");
-
-			if (ImGui::Button("Save"))
-			{
-				Save("");
-			}
-
-			if (ImGui::Button("Load"))
-			{
-				Load("");
-			}
-
-			if (ImGui::Button("Clear"))
-			{
-				Graph2D* graph = new Graph2D();
-				delete m_graph;
-				m_graph = graph;
-				m_graphEditor->SetGrapth(graph);
-
-				for (int xx = 0; xx < m_levelMap->GetWidth(); xx++)
-				{
-					for (int yy = 0; yy < m_levelMap->GetHeight(); yy++)
-					{
-						m_levelMap->Set(xx, yy, 0);
-					}
-				}
-			}
+			break;
 		}
-		ImGui::End();
-		
-	}
-	else
-	{
-		switch (m_editorState)
+
+		case EditorStates::Nodes:
 		{
-			case EditorStates::Tiles:
-			{
-				Vector2 gridPos = m_levelMap->ToGridPos(GetWorldMousePos());
-
-				DrawRectangleLinesEx({gridPos.x * m_levelMap->TILE_SIZE,gridPos.y * m_levelMap->TILE_SIZE,(float)m_levelMap->TILE_SIZE ,(float)m_levelMap->TILE_SIZE },1,LIGHTGRAY);
-
-				break;
-			}
-
-			case EditorStates::Nodes:
-			{
-				m_graphEditor->Draw();
-				break;
-			}
+			m_graphEditor->Draw();
+			break;
 		}
 	}
+	
 
 	LevelState::Draw();
 
@@ -415,6 +358,22 @@ void LevelEditorState::EndDraw()
 			{
 				m_editorState = EditorStates::Nodes;
 
+				if(ImGui::Button("Run Path Test"))
+				{
+					if (m_graphEditor->m_path != nullptr)
+					{
+						auto testAgent = Add<Agent>(new Agent(this));
+						m_graphEditor->m_path->SetPathType(PathType::Open);
+						testAgent->SetPosition(m_graphEditor->m_selectedNode->data.x, m_graphEditor->m_selectedNode->data.y);
+						testAgent->SetBehaviour(new FollowPathBehavior(m_graphEditor->m_path, 250.0f));
+						m_graphEditor->m_path = nullptr;
+					}
+				}
+
+				if (ImGui::Button("Clear Test Agents"))
+				{
+
+				}
 				//Resize the map grid cells
 
 				ImGui::EndTabItem();

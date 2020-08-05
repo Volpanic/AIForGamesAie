@@ -3,6 +3,7 @@
 #include "raymath.h"
 #include <iostream>
 #include <string>
+#include "Debug.h"
 
 Graph2DEditor::Graph2DEditor()
 {
@@ -148,7 +149,7 @@ void Graph2DEditor::Draw()
 		}
 		else
 		{
-			DrawCircleV(node->data, m_nodeRadius + 1, m_nodeCol);
+			DrawCircleV(node->data, m_nodeRadius + 1.0f, m_nodeCol);
 			DrawCircleV(node->data, m_nodeRadius, m_nodeOutlineCol);
 
 			//Draw Handle
@@ -170,8 +171,17 @@ void Graph2DEditor::Draw()
 
 			if (m_selectedNode != nullptr)
 			{
+				std::vector<Graph2D::Node*> nodes;
 
-				auto nodes = m_graph->ForEachDijkstra(m_selectedNode,m_targetNode,NULL);
+				Debug::TimeProcess("Dijkstra", [&]() {
+					nodes = m_graph->ForEachDijkstra(m_selectedNode, m_targetNode, NULL);
+				});
+
+				nodes.clear();
+
+				Debug::TimeProcess("AStar", [&](){
+				nodes = m_graph->ForEachAStar(m_selectedNode,m_targetNode,NULL);
+				});
 
 				if (m_path != nullptr) delete m_path;
 				m_path = new Path();

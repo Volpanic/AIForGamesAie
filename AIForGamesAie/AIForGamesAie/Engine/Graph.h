@@ -19,7 +19,9 @@ public:
 	{
 		Node* graphNode;
 		PathfindNode* parent;
-		float cost;
+		float gScore;
+		float hScore;
+		float fScore;
 	};
 
 	struct Node

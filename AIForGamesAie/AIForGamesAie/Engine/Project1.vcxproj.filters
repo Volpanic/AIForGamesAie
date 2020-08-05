@@ -144,5 +144,8 @@
     <ClInclude Include="GameObjectFactory.h">
       <Filter>Resource Files\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>Resource Files\ApplicationManagers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
