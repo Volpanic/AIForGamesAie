@@ -25,11 +25,12 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 	m_graphEditor->SetGrapth(m_graph);
 	m_camera.zoom = 1;
 
-	m_mapClearColour[0] = 255;
-	m_mapClearColour[1] = 255;
-	m_mapClearColour[2] = 255;
+	m_mapClearColour[0] = 0;
+	m_mapClearColour[1] = 0;
+	m_mapClearColour[2] = 0;
 
 	UpdateRoomFilePaths();
+	m_objectFactory.GetAllGameObjectTypes(m_gameObjectIDsList);
 
 	m_levelMapWidth = m_levelMap->GetWidth();
 	m_levelMapHeight = m_levelMap->GetHeight();
@@ -40,6 +41,12 @@ LevelEditorState::~LevelEditorState()
 	delete m_graphEditor;
 	delete m_graph;
 	delete m_mapClearColour;
+
+	for (auto const object : m_gameObjects)
+	{
+		delete object;
+	}
+	m_gameObjects.clear();
 	//delete m_drawData;
 }
 
@@ -121,6 +128,12 @@ void LevelEditorState::Update(float deltaTime)
 		case EditorStates::Nodes:
 		{
 			m_graphEditor->Update(GetWorldMousePos(),deltaTime);
+			break;
+		}
+
+		case EditorStates::Entities:
+		{
+			
 			break;
 		}
 	}
@@ -384,6 +397,27 @@ void LevelEditorState::EndDraw()
 				m_editorState = EditorStates::Nodes;
 
 				//Resize the map grid cells
+
+				ImGui::EndTabItem();
+			}
+
+			if (ImGui::BeginTabItem("Game Objects"))
+			{
+				ImGui::ListBoxHeader("Rooms");
+				{
+					for (auto item : m_gameObjectIDsList)
+					{
+						ImGui::Selectable(item.name());
+						if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
+						{
+							//m_loadMenuOpen = false;
+							//Load(item.generic_string());
+							//break;
+						}
+					}
+
+					ImGui::ListBoxFooter();
+				}
 
 				ImGui::EndTabItem();
 			}

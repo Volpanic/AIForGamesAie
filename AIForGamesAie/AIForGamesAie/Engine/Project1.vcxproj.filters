@@ -73,6 +73,9 @@
     <ClCompile Include="Main.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjectFactory.cpp">
+      <Filter>Resource Files\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -137,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="Drawable.h">
       <Filter>Resource Files\GameObjects\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectFactory.h">
+      <Filter>Resource Files\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

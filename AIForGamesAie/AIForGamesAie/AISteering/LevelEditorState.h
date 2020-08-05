@@ -6,6 +6,7 @@
 #include "raylib.h"
 #include <vector>
 #include <filesystem>
+#include "ObjectFactory.h"
 
 struct ImDrawData;
 
@@ -38,7 +39,11 @@ private:
 	EditorStates m_editorState = EditorStates::Tiles;
 	Vector2 m_gameWindowMousePos = {};
 
+	ObjectFactory m_objectFactory;
+
 	std::vector<std::filesystem::path> m_RoomFilePaths;
+	std::vector<std::type_index> m_gameObjectIDsList;
+	std::vector<GameObject*> m_gameObjects; // Sorted to proper location when game run.
 
 	//GameWindow
 	bool m_mouseInGameWindow;

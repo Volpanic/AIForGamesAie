@@ -1,66 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\GameObjects">
+      <UniqueIdentifier>{7807312f-8a0f-456a-81e9-6224cd185283}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\GameObjects\Behaviors">
+      <UniqueIdentifier>{f430775e-8365-4db9-bfdc-8d6f52bfd6c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\States">
+      <UniqueIdentifier>{5d853d8c-3f44-4920-841e-7db1e1ea076f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Application">
+      <UniqueIdentifier>{816fda30-ac8e-4d05-8fe8-7f3e2d7da54c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DemoState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="LevelEditorState.cpp">
+      <Filter>Resource Files\States</Filter>
     </ClCompile>
     <ClCompile Include="Agent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SteeringBehaviour.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="FollowPathBehavior.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files\GameObjects\Behaviors</Filter>
     </ClCompile>
-    <ClCompile Include="LevelEditorState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SteeringBehaviour.cpp">
+      <Filter>Resource Files\GameObjects\Behaviors</Filter>
     </ClCompile>
+    <ClCompile Include="DemoState.cpp">
+      <Filter>Resource Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Resource Files\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DemoState.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="LevelEditorState.h">
+      <Filter>Resource Files\States</Filter>
     </ClInclude>
     <ClInclude Include="Agent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Resource Files\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Behaviour.h">
-      <Filter>Header Files</Filter>
+      <Filter>Resource Files\GameObjects\Behaviors</Filter>
     </ClInclude>
     <ClInclude Include="SteeringBehaviour.h">
-      <Filter>Header Files</Filter>
+      <Filter>Resource Files\GameObjects\Behaviors</Filter>
     </ClInclude>
     <ClInclude Include="FollowPathBehavior.h">
-      <Filter>Header Files</Filter>
+      <Filter>Resource Files\GameObjects\Behaviors</Filter>
     </ClInclude>
-    <ClInclude Include="LevelEditorState.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DemoState.h">
+      <Filter>Resource Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Resource Files\Application</Filter>
     </ClInclude>
     <ClInclude Include="cimgui_impl_raylib.h">
-      <Filter>Header Files</Filter>
+      <Filter>Resource Files\Application</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectFactory.h" />
   </ItemGroup>
 </Project>
