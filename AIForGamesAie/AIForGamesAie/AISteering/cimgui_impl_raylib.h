@@ -40,7 +40,7 @@ bool ImGui_ImplRaylib_Init()
     io.KeyMap[ImGuiKey_End] = KEY_END;
     io.KeyMap[ImGuiKey_Insert] = KEY_INSERT;
     io.KeyMap[ImGuiKey_Delete] = KEY_DELETE;
-    io.KeyMap[ImGuiKey_Backspace] = KEY_BACKSLASH;
+    io.KeyMap[ImGuiKey_Backspace] = KEY_BACKSPACE;
     io.KeyMap[ImGuiKey_Space] = KEY_SPACE;
     io.KeyMap[ImGuiKey_Enter] = KEY_ENTER;
     io.KeyMap[ImGuiKey_Escape] = KEY_ESCAPE;
@@ -245,12 +245,13 @@ bool ImGui_ImplRaylib_ProcessEvent()
         SET_KEY_DOWN(key);
     }
 
+    SET_KEY_DOWN(KEY_BACKSPACE);
+
     int keyPressed = GetKeyPressed();
     if (keyPressed > 0)
     {
         io.AddInputCharacter(keyPressed);
     }
- 
 
     return true;
 }

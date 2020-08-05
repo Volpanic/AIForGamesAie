@@ -25,6 +25,10 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 	m_graphEditor->SetGrapth(m_graph);
 	m_camera.zoom = 1;
 
+	m_mapClearColour[0] = 255;
+	m_mapClearColour[1] = 255;
+	m_mapClearColour[2] = 255;
+
 	UpdateRoomFilePaths();
 
 	m_levelMapWidth = m_levelMap->GetWidth();
@@ -35,7 +39,7 @@ LevelEditorState::~LevelEditorState()
 {
 	delete m_graphEditor;
 	delete m_graph;
-
+	delete m_mapClearColour;
 	//delete m_drawData;
 }
 
@@ -127,7 +131,8 @@ void LevelEditorState::Update(float deltaTime)
 void LevelEditorState::Draw()
 {
 	BeginMode2D(m_camera);
-	ClearBackground(WHITE);
+	Color clear = { (unsigned char)(m_mapClearColour[0]*255.0f),(unsigned char)(m_mapClearColour[1] * 255.0f),(unsigned char)(m_mapClearColour[2]*255.0f),255 };
+	ClearBackground(clear);
 
 	if (m_drawNodes)
 	{
@@ -149,8 +154,6 @@ void LevelEditorState::Draw()
 
 	m_levelMap->Draw();
 
-	ClearBackground(BLACK);
-
 	//Main Tab
 	if (ImGui::BeginMainMenuBar())
 	{
@@ -168,6 +171,16 @@ void LevelEditorState::Draw()
 			}
 			ImGui::EndMenu();
 		}
+
+		if (ImGui::BeginMenu("View"))
+		{
+			ImGui::Text("Toggels");
+			ImGui::Checkbox("Draw Grid", &m_drawGrid);
+			ImGui::Checkbox("Draw Nodes", &m_drawNodes);
+
+			ImGui::EndMenu();
+		}
+
 		ImGui::EndMainMenuBar();
 	}
 
@@ -302,7 +315,7 @@ void LevelEditorState::EndDraw()
 	{
 		ImGui::BeginTabBar("Editors");
 		{
-			ImGui::BeginTabItem("Map Details");
+			if(ImGui::BeginTabItem("Map Details"))
 			{
 				//Resize the map grid cells
 				bool gridResize = false;
@@ -321,6 +334,8 @@ void LevelEditorState::EndDraw()
 					m_levelMap->Resize(m_levelMapWidth,m_levelMapHeight);
 				}
 
+				ImGui::ColorEdit3("Map Clear", m_mapClearColour);
+
 				//Saving and loading
 				if (ImGui::Button("Save Map"))
 				{
@@ -335,8 +350,47 @@ void LevelEditorState::EndDraw()
 				ImGui::EndTabItem();
 			}
 
+			if(ImGui::BeginTabItem("Tiles"))
+			{
+				m_editorState = EditorStates::Tiles;
+
+				//Resize the map grid cells
+				ImGui::BeginChild("Tools");
+
+				ImGui::Text("Tools");
+
+				if (ImGui::Button("Pencil"))
+				{
+
+				}
+
+				if (ImGui::Button("Rectangle"))
+				{
+
+				}
+
+				if (ImGui::Button("Fill"))
+				{
+
+				}
+
+				ImGui::EndChild();
+
+				ImGui::EndTabItem();
+			}
+
+			if (ImGui::BeginTabItem("Nodes"))
+			{
+				m_editorState = EditorStates::Nodes;
+
+				//Resize the map grid cells
+
+				ImGui::EndTabItem();
+			}
+
 			ImGui::EndTabBar();
 		}
+
 		ImGui::End();
 	}
 
@@ -387,6 +441,10 @@ void LevelEditorState::Save(std::string fileName)
 
 			pMap->SetAttribute("Width", m_levelMap->GetWidth());
 			pMap->SetAttribute("Height", m_levelMap->GetHeight());
+
+			pMap->SetAttribute("ClearR", m_mapClearColour[0]);
+			pMap->SetAttribute("ClearG", m_mapClearColour[1]);
+			pMap->SetAttribute("ClearB", m_mapClearColour[2]);
 
 			tinyxml2::XMLElement* gridData = level.NewElement("MapData");
 
@@ -468,6 +526,18 @@ void LevelEditorState::Load(std::string fileName)
 
 			pMap->QueryIntAttribute("Width", &mWidth);
 			pMap->QueryIntAttribute("Height", &mHeight);
+
+			float mClearR = 255;
+			float mClearG = 255;
+			float mClearB = 255;
+
+			pMap->QueryFloatAttribute("ClearR", &mClearR);
+			pMap->QueryFloatAttribute("ClearG", &mClearG);
+			pMap->QueryFloatAttribute("ClearB", &mClearB);
+
+			m_mapClearColour[0] = mClearR;
+			m_mapClearColour[1] = mClearG;
+			m_mapClearColour[2] = mClearB;
 
 			std::cout << mWidth << " : " << mHeight << std::endl;
 

@@ -47,7 +47,6 @@ private:
 		//Map Window
 		int m_levelMapWidth;
 		int m_levelMapHeight;
-		Color m_clearColour = BLACK;
 
 	//Data
 	char m_saveFileName[32] = "";
@@ -56,6 +55,7 @@ private:
 	bool m_saveMenuOpen = false;
 	int m_selectedLoadFile = 0;
 	float m_gameViewZoom = 2;
+	float* m_mapClearColour = new float[3];
 
 	//Toggels
 	bool m_drawGrid = true;
