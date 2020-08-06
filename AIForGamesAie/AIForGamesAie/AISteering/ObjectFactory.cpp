@@ -2,6 +2,7 @@
 
 //GameObjectsd
 #include "Actor.h"
+#include "DarkBlueShark.h"
 
 ObjectFactory::ObjectFactory()
 {
@@ -16,12 +17,14 @@ GameObject* ObjectFactory::CreateGameObject(std::type_index index, LevelState* l
 {	
 	//Cannot switch statement, not ints or enums
 
-	if (index == typeid(Actor)) return new Actor(level);
+	//if (index == typeid(Actor)) return new Actor(level);
+	if (index == typeid(DarkBlueShark)) return new DarkBlueShark(level);
 
 	return nullptr;
 }
 
 void ObjectFactory::GetAllGameObjectTypes(std::vector<std::type_index>& output)
 {
-	output.push_back(typeid(Actor));
+	//output.push_back(typeid(Actor));
+	output.push_back(typeid(DarkBlueShark));
 }

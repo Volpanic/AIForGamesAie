@@ -67,10 +67,17 @@ public:
 		}
 	}
 
-	virtual void Save(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement) {};
-	virtual void Load(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement) {};
+	virtual void Save(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement) 
+	{
+		parentElement->SetAttribute("PositionX", GetPosition().x);
+		parentElement->SetAttribute("PositionX", GetPosition().y);
+	};
+	virtual void Load(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement) 
+	{
 
-	virtual void DrawInEditor() {};
+	};
+
+	virtual void DrawInEditor(const Vector2& mousePos) {};
 	
 	virtual void ImGuiEditorMenu()
 	{

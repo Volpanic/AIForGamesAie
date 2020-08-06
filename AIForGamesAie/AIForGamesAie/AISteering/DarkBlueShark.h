@@ -10,6 +10,7 @@ public:
 	virtual std::type_index GetCategory() { return typeid(Agent); };
 	virtual void Update(float deltaTime);
 	virtual void Draw();
+	virtual void DrawInEditor(const Vector2& mousePos);
 
 protected:
 private:

@@ -20,8 +20,12 @@ Game::~Game()
 
 void Game::Create()
 {
-	m_gameStateManager->SetState("Editor",new LevelEditorState(this));
-	m_gameStateManager->PushState("Editor",new FadeTransition(this,"Editor",0.25f));
+	//Change to switch from editor to player ya hear?
+	if (true)
+	{
+		m_gameStateManager->SetState("Editor", new LevelEditorState(this));
+		m_gameStateManager->PushState("Editor", new FadeTransition(this, "Editor", 0.25f));
+	}
 
 
 	//ImGui

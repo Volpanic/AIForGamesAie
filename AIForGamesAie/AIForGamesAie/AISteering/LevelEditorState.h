@@ -68,6 +68,10 @@ private:
 		Vector2 m_tileRectTopleft = { 0,0 };
 		Vector2 m_tileRectBottemRight = {0,0};
 
+		//Entites
+		GameObject* m_selectedEntity = nullptr;
+		GameObject* m_entityToPlace = nullptr;
+
 	//Data
 	char m_saveFileName[32] = "";
 
@@ -79,6 +83,7 @@ private:
 
 	//Toggels
 	bool m_drawGrid = true;
+	bool m_drawScreenGrid = true;
 	bool m_drawNodes = true;
 	bool m_snappedToGrid = false;
 

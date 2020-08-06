@@ -13,9 +13,9 @@
 #include "ricons.h"
 #include "tinyxml2.h"
 
-
-
 #include "imgui.h"
+
+//Ungodly huge file
 
 LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(app)
 {
@@ -41,6 +41,8 @@ LevelEditorState::~LevelEditorState()
 	delete m_graphEditor;
 	delete m_graph;
 	delete m_mapClearColour;
+
+	if (m_entityToPlace != nullptr) delete m_entityToPlace;
 
 	for (auto const object : m_gameObjects)
 	{
@@ -227,11 +229,13 @@ void LevelEditorState::Draw()
 	Color clear = { (unsigned char)(m_mapClearColour[0]*255.0f),(unsigned char)(m_mapClearColour[1] * 255.0f),(unsigned char)(m_mapClearColour[2]*255.0f),255 };
 	ClearBackground(clear);
 
+	//Draw nodes in non node editor modes.
 	if (m_drawNodes)
 	{
 		m_graphEditor->DrawOnlyNodes();
 	}
 
+	//Draw grid cells the size of 1 Tile.
 	if (m_drawGrid)
 	{
 		for (int xx = 0; xx < m_levelMap->GetWidth(); xx++)
@@ -245,6 +249,22 @@ void LevelEditorState::Draw()
 		}
 	}
 
+	//Draw grid cells the size of 1 screen.
+	if (m_drawScreenGrid)
+	{
+		int xLevelWidths = ceil(((float)m_levelMap->GetWidth() * (float)m_levelMap->TILE_SIZE) / (float)m_app->GetGameWidth());
+		int yLevelHeights = ceil(((float)m_levelMap->GetHeight() * (float)m_levelMap->TILE_SIZE) / (float)m_app->GetGameHeight());
+
+		for (int xx = 0; xx < xLevelWidths; xx++)
+		{
+			for (int yy = 0; yy < yLevelHeights; yy++)
+			{
+				DrawRectangleLinesEx({ (float)m_app->GetGameWidth() * xx, (float)m_app->GetGameHeight() * yy, (float)m_app->GetGameWidth(), (float)m_app->GetGameHeight() },2, DARKGRAY);
+			}
+		}
+	}
+
+	//Draws the level map (Tiles)
 	m_levelMap->Draw();
 
 	//Main Tab
@@ -256,7 +276,6 @@ void LevelEditorState::Draw()
 			{
 				m_saveMenuOpen = true;
 			}
-
 			
 			if (ImGui::MenuItem("Load"))
 			{
@@ -269,6 +288,7 @@ void LevelEditorState::Draw()
 		{
 			ImGui::Text("Toggels");
 			ImGui::Checkbox("Draw Grid", &m_drawGrid);
+			ImGui::Checkbox("Draw Screen Grid", &m_drawScreenGrid);
 			ImGui::Checkbox("Draw Nodes", &m_drawNodes);
 
 			ImGui::EndMenu();
@@ -277,6 +297,7 @@ void LevelEditorState::Draw()
 		ImGui::EndMainMenuBar();
 	}
 
+	//Opens the save and load modals
 	if (m_saveMenuOpen)
 	{
 		ImGui::OpenPopup("SaveMenu");
@@ -290,7 +311,7 @@ void LevelEditorState::Draw()
 	}
 
 	//Save Menu
-	// Always center this window when appearing
+	//center this window when appearing
 	ImVec2 center(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f);
 	ImGui::SetNextWindowPos(center, ImGuiCond_::ImGuiCond_Always, ImVec2(0.5f, 0.5f));
 
@@ -320,7 +341,7 @@ void LevelEditorState::Draw()
 		ImGui::EndPopup();
 	}
 
-	// Always center this window when appearing
+	//center this window when appearing
 	ImGui::SetNextWindowPos(center, ImGuiCond_::ImGuiCond_Always, ImVec2(0.5f, 0.5f));
 
 	if (ImGui::BeginPopupModal("LoadMenu", NULL, ImGuiWindowFlags_AlwaysAutoResize))
@@ -351,6 +372,8 @@ void LevelEditorState::Draw()
 		ImGui::EndPopup();
 	}
 
+
+	//Editor state drawing, cursors and etc
 	switch (m_editorState)
 	{
 		case EditorStates::Tiles:
@@ -392,6 +415,26 @@ void LevelEditorState::Draw()
 			m_graphEditor->Draw();
 			break;
 		}
+
+		case EditorStates::Entities:
+		{
+			if (m_entityToPlace != nullptr)
+			{
+				m_entityToPlace->DrawInEditor(GetWorldMousePos());
+
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				{
+					m_gameObjects.push_back(m_entityToPlace);
+					m_entityToPlace = nullptr;
+				}
+			}
+			break;
+		}
+	}
+
+	for (auto const& object : m_gameObjects)
+	{
+		object->Draw();
 	}
 	
 
@@ -498,8 +541,10 @@ void LevelEditorState::EndDraw()
 				ImGui::EndTabItem();
 			}
 
+			//Game objects yah.
 			if (ImGui::BeginTabItem("Game Objects"))
 			{
+				m_editorState = EditorStates::Entities;
 				ImGui::ListBoxHeader("Rooms");
 				{
 					for (auto item : m_gameObjectIDsList)
@@ -507,9 +552,12 @@ void LevelEditorState::EndDraw()
 						ImGui::Selectable(item.name());
 						if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
 						{
-							//m_loadMenuOpen = false;
-							//Load(item.generic_string());
-							//break;
+							if (m_entityToPlace == nullptr)
+							{
+								delete m_entityToPlace;
+								m_entityToPlace = nullptr;
+							}
+							m_entityToPlace = m_objectFactory.CreateGameObject(item,this);
 						}
 					}
 
@@ -530,7 +578,12 @@ void LevelEditorState::EndDraw()
 	{
 		ImGui::BeginChild("Level Batch", {0,0}, ImGuiWindowFlags_AlwaysHorizontalScrollbar);
 		{
-			ImGui::ImageButton((void*)m_app->GetRenderTexture().texture.id, { (float)m_app->GetGameWidth() * m_gameViewZoom,(float)m_app->GetGameHeight() * m_gameViewZoom }, { 0,1 }, { 1,0 },0);
+			ImVec2 gameImageSize = { (float)m_app->GetGameWidth() * m_gameViewZoom,(float)m_app->GetGameHeight() * m_gameViewZoom };
+			//Center Render target
+			ImGui::SetCursorPosX((ImGui::GetWindowSize().x - gameImageSize.x) * 0.5f);
+			ImGui::SetCursorPosY((ImGui::GetWindowSize().y - gameImageSize.y) * 0.08f);
+
+			ImGui::ImageButton((void*)m_app->GetRenderTexture().texture.id, gameImageSize, { 0,1 }, { 1,0 },0);
 			
 			//Get mouse pos
 			ImVec2 editorTopLeft = ImGui::GetItemRectMin();
@@ -612,8 +665,7 @@ void LevelEditorState::Save(std::string fileName)
 
 					//Node Connections
 					for (auto const& connect : node->connections)
-					{
-						
+					{	
 						tinyxml2::XMLElement* nodeConnection = level.NewElement("NodeConnection");
 						nodeConnection->SetAttribute("OtherPositionX", connect.to->data.x);
 						nodeConnection->SetAttribute("OtherPositionY", connect.to->data.y);
