@@ -10,7 +10,7 @@ class Graph
 {
 public:
 
-	
+
 	struct PathfindNode;
 	struct Node;
 	struct Edge;
@@ -41,7 +41,7 @@ public:
 	// == == == == == == == == == == == == 
 	// Constructor
 	// == == == == == == == == == == == == 
-	Graph() 
+	Graph()
 	{
 
 	}
@@ -64,7 +64,7 @@ public:
 	{
 		Node* node = new Node();
 		node->data = data;
-	
+
 		m_nodes.push_back(node);
 		return node;
 	}
@@ -90,7 +90,7 @@ public:
 	// == == == == == == == == == == == == 
 	// Connect nodes
 	// == == == == == == == == == == == == 
-	void ConnectNodes(Node* nodeA, Node* nodeB,const TEdgeData& data)
+	void ConnectNodes(Node* nodeA, Node* nodeB, const TEdgeData& data)
 	{
 		AddEdge(nodeA, nodeB, data);
 		AddEdge(nodeB, nodeA, data);
@@ -107,7 +107,7 @@ public:
 			{
 				if (nd.to->connections[i].to == node)
 				{
-					nd.to->connections.erase(nd.to->connections.begin()+i);
+					nd.to->connections.erase(nd.to->connections.begin() + i);
 					break;
 				}
 			}
@@ -117,11 +117,11 @@ public:
 		{
 			if (m_nodes[i] == node)
 			{
-				m_nodes.erase(m_nodes.begin()+i);
+				m_nodes.erase(m_nodes.begin() + i);
 				break;
 			}
 		}
-		
+
 		delete node;
 	}
 
@@ -196,6 +196,11 @@ public:
 	bool ComparePathNodesByCost(const PathfindNode& a, const PathfindNode& b)
 	{
 		return (a.cost > b.cost);
+	}
+
+	int NodeCount()
+	{
+		return m_nodes.size();
 	}
 
 protected:

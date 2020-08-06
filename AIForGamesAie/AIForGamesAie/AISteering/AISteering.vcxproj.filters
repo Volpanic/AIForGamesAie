@@ -17,6 +17,9 @@
     <Filter Include="Resource Files\Application">
       <UniqueIdentifier>{816fda30-ac8e-4d05-8fe8-7f3e2d7da54c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\GameObjects\Sharks">
+      <UniqueIdentifier>{ff90193b-709b-4c2d-9b71-d62b28b04d44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LevelEditorState.cpp">
@@ -41,6 +44,9 @@
       <Filter>Resource Files\Application</Filter>
     </ClCompile>
     <ClCompile Include="ObjectFactory.cpp" />
+    <ClCompile Include="DarkBlueShark.cpp">
+      <Filter>Resource Files\GameObjects\Sharks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LevelEditorState.h">
@@ -68,5 +74,8 @@
       <Filter>Resource Files\Application</Filter>
     </ClInclude>
     <ClInclude Include="ObjectFactory.h" />
+    <ClInclude Include="DarkBlueShark.h">
+      <Filter>Resource Files\GameObjects\Sharks</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

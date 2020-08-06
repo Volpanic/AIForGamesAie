@@ -23,6 +23,7 @@ void Game::Create()
 	m_gameStateManager->SetState("Editor",new LevelEditorState(this));
 	m_gameStateManager->PushState("Editor",new FadeTransition(this,"Editor",0.25f));
 
+
 	//ImGui
 	ImGui::CreateContext();
 	ImGui::StyleColorsDark();
@@ -44,10 +45,14 @@ void Game::Create()
 
 	io.Fonts->TexID = (ImTextureID)texID;
 
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
 	ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_WindowBorderSize, -1.0f);
 	ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_ChildBorderSize, -1.0f);
 	ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_PopupBorderSize, -1.0f);
 	ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_FrameBorderSize, -1.0f);
+	
+
 	
 	//ImGui
 }
@@ -57,6 +62,8 @@ void Game::StartDraw()
 	ImGui_ImplRaylib_NewFrame(m_gameZoom);
 	ImGui_ImplRaylib_ProcessEvent();
 	ImGui::NewFrame();
+
+	ImGui::DockSpaceOverViewport(0);
 }
 
 void Game::EndDraw()

@@ -160,16 +160,16 @@ void LevelEditorState::Update(float deltaTime)
 					}
 					else if (IsMouseButtonDown(m_placeTileValue))
 					{
-						m_tileRectBottemRight = Vector2Add(gridPos, {1,1});
+						m_tileRectBottemRight = gridPos;
 					}
 					else if (IsMouseButtonReleased(m_placeTileValue))
 					{
 						int setValue = m_placeTileValue;
 
 						float x1 = fminf(m_tileRectBottemRight.x, m_tileRectTopleft.x);
-						float x2 = fmaxf(m_tileRectBottemRight.x, m_tileRectTopleft.x);
+						float x2 = fmaxf(m_tileRectBottemRight.x, m_tileRectTopleft.x) + 1;
 						float y1 = fminf(m_tileRectBottemRight.y, m_tileRectTopleft.y);
-						float y2 = fmaxf(m_tileRectBottemRight.y, m_tileRectTopleft.y);
+						float y2 = fmaxf(m_tileRectBottemRight.y, m_tileRectTopleft.y) + 1;
 
 						for (int xx = (int)x1; xx < (int)x2; xx++)
 						{
@@ -182,7 +182,7 @@ void LevelEditorState::Update(float deltaTime)
 					else
 					{
 						m_tileRectTopleft = gridPos;
-						m_tileRectBottemRight = Vector2Add(gridPos, { 1,1 });
+						m_tileRectBottemRight = gridPos;
 					}
 
 					break;
@@ -368,9 +368,9 @@ void LevelEditorState::Draw()
 				case TilePlacementState::Rectangle:
 				{
 					float x1 = fminf(m_tileRectBottemRight.x, m_tileRectTopleft.x);
-					float x2 = fmaxf(m_tileRectBottemRight.x, m_tileRectTopleft.x);
+					float x2 = fmaxf(m_tileRectBottemRight.x, m_tileRectTopleft.x) + 1;
 					float y1 = fminf(m_tileRectBottemRight.y, m_tileRectTopleft.y);
-					float y2 = fmaxf(m_tileRectBottemRight.y, m_tileRectTopleft.y);
+					float y2 = fmaxf(m_tileRectBottemRight.y, m_tileRectTopleft.y) + 1;
 
 					Vector2 size = {x2 - x1, y2 - y1};
 					size = Vector2Scale(size, m_levelMap->TILE_SIZE);
