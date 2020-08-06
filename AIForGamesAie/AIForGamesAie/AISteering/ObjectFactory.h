@@ -8,6 +8,7 @@ public:
 	virtual ~ObjectFactory();
 
 	virtual GameObject* CreateGameObject(std::type_index index, LevelState* level);
+	virtual GameObject* CreateGameObject(std::string index, LevelState* level);
 
 	virtual void GetAllGameObjectTypes(std::vector<std::type_index>& output);
 };

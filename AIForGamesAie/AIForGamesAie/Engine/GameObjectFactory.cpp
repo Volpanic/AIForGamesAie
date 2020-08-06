@@ -16,6 +16,11 @@ GameObject* GameObjectFactory::CreateGameObject(std::type_index index, LevelStat
 	return nullptr;
 }
 
+GameObject* GameObjectFactory::CreateGameObject(std::string index, LevelState* level)
+{
+	return nullptr;
+}
+
 void GameObjectFactory::GetAllGameObjectTypes(std::vector<std::type_index>& output)
 {
 

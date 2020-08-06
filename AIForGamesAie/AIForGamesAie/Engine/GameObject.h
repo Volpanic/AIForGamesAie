@@ -36,6 +36,7 @@ public:
 	}
 
 	virtual std::type_index GetCategory() { return typeid(GameObject); };
+	virtual std::string GetType() { return "GameObject (Shouldn't be saving this one.)"; };
 
 	template<typename T>
 	void AddComponent(Component* component)
@@ -69,8 +70,9 @@ public:
 
 	virtual void Save(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement) 
 	{
+		parentElement->SetAttribute("Type", GetType().c_str());
 		parentElement->SetAttribute("PositionX", GetPosition().x);
-		parentElement->SetAttribute("PositionX", GetPosition().y);
+		parentElement->SetAttribute("PositionY", GetPosition().y);
 	};
 	virtual void Load(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement) 
 	{

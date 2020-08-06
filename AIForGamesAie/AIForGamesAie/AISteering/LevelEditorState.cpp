@@ -683,6 +683,28 @@ void LevelEditorState::Save(std::string fileName)
 			pRoot->InsertEndChild(pNodes);
 		}
 
+		//Entities :; 
+		{
+			tinyxml2::XMLNode* pEntity = level.NewElement("Entities");
+			pRoot->InsertFirstChild(pEntity);
+
+			tinyxml2::XMLElement* entityData = level.NewElement("EntityData");
+
+			//Write entity data, using each objects sav function.
+			for (auto const& enti : m_gameObjects)
+			{
+				tinyxml2::XMLElement* entityEntry = level.NewElement("EntityEntry");
+
+				enti->Save(&level, entityEntry);
+
+				entityData->InsertEndChild(entityEntry);
+			}
+
+			pEntity->InsertEndChild(entityData);
+
+			pRoot->InsertEndChild(pEntity);
+		}
+
 	level.SaveFile(("Rooms\\" + fileName + ".xml").c_str());
 }
 

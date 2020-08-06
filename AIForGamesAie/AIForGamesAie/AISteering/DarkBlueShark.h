@@ -7,7 +7,10 @@ public:
 
 	DarkBlueShark(LevelState* level);
 	virtual ~DarkBlueShark();
+
 	virtual std::type_index GetCategory() { return typeid(Agent); };
+	virtual std::string GetType() { return "DarkBlueShark"; };
+
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 	virtual void DrawInEditor(const Vector2& mousePos);
