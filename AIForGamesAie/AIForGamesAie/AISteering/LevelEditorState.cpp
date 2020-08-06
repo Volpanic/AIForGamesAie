@@ -25,9 +25,9 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 	m_graphEditor->SetGrapth(m_graph);
 	m_camera.zoom = 1;
 
-	m_mapClearColour[0] = 0;
-	m_mapClearColour[1] = 0;
-	m_mapClearColour[2] = 0;
+	m_mapClearColour[0] = 1;
+	m_mapClearColour[1] = 1;
+	m_mapClearColour[2] = 1;
 
 	UpdateRoomFilePaths();
 	m_objectFactory.GetAllGameObjectTypes(m_gameObjectIDsList);
@@ -68,6 +68,32 @@ Vector2 LevelEditorState::GetWorldMousePos()
 	}
 }
 
+void LevelEditorState::FloodFillTiles(int x, int y, int value, int targetValue)
+{
+
+	if (!m_levelMap->WithinGrid(x, y))
+	{
+		return;
+	}
+
+	if (m_levelMap->Get(x, y) == value)
+	{
+		return;
+	}
+
+	if (m_levelMap->Get(x, y) != targetValue)
+	{
+		return;
+	}
+
+	m_levelMap->Set(x, y, value);
+
+	FloodFillTiles(x - 1, y, value, targetValue);
+	FloodFillTiles(x + 1, y, value, targetValue);
+	FloodFillTiles(x, y - 1, value, targetValue);
+	FloodFillTiles(x, y + 1, value, targetValue);
+}
+
 void LevelEditorState::Update(float deltaTime)
 {
 	LevelState::Update(deltaTime);
@@ -98,16 +124,84 @@ void LevelEditorState::Update(float deltaTime)
 		{
 			Vector2 gridPos = m_levelMap->ToGridPos(GetWorldMousePos());
 
-			//Create
-			if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+			switch (m_tileState)
 			{
-				m_levelMap->Set((int)gridPos.x, (int)gridPos.y, 1);
-			}
+				case TilePlacementState::Pencil:
+				{
+					//Create
+					if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+					{
+						m_levelMap->Set((int)gridPos.x, (int)gridPos.y, 1);
+					}
 
-			//Delete
-			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
-			{
-				m_levelMap->Set((int)gridPos.x, (int)gridPos.y, 0);
+					//Delete
+					if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
+					{
+						m_levelMap->Set((int)gridPos.x, (int)gridPos.y, 0);
+					}
+
+					break;
+				}
+
+				case TilePlacementState::Rectangle:
+				{
+					//Set mouse if rectangle, Abysmla if else chain i know
+					if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+					{
+						//Sets tile as regular
+						m_placeTileValue = MouseButton::MOUSE_LEFT_BUTTON;
+						m_tileRectTopleft = gridPos;
+					}
+					else if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
+					{
+						//Sets tile as empty
+						m_placeTileValue = MouseButton::MOUSE_RIGHT_BUTTON;
+						m_tileRectTopleft = gridPos;
+					}
+					else if (IsMouseButtonDown(m_placeTileValue))
+					{
+						m_tileRectBottemRight = Vector2Add(gridPos, {1,1});
+					}
+					else if (IsMouseButtonReleased(m_placeTileValue))
+					{
+						int setValue = m_placeTileValue;
+
+						float x1 = fminf(m_tileRectBottemRight.x, m_tileRectTopleft.x);
+						float x2 = fmaxf(m_tileRectBottemRight.x, m_tileRectTopleft.x);
+						float y1 = fminf(m_tileRectBottemRight.y, m_tileRectTopleft.y);
+						float y2 = fmaxf(m_tileRectBottemRight.y, m_tileRectTopleft.y);
+
+						for (int xx = (int)x1; xx < (int)x2; xx++)
+						{
+							for (int yy = (int)y1; yy < (int)y2; yy++)
+							{
+								m_levelMap->Set(xx, yy, (m_placeTileValue == MOUSE_RIGHT_BUTTON)? 0 : 1);
+							}
+						}
+					}
+					else
+					{
+						m_tileRectTopleft = gridPos;
+						m_tileRectBottemRight = Vector2Add(gridPos, { 1,1 });
+					}
+
+					break;
+				}
+
+				case TilePlacementState::Fill:
+				{
+					//Set mouse if rectangle
+					if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+					{
+						if (m_levelMap->WithinGrid((int)gridPos.x, (int)gridPos.y))
+						{
+							int floodTarget = m_levelMap->Get((int)gridPos.x, (int)gridPos.y);
+							FloodFillTiles((int)gridPos.x, (int)gridPos.y,1,floodTarget);
+						}
+					}
+
+					break;
+				}
 			}
 
 			break;
@@ -263,8 +357,33 @@ void LevelEditorState::Draw()
 		{
 			Vector2 gridPos = m_levelMap->ToGridPos(GetWorldMousePos());
 
-			DrawRectangleLinesEx({gridPos.x * m_levelMap->TILE_SIZE,gridPos.y * m_levelMap->TILE_SIZE,(float)m_levelMap->TILE_SIZE ,(float)m_levelMap->TILE_SIZE },1,LIGHTGRAY);
+			switch (m_tileState)
+			{
+				case TilePlacementState::Pencil:
+				{
+					DrawRectangleLinesEx({ gridPos.x * m_levelMap->TILE_SIZE,gridPos.y * m_levelMap->TILE_SIZE,(float)m_levelMap->TILE_SIZE ,(float)m_levelMap->TILE_SIZE }, 1, LIGHTGRAY);
+					break;
+				}
 
+				case TilePlacementState::Rectangle:
+				{
+					float x1 = fminf(m_tileRectBottemRight.x, m_tileRectTopleft.x);
+					float x2 = fmaxf(m_tileRectBottemRight.x, m_tileRectTopleft.x);
+					float y1 = fminf(m_tileRectBottemRight.y, m_tileRectTopleft.y);
+					float y2 = fmaxf(m_tileRectBottemRight.y, m_tileRectTopleft.y);
+
+					Vector2 size = {x2 - x1, y2 - y1};
+					size = Vector2Scale(size, m_levelMap->TILE_SIZE);
+					DrawRectangleLinesEx({ x1 * m_levelMap->TILE_SIZE,y1 * m_levelMap->TILE_SIZE,size.x,size.y }, 1, LIGHTGRAY);
+					break;
+				}
+
+				case TilePlacementState::Fill:
+				{
+					DrawRectangleLinesEx({ gridPos.x * m_levelMap->TILE_SIZE,gridPos.y * m_levelMap->TILE_SIZE,(float)m_levelMap->TILE_SIZE ,(float)m_levelMap->TILE_SIZE }, 1, LIGHTGRAY);
+					break;
+				}
+			}
 			break;
 		}
 
@@ -336,17 +455,17 @@ void LevelEditorState::EndDraw()
 
 				if (ImGui::Button("Pencil"))
 				{
-
+					m_tileState = TilePlacementState::Pencil;
 				}
 
 				if (ImGui::Button("Rectangle"))
 				{
-
+					m_tileState = TilePlacementState::Rectangle;
 				}
 
 				if (ImGui::Button("Fill"))
 				{
-
+					m_tileState = TilePlacementState::Fill;
 				}
 
 				ImGui::EndChild();

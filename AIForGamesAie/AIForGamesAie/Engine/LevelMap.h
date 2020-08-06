@@ -15,6 +15,8 @@ public:
 	void Set(int pos, int value);
 	int Get(int x, int y);
 	int Get(int pos);
+	bool WithinGrid(int pos);
+	bool WithinGrid(int xPos, int yPos);
 
 	int GetSize();
 

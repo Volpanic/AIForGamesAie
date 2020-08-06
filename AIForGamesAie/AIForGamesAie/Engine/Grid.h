@@ -13,6 +13,8 @@ public:
 	T& Get(int xPos, int yPos);
 	T& Get(int pos);
 	int GetSize();
+	bool WithinGrid(int pos);
+	bool WithinGrid(int xPos, int yPos);
 
 	int GetWidth() { return m_width; };
 	int GetHeight() { return m_height; };
@@ -96,4 +98,24 @@ template<typename T>
 T* Grid<T>::operator[](int index)
 {
 	return m_gridArray(index);
+}
+
+template<typename T>
+bool Grid<T>::WithinGrid(int pos)
+{
+	if (pos < m_width * m_height)
+	{
+		return true;
+	}
+	return false;
+}
+
+template<typename T>
+bool Grid<T>::WithinGrid(int xPos, int yPos)
+{
+	if((xPos >= 0 && xPos < GetWidth()) && (yPos >= 0 && yPos < GetHeight()))
+	{
+		return true;
+	}
+	return false;
 }

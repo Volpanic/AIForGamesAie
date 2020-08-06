@@ -40,6 +40,16 @@ int LevelMap::Get(int pos)
 	return m_levelGrid->Get(pos);
 }
 
+bool LevelMap::WithinGrid(int pos)
+{
+	return m_levelGrid->WithinGrid(pos);
+}
+
+bool LevelMap::WithinGrid(int xPos, int yPos)
+{
+	return m_levelGrid->WithinGrid(xPos,yPos);
+}
+
 int LevelMap::GetSize()
 {
 	return m_levelGrid->GetSize();
@@ -51,9 +61,9 @@ void LevelMap::Resize(int newWidth, int newHeight)
 
 	for (int xx = 0; xx < GetWidth() && xx < newWidth; xx++)
 	{
-		for (int yy = 0; yy < GetHeight() && xx < newHeight; yy++)
+		for (int yy = 0; yy < GetHeight() && yy < newHeight; yy++)
 		{
-			newlevelGrid->Set(xx,yy,Get(xx,yy));
+			newlevelGrid->Set(xx,yy, m_levelGrid->Get(xx,yy));
 		}
 	}
 
