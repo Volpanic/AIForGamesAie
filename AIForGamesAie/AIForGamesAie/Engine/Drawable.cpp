@@ -10,6 +10,8 @@ Drawable::Drawable(Texture2D sprite, int width, int height)
 
 	m_drawRect.width = m_width;
 	m_drawRect.height = m_height;
+
+	SetDrawRect(0);
 }
 
 void Drawable::SetDrawRect(int frame)

@@ -50,6 +50,8 @@ void PlayerFish::Update(float deltaTime)
 	{
 		m_scale.x = Numbers::Sign<float>(m_velocity.x);
 	}
+
+	m_level->SetCameraPositoin(Vector2Subtract(m_position, {320/2.0f,180/2.0f}));
 }
 
 void PlayerFish::Draw()

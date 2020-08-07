@@ -95,7 +95,7 @@ void LevelEditorState::FloodFillTiles(int x, int y, int value, int targetValue)
 
 void LevelEditorState::Update(float deltaTime)
 {
-	LevelState::Update(deltaTime);
+	//LevelState::Update(deltaTime);
 
 	if (!m_mouseInGameWindow)
 	{
@@ -222,6 +222,7 @@ void LevelEditorState::Update(float deltaTime)
 
 void LevelEditorState::Draw()
 {
+	
 	LevelState::Draw();
 
 	BeginMode2D(m_camera);
@@ -449,6 +450,10 @@ void LevelEditorState::Draw()
 			break;
 		}
 	}
+
+	//m_objectTracker->ForEachObject([&](GameObject* object) {
+	//	DrawCircleV(object->GetPosition(),4,RED);
+	//	});
 
 	EndMode2D();
 }

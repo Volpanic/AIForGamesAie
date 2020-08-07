@@ -37,14 +37,11 @@ GameObject* ObjectTracker::Add(std::type_index index, GameObject* gameObject)
 void ObjectTracker::Update(float deltaTime)
 {
 	//Invoke chached commands
-	if (!m_commands->empty())
+	for (auto cmd : (*m_commands))
 	{
-		for (auto cmd : (*m_commands))
-		{
-			cmd();
-		}
-		m_commands->clear();
+		cmd();
 	}
+	m_commands->clear();
 	
 
 	//Update Objects
@@ -59,6 +56,13 @@ void ObjectTracker::Update(float deltaTime)
 
 void ObjectTracker::Draw()
 {
+	//Invoke chached commands
+	for (auto cmd : (*m_commands))
+	{
+		cmd();
+	}
+	m_commands->clear();
+
 	//Draw Objects
 	for (auto const& objList : (*m_objectTracker))
 	{
@@ -73,9 +77,9 @@ void ObjectTracker::ForEachObject(std::function<void(GameObject * object)> proce
 {
 	for (auto const& objList : (*m_objectTracker))
 	{
-		for (auto const& obj : objList.second)
+		for (auto obj = objList.second.begin(); obj != objList.second.end(); obj++)
 		{
-			process(obj);
+			process(*obj);
 		}
 	}
 }
@@ -84,9 +88,9 @@ void ObjectTracker::Clear()
 {
 	for (auto const& objList : (*m_objectTracker))
 	{
-		for (auto const& obj : objList.second)
+		for (auto obj = objList.second.begin(); obj != objList.second.end(); obj++)
 		{
-			delete obj;
+			delete (*obj);
 		}
 	}
 	m_objectTracker->clear();

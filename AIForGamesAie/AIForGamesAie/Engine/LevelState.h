@@ -30,6 +30,7 @@ public:
 
 	void SetGraph(Graph2D* newGraph);
 	void SetMap(LevelMap* newMap);
+	void SetCameraPositoin(Vector2 position) { m_camera.target = position; };
 
 	std::list<Rectangle> GetSolids(Rectangle worldRec, Vector2 offset) { return m_levelMap->GetSolids(worldRec, offset); };
 

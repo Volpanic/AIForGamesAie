@@ -52,7 +52,6 @@ void LevelState::Update(float deltaTime)
 
 void LevelState::Draw()
 {
-
 	BeginMode2D(m_camera);
 
 	Color clear = { (unsigned char)(m_mapClearColour[0] * 255.0f),(unsigned char)(m_mapClearColour[1] * 255.0f),(unsigned char)(m_mapClearColour[2] * 255.0f),255 };
