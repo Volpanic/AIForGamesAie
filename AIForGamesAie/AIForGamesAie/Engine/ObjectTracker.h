@@ -16,6 +16,9 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
+	void ForEachObject(std::function<void(GameObject* object)> process);
+	void Clear();
+
 	template<typename T>
 	T* Add(T* gameObject);
 

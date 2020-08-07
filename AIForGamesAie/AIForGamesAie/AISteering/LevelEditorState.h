@@ -35,9 +35,6 @@ public:
 	virtual void EndDraw();
 
 	void UpdateRoomFilePaths();
-
-	void Save(std::string fileName);
-	void Load(std::string fileName);
 	
 	Vector2 GetWorldMousePos();
 
@@ -51,7 +48,6 @@ private:
 
 	std::vector<std::filesystem::path> m_RoomFilePaths;
 	std::vector<std::type_index> m_gameObjectIDsList;
-	std::vector<GameObject*> m_gameObjects; // Sorted to proper location when game run.
 
 	//GameWindow
 	bool m_mouseInGameWindow;
@@ -76,10 +72,10 @@ private:
 	char m_saveFileName[32] = "";
 
 	bool m_loadMenuOpen = false;
+	bool m_runMenuOpen = false;
 	bool m_saveMenuOpen = false;
 	int m_selectedLoadFile = 0;
 	float m_gameViewZoom = 2;
-	float* m_mapClearColour = new float[3];
 
 	//Toggels
 	bool m_drawGrid = true;

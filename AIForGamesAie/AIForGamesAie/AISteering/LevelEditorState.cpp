@@ -46,11 +46,6 @@ LevelEditorState::~LevelEditorState()
 
 	if (m_entityToPlace != nullptr) delete m_entityToPlace;
 
-	for (auto const object : m_gameObjects)
-	{
-		delete object;
-	}
-	m_gameObjects.clear();
 	//delete m_drawData;
 }
 
@@ -286,19 +281,7 @@ void LevelEditorState::Draw()
 
 			if (ImGui::MenuItem("Run"))
 			{
-				LevelState* toRunState = new LevelState(m_app);
-
-				toRunState->SetGraph(m_graph);
-				toRunState->SetMap(m_levelMap);
-
-				for (auto& obj : m_gameObjects)
-				{
-					toRunState->GetObjectTracker()->Add(obj->GetCategory(),obj);
-				}
-
-				m_app->GetGameStateManager()->SetState("NewLevel", toRunState);
-				//m_app->GetGameStateManager()->PopState();
-				m_app->GetGameStateManager()->PushState("NewLevel");
+				m_runMenuOpen = true;
 			}
 
 			ImGui::EndMenu();
@@ -324,10 +307,9 @@ void LevelEditorState::Draw()
 		m_saveMenuOpen = false;
 	}
 
-	if (m_loadMenuOpen)
+	if (m_loadMenuOpen || m_runMenuOpen)
 	{
 		ImGui::OpenPopup("LoadMenu");
-		m_loadMenuOpen = false;
 	}
 
 	//Save Menu
@@ -346,7 +328,7 @@ void LevelEditorState::Draw()
 
 		if (ImGui::Button("Save") || ImGui::IsKeyPressed(ImGuiKey_Enter))
 		{
-			Save(m_saveFileName);
+			SaveMap(m_saveFileName);
 			UpdateRoomFilePaths();
 			ImGui::CloseCurrentPopup();
 		}
@@ -373,9 +355,20 @@ void LevelEditorState::Draw()
 				ImGui::Selectable(item.filename().generic_string().c_str());
 				if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
 				{
-					m_loadMenuOpen = false;
-					Load(item.generic_string());
-					ImGui::CloseCurrentPopup();
+					if (m_loadMenuOpen)
+					{
+						m_loadMenuOpen = false;
+						LoadMap(item.generic_string(), m_objectFactory);
+						ImGui::CloseCurrentPopup();
+					}
+					else // Run Menu
+					{
+						m_runMenuOpen = false;
+
+						LevelState* newLevel = new LevelState(m_app, item.generic_string(), m_objectFactory);
+						m_app->GetGameStateManager()->SetState("Level",newLevel);
+						m_app->GetGameStateManager()->PushState("Level");
+					}
 					break;
 				}
 			}
@@ -386,6 +379,8 @@ void LevelEditorState::Draw()
 		ImGui::SameLine();
 		if (ImGui::Button("Close"))
 		{
+			m_loadMenuOpen = false;
+			m_runMenuOpen = false;
 			ImGui::CloseCurrentPopup();
 		}
 
@@ -444,19 +439,13 @@ void LevelEditorState::Draw()
 
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 				{
-					m_gameObjects.push_back(m_entityToPlace);
+					m_objectTracker->Add(m_entityToPlace->GetCategory(),m_entityToPlace);
 					m_entityToPlace = nullptr;
 				}
 			}
 			break;
 		}
 	}
-
-	for (auto const& object : m_gameObjects)
-	{
-		object->Draw();
-	}
-	
 
 	LevelState::Draw();
 
@@ -631,270 +620,3 @@ void LevelEditorState::UpdateRoomFilePaths()
 	}
 }
 
-void LevelEditorState::Save(std::string fileName)
-{
-	tinyxml2::XMLDocument level;
-
-	//Root
-	tinyxml2::XMLNode* pRoot = level.NewElement("Root");
-	level.InsertFirstChild(pRoot);
-
-		//Map Tiles
-		{
-			tinyxml2::XMLElement* pMap = level.NewElement("Map");
-
-			pMap->SetAttribute("Width", m_levelMap->GetWidth());
-			pMap->SetAttribute("Height", m_levelMap->GetHeight());
-
-			pMap->SetAttribute("ClearR", m_mapClearColour[0]);
-			pMap->SetAttribute("ClearG", m_mapClearColour[1]);
-			pMap->SetAttribute("ClearB", m_mapClearColour[2]);
-
-			tinyxml2::XMLElement* gridData = level.NewElement("MapData");
-
-			//Write tile data
-			for (int i = 0; i < m_levelMap->GetSize(); i++)
-			{
-				tinyxml2::XMLElement* gridDataElement = level.NewElement("Tile");
-				gridDataElement->SetText(m_levelMap->Get(i));
-
-				gridData->InsertEndChild(gridDataElement);
-			}
-
-			pMap->InsertEndChild(gridData);
-
-			pRoot->InsertEndChild(pMap);
-		}
-
-		//NODES 
-		{
-			tinyxml2::XMLNode* pNodes = level.NewElement("Nodes");
-			pRoot->InsertFirstChild(pNodes);
-
-			tinyxml2::XMLElement* nodeData = level.NewElement("NodeData");
-
-			//Write node data
-			for (auto const& node : m_graphEditor->GetGraph()->GetNodes())
-			{
-				tinyxml2::XMLElement* nodeEntry = level.NewElement("NodeEntry");
-
-				{
-					//NodeData
-					nodeEntry->SetAttribute("PositionX", node->data.x);
-					nodeEntry->SetAttribute("PositionY", node->data.y);
-
-					//Node Connections
-					for (auto const& connect : node->connections)
-					{	
-						tinyxml2::XMLElement* nodeConnection = level.NewElement("NodeConnection");
-						nodeConnection->SetAttribute("OtherPositionX", connect.to->data.x);
-						nodeConnection->SetAttribute("OtherPositionY", connect.to->data.y);
-						nodeConnection->SetAttribute("Weight", connect.data);
-
-						nodeEntry->InsertEndChild(nodeConnection);
-					}
-				}
-
-				nodeData->InsertEndChild(nodeEntry);
-			}
-
-			pNodes->InsertEndChild(nodeData);
-
-			pRoot->InsertEndChild(pNodes);
-		}
-
-		//Entities :; 
-		{
-			tinyxml2::XMLNode* pEntity = level.NewElement("Entities");
-			pRoot->InsertFirstChild(pEntity);
-
-			tinyxml2::XMLElement* entityData = level.NewElement("EntityData");
-
-			//Write entity data, using each objects sav function.
-			for (auto const& enti : m_gameObjects)
-			{
-				tinyxml2::XMLElement* entityEntry = level.NewElement("EntityEntry");
-
-				enti->Save(&level, entityEntry);
-
-				entityData->InsertEndChild(entityEntry);
-			}
-
-			pEntity->InsertEndChild(entityData);
-
-			pRoot->InsertEndChild(pEntity);
-		}
-
-	level.SaveFile(("Rooms\\" + fileName + ".xml").c_str());
-}
-
-void LevelEditorState::Load(std::string fileName)
-{
-	tinyxml2::XMLDocument level;
-
-	if (!FileExists(fileName.c_str()))
-	{
-		return;
-	}
-
-	level.LoadFile(fileName.c_str());
-
-	tinyxml2::XMLNode* pRoot = level.FirstChild();
-
-
-	//Load Tiles
-		{
-			tinyxml2::XMLElement* pMap = pRoot->FirstChildElement("Map");
-
-			int mWidth = 1;
-			int mHeight = 1;
-
-			pMap->QueryIntAttribute("Width", &mWidth);
-			pMap->QueryIntAttribute("Height", &mHeight);
-
-			float mClearR = 255;
-			float mClearG = 255;
-			float mClearB = 255;
-
-			pMap->QueryFloatAttribute("ClearR", &mClearR);
-			pMap->QueryFloatAttribute("ClearG", &mClearG);
-			pMap->QueryFloatAttribute("ClearB", &mClearB);
-
-			m_mapClearColour[0] = mClearR;
-			m_mapClearColour[1] = mClearG;
-			m_mapClearColour[2] = mClearB;
-
-			std::cout << mWidth << " : " << mHeight << std::endl;
-
-			tinyxml2::XMLElement* mapData = pMap->FirstChildElement("MapData");
-			tinyxml2::XMLElement* mapDataListElement = mapData->FirstChildElement("Tile");
-
-			LevelMap* newerMap = new LevelMap(mWidth, mHeight);
-
-			int pos = 0;
-			while (mapDataListElement != nullptr)
-			{
-				int tileValue = 0;
-				mapDataListElement->QueryIntText(&tileValue);
-				newerMap->Set(pos, tileValue);
-				//std::cout << tileValue << std::endl;
-
-				mapDataListElement = mapDataListElement->NextSiblingElement("Tile");
-
-				pos++;
-			}
-
-			delete m_levelMap;
-			m_levelMap = newerMap;
-		}
-
-		//Load Nodes
-		{
-			tinyxml2::XMLNode* pNodes = pRoot->FirstChildElement("Nodes");
-			tinyxml2::XMLElement* nodeData = pNodes->FirstChildElement("NodeData");
-			tinyxml2::XMLElement* nodeListElement = nodeData->FirstChildElement("NodeEntry");
-			
-			std::vector<Graph2D::Node*> newNodes;
-
-			//Kinda Gross
-			std::vector<std::vector<std::tuple<Vector2,float>>> otherConnections;
-
-			int nodeListPos = 0;
-			//Load all nodes into Place
-			while (nodeListElement != nullptr)
-			{
-				//Load Position
-				Vector2 pos;
-				nodeListElement->QueryFloatAttribute("PositionX", &pos.x);
-				nodeListElement->QueryFloatAttribute("PositionY", &pos.y);
-				
-				//AddNode to vector
-				Graph2D::Node* newNode = new Graph2D::Node();
-				newNode->data = pos;
-				newNodes.push_back(newNode);
-
-				//Connections
-				tinyxml2::XMLElement* connectionListElement = nodeListElement->FirstChildElement("NodeConnection");
-
-				otherConnections.push_back(std::vector<std::tuple<Vector2, float>>());
-				//AddConnections
-				while (connectionListElement != nullptr)
-				{
-					//Get data
-					Vector2 otherPos = {0,0};
-					float weight = 0;
-					connectionListElement->QueryFloatAttribute("OtherPositionX", &otherPos.x);
-					connectionListElement->QueryFloatAttribute("OtherPositionY", &otherPos.y);
-					connectionListElement->QueryFloatAttribute("Weight", &weight);
-
-					//Enter data
-					(otherConnections[nodeListPos]).push_back(std::make_tuple(otherPos,weight));
-
-					connectionListElement = connectionListElement->NextSiblingElement("NodeConnection");
-				}
-
-				//Next
-				nodeListPos++;
-				nodeListElement = nodeListElement->NextSiblingElement("NodeEntry");
-			}
-
-			
-			Graph2D* newGraph = new Graph2D(newNodes);
-			//Connect nodes
-			nodeListPos = 0;
-			for (auto const& node : newNodes)
-			{
-				//Loop through connections list
-				for (auto const& connection : otherConnections[nodeListPos])
-				{
-					//Check if should connect nodes
-					Vector2 otherPos = connection._Myfirst._Val;
-					for (auto const& nodeOth : newNodes)
-					{
-						if ((nodeOth->data.x == otherPos.x) && (nodeOth->data.y == otherPos.y))
-						{
-							newGraph->AddEdge(node,nodeOth,std::get<1>(connection));
-							continue;
-						}
-					}
-				}
-
-				nodeListPos++;
-			}
-
-			LevelState::Draw();
-
-			//SetGraph
-			delete m_graph;
-			m_graph = newGraph;
-			m_graphEditor->SetGrapth(m_graph);
-		}
-
-		//Load Entitites
-		{
-			tinyxml2::XMLNode* pEntities = pRoot->FirstChildElement("Entities");
-			tinyxml2::XMLElement* entityData = pEntities->FirstChildElement("EntityData");
-			tinyxml2::XMLElement* entityListElement = entityData->FirstChildElement("EntityEntry");
-
-			for (auto const& toDelete : m_gameObjects)
-			{
-				delete toDelete;
-			}
-			m_gameObjects.clear();
-
-			while (entityListElement != nullptr)
-			{
-				//Load Position
-				const char* entityName;
-
-				entityListElement->QueryAttribute("Type", &entityName);
-
-				GameObject* newOne = m_objectFactory->CreateGameObject(entityName,this);
-				newOne->Load(&level,entityListElement);
-
-				m_gameObjects.push_back(newOne);
-	
-				entityListElement = entityListElement->NextSiblingElement("EntityEntry");
-			}
-		}
-}

@@ -1,8 +1,9 @@
 #pragma once
 #include "GameObject.h"
-#include "LevelState.h"
 #include <vector>
 #include <typeindex>
+
+class LevelState;
 
 class GameObjectFactory
 {

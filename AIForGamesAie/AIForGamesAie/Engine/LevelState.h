@@ -5,6 +5,7 @@
 #include "IGameState.h"
 #include "Application.h"
 #include "Graph2D.h"
+#include "GameObjectFactory.h"
 
 class ObjectTracker;
 class Application;
@@ -14,6 +15,7 @@ class LevelState : public IGameState
 public:
 
 	LevelState(Application* app);
+	LevelState(Application* app, std::string loadFileName,GameObjectFactory* factory);
 	virtual ~LevelState();
 
 	virtual void Load();
@@ -31,6 +33,9 @@ public:
 
 	std::list<Rectangle> GetSolids(Rectangle worldRec, Vector2 offset) { return m_levelMap->GetSolids(worldRec, offset); };
 
+	void SaveMap(std::string fileName);
+	bool LoadMap(std::string fileName, GameObjectFactory* factory);
+
 	//Template stubs
 	//Tracking
 
@@ -43,6 +48,8 @@ protected:
 
 	std::string m_levelName = "Black";
 	Graph2D* m_graph = nullptr;
+
+	float* m_mapClearColour = new float[3];
 
 private:
 	

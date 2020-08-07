@@ -68,3 +68,26 @@ void ObjectTracker::Draw()
 		}
 	}
 }
+
+void ObjectTracker::ForEachObject(std::function<void(GameObject * object)> process)
+{
+	for (auto const& objList : (*m_objectTracker))
+	{
+		for (auto const& obj : objList.second)
+		{
+			process(obj);
+		}
+	}
+}
+
+void ObjectTracker::Clear()
+{
+	for (auto const& objList : (*m_objectTracker))
+	{
+		for (auto const& obj : objList.second)
+		{
+			delete obj;
+		}
+	}
+	m_objectTracker->clear();
+}
