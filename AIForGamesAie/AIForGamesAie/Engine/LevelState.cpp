@@ -341,4 +341,6 @@ bool LevelState::LoadMap(std::string fileName, GameObjectFactory* factory)
 			entityListElement = entityListElement->NextSiblingElement("EntityEntry");
 		}
 	}
+
+	std::cout << "Loaded " << fileName << std::endl;
 }

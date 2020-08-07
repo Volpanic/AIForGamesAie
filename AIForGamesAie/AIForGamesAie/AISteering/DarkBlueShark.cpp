@@ -29,25 +29,29 @@ void DarkBlueShark::Update(float deltaTime)
 
 		if (graph != nullptr)
 		{
+			auto nearbys = graph->GetNearbyNodes(m_position, 8);
 
-			auto myNode = graph->GetNearbyNodes(m_position, 8)[0];
-			Graph2D::Node* otherNode = nullptr;
-
-			auto player = m_level->GetObjectTracker()->First<PlayerFish>();
-
-			if (player != nullptr)
+			if (!nearbys.empty())
 			{
-				otherNode = graph->GetNearbyNodes(player->GetPosition(), 8)[0];
-				auto nodePath = graph->ForEachAStar(myNode, otherNode, NULL);
+				auto myNode = nearbys[0];
+				Graph2D::Node* otherNode = nullptr;
 
-				Path* newPath = new Path();
+				auto player = m_level->GetObjectTracker()->First<PlayerFish>();
 
-				for (auto const& node : nodePath)
+				if (player != nullptr)
 				{
-					newPath->PathAddNode(node->data);
-				}
+					otherNode = graph->GetNearbyNodes(player->GetPosition(), 8)[0];
+					auto nodePath = graph->ForEachAStar(myNode, otherNode, NULL);
 
-				SetBehaviour(new FollowPathBehavior(newPath, 100));
+					Path* newPath = new Path();
+
+					for (auto const& node : nodePath)
+					{
+						newPath->PathAddNode(node->data);
+					}
+
+					SetBehaviour(new FollowPathBehavior(newPath, 100));
+				}
 			}
 		}
 		

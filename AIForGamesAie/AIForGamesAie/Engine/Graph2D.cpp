@@ -21,7 +21,7 @@ Graph2D::Graph2D(std::vector <Graph2D::Node*> nodes)
 
 Graph2D::~Graph2D()
 {
-
+	
 }
 
 std::vector<Graph2D::Node*> Graph2D::ForEachDijkstra(Graph2D::Node* startNode, Graph2D::Node* endNode, std::function<void(Graph2D::Node * n)> process)
