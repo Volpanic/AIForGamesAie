@@ -40,7 +40,7 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 LevelEditorState::~LevelEditorState()
 {
 	delete m_graphEditor;
-	delete m_graph;
+	if(m_graph != NULL) delete m_graph; // Some other things may take the graph ya hear?
 	delete m_mapClearColour;
 	delete m_objectFactory;
 
@@ -222,12 +222,10 @@ void LevelEditorState::Update(float deltaTime)
 
 void LevelEditorState::Draw()
 {
+	LevelState::Draw();
+
 	BeginMode2D(m_camera);
 
-	Color clear = { (unsigned char)(m_mapClearColour[0]*255.0f),(unsigned char)(m_mapClearColour[1] * 255.0f),(unsigned char)(m_mapClearColour[2]*255.0f),255 };
-	ClearBackground(clear);
-
-	LevelState::Draw();
 
 	//Draw nodes in non node editor modes.
 	if (m_drawNodes)
@@ -259,7 +257,7 @@ void LevelEditorState::Draw()
 		{
 			for (int yy = 0; yy < yLevelHeights; yy++)
 			{
-				DrawRectangleLinesEx({ (float)m_app->GetGameWidth() * xx, (float)m_app->GetGameHeight() * yy, (float)m_app->GetGameWidth(), (float)m_app->GetGameHeight() },2, DARKGRAY);
+				DrawRectangleLinesEx({ (float)m_app->GetGameWidth() * xx, (float)m_app->GetGameHeight() * yy, (float)m_app->GetGameWidth(), (float)m_app->GetGameHeight() },2, BLACK);
 			}
 		}
 	}
@@ -451,8 +449,6 @@ void LevelEditorState::Draw()
 			break;
 		}
 	}
-
-	
 
 	EndMode2D();
 }

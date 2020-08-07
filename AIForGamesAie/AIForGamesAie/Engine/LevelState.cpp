@@ -53,8 +53,10 @@ void LevelState::Update(float deltaTime)
 void LevelState::Draw()
 {
 
-	ClearBackground(WHITE);
 	BeginMode2D(m_camera);
+
+	Color clear = { (unsigned char)(m_mapClearColour[0] * 255.0f),(unsigned char)(m_mapClearColour[1] * 255.0f),(unsigned char)(m_mapClearColour[2] * 255.0f),255 };
+	ClearBackground(clear);
 
 	m_levelMap->Draw();
 	m_objectTracker->Draw();
@@ -311,8 +313,6 @@ bool LevelState::LoadMap(std::string fileName, GameObjectFactory* factory)
 
 			nodeListPos++;
 		}
-
-		LevelState::Draw();
 
 		//SetGraph
 		delete m_graph;
