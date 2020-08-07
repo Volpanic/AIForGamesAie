@@ -17,7 +17,6 @@ GameObject* ObjectFactory::CreateGameObject(std::type_index index, LevelState* l
 {	
 	//Cannot switch statement, not ints or enums
 
-	//if (index == typeid(Actor)) return new Actor(level);
 	if (index == typeid(DarkBlueShark)) return new DarkBlueShark(level);
 
 	return nullptr;

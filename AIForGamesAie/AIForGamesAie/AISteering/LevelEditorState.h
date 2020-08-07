@@ -1,15 +1,15 @@
 #pragma once
 #include "LevelState.h"
 #include "Application.h"
-#include "Agent.h"
 #include "Path.h"
 #include "raylib.h"
 #include <vector>
 #include <filesystem>
-#include "ObjectFactory.h"
+#include "GameObject.h"
 
 struct ImDrawData;
 
+class ObjectFactory;
 class Graph2D;
 class Graph2DEditor;
 
@@ -47,7 +47,7 @@ private:
 	EditorStates m_editorState = EditorStates::Tiles;
 	Vector2 m_gameWindowMousePos = {};
 
-	ObjectFactory m_objectFactory;
+	ObjectFactory* m_objectFactory = nullptr;
 
 	std::vector<std::filesystem::path> m_RoomFilePaths;
 	std::vector<std::type_index> m_gameObjectIDsList;

@@ -76,7 +76,8 @@ public:
 	};
 	virtual void Load(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement) 
 	{
-
+		parentElement->QueryFloatAttribute("PositionX", &m_position.x);
+		parentElement->QueryFloatAttribute("PositionY", &m_position.y);
 	};
 
 	virtual void DrawInEditor(const Vector2& mousePos) {};

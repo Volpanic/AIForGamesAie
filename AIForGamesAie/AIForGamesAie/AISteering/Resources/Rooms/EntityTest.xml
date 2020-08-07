@@ -248,7 +248,9 @@
     </Nodes>
     <Entities>
         <EntityData>
-            <EntityEntry Type="DarkBlueShark" PositionX="90"/>
+            <EntityEntry Type="DarkBlueShark" PositionX="55" PositionY="68"/>
+            <EntityEntry Type="DarkBlueShark" PositionX="103" PositionY="104"/>
+            <EntityEntry Type="DarkBlueShark" PositionX="231" PositionY="100"/>
         </EntityData>
     </Entities>
 </Root>

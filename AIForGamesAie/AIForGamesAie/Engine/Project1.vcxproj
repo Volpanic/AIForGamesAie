@@ -195,6 +195,7 @@
     <ClCompile Include="LevelState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="ObjectTracker.cpp" />
     <ClCompile Include="Path.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SplashState.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="LevelState.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="Numbers.h" />
+    <ClInclude Include="ObjectTracker.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SplashState.h" />

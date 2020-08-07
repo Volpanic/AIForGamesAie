@@ -9,7 +9,7 @@
 
 DemoState::DemoState(Application* app) : LevelState::LevelState(app)
 {
-	Add<Agent>(new Agent(this));
+	//Add<Agent>(new Agent(this));
 }
 
 DemoState::~DemoState()
@@ -34,20 +34,20 @@ void DemoState::Update(float deltaTime)
 
 	if (IsKeyPressed(KEY_Z))
 	{
-		Agent* agent = Add<Agent>(new Agent(this));
-		agent->SetPosition(GetScaledMousePos().x, GetScaledMousePos().y);
+		//Agent* agent = Add<Agent>(new Agent(this));
+		//agent->SetPosition(GetScaledMousePos().x, GetScaledMousePos().y);
 	}
 
 	if (IsKeyDown(KEY_SPACE))
 	{
-		Agent* myAge = GetAll<Agent>().front();
+		//Agent* myAge = GetAll<Agent>().front();
 		//myAge->SetBehaviour(new FollowPathBehavior(&m_path,500));
 	}
 
 	if (IsKeyPressed(KEY_BACKSPACE))
 	{
-		Agent* myAge = GetAll<Agent>().front();
-		Remove<Agent>(myAge);
+		//Agent* myAge = GetAll<Agent>().front();
+		//Remove<Agent>(myAge);
 	}
 
 	LevelState::Update(deltaTime);

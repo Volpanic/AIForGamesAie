@@ -1,5 +1,6 @@
 #include "GameStateManager.h"
 #include "StateTransition.h"
+#include "IGameState.h"
 
 GameStateManager::GameStateManager()
 {
@@ -30,10 +31,15 @@ void GameStateManager::Update(float deltaTime)
     }
     m_commands.clear();
 
-    //Run Update
-    for (auto state : m_stateStack)
+    ////Run Update
+    //for (auto state : m_stateStack)
+    //{
+    //    state->Update(deltaTime);
+    //}
+
+    if (!m_stateStack.empty())
     {
-        state->Update(deltaTime);
+        m_stateStack.front()->Update(deltaTime);
     }
 
     if (m_transition != nullptr)
@@ -51,9 +57,14 @@ void GameStateManager::Update(float deltaTime)
 
 void GameStateManager::Draw()
 {
-    for (auto state : m_stateStack)
+    //for (auto state : m_stateStack)
+    //{
+    //    state->Draw();
+    //}
+
+    if (!m_stateStack.empty())
     {
-        state->Draw();
+        m_stateStack.front()->Draw();
     }
 
     if (m_transition != nullptr)
@@ -97,7 +108,7 @@ IGameState* GameStateManager::GetState(const char* name)
 void GameStateManager::PushState(const char* name)
 {
     m_commands.push_back([=]() {
-        m_stateStack.push_back(m_states[name]);
+        m_stateStack.push_front(m_states[name]);
     });
 }
 
@@ -109,6 +120,6 @@ void GameStateManager::PushState(const char* name, StateTransition* transition)
 void GameStateManager::PopState()
 {
     m_commands.push_back([=]() {
-        m_stateStack.pop_back();
+        m_stateStack.pop_front();
     });
 }

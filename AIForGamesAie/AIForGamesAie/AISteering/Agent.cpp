@@ -23,10 +23,6 @@ void Agent::Update(float deltaTime)
 	{
 		m_behaviour->Update(this, deltaTime);
 	}
-	else
-	{
-		m_level->Remove<Agent>(this);
-	}
 
 	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 	{

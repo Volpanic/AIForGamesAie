@@ -1,24 +1,24 @@
 #include "LevelEditorState.h"
-#include "Behaviour.h"
 #include "raylib.h"
 #include "FollowPathBehavior.h"
-#include "Graph2D.h"
 #include "Graph2DEditor.h"
 #include "Numbers.h"
-#include "Agent.h"
 #include "FollowPathBehavior.h"
-#include "rlgl.h"
+#include "ObjectFactory.h"
+#include "GameStateManager.h"
 
-#include "raygui.h"
-#include "ricons.h"
+#include "ObjectTracker.h"
+
 #include "tinyxml2.h"
-
 #include "imgui.h"
 
 //Ungodly huge file
 
 LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(app)
 {
+	m_objectTracker = new ObjectTracker();
+	m_camera.zoom = 1;
+
 	m_graphEditor = new Graph2DEditor(this);
 	m_graph = new Graph2D();
 
@@ -30,7 +30,8 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 	m_mapClearColour[2] = 1;
 
 	UpdateRoomFilePaths();
-	m_objectFactory.GetAllGameObjectTypes(m_gameObjectIDsList);
+	m_objectFactory = new ObjectFactory();
+	m_objectFactory->GetAllGameObjectTypes(m_gameObjectIDsList);
 
 	m_levelMapWidth = m_levelMap->GetWidth();
 	m_levelMapHeight = m_levelMap->GetHeight();
@@ -41,6 +42,7 @@ LevelEditorState::~LevelEditorState()
 	delete m_graphEditor;
 	delete m_graph;
 	delete m_mapClearColour;
+	delete m_objectFactory;
 
 	if (m_entityToPlace != nullptr) delete m_entityToPlace;
 
@@ -226,8 +228,8 @@ void LevelEditorState::Update(float deltaTime)
 void LevelEditorState::Draw()
 {
 	BeginMode2D(m_camera);
-	Color clear = { (unsigned char)(m_mapClearColour[0]*255.0f),(unsigned char)(m_mapClearColour[1] * 255.0f),(unsigned char)(m_mapClearColour[2]*255.0f),255 };
-	ClearBackground(clear);
+	//Color clear = { (unsigned char)(m_mapClearColour[0]*255.0f),(unsigned char)(m_mapClearColour[1] * 255.0f),(unsigned char)(m_mapClearColour[2]*255.0f),255 };
+	//ClearBackground(clear);
 
 	//Draw nodes in non node editor modes.
 	if (m_drawNodes)
@@ -281,6 +283,24 @@ void LevelEditorState::Draw()
 			{
 				m_loadMenuOpen = true;
 			}
+
+			if (ImGui::MenuItem("Run"))
+			{
+				LevelState* toRunState = new LevelState(m_app);
+
+				toRunState->SetGraph(m_graph);
+				toRunState->SetMap(m_levelMap);
+
+				for (auto& obj : m_gameObjects)
+				{
+					toRunState->GetObjectTracker()->Add(obj->GetCategory(),obj);
+				}
+
+				m_app->GetGameStateManager()->SetState("NewLevel", toRunState);
+				//m_app->GetGameStateManager()->PopState();
+				m_app->GetGameStateManager()->PushState("NewLevel");
+			}
+
 			ImGui::EndMenu();
 		}
 
@@ -524,10 +544,10 @@ void LevelEditorState::EndDraw()
 				{
 					if (m_graphEditor->m_path != nullptr)
 					{
-						auto testAgent = Add<Agent>(new Agent(this));
-						m_graphEditor->m_path->SetPathType(PathType::Open);
-						testAgent->SetPosition(m_graphEditor->m_selectedNode->data.x, m_graphEditor->m_selectedNode->data.y);
-						testAgent->SetBehaviour(new FollowPathBehavior(m_graphEditor->m_path, 250.0f));
+						//auto testAgent = Add<Agent>(new Agent(this));
+						//m_graphEditor->m_path->SetPathType(PathType::Open);
+						//testAgent->SetPosition(m_graphEditor->m_selectedNode->data.x, m_graphEditor->m_selectedNode->data.y);
+						//testAgent->SetBehaviour(new FollowPathBehavior(m_graphEditor->m_path, 250.0f));
 						m_graphEditor->m_path = nullptr;
 					}
 				}
@@ -557,7 +577,7 @@ void LevelEditorState::EndDraw()
 								delete m_entityToPlace;
 								m_entityToPlace = nullptr;
 							}
-							m_entityToPlace = m_objectFactory.CreateGameObject(item,this);
+							m_entityToPlace = m_objectFactory->CreateGameObject(item,this);
 						}
 					}
 
@@ -848,5 +868,33 @@ void LevelEditorState::Load(std::string fileName)
 			delete m_graph;
 			m_graph = newGraph;
 			m_graphEditor->SetGrapth(m_graph);
+		}
+
+		//Load Entitites
+		{
+			tinyxml2::XMLNode* pEntities = pRoot->FirstChildElement("Entities");
+			tinyxml2::XMLElement* entityData = pEntities->FirstChildElement("EntityData");
+			tinyxml2::XMLElement* entityListElement = entityData->FirstChildElement("EntityEntry");
+
+			for (auto const& toDelete : m_gameObjects)
+			{
+				delete toDelete;
+			}
+			m_gameObjects.clear();
+
+			while (entityListElement != nullptr)
+			{
+				//Load Position
+				const char* entityName;
+
+				entityListElement->QueryAttribute("Type", &entityName);
+
+				GameObject* newOne = m_objectFactory->CreateGameObject(entityName,this);
+				newOne->Load(&level,entityListElement);
+
+				m_gameObjects.push_back(newOne);
+	
+				entityListElement = entityListElement->NextSiblingElement("EntityEntry");
+			}
 		}
 }

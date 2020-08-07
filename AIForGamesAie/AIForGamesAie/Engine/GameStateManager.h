@@ -2,8 +2,8 @@
 #include <map>
 #include <list>
 #include <functional>
-#include "IGameState.h"
 
+class IGameState;
 class StateTransition;
 
 class GameStateManager
