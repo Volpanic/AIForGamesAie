@@ -57,6 +57,9 @@ void Game::Create()
 		m_gameStateManager->SetState("Editor", new LevelEditorState(this));
 		m_gameStateManager->PushState("Editor", new FadeTransition(this, "Editor", 0.25f));
 		SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+
+		UnloadRenderTexture(m_gameSurface);
+		m_gameSurface = LoadRenderTexture(m_gameWidth*2, m_gameHeight*2);
 	}
 	else
 	{

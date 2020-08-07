@@ -31,6 +31,9 @@ public:
 	int Count();
 
 	template<typename T>
+	T* First();
+
+	template<typename T>
 	std::list<T*> GetAll();
 
 	template<typename T>
@@ -94,6 +97,17 @@ std::list<T*> ObjectTracker::GetAll()
 	}
 
 	return newList;
+}
+
+template<typename T>
+T* ObjectTracker::First()
+{
+	if ((*m_objectTracker)[typeid(T)].empty())
+	{
+		return nullptr;
+	}
+
+	return dynamic_cast<T*>(((*m_objectTracker)[typeid(T)]).front());
 }
 
 template<typename T>

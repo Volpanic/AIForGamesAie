@@ -10,6 +10,8 @@ PlayerFish::PlayerFish(LevelState* level) : Agent::Agent(level)
 	AddComponent<Drawable>(new Drawable(m_level->GetResources()->GetTexture("spr_player_fish.png"), 17, 9));
 
 	m_drawable = GetComponent<Drawable>();
+	SetFriction(2.0f);
+
 }
 
 PlayerFish::~PlayerFish()
@@ -19,32 +21,32 @@ PlayerFish::~PlayerFish()
 
 void PlayerFish::Update(float deltaTime)
 {
-	SetFriction(2.0f);
+	
+	Agent::Update(deltaTime);
 
 	if (IsKeyDown(KEY_UP))
 	{
-		ApplyForce({0,-50});
+		ApplyForce({0,-200});
 	}
 
 	if (IsKeyDown(KEY_DOWN))
 	{
-		ApplyForce({ 0,50 });
+		ApplyForce({ 0,200 });
 	}
 
 	if (IsKeyDown(KEY_LEFT))
 	{
-		ApplyForce({-50,0 });
+		ApplyForce({-200,0 });
 	}
 
 	if (IsKeyDown(KEY_RIGHT))
 	{
-		ApplyForce({ 50,0 });
+		ApplyForce({ 200,0 });
 	}
 
-	Agent::Update(deltaTime);
-
-	m_velocity.x = Clamp(m_velocity.x, -250, 250);
-	m_velocity.y = Clamp(m_velocity.y, -250, 250);
+	
+	m_velocity.x = Clamp(m_velocity.x, -150, 150);
+	m_velocity.y = Clamp(m_velocity.y, -150, 150);
 
 	if (m_velocity.x != 0)
 	{

@@ -362,6 +362,8 @@ void LevelEditorState::Draw()
 					{
 						m_loadMenuOpen = false;
 						LoadMap(item.generic_string(), m_objectFactory);
+						delete m_graphEditor->GetGraph();
+
 						m_graphEditor->SetGrapth(m_graph);
 						ImGui::CloseCurrentPopup();
 					}
@@ -535,21 +537,25 @@ void LevelEditorState::EndDraw()
 			{
 				m_editorState = EditorStates::Nodes;
 
-				if(ImGui::Button("Run Path Test"))
+				if(ImGui::Button("Fill Empty cells with nodes"))
 				{
-					if (m_graphEditor->m_path != nullptr)
+					for (int xx = 0; xx < m_levelMap->GetWidth(); xx++)
 					{
-						//auto testAgent = Add<Agent>(new Agent(this));
-						//m_graphEditor->m_path->SetPathType(PathType::Open);
-						//testAgent->SetPosition(m_graphEditor->m_selectedNode->data.x, m_graphEditor->m_selectedNode->data.y);
-						//testAgent->SetBehaviour(new FollowPathBehavior(m_graphEditor->m_path, 250.0f));
-						m_graphEditor->m_path = nullptr;
+						for (int yy = 0; yy < m_levelMap->GetHeight(); yy++)
+						{
+							if (m_levelMap->Get(xx, yy) == 0)
+							{
+								Vector2 newPos = { xx * m_levelMap->TILE_SIZE,yy * m_levelMap->TILE_SIZE };
+								newPos = Vector2Add(newPos, { m_levelMap->TILE_SIZE / 2.0f,m_levelMap->TILE_SIZE / 2.0f });
+								Graph2D::Node* newNode = m_graph->AddNode(newPos);
+
+								for (auto nearby : m_graph->GetNearbyNodes(newPos, 16))
+								{
+									m_graph->ConnectNodes(newNode, nearby, Vector2Distance(newNode->data, nearby->data));
+								}
+							}
+						}
 					}
-				}
-
-				if (ImGui::Button("Clear Test Agents"))
-				{
-
 				}
 				//Resize the map grid cells
 
@@ -593,12 +599,14 @@ void LevelEditorState::EndDraw()
 	{
 		ImGui::BeginChild("Level Batch", {0,0}, ImGuiWindowFlags_AlwaysHorizontalScrollbar);
 		{
-			ImVec2 gameImageSize = { (float)m_app->GetGameWidth() * m_gameViewZoom,(float)m_app->GetGameHeight() * m_gameViewZoom };
+			auto rt = m_app->GetRenderTexture();
+			
+			ImVec2 gameImageSize = { (float)rt.texture.width * m_gameViewZoom,(float)rt.texture.height * m_gameViewZoom };
 			//Center Render target
 			ImGui::SetCursorPosX((ImGui::GetWindowSize().x - gameImageSize.x) * 0.5f);
 			ImGui::SetCursorPosY((ImGui::GetWindowSize().y - gameImageSize.y) * 0.08f);
 
-			ImGui::ImageButton((void*)m_app->GetRenderTexture().texture.id, gameImageSize, { 0,1 }, { 1,0 },0);
+			ImGui::ImageButton((void*)rt.texture.id, gameImageSize, { 0,1 }, { 1,0 },0);
 			
 			//Get mouse pos
 			ImVec2 editorTopLeft = ImGui::GetItemRectMin();

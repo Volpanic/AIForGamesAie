@@ -127,6 +127,7 @@ void Graph2DEditor::Update(Vector2 mousePos,float deltaTime)
 void Graph2DEditor::Draw()
 {
 	//Draw Lines
+	if (m_graph != NULL);
 	for (auto node : m_graph->GetNodes())
 	{
 		for (auto connection : node->connections)
@@ -155,14 +156,6 @@ void Graph2DEditor::Draw()
 
 			//Draw Handle
 			DrawCircleV(Vector2Add(node->data, { m_nodeRadius * 2,0 }), ceil(m_nodeRadius / 2), m_nodeOutlineCol);
-		}
-
-		//Draw Depth Search
-		if (m_selectedNode != nullptr)
-		{
-			m_graph->ForEachDFS(m_selectedNode, [](Graph2D::Node* nde) {
-				DrawCircleV(nde->data, 2, SKYBLUE);
-				});
 		}
 
 		//DrawTargetNode

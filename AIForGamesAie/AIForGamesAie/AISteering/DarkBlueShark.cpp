@@ -1,4 +1,9 @@
 #include "DarkBlueShark.h"
+#include "PlayerFish.h"
+#include "LevelState.h"
+#include "ObjectTracker.h"
+#include "Path.h"
+#include "FollowPathBehavior.h"
 
 DarkBlueShark::DarkBlueShark(LevelState* level) : Agent::Agent(level)
 {
@@ -17,6 +22,36 @@ DarkBlueShark::~DarkBlueShark()
 void DarkBlueShark::Update(float deltaTime)
 {
 	Agent::Update(deltaTime);
+
+	if (m_behaviour == nullptr)
+	{
+		auto graph = m_level->GetGraph();
+
+		if (graph != nullptr)
+		{
+
+			auto myNode = graph->GetNearbyNodes(m_position, 8)[0];
+			Graph2D::Node* otherNode = nullptr;
+
+			auto player = m_level->GetObjectTracker()->First<PlayerFish>();
+
+			if (player != nullptr)
+			{
+				otherNode = graph->GetNearbyNodes(player->GetPosition(), 8)[0];
+				auto nodePath = graph->ForEachAStar(myNode, otherNode, NULL);
+
+				Path* newPath = new Path();
+
+				for (auto const& node : nodePath)
+				{
+					newPath->PathAddNode(node->data);
+				}
+
+				SetBehaviour(new FollowPathBehavior(newPath, 100));
+			}
+		}
+		
+	}
 }
 
 void DarkBlueShark::Draw()
