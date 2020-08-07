@@ -223,8 +223,11 @@ void LevelEditorState::Update(float deltaTime)
 void LevelEditorState::Draw()
 {
 	BeginMode2D(m_camera);
-	//Color clear = { (unsigned char)(m_mapClearColour[0]*255.0f),(unsigned char)(m_mapClearColour[1] * 255.0f),(unsigned char)(m_mapClearColour[2]*255.0f),255 };
-	//ClearBackground(clear);
+
+	Color clear = { (unsigned char)(m_mapClearColour[0]*255.0f),(unsigned char)(m_mapClearColour[1] * 255.0f),(unsigned char)(m_mapClearColour[2]*255.0f),255 };
+	ClearBackground(clear);
+
+	LevelState::Draw();
 
 	//Draw nodes in non node editor modes.
 	if (m_drawNodes)
@@ -328,6 +331,7 @@ void LevelEditorState::Draw()
 
 		if (ImGui::Button("Save") || ImGui::IsKeyPressed(ImGuiKey_Enter))
 		{
+			SetGraph(m_graphEditor->GetGraph());
 			SaveMap(m_saveFileName);
 			UpdateRoomFilePaths();
 			ImGui::CloseCurrentPopup();
@@ -359,6 +363,7 @@ void LevelEditorState::Draw()
 					{
 						m_loadMenuOpen = false;
 						LoadMap(item.generic_string(), m_objectFactory);
+						m_graphEditor->SetGrapth(m_graph);
 						ImGui::CloseCurrentPopup();
 					}
 					else // Run Menu
@@ -447,7 +452,7 @@ void LevelEditorState::Draw()
 		}
 	}
 
-	LevelState::Draw();
+	
 
 	EndMode2D();
 }

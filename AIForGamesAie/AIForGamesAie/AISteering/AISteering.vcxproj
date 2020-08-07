@@ -194,6 +194,7 @@
     <ClCompile Include="LevelEditorState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
+    <ClCompile Include="PlayerFish.cpp" />
     <ClCompile Include="SteeringBehaviour.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +207,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="LevelEditorState.h" />
     <ClInclude Include="ObjectFactory.h" />
+    <ClInclude Include="PlayerFish.h" />
     <ClInclude Include="SteeringBehaviour.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

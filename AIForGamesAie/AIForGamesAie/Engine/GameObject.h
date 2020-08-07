@@ -47,7 +47,7 @@ public:
 	template<typename T>
 	T* GetComponent()
 	{
-		return (T*)(m_components[typeid(T)].get());
+		return dynamic_cast<T*>(m_components[typeid(T)]);
 	}
 
 	virtual void Update(float deltaTime)

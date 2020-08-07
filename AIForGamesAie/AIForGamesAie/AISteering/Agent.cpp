@@ -24,18 +24,18 @@ void Agent::Update(float deltaTime)
 		m_behaviour->Update(this, deltaTime);
 	}
 
-	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-	{
-		SetBehaviour(new SteeringBehaviour(m_level->GetScaledMousePos(),250));
-	}
+	//if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+	//{
+	//	SetBehaviour(new SteeringBehaviour(m_level->GetScaledMousePos(),250));
+	//}
 
-	SetFriction(3.0f);
-	ApplyForce(Vector2Scale(Vector2Negate(m_velocity), m_friciton));
+	//SetFriction(3.0f);
+	//ApplyForce(Vector2Scale(Vector2Negate(m_velocity), m_friciton));
 
 	//Collisions and stuff
 	m_velocity = Vector2Add(m_velocity, Vector2Scale(m_acceleration, deltaTime));
 
-	m_rotation = Vector2Angle(Vector2Zero(), m_velocity) * DEG2RAD;
+	//m_rotation = Vector2Angle(Vector2Zero(), m_velocity) * DEG2RAD;
 
 	MoveX(m_velocity.x * deltaTime);
 	MoveY(m_velocity.y * deltaTime);

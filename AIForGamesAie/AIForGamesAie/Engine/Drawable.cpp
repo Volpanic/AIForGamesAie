@@ -54,5 +54,6 @@ void Drawable::Update(GameObject* gameObject, float deltaTime)
 
 void Drawable::Draw(GameObject* gameObject)
 {
-	DrawTexturePro(m_sprite, m_drawRect, { gameObject->GetPosition().x,gameObject->GetPosition().y,(float)m_width,(float)m_height }, gameObject->GetOrigin(), gameObject->GetRotation() * RAD2DEG, WHITE);
+	Rectangle scaledDrawRect = { m_drawRect.x,m_drawRect.y,m_drawRect.width * gameObject->GetScale().x,m_drawRect.height * gameObject->GetScale().y};
+	DrawTexturePro(m_sprite, scaledDrawRect, { gameObject->GetPosition().x,gameObject->GetPosition().y,(float)m_width,(float)m_height }, gameObject->GetOrigin(), gameObject->GetRotation() * RAD2DEG, WHITE);
 }

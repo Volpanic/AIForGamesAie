@@ -47,6 +47,7 @@
     <ClCompile Include="DarkBlueShark.cpp">
       <Filter>Resource Files\GameObjects\Sharks</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerFish.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LevelEditorState.h">
@@ -77,5 +78,6 @@
     <ClInclude Include="DarkBlueShark.h">
       <Filter>Resource Files\GameObjects\Sharks</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerFish.h" />
   </ItemGroup>
 </Project>

@@ -16,17 +16,17 @@ DarkBlueShark::~DarkBlueShark()
 
 void DarkBlueShark::Update(float deltaTime)
 {
-	GameObject::Update(deltaTime);
+	Agent::Update(deltaTime);
 }
 
 void DarkBlueShark::Draw()
 {
-	GameObject::Draw();
+	Agent::Draw();
 }
 
 void DarkBlueShark::DrawInEditor(const Vector2& mousePos)
 {
 	m_position = mousePos;
-	GameObject::Draw();
+	Agent::Draw();
 	DrawRectangleLinesEx(m_collider->GetBBox(), 1, GREEN);
 }
