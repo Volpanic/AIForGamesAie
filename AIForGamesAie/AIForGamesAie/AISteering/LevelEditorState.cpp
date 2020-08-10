@@ -535,15 +535,43 @@ void LevelEditorState::EndDraw()
 				//Draw tileset
 				if (m_app->GetResources()->TilesetExists(m_tilesetSelected.c_str()))
 				{
+					float tilemapScale = 2.0f;
 					auto tex = m_app->GetResources()->GetTileset(m_tilesetSelected.c_str());
-					ImGui::ImageButton((ImTextureID)tex.id, { (float)tex.width * 2.0f,(float)tex.height * 2.0f }, {0,0}, { 1,1 },0);
+					ImGui::ImageButton((ImTextureID)tex.id, { (float)tex.width * tilemapScale,(float)tex.height * tilemapScale }, { 0,0 }, { 1,1 }, 0, {0,0,0,0});
+					ImVec2 tilePallateTopLeft = ImGui::GetItemRectMin();
 
-					//Get mouse pos
-					ImVec2 editorTopLeft = ImGui::GetItemRectMin();
+					//Draw boarder around selected tile
 
 
-					//ImGui::rect
+					//Select a new Tile
+					if (ImGui::IsItemHovered())
+					{
+						//Get mouse pos
+						Vector2 tilePallateMousePos;
+
+						tilePallateMousePos.x = ImGui::GetMousePos().x - tilePallateTopLeft.x;
+						tilePallateMousePos.y = ImGui::GetMousePos().y - tilePallateTopLeft.y;
+
+						tilePallateMousePos = Numbers::FloorMultiple(tilePallateMousePos, m_levelMap->TILE_SIZE * tilemapScale);
+
+						ImVec2 recTL = { tilePallateTopLeft.x + tilePallateMousePos.x,tilePallateTopLeft.y + tilePallateMousePos.y };
+						ImVec2 recBR = { recTL.x + m_levelMap->TILE_SIZE * tilemapScale,recTL.y + m_levelMap->TILE_SIZE * tilemapScale };
+
+						ImDrawList* drawList = ImGui::GetWindowDrawList();
+						drawList->AddRect(recTL,recBR,ImGui::GetColorU32(IM_COL32(255, 255, 255, 255)));
+
+						//Select a tile
+						if (ImGui::IsMouseDown(ImGuiMouseButton_Left))
+						{
+							Vector2 toCells = {0,0};
+							if (tilePallateMousePos.x != 0.0f) toCells.x = floor(tilePallateMousePos.x / (m_levelMap->TILE_SIZE * tilemapScale));
+							if (tilePallateMousePos.y != 0.0f) toCells.y = floor(tilePallateMousePos.y / (m_levelMap->TILE_SIZE * tilemapScale));
+
+							m_selectedTile = (int)((toCells.y * (tex.width/ m_levelMap->TILE_SIZE)) + toCells.x);
+						}
+					}
 				}
+				ImGui::Text(("Selected Tile" + std::to_string(m_selectedTile)).c_str());
 
 				//Resize the map grid cells
 				ImGui::BeginChild("Tools");
