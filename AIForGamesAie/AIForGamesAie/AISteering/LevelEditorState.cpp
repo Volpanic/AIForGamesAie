@@ -467,7 +467,7 @@ void LevelEditorState::Draw()
 void LevelEditorState::EndDraw()
 {
 	DrawRectangle(0,0,GetScreenWidth(),GetScreenHeight(),BLACK);
-
+	ImGui::ShowDemoWindow();
 	//Controls Window
 	ImGui::Begin("Controls (2)");
 	{
@@ -537,6 +537,11 @@ void LevelEditorState::EndDraw()
 				{
 					auto tex = m_app->GetResources()->GetTileset(m_tilesetSelected.c_str());
 					ImGui::ImageButton((ImTextureID)tex.id, { (float)tex.width * 2.0f,(float)tex.height * 2.0f }, {0,0}, { 1,1 },0);
+
+					//Get mouse pos
+					ImVec2 editorTopLeft = ImGui::GetItemRectMin();
+
+
 					//ImGui::rect
 				}
 
