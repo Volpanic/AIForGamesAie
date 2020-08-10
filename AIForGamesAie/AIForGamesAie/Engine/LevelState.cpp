@@ -94,25 +94,11 @@ void LevelState::SaveMap(std::string fileName)
 	{
 		tinyxml2::XMLElement* pMap = level.NewElement("Map");
 
-		pMap->SetAttribute("Width", m_levelMap->GetWidth());
-		pMap->SetAttribute("Height", m_levelMap->GetHeight());
-
 		pMap->SetAttribute("ClearR", m_mapClearColour[0]);
 		pMap->SetAttribute("ClearG", m_mapClearColour[1]);
 		pMap->SetAttribute("ClearB", m_mapClearColour[2]);
 
-		tinyxml2::XMLElement* gridData = level.NewElement("MapData");
-
-		//Write tile data
-		for (int i = 0; i < m_levelMap->GetSize(); i++)
-		{
-			tinyxml2::XMLElement* gridDataElement = level.NewElement("Tile");
-			gridDataElement->SetText(m_levelMap->Get(i));
-
-			gridData->InsertEndChild(gridDataElement);
-		}
-
-		pMap->InsertEndChild(gridData);
+		m_levelMap->SaveMap(level,pMap);
 
 		pRoot->InsertEndChild(pMap);
 	}
@@ -198,12 +184,6 @@ bool LevelState::LoadMap(std::string fileName, GameObjectFactory* factory)
 	{
 		tinyxml2::XMLElement* pMap = pRoot->FirstChildElement("Map");
 
-		int mWidth = 1;
-		int mHeight = 1;
-
-		pMap->QueryIntAttribute("Width", &mWidth);
-		pMap->QueryIntAttribute("Height", &mHeight);
-
 		float mClearR = 255;
 		float mClearG = 255;
 		float mClearB = 255;
@@ -216,28 +196,7 @@ bool LevelState::LoadMap(std::string fileName, GameObjectFactory* factory)
 		m_mapClearColour[1] = mClearG;
 		m_mapClearColour[2] = mClearB;
 
-		std::cout << mWidth << " : " << mHeight << std::endl;
-
-		tinyxml2::XMLElement* mapData = pMap->FirstChildElement("MapData");
-		tinyxml2::XMLElement* mapDataListElement = mapData->FirstChildElement("Tile");
-
-		LevelMap* newerMap = new LevelMap(mWidth, mHeight);
-
-		int pos = 0;
-		while (mapDataListElement != nullptr)
-		{
-			int tileValue = 0;
-			mapDataListElement->QueryIntText(&tileValue);
-			newerMap->Set(pos, tileValue);
-			//std::cout << tileValue << std::endl;
-
-			mapDataListElement = mapDataListElement->NextSiblingElement("Tile");
-
-			pos++;
-		}
-
-		delete m_levelMap;
-		m_levelMap = newerMap;
+		m_levelMap->LoadMap(level, pMap, m_app);
 	}
 
 	//Load Nodes

@@ -1,9 +1,10 @@
 #include "TileLayer.h"
 #include <algorithm>
 
-TileLayer::TileLayer(const char* layerName,Texture2D& texture, int worldWidth, int worldHeight)
+TileLayer::TileLayer(const char* layerName,const char* tilesetKey,Texture2D& texture, int worldWidth, int worldHeight)
 {
 	m_tilesetTexture = texture;
+	m_tilesetPath = tilesetKey;
 	m_tilesetWidth = texture.width / TILE_SIZE;
 	m_tilesetHeight = texture.height / TILE_SIZE;
 	
@@ -22,6 +23,7 @@ TileLayer::TileLayer(const char* layerName,Texture2D& texture, int worldWidth, i
 TileLayer::~TileLayer()
 {
 	delete m_layerName;
+	delete m_tilesetPath;
 	if (m_tileLayerData != NULL) delete m_tileLayerData;
 }
 
@@ -135,4 +137,32 @@ void TileLayer::GetSolids(Rectangle boundingBox, Vector2 position, std::list<Rec
 			}
 		}
 	}
+}
+
+void TileLayer::SaveLayer(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* parentElement)
+{
+	auto tileLayer = level.NewElement("TileLayer");
+
+	tileLayer->SetAttribute("LayerName", m_layerName);
+	tileLayer->SetAttribute("TilesetTexture", m_tilesetPath);
+	tileLayer->SetAttribute("LayerWidth",m_tileLayerData->GetWidth());
+	tileLayer->SetAttribute("LayerHeight", m_tileLayerData->GetHeight());
+
+	tinyxml2::XMLElement* tileData = level.NewElement("TileData");
+
+	//Write tile data
+	for (int i = 0; i < m_tileLayerData->GetSize(); i++)
+	{
+		tinyxml2::XMLElement* gridDataElement = level.NewElement("Tile");
+		gridDataElement->SetAttribute("TileValue", m_tileLayerData->Get(i));
+
+		tileData->InsertEndChild(gridDataElement);
+	}
+
+	tileLayer->InsertEndChild(tileData);
+	parentElement->InsertEndChild(tileLayer);
+}
+
+void TileLayer::LoadLayer(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement)
+{
 }

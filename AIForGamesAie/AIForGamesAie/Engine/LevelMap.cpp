@@ -7,7 +7,7 @@ LevelMap::LevelMap(int width, int height, Application* app)
 	m_worldWidth = width;
 	m_worldHeight = height;
 
-	m_tileLayers.push_back(TileLayer("Collision",app->GetResources()->GetTileset("tle_collision"),width,height));
+	m_tileLayers.push_back(TileLayer("Collision","tle_collision",app->GetResources()->GetTileset("tle_collision"),width,height));
 
 	for (int xx = 0; xx < GetWidth(); xx++)
 	{
@@ -42,6 +42,56 @@ bool LevelMap::WithinGrid(int pos)
 bool LevelMap::WithinGrid(int xPos, int yPos)
 {
 	return m_tileLayers[0].WithinGrid(xPos,yPos);
+}
+
+void LevelMap::SaveMap(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* parentElement)
+{
+	for (int i = 0; i < m_tileLayers.size(); i++)
+	{
+		m_tileLayers[i].SaveLayer(level,parentElement);
+	}
+}
+
+void LevelMap::LoadMap(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* parentElement,Application* app)
+{
+	m_tileLayers.clear();
+	tinyxml2::XMLElement* tileLayer = parentElement->FirstChildElement("TileLayer");
+
+	while (tileLayer != nullptr)
+	{
+		const char* layerName = "";
+		const char* texturePath = "";
+		int width = 1;
+		int height = 1;
+
+		//Get map vars
+		tileLayer->QueryAttribute("LayerName", &layerName);
+		tileLayer->QueryAttribute("TilesetTexture", &texturePath);
+		tileLayer->QueryAttribute("LayerWidth", &width);
+		tileLayer->QueryAttribute("LayerHeight", &height);
+
+		TileLayer tl = TileLayer(layerName,texturePath,app->GetResources()->GetTileset(texturePath),width,height);
+
+		//Load in tile data
+		int pos = 0;
+		tinyxml2::XMLElement* tileData = tileLayer->FirstChildElement("Tile");
+
+		while (tileData != nullptr)
+		{
+			int tileValue = 0;
+			tileData->QueryAttribute("TileValue",&tileValue);
+
+			tl.SetTile(pos,tileValue);
+
+			pos++;
+			tileData = tileLayer->FirstChildElement("Tile");
+		}
+
+		tileLayer = tileLayer->NextSiblingElement();
+
+		//Put Tile layer in list
+		m_tileLayers.push_back(tl);
+	}
 }
 
 int LevelMap::GetSize()

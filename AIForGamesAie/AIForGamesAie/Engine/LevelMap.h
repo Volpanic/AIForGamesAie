@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <list>
 #include <vector>
+#include "tinyxml2.h"
 #include "TileLayer.h"
 
 class LevelMap
@@ -17,6 +18,9 @@ public:
 	void Set(int layer,int pos, int value);
 	bool WithinGrid(int pos);
 	bool WithinGrid(int xPos, int yPos);
+
+	void SaveMap(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* parentElement);
+	void LoadMap(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* parentElement, Application* app);
 
 	int GetSize();
 

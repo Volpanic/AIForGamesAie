@@ -3,11 +3,12 @@
 #include "Grid.h"
 #include <vector>
 #include <list>
+#include <tinyxml2.h>
 
 class TileLayer
 {
 public:
-	TileLayer(const char* layerName,Texture2D& texture, int worldWidth, int worldHeight);
+	TileLayer(const char* layerName,const char* tilesetKey,Texture2D& texture, int worldWidth, int worldHeight);
 	~TileLayer();
 	void DrawTilesLayer();
 	void DrawTile(Vector2 worldPos, int tileIndex);
@@ -31,12 +32,16 @@ public:
 	bool IsCollisionLayer() { return m_collisionLayer; };
 	void SetCollisionLayer(bool collisionLayer) { m_collisionLayer = collisionLayer; };
 
+	void SaveLayer(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* parentElement);
+	void LoadLayer(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement);
+
 	const char* m_layerName;
 
 protected:
 
 private:
 	const int TILE_SIZE = 16;
+	const char* m_tilesetPath;
 	Texture2D m_tilesetTexture;
 	Grid<int>* m_tileLayerData = nullptr;
 	bool m_collisionLayer = false;

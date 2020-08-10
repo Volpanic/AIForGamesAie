@@ -37,11 +37,7 @@ public:
 	void SaveMap(std::string fileName);
 	bool LoadMap(std::string fileName, GameObjectFactory* factory);
 
-	//Template stubs
-	//Tracking
-
 	
-
 protected:
 	Camera2D m_camera = { 0 };
 	LevelMap* m_levelMap = nullptr;
