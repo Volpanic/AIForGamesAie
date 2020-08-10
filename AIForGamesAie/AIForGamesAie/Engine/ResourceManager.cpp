@@ -5,9 +5,40 @@ Texture2D& ResourceManager::GetTexture(const char* fileName)
 	return m_textures[fileName];
 }
 
+Texture2D& ResourceManager::GetTileset(const char* fileName)
+{
+	return m_tilesets[fileName];
+}
+
 Font& ResourceManager::GetFont(const char* fileName)
 {
 	return m_fonts[fileName];
+}
+
+bool ResourceManager::TextureExists(const char* fileName)
+{
+	return m_textures.find(fileName) != m_textures.end();
+}
+
+bool ResourceManager::TilesetExists(const char* fileName)
+{
+	return m_tilesets.find(fileName) != m_tilesets.end();
+}
+
+bool ResourceManager::FontExists(const char* fileName)
+{
+	return m_fonts.find(fileName) != m_fonts.end();
+}
+
+std::vector<std::string> ResourceManager::GetAllTilesetNames()
+{
+	std::vector<std::string> returnVec;
+	for (auto const& tilesets : m_tilesets)
+	{
+		returnVec.push_back(tilesets.first);
+	}
+
+	return returnVec;
 }
 
 void ResourceManager::Init()
@@ -18,6 +49,13 @@ void ResourceManager::Init()
 	{
 		m_textures[entry.path().filename().generic_string().c_str()] = LoadTexture(entry.path().generic_string().c_str());
 		std::cout << "Texture: " << entry.path().filename().generic_string().c_str() << " : " << entry.path().generic_string().c_str() << std::endl;
+	}
+
+	//Tilesets
+	for (const auto& entry : std::filesystem::directory_iterator(currentDir + m_tilesPath))
+	{
+		m_tilesets[entry.path().filename().generic_string().c_str()] = LoadTexture(entry.path().generic_string().c_str());
+		std::cout << "Tileset: " << entry.path().filename().generic_string().c_str() << " : " << entry.path().generic_string().c_str() << std::endl;
 	}
 
 	//Fonts
@@ -35,6 +73,11 @@ void ResourceManager::Unload()
 {
 	//Sprites
 	for (auto const& tex : m_textures)
+	{
+		UnloadTexture(tex.second);
+	}
+
+	for (auto const& tex : m_tilesets)
 	{
 		UnloadTexture(tex.second);
 	}

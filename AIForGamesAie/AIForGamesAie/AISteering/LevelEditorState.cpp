@@ -29,6 +29,8 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 	m_mapClearColour[1] = 1;
 	m_mapClearColour[2] = 1;
 
+	m_tilesetsToSelect = m_app->GetResources()->GetAllTilesetNames();
+
 	UpdateRoomFilePaths();
 	m_objectFactory = new ObjectFactory();
 	m_objectFactory->GetAllGameObjectTypes(m_gameObjectIDsList);
@@ -509,6 +511,34 @@ void LevelEditorState::EndDraw()
 			if(ImGui::BeginTabItem("Tiles"))
 			{
 				m_editorState = EditorStates::Tiles;
+
+				if(ImGui::BeginCombo("Tilesets", m_tilesetSelected.c_str()))
+				{
+					for (auto const& tilesetString : m_tilesetsToSelect)
+					{
+						bool isSelected = (tilesetString == m_tilesetSelected);
+						if (ImGui::Selectable(tilesetString.c_str(),isSelected))
+						{
+							m_tilesetSelected = tilesetString;
+							isSelected = true;
+						}
+
+						if (isSelected)
+						{
+							ImGui::SetItemDefaultFocus();
+						}
+					}
+
+					ImGui::EndCombo();
+				}
+
+				//Draw tileset
+				if (m_app->GetResources()->TilesetExists(m_tilesetSelected.c_str()))
+				{
+					auto tex = m_app->GetResources()->GetTileset(m_tilesetSelected.c_str());
+					ImGui::ImageButton((ImTextureID)tex.id, { (float)tex.width * 2.0f,(float)tex.height * 2.0f }, {0,0}, { 1,1 },0);
+					//ImGui::rect
+				}
 
 				//Resize the map grid cells
 				ImGui::BeginChild("Tools");
