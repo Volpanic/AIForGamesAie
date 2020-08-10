@@ -17,8 +17,8 @@ public:
 	int Vector2ToTileIndex(Vector2& gridPosition);
 	Rectangle GetTileDrawRect(int tileIndex);
 
-	bool WithinGrid(int pos) { m_tileLayerData->WithinGrid(pos); };
-	bool WithinGrid(int x, int y) { m_tileLayerData->WithinGrid(x,y); };
+	bool WithinGrid(int pos) { return m_tileLayerData->WithinGrid(pos); };
+	bool WithinGrid(int x, int y) { return m_tileLayerData->WithinGrid(x,y); };
 
 	void SetTile(Vector2 gridPosition, int tileIndex);
 	void SetTile(int gridPosition, int tileIndex);

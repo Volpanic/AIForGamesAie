@@ -7,13 +7,16 @@ LevelMap::LevelMap(int width, int height, Application* app)
 	m_worldWidth = width;
 	m_worldHeight = height;
 
-	m_tileLayers.push_back(TileLayer("Collision","tle_collision",app->GetResources()->GetTileset("tle_collision"),width,height));
+	m_tileLayers.push_back(TileLayer("Collision","tle_collision.png",app->GetResources()->GetTileset("tle_collision.png"),width,height));
 
-	for (int xx = 0; xx < GetWidth(); xx++)
+	for (int i = 0; i < m_tileLayers.size(); i++)
 	{
-		for (int yy = 0; yy < GetHeight(); yy++)
+		for (int xx = 0; xx < GetWidth(); xx++)
 		{
-			Set(xx, yy, 0);
+			for (int yy = 0; yy < GetHeight(); yy++)
+			{
+				Set(i, xx, yy, 0);
+			}
 		}
 	}
 }
@@ -105,6 +108,9 @@ void LevelMap::Resize(int newWidth, int newHeight)
 	{
 		m_tileLayers[i].Resize(newWidth, newHeight);
 	}
+
+	m_worldWidth = newWidth;
+	m_worldHeight = newHeight;
 }
 
 std::list<Rectangle> LevelMap::GetSolids(Rectangle boundingBox, Vector2 position)

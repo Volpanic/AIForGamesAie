@@ -18,6 +18,7 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 {
 	m_objectTracker = new ObjectTracker();
 	m_camera.zoom = 1;
+	m_levelMap = new LevelMap(20, 12, app);
 
 	m_graphEditor = new Graph2DEditor(this);
 	m_graph = new Graph2D();
@@ -72,27 +73,27 @@ Vector2 LevelEditorState::GetWorldMousePos()
 void LevelEditorState::FloodFillTiles(int x, int y, int value, int targetValue)
 {
 
-	if (!m_levelMap->WithinGrid(x, y))
-	{
-		return;
-	}
+	//if (!m_levelMap->WithinGrid(x, y))
+	//{
+	//	return;
+	//}
 
-	if (m_levelMap->Get(x, y) == value)
-	{
-		return;
-	}
+	//if (m_levelMap->Get(x, y) == value)
+	//{
+	//	return;
+	//}
 
-	if (m_levelMap->Get(x, y) != targetValue)
-	{
-		return;
-	}
+	//if (m_levelMap->Get(x, y) != targetValue)
+	//{
+	//	return;
+	//}
 
-	m_levelMap->Set(x, y, value);
+	//m_levelMap->Set(x, y, value);
 
-	FloodFillTiles(x - 1, y, value, targetValue);
-	FloodFillTiles(x + 1, y, value, targetValue);
-	FloodFillTiles(x, y - 1, value, targetValue);
-	FloodFillTiles(x, y + 1, value, targetValue);
+	//FloodFillTiles(x - 1, y, value, targetValue);
+	//FloodFillTiles(x + 1, y, value, targetValue);
+	//FloodFillTiles(x, y - 1, value, targetValue);
+	//FloodFillTiles(x, y + 1, value, targetValue);
 }
 
 void LevelEditorState::Update(float deltaTime)
@@ -132,13 +133,13 @@ void LevelEditorState::Update(float deltaTime)
 					//Create
 					if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 					{
-						m_levelMap->Set((int)gridPos.x, (int)gridPos.y, 1);
+						m_levelMap->Set(m_selectedTileLayer,(int)gridPos.x, (int)gridPos.y, 1);
 					}
 
 					//Delete
 					if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
 					{
-						m_levelMap->Set((int)gridPos.x, (int)gridPos.y, 0);
+						m_levelMap->Set(m_selectedTileLayer,(int)gridPos.x, (int)gridPos.y, 0);
 					}
 
 					break;
@@ -176,7 +177,7 @@ void LevelEditorState::Update(float deltaTime)
 						{
 							for (int yy = (int)y1; yy < (int)y2; yy++)
 							{
-								m_levelMap->Set(xx, yy, (m_placeTileValue == MOUSE_RIGHT_BUTTON)? 0 : 1);
+								m_levelMap->Set(m_selectedTileLayer,xx, yy, (m_placeTileValue == MOUSE_RIGHT_BUTTON)? 0 : 1);
 							}
 						}
 					}
@@ -196,8 +197,8 @@ void LevelEditorState::Update(float deltaTime)
 					{
 						if (m_levelMap->WithinGrid((int)gridPos.x, (int)gridPos.y))
 						{
-							int floodTarget = m_levelMap->Get((int)gridPos.x, (int)gridPos.y);
-							FloodFillTiles((int)gridPos.x, (int)gridPos.y,1,floodTarget);
+							//int floodTarget = m_levelMap->Get((int)gridPos.x, (int)gridPos.y);
+							//FloodFillTiles((int)gridPos.x, (int)gridPos.y,1,floodTarget);
 						}
 					}
 
@@ -608,17 +609,17 @@ void LevelEditorState::EndDraw()
 					{
 						for (int yy = 0; yy < m_levelMap->GetHeight(); yy++)
 						{
-							if (m_levelMap->Get(xx, yy) == 0)
-							{
-								Vector2 newPos = { xx * m_levelMap->TILE_SIZE,yy * m_levelMap->TILE_SIZE };
-								newPos = Vector2Add(newPos, { m_levelMap->TILE_SIZE / 2.0f,m_levelMap->TILE_SIZE / 2.0f });
-								Graph2D::Node* newNode = m_graph->AddNode(newPos);
+							//if (m_levelMap->Get(xx, yy) == 0)
+							//{
+							//	Vector2 newPos = { xx * m_levelMap->TILE_SIZE,yy * m_levelMap->TILE_SIZE };
+							//	newPos = Vector2Add(newPos, { m_levelMap->TILE_SIZE / 2.0f,m_levelMap->TILE_SIZE / 2.0f });
+							//	Graph2D::Node* newNode = m_graph->AddNode(newPos);
 
-								for (auto nearby : m_graph->GetNearbyNodes(newPos, 16))
-								{
-									m_graph->ConnectNodes(newNode, nearby, Vector2Distance(newNode->data, nearby->data));
-								}
-							}
+							//	for (auto nearby : m_graph->GetNearbyNodes(newPos, 16))
+							//	{
+							//		m_graph->ConnectNodes(newNode, nearby, Vector2Distance(newNode->data, nearby->data));
+							//	}
+							//}
 						}
 					}
 				}

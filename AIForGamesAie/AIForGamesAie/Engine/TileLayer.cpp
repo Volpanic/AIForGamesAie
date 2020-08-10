@@ -1,5 +1,6 @@
 #include "TileLayer.h"
 #include <algorithm>
+#include <string>
 
 TileLayer::TileLayer(const char* layerName,const char* tilesetKey,Texture2D& texture, int worldWidth, int worldHeight)
 {
@@ -22,9 +23,7 @@ TileLayer::TileLayer(const char* layerName,const char* tilesetKey,Texture2D& tex
 
 TileLayer::~TileLayer()
 {
-	delete m_layerName;
-	delete m_tilesetPath;
-	if (m_tileLayerData != NULL) delete m_tileLayerData;
+	//delete m_tileLayerData;
 }
 
 void TileLayer::DrawTilesLayer()
@@ -33,14 +32,18 @@ void TileLayer::DrawTilesLayer()
 	{
 		for (int yy = 0; yy < m_tileLayerData->GetHeight(); yy++)
 		{
-			DrawTile({(float)(xx * TILE_SIZE),(float)(yy * TILE_SIZE)}, m_tileLayerData->Get(xx, yy));
+			if (m_tileLayerData != nullptr)
+			{
+				DrawTile({ (float)(xx * TILE_SIZE),(float)(yy * TILE_SIZE) }, m_tileLayerData->Get(xx, yy));
+				//DrawText(std::to_string(m_tileLayerData->Get(xx, yy)).c_str(), (xx * TILE_SIZE), (float)(yy * TILE_SIZE),12,BLACK);
+			}
 		}
 	}
 }
 
 void TileLayer::DrawTile(Vector2 worldPos, int tileIndex)
 {
-	DrawTexturePro(m_tilesetTexture, GetTileDrawRect(tileIndex), { worldPos.x,worldPos.y,TILE_SIZE,TILE_SIZE }, {0,0},0,WHITE);
+	DrawTexturePro(m_tilesetTexture, GetTileDrawRect(tileIndex), { worldPos.x,worldPos.y,(float)TILE_SIZE,(float)TILE_SIZE }, {0,0},0,WHITE);
 }
 
 void TileLayer::DrawTile(Vector2 worldPos, Vector2 tileIndex)
@@ -64,7 +67,7 @@ Rectangle TileLayer::GetTileDrawRect(int tileIndex)
 		yy++;
 	}
 
-	return {xx * TILE_SIZE,yy * TILE_SIZE,TILE_SIZE,TILE_SIZE};
+	return {(float)(xx * TILE_SIZE),(float)(yy * TILE_SIZE),(float)(TILE_SIZE),(float)(TILE_SIZE)};
 }
 
 void TileLayer::SetTile(Vector2 gridPosition, int tileIndex)

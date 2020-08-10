@@ -21,6 +21,7 @@ LevelState::LevelState(Application* app) : IGameState::IGameState(app)
 
 LevelState::LevelState(Application* app, std::string loadFileName,GameObjectFactory* factory) : IGameState::IGameState(app)
 {
+	m_levelMap = new LevelMap(20, 12, app);
 	m_objectTracker = new ObjectTracker();
 	m_camera.zoom = 1;
 

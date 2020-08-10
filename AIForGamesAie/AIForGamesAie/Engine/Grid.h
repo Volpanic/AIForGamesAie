@@ -36,7 +36,8 @@ Grid<T>::Grid(int width, int height)
 {
 	m_width = width;
 	m_height = height;
-	m_gridArray = new T[m_width * m_height];
+	auto size = width * height;
+	m_gridArray = new T[size];
 }
 
 template<typename T>

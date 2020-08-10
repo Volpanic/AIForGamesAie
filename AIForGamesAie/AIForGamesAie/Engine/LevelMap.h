@@ -5,6 +5,7 @@
 #include <list>
 #include <vector>
 #include "tinyxml2.h"
+#include "Application.h"
 #include "TileLayer.h"
 
 class LevelMap
