@@ -3,6 +3,8 @@
 #include "Grid.h"
 #include <algorithm>
 #include <list>
+#include <vector>
+#include "TileLayer.h"
 
 class LevelMap
 {
@@ -10,11 +12,9 @@ public:
 
 	const int TILE_SIZE = 16;
 
-	LevelMap(int width, int height);
-	void Set(int x, int y, int value);
-	void Set(int pos, int value);
-	int Get(int x, int y);
-	int Get(int pos);
+	LevelMap(int width, int height, Application* app);
+	void Set(int layer,int x, int y, int value);
+	void Set(int layer,int pos, int value);
 	bool WithinGrid(int pos);
 	bool WithinGrid(int xPos, int yPos);
 
@@ -26,11 +26,13 @@ public:
 	void Draw();
 	Vector2 ToGridPos(const Vector2& pos);
 
-	int GetWidth() { return m_levelGrid->GetWidth(); };
-	int GetHeight() { return m_levelGrid->GetHeight(); };
+	int GetWidth() { return m_worldWidth; };
+	int GetHeight() { return m_worldHeight; };
 
 	~LevelMap();
 
 private:
-	Grid<int>* m_levelGrid;
+	int m_worldWidth = 1;
+	int m_worldHeight = 1;
+	std::vector<TileLayer> m_tileLayers;
 };

@@ -1,8 +1,13 @@
 #include "LevelMap.h"
+#include "Application.h"
+#include "TileLayer.h"
 
-LevelMap::LevelMap(int width, int height)
+LevelMap::LevelMap(int width, int height, Application* app)
 {
-	m_levelGrid = new Grid<int>(width, height);
+	m_worldWidth = width;
+	m_worldHeight = height;
+
+	m_tileLayers.push_back(TileLayer("Collision",app->GetResources()->GetTileset("tle_collision"),width,height));
 
 	for (int xx = 0; xx < GetWidth(); xx++)
 	{
@@ -13,94 +18,52 @@ LevelMap::LevelMap(int width, int height)
 	}
 }
 
-void LevelMap::Set(int x, int y, int value)
+void LevelMap::Set(int layer,int x, int y, int value)
 {
-	if ((x >= 0 && x < m_levelGrid->GetWidth()) && (y >= 0 && y < m_levelGrid->GetHeight()))
+	if (m_tileLayers[layer].WithinGrid(x,y))
 	{
-		m_levelGrid->Set(x, y, value);
+		m_tileLayers[layer].SetTile({(float)x,(float)y},value);
 	}
 }
 
-void LevelMap::Set(int pos, int value)
+void LevelMap::Set(int layer, int pos, int value)
 {
-	m_levelGrid->Set(pos,value);
-}
-
-int LevelMap::Get(int x, int y)
-{
-	if ((x >= 0 && x < m_levelGrid->GetWidth()) && (y >= 0 && y < m_levelGrid->GetHeight()))
+	if (m_tileLayers[layer].WithinGrid(pos))
 	{
-		return m_levelGrid->Get(x,y);
+		m_tileLayers[layer].SetTile(pos, value);
 	}
-	return 0;
-}
-
-int LevelMap::Get(int pos)
-{
-	return m_levelGrid->Get(pos);
 }
 
 bool LevelMap::WithinGrid(int pos)
 {
-	return m_levelGrid->WithinGrid(pos);
+	return m_tileLayers[0].WithinGrid(pos);
 }
 
 bool LevelMap::WithinGrid(int xPos, int yPos)
 {
-	return m_levelGrid->WithinGrid(xPos,yPos);
+	return m_tileLayers[0].WithinGrid(xPos,yPos);
 }
 
 int LevelMap::GetSize()
 {
-	return m_levelGrid->GetSize();
+	return m_tileLayers[0].GetSize();
 }
 
 void LevelMap::Resize(int newWidth, int newHeight)
 {
-	Grid<int>* newlevelGrid = new Grid<int>(newWidth,newHeight);
-
-	for (int xx = 0; xx < GetWidth() && xx < newWidth; xx++)
+	for (int i = 0; i < m_tileLayers.size(); i++)
 	{
-		for (int yy = 0; yy < GetHeight() && yy < newHeight; yy++)
-		{
-			newlevelGrid->Set(xx,yy, m_levelGrid->Get(xx,yy));
-		}
+		m_tileLayers[i].Resize(newWidth, newHeight);
 	}
-
-	delete m_levelGrid;
-	m_levelGrid = newlevelGrid;
 }
 
 std::list<Rectangle> LevelMap::GetSolids(Rectangle boundingBox, Vector2 position)
 {
 	std::list<Rectangle> returnList;
 
-	boundingBox.x = position.x;
-	boundingBox.y = position.y;
-
-	//Get min and max possible tiles
-	int x1 = floor(boundingBox.x / TILE_SIZE)-1;
-	int x2 = ceil((boundingBox.x + boundingBox.width) / TILE_SIZE)+1;
-
-	int y1 = floor(boundingBox.y / TILE_SIZE)-1;
-	int y2 = ceil((boundingBox.y + boundingBox.height) / TILE_SIZE)+1;
-
-	x1 = std::max(x1, 0);
-	x2 = std::min(x2, m_levelGrid->GetWidth());
-
-	y1 = std::max(y1, 0);
-	y2 = std::min(y2, m_levelGrid->GetHeight());
-
-	//Return all solids hitboxes
-	for (int xx = x1; xx <= x2; xx++)
+	for (int i = 0; i < m_tileLayers.size(); i++)
 	{
-		for (int yy = y1; yy <= y2; yy++)
-		{
-			if (m_levelGrid->Get(xx, yy) == 1)
-			{
-				returnList.push_back({ (float)(xx * TILE_SIZE),(float)(yy * TILE_SIZE),(float)TILE_SIZE ,(float)TILE_SIZE });
-			}
-		}
+		m_tileLayers[i].GetSolids(boundingBox,position,returnList);
 	}
 
 	return returnList;
@@ -108,15 +71,9 @@ std::list<Rectangle> LevelMap::GetSolids(Rectangle boundingBox, Vector2 position
 
 void LevelMap::Draw()
 {
-	for (int x = 0; x < m_levelGrid->GetWidth(); x++)
+	for (int i = 0; i < m_tileLayers.size(); i++)
 	{
-		for (int y = 0; y < m_levelGrid->GetHeight(); y++)
-		{
-			if (m_levelGrid->Get(x, y) == 1)
-			{
-				DrawRectangle(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE, DARKGRAY);
-			}
-		}
+		m_tileLayers[i].DrawTilesLayer();
 	}
 }
 
@@ -127,5 +84,5 @@ Vector2 LevelMap::ToGridPos(const Vector2& pos)
 
 LevelMap::~LevelMap()
 {
-	delete m_levelGrid;
+	
 }

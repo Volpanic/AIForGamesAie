@@ -44,7 +44,7 @@ public:
 
 protected:
 	Camera2D m_camera = { 0 };
-	LevelMap* m_levelMap = new LevelMap(20,12);
+	LevelMap* m_levelMap = nullptr;
 	ObjectTracker* m_objectTracker;
 
 	std::string m_levelName = "Black";
