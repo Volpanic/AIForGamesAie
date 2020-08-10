@@ -172,6 +172,43 @@ std::vector<Graph2D::Node*> Graph2D::ForEachAStar(Graph2D::Node* startNode, Grap
 	return returnNodes;
 }
 
+Graph2D::Node* Graph2D::GetRandomNode()
+{
+	if (!m_nodes.empty())
+	{
+		return m_nodes[GetRandomValue(0, m_nodes.size())];
+	}
+
+	return nullptr;
+}
+
+Graph2D::Node* Graph2D::GetNearestNode(Vector2 pos)
+{
+	if (!m_nodes.empty())
+	{
+		Graph2D::Node* nearest = m_nodes[0];
+		float dist = Vector2Distance(pos, m_nodes[0]->data);
+
+		for (auto const& node : m_nodes)
+		{
+			float newDist = Vector2Distance(pos, node->data);
+			if (newDist < dist)
+			{
+				dist = newDist;
+				nearest = node;
+			}
+		}
+		return nearest;
+	}
+
+	return nullptr;
+}
+
+Graph2D::Node* Graph2D::GetNearestNode(Vector2 pos, Graph2D::Node* startNode, Path* returnPath)
+{
+	return nullptr;
+}
+
 std::vector<Graph2D::Node*> Graph2D::GetNearbyNodes(Vector2 position, float radius)
 {
 	std::vector<Graph2D::Node*> returnList;

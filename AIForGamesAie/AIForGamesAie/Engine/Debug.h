@@ -15,6 +15,7 @@ public:
 
 		auto stop = std::chrono::high_resolution_clock::now();
 
-		std::cout << processName << ":" << (std::chrono::duration_cast<std::chrono::microseconds>(stop - start)).count() << "ms." << std::endl;
+		std::cout << processName << ":" << (std::chrono::duration_cast<std::chrono::microseconds>(stop - start)).count() << "mic. : " <<
+			(std::chrono::duration_cast<std::chrono::milliseconds>(stop - start)).count() << "mil. : " << std::endl;
 	}
 };

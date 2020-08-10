@@ -40,7 +40,7 @@ LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(ap
 LevelEditorState::~LevelEditorState()
 {
 	delete m_graphEditor;
-	if(m_graph != NULL) delete m_graph; // Some other things may take the graph ya hear?
+	//if(m_graph != NULL) delete m_graph; // Some other things may take the graph ya hear?
 	delete m_mapClearColour;
 	delete m_objectFactory;
 

@@ -50,4 +50,11 @@ public:
 	{
 		return {FloorMultiple(value.x,multiple),FloorMultiple(value.y,multiple)};
 	}
+
+	static Rectangle& CenterRectangle(Rectangle& rect, Vector2 center)
+	{
+		rect.x = center.x - (rect.width / 2);
+		rect.y = center.y - (rect.height / 2);
+		return rect;
+	}
 };

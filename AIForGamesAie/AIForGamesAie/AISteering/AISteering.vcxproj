@@ -196,6 +196,7 @@
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="PlayerFish.cpp" />
     <ClCompile Include="SteeringBehaviour.cpp" />
+    <ClCompile Include="WanderBehaviour.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
@@ -209,6 +210,7 @@
     <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="PlayerFish.h" />
     <ClInclude Include="SteeringBehaviour.h" />
+    <ClInclude Include="WanderBehaviour.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

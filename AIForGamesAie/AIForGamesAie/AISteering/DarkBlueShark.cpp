@@ -4,14 +4,19 @@
 #include "ObjectTracker.h"
 #include "Path.h"
 #include "FollowPathBehavior.h"
+#include "WanderBehaviour.h"
 
 DarkBlueShark::DarkBlueShark(LevelState* level) : Agent::Agent(level)
 {
 	SetOrigin(11, 6);
 	m_collider = new Collider();
-	m_collider->Setup(this, 24, 10);
+	m_collider->Setup(this, 16, 10);
+
 
 	AddComponent<Drawable>(new Drawable(m_level->GetResources()->GetTexture("spr_dark_blue_shark.png"), 27, 13));
+
+	SetFriction(4.0f);
+	//SetBehaviour(new WanderBehaviour(250));
 }
 
 DarkBlueShark::~DarkBlueShark()
@@ -25,36 +30,19 @@ void DarkBlueShark::Update(float deltaTime)
 
 	if (m_behaviour == nullptr)
 	{
-		auto graph = m_level->GetGraph();
+		auto nearest = m_level->GetGraph()->GetNearestNode(m_position);
+		auto randNode = m_level->GetGraph()->GetRandomNode();
 
-		if (graph != nullptr)
+		auto nodeList = m_level->GetGraph()->ForEachAStar(nearest,randNode,NULL);
+
+		std::vector<Vector2> path;
+
+		for (auto const& node : nodeList)
 		{
-			auto nearbys = graph->GetNearbyNodes(m_position, 8);
-
-			if (!nearbys.empty())
-			{
-				auto myNode = nearbys[0];
-				Graph2D::Node* otherNode = nullptr;
-
-				auto player = m_level->GetObjectTracker()->First<PlayerFish>();
-
-				if (player != nullptr)
-				{
-					otherNode = graph->GetNearbyNodes(player->GetPosition(), 8)[0];
-					auto nodePath = graph->ForEachAStar(myNode, otherNode, NULL);
-
-					Path* newPath = new Path();
-
-					for (auto const& node : nodePath)
-					{
-						newPath->PathAddNode(node->data);
-					}
-
-					SetBehaviour(new FollowPathBehavior(newPath, 100));
-				}
-			}
+			path.push_back(node->data);
 		}
-		
+
+		SetBehaviour(new FollowPathBehavior(new Path(path),50));
 	}
 }
 
