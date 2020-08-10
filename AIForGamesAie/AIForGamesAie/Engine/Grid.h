@@ -15,6 +15,7 @@ public:
 	int GetSize();
 	bool WithinGrid(int pos);
 	bool WithinGrid(int xPos, int yPos);
+	int PositionToInt(int xPos, int yPos);
 
 	int GetWidth() { return m_width; };
 	int GetHeight() { return m_height; };
@@ -26,7 +27,7 @@ private:
 	int m_height = 0;
 	T* m_gridArray;
 
-	int PositionToInt(int xPos, int yPos);
+	
 
 };
 

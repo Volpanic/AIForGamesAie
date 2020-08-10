@@ -200,6 +200,7 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SplashState.cpp" />
     <ClCompile Include="StateTransition.cpp" />
+    <ClCompile Include="TileLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
@@ -226,6 +227,7 @@
     <ClInclude Include="SplashState.h" />
     <ClInclude Include="IGameState.h" />
     <ClInclude Include="StateTransition.h" />
+    <ClInclude Include="TileLayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

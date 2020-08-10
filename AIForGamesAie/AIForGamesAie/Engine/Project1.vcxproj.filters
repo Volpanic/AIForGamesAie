@@ -79,6 +79,9 @@
     <ClCompile Include="ObjectTracker.cpp">
       <Filter>Resource Files\LevelUtility</Filter>
     </ClCompile>
+    <ClCompile Include="TileLayer.cpp">
+      <Filter>Resource Files\LevelUtility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -151,6 +154,9 @@
       <Filter>Resource Files\ApplicationManagers</Filter>
     </ClInclude>
     <ClInclude Include="ObjectTracker.h">
+      <Filter>Resource Files\LevelUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="TileLayer.h">
       <Filter>Resource Files\LevelUtility</Filter>
     </ClInclude>
   </ItemGroup>
