@@ -133,7 +133,7 @@ void LevelEditorState::Update(float deltaTime)
 					//Create
 					if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 					{
-						m_levelMap->Set(m_selectedTileLayer,(int)gridPos.x, (int)gridPos.y, 1);
+						m_levelMap->Set(m_selectedTileLayer,(int)gridPos.x, (int)gridPos.y, m_selectedTile);
 					}
 
 					//Delete
@@ -177,7 +177,7 @@ void LevelEditorState::Update(float deltaTime)
 						{
 							for (int yy = (int)y1; yy < (int)y2; yy++)
 							{
-								m_levelMap->Set(m_selectedTileLayer,xx, yy, (m_placeTileValue == MOUSE_RIGHT_BUTTON)? 0 : 1);
+								m_levelMap->Set(m_selectedTileLayer,xx, yy, (m_placeTileValue == MOUSE_RIGHT_BUTTON)? 0 : m_selectedTile);
 							}
 						}
 					}
@@ -468,7 +468,7 @@ void LevelEditorState::Draw()
 void LevelEditorState::EndDraw()
 {
 	DrawRectangle(0,0,GetScreenWidth(),GetScreenHeight(),BLACK);
-	ImGui::ShowDemoWindow();
+	//ImGui::ShowDemoWindow();
 	//Controls Window
 	ImGui::Begin("Controls (2)");
 	{

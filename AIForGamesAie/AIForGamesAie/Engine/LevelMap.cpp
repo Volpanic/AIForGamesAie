@@ -77,17 +77,18 @@ void LevelMap::LoadMap(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* paren
 
 		//Load in tile data
 		int pos = 0;
-		tinyxml2::XMLElement* tileData = tileLayer->FirstChildElement("Tile");
+		tinyxml2::XMLElement* tileData = tileLayer->FirstChildElement("TileData");
+		tinyxml2::XMLElement* tileElement = tileData->FirstChildElement("Tile");
 
-		while (tileData != nullptr)
+		while (tileElement != nullptr)
 		{
 			int tileValue = 0;
-			tileData->QueryAttribute("TileValue",&tileValue);
+			tileElement->QueryAttribute("TileValue",&tileValue);
 
 			tl.SetTile(pos,tileValue);
 
 			pos++;
-			tileData = tileLayer->FirstChildElement("Tile");
+			tileElement = tileElement->NextSiblingElement();
 		}
 
 		tileLayer = tileLayer->NextSiblingElement();
