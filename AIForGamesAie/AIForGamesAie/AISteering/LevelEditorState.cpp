@@ -513,31 +513,31 @@ void LevelEditorState::EndDraw()
 			{
 				m_editorState = EditorStates::Tiles;
 
-				if(ImGui::BeginCombo("Tilesets", m_tilesetSelected.c_str()))
-				{
-					for (auto const& tilesetString : m_tilesetsToSelect)
-					{
-						bool isSelected = (tilesetString == m_tilesetSelected);
-						if (ImGui::Selectable(tilesetString.c_str(),isSelected))
-						{
-							m_tilesetSelected = tilesetString;
-							isSelected = true;
-						}
+				//if(ImGui::BeginCombo("Tilesets", m_tilesetSelected.c_str()))
+				//{
+				//	for (auto const& tilesetString : m_tilesetsToSelect)
+				//	{
+				//		bool isSelected = (tilesetString == m_tilesetSelected);
+				//		if (ImGui::Selectable(tilesetString.c_str(),isSelected))
+				//		{
+				//			m_tilesetSelected = tilesetString;
+				//			isSelected = true;
+				//		}
 
-						if (isSelected)
-						{
-							ImGui::SetItemDefaultFocus();
-						}
-					}
+				//		if (isSelected)
+				//		{
+				//			ImGui::SetItemDefaultFocus();
+				//		}
+				//	}
 
-					ImGui::EndCombo();
-				}
+				//	ImGui::EndCombo();
+				//}
 
 				//Draw tileset
-				if (m_app->GetResources()->TilesetExists(m_tilesetSelected.c_str()))
+				if (m_selectedTileLayer < m_levelMap->GetTileLayerAmount())
 				{
 					float tilemapScale = 2.0f;
-					auto tex = m_app->GetResources()->GetTileset(m_tilesetSelected.c_str());
+					auto tex = m_levelMap->GetTileLayer(m_selectedTileLayer).GetTileTexture();
 					ImGui::ImageButton((ImTextureID)tex.id, { (float)tex.width * tilemapScale,(float)tex.height * tilemapScale }, { 0,0 }, { 1,1 }, 0, {0,0,0,0});
 					ImVec2 tilePallateTopLeft = ImGui::GetItemRectMin();
 

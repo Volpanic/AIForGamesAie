@@ -28,6 +28,7 @@ public:
 
 	void Resize(int newWidth, int newHeight);
 	void GetSolids(Rectangle boundingBox, Vector2 position,std::list<Rectangle>& output);
+	Texture2D& GetTileTexture() { return m_tilesetTexture; };
 
 	bool IsCollisionLayer() { return m_collisionLayer; };
 	void SetCollisionLayer(bool collisionLayer) { m_collisionLayer = collisionLayer; };

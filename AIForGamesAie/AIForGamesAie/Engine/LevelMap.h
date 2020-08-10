@@ -23,6 +23,8 @@ public:
 	void SaveMap(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* parentElement);
 	void LoadMap(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* parentElement, Application* app);
 
+	TileLayer& GetTileLayer(int layer) { return m_tileLayers[layer];};
+	int GetTileLayerAmount() { return m_tileLayers.size(); };
 	int GetSize();
 
 	void Resize(int newWidth, int newHeight);

@@ -61,7 +61,6 @@ private:
 		TilePlacementState m_tileState = TilePlacementState::Pencil;
 
 		std::vector<std::string> m_tilesetsToSelect;
-		std::string m_tilesetSelected = "";
 		int m_selectedTile = 1;
 		int m_selectedTileLayer = 0;
 		
