@@ -28,6 +28,8 @@ TileLayer::~TileLayer()
 
 void TileLayer::DrawTilesLayer()
 {
+	if (!m_visible) return;
+
 	for (int xx = 0; xx < m_tileLayerData->GetWidth(); xx++)
 	{
 		for (int yy = 0; yy < m_tileLayerData->GetHeight(); yy++)
@@ -164,8 +166,4 @@ void TileLayer::SaveLayer(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* pa
 
 	tileLayer->InsertEndChild(tileData);
 	parentElement->InsertEndChild(tileLayer);
-}
-
-void TileLayer::LoadLayer(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement)
-{
 }

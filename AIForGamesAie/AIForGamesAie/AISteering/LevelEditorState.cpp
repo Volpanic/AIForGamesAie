@@ -513,26 +513,6 @@ void LevelEditorState::EndDraw()
 			{
 				m_editorState = EditorStates::Tiles;
 
-				//if(ImGui::BeginCombo("Tilesets", m_tilesetSelected.c_str()))
-				//{
-				//	for (auto const& tilesetString : m_tilesetsToSelect)
-				//	{
-				//		bool isSelected = (tilesetString == m_tilesetSelected);
-				//		if (ImGui::Selectable(tilesetString.c_str(),isSelected))
-				//		{
-				//			m_tilesetSelected = tilesetString;
-				//			isSelected = true;
-				//		}
-
-				//		if (isSelected)
-				//		{
-				//			ImGui::SetItemDefaultFocus();
-				//		}
-				//	}
-
-				//	ImGui::EndCombo();
-				//}
-
 				//Draw tileset
 				if (m_selectedTileLayer < m_levelMap->GetTileLayerAmount())
 				{
@@ -575,7 +555,7 @@ void LevelEditorState::EndDraw()
 				ImGui::Text(("Selected Tile" + std::to_string(m_selectedTile)).c_str());
 
 				//Resize the map grid cells
-				ImGui::BeginChild("Tools");
+				ImGui::BeginGroup();
 
 				ImGui::Text("Tools");
 
@@ -594,7 +574,29 @@ void LevelEditorState::EndDraw()
 					m_tileState = TilePlacementState::Fill;
 				}
 
-				ImGui::EndChild();
+				ImGui::EndGroup();
+
+				//Draw layers
+				ImGui::BeginGroup();
+				{
+					if (ImGui::Button("New Tile Layer"))
+					{
+						m_openNewTileWindow = true;
+					}
+
+					for (int i = 0; i < m_levelMap->GetTileLayerAmount(); i++)
+					{
+						auto& layer = m_levelMap->GetTileLayer(i);
+						if (ImGui::TreeNode(layer.m_layerName))
+						{
+							ImGui::Checkbox("Visible",&layer.m_visible);
+							
+							ImGui::TreePop();
+						}
+					}
+
+					ImGui::EndGroup();
+				}
 
 				ImGui::EndTabItem();
 			}
@@ -626,7 +628,57 @@ void LevelEditorState::EndDraw()
 				//Resize the map grid cells
 
 				ImGui::EndTabItem();
+			} 
+
+			/// Layer Window ///////////////////
+			if (m_openNewTileWindow)
+			{
+				ImGui::OpenPopup("OpenNewTileWindow");
+				m_openNewTileWindow = false;
 			}
+
+			if (ImGui::BeginPopupModal("OpenNewTileWindow"))
+			{
+				ImGui::InputText("Layer Name", m_newTileName,32);
+
+				if(ImGui::BeginCombo("Tileset Texture", m_tilesetSelected.c_str()))
+				{
+					for (auto const& tilesetString : m_tilesetsToSelect)
+					{
+						bool isSelected = (tilesetString == m_tilesetSelected);
+						if (ImGui::Selectable(tilesetString.c_str(),isSelected))
+						{
+							m_tilesetSelected = tilesetString;
+							isSelected = true;
+						}
+
+						if (isSelected)
+						{
+							ImGui::SetItemDefaultFocus();
+						}
+					}
+
+					ImGui::EndCombo();
+				}
+
+				if (ImGui::Button("Cancel"))
+				{
+					ImGui::CloseCurrentPopup();
+				}
+
+				ImGui::SameLine();
+
+				if (ImGui::Button("Save"))
+				{
+					m_levelMap->AddTileLayer(TileLayer(m_newTileName, m_tilesetSelected.c_str(),m_app->GetResources()->GetTileset(m_tilesetSelected.c_str()),
+						m_levelMap->GetWidth(),m_levelMap->GetHeight()));
+					ImGui::CloseCurrentPopup();
+				}
+
+				ImGui::EndPopup();
+			}
+
+			/// Layer Window /////////////////
 
 			//Game objects yah.
 			if (ImGui::BeginTabItem("Game Objects"))

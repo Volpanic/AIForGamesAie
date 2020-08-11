@@ -34,9 +34,9 @@ public:
 	void SetCollisionLayer(bool collisionLayer) { m_collisionLayer = collisionLayer; };
 
 	void SaveLayer(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* parentElement);
-	void LoadLayer(tinyxml2::XMLDocument level, tinyxml2::XMLElement* parentElement);
 
 	const char* m_layerName;
+	bool m_visible = true;
 
 protected:
 
@@ -45,7 +45,7 @@ private:
 	const char* m_tilesetPath;
 	Texture2D m_tilesetTexture;
 	Grid<int>* m_tileLayerData = nullptr;
-	bool m_collisionLayer = false;
+	bool m_collisionLayer = true;
 	int m_tilesetWidth = 1;
 	int m_tilesetHeight = 1;
 };
