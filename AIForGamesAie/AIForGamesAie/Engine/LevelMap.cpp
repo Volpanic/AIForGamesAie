@@ -71,15 +71,19 @@ void LevelMap::LoadMap(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* paren
 		bool collisionLayer = false;
 
 		//Get map vars
-		tileLayer->QueryAttribute("LayerName", &layerName);
-		tileLayer->QueryAttribute("TilesetTexture", &texturePath);
+		tileLayer->QueryStringAttribute("LayerName", &layerName);
+		tileLayer->QueryStringAttribute("TilesetTexture", &texturePath);
 		tileLayer->QueryAttribute("LayerWidth", &width);
 		tileLayer->QueryAttribute("LayerHeight", &height);
 
 		tileLayer->QueryAttribute("LayerVisible", &visible);
 		tileLayer->QueryAttribute("CollisionLayer", &collisionLayer);
 
-		TileLayer tl = TileLayer(layerName,texturePath,app->GetResources()->GetTileset(texturePath),width,height);
+		std::string stupidName = layerName;
+		std::string stupidPath = texturePath;
+
+
+		TileLayer tl = TileLayer(stupidName.c_str(),texturePath,app->GetResources()->GetTileset(stupidPath.c_str()),width,height);
 		tl.SetCollisionLayer(collisionLayer);
 		tl.m_visible = visible;
 
@@ -102,6 +106,7 @@ void LevelMap::LoadMap(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* paren
 		tileLayer = tileLayer->NextSiblingElement();
 
 		//Put Tile layer in list
+		tl.SetName(layerName);
 		m_tileLayers.push_back(tl);
 	}
 }

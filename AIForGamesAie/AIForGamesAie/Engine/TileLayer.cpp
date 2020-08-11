@@ -4,13 +4,13 @@
 
 TileLayer::TileLayer(const char* layerName,const char* tilesetKey,Texture2D& texture, int worldWidth, int worldHeight)
 {
+	m_layerName = layerName;
 	m_tilesetTexture = texture;
 	m_tilesetPath = tilesetKey;
 	m_tilesetWidth = texture.width / TILE_SIZE;
 	m_tilesetHeight = texture.height / TILE_SIZE;
 	
 	m_tileLayerData = new Grid<int>(worldWidth, worldHeight);
-	m_layerName = layerName;
 
 	for (int xx = 0; xx < m_tileLayerData->GetWidth(); xx++)
 	{
@@ -90,6 +90,16 @@ void TileLayer::SetTile(Vector2 gridPosition, Vector2 tileIndex)
 void TileLayer::SetTile(int gridPosition, Vector2 tileIndex)
 {
 	m_tileLayerData->Set(gridPosition, Vector2ToTileIndex(tileIndex));
+}
+
+void TileLayer::SetName(const char* newName)
+{
+	m_layerName = newName;
+}
+
+const char* TileLayer::GetName()
+{
+	return m_layerName;
 }
 
 void TileLayer::Resize(int newWidth, int newHeight)

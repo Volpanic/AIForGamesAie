@@ -25,7 +25,9 @@ public:
 	void SetTile(Vector2 gridPosition, Vector2 tileIndex);
 	void SetTile(int gridPosition, Vector2 tileIndex);
 	int GetSize() { return m_tileLayerData->GetSize(); };
-	const char* GetName() { return m_layerName; };
+
+	void SetName(const char* newName);
+	const char* GetName();
 
 	void Resize(int newWidth, int newHeight);
 	void GetSolids(Rectangle boundingBox, Vector2 position,std::list<Rectangle>& output);
