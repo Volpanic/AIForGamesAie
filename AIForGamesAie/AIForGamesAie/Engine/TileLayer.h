@@ -25,6 +25,7 @@ public:
 	void SetTile(Vector2 gridPosition, Vector2 tileIndex);
 	void SetTile(int gridPosition, Vector2 tileIndex);
 	int GetSize() { return m_tileLayerData->GetSize(); };
+	const char* GetName() { return m_layerName; };
 
 	void Resize(int newWidth, int newHeight);
 	void GetSolids(Rectangle boundingBox, Vector2 position,std::list<Rectangle>& output);
@@ -35,7 +36,6 @@ public:
 
 	void SaveLayer(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* parentElement);
 
-	const char* m_layerName;
 	bool m_visible = true;
 
 protected:
@@ -43,6 +43,7 @@ protected:
 private:
 	const int TILE_SIZE = 16;
 	const char* m_tilesetPath;
+	const char* m_layerName = "";
 	Texture2D m_tilesetTexture;
 	Grid<int>* m_tileLayerData = nullptr;
 	bool m_collisionLayer = true;

@@ -587,7 +587,21 @@ void LevelEditorState::EndDraw()
 					for (int i = 0; i < m_levelMap->GetTileLayerAmount(); i++)
 					{
 						auto& layer = m_levelMap->GetTileLayer(i);
-						if (ImGui::TreeNode(layer.m_layerName))
+
+						auto tree = ImGui::TreeNode(layer.GetName());
+
+						if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_::ImGuiMouseButton_Left) && ImGui::IsItemHovered())
+						{
+							m_selectedTileLayer = i;
+						}
+
+						if (i == m_selectedTileLayer)
+						{
+							ImGui::SameLine();
+							ImGui::Text(" Editing");
+						}
+
+						if (tree)
 						{
 							ImGui::Checkbox("Visible",&layer.m_visible);
 							
@@ -634,6 +648,7 @@ void LevelEditorState::EndDraw()
 			if (m_openNewTileWindow)
 			{
 				ImGui::OpenPopup("OpenNewTileWindow");
+				m_tilesetSelected = "tle_collision.png";
 				m_openNewTileWindow = false;
 			}
 

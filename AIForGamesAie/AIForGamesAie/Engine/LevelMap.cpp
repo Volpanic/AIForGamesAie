@@ -67,13 +67,21 @@ void LevelMap::LoadMap(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* paren
 		int width = 1;
 		int height = 1;
 
+		bool visible = true;
+		bool collisionLayer = false;
+
 		//Get map vars
 		tileLayer->QueryAttribute("LayerName", &layerName);
 		tileLayer->QueryAttribute("TilesetTexture", &texturePath);
 		tileLayer->QueryAttribute("LayerWidth", &width);
 		tileLayer->QueryAttribute("LayerHeight", &height);
 
+		tileLayer->QueryAttribute("LayerVisible", &visible);
+		tileLayer->QueryAttribute("CollisionLayer", &collisionLayer);
+
 		TileLayer tl = TileLayer(layerName,texturePath,app->GetResources()->GetTileset(texturePath),width,height);
+		tl.SetCollisionLayer(collisionLayer);
+		tl.m_visible = visible;
 
 		//Load in tile data
 		int pos = 0;

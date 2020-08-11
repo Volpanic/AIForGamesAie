@@ -63,7 +63,7 @@ Rectangle TileLayer::GetTileDrawRect(int tileIndex)
 	int xx = tileIndex;
 	int yy = 0;
 
-	while (tileIndex > m_tilesetWidth)
+	while (xx >= m_tilesetWidth)
 	{
 		xx -= m_tilesetWidth;
 		yy++;
@@ -152,6 +152,9 @@ void TileLayer::SaveLayer(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* pa
 	tileLayer->SetAttribute("TilesetTexture", m_tilesetPath);
 	tileLayer->SetAttribute("LayerWidth",m_tileLayerData->GetWidth());
 	tileLayer->SetAttribute("LayerHeight", m_tileLayerData->GetHeight());
+
+	tileLayer->SetAttribute("LayerVisible", m_visible);
+	tileLayer->SetAttribute("CollisionLayer", m_collisionLayer);
 
 	tinyxml2::XMLElement* tileData = level.NewElement("TileData");
 
