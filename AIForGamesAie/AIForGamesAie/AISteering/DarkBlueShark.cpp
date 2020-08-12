@@ -51,12 +51,6 @@ void DarkBlueShark::Update(float deltaTime)
 				SetBehaviour(new FollowPathBehavior(new Path(path), 50));
 			}
 
-			if (m_velocity.x != 0)
-			{
-				//m_scale.x = Numbers::Sign<float>(m_velocity.x);
-				//m_scale.y = m_scale.x;
-			}
-
 			//Check if can see player
 			m_checkCanSeePlayerTimer += deltaTime;
 
@@ -90,8 +84,16 @@ void DarkBlueShark::Update(float deltaTime)
 			break;
 		}
 	}
+
+	//Flip to face velocitty
+	if (m_velocity.x != 0)
+	{
+		m_scale.x = Numbers::Sign<float>(m_velocity.x);
+	}
+
+	//Rotate
 	m_rotation = atan2(m_velocity.y, m_velocity.x);
-	m_rotation = Clamp(m_rotation, -45, 45);
+	if (m_scale.x < 0) { m_rotation = 180 - m_rotation; }
 }
 
 void DarkBlueShark::Draw()

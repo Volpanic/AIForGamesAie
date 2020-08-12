@@ -117,14 +117,13 @@ bool Collider::RaycastCheckAgainstSolids(float direction, Rectangle target, Leve
 	{
 		xCurrent += move.x;
 		yCurrent += move.y;
-		checks++;
 
 		if (CheckCollisionPointRec({ xCurrent,yCurrent }, target))
 		{
 			return true;
 		}
 
-		auto walls = level->GetSolids({ xCurrent,yCurrent,1,1 }, {0,0});
+		auto walls = level->GetSolids({ 0,0,3,3 }, {xCurrent,yCurrent});
 
 		for (auto const& rec : walls)
 		{
