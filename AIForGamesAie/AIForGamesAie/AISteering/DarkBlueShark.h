@@ -5,6 +5,13 @@ class DarkBlueShark : public Agent
 {
 public:
 
+	enum SharkState
+	{
+		Movement,
+		Attack
+	};
+
+
 	DarkBlueShark(LevelState* level);
 	virtual ~DarkBlueShark();
 
@@ -17,6 +24,8 @@ public:
 
 protected:
 private:
+
+	DarkBlueShark::SharkState m_currentState = SharkState::Movement;
 };
 
 

@@ -1,4 +1,5 @@
 #include "Collider.h"
+#include "Numbers.h"
 #include "GameObject.h"
 
 Collider::Collider()
@@ -17,7 +18,10 @@ Rectangle Collider::GetBBox()
 {
 	if (m_parent == nullptr) return {-4,-4,1,1};
 
-	return {m_parent->GetPosition().x - m_parent->GetOrigin().x, m_parent->GetPosition().y - m_parent->GetOrigin().y,(float)m_boxWidth,(float)m_boxHeight};
+	Rectangle rect = {0,0,(float)m_boxWidth,(float)m_boxHeight };
+	
+	return Numbers::CenterRectangle(rect, m_parent->GetPosition());
+	//return {m_parent->GetPosition().x - m_parent->GetOrigin().x, m_parent->GetPosition().y - m_parent->GetOrigin().y,(float)m_boxWidth,(float)m_boxHeight};
 }
 
 

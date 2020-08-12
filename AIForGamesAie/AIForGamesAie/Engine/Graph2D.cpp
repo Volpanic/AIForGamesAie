@@ -176,7 +176,7 @@ Graph2D::Node* Graph2D::GetRandomNode()
 {
 	if (!m_nodes.empty())
 	{
-		return m_nodes[GetRandomValue(0, m_nodes.size())];
+		return m_nodes[GetRandomValue(0, m_nodes.size()-1)];
 	}
 
 	return nullptr;

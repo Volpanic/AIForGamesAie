@@ -5,17 +5,18 @@
 #include "Path.h"
 #include "FollowPathBehavior.h"
 #include "WanderBehaviour.h"
+#include "Numbers.h"
 
 DarkBlueShark::DarkBlueShark(LevelState* level) : Agent::Agent(level)
 {
 	SetOrigin(11, 6);
 	m_collider = new Collider();
-	m_collider->Setup(this, 16, 10);
+	m_collider->Setup(this, 14, 8);
 
 
 	AddComponent<Drawable>(new Drawable(m_level->GetResources()->GetTexture("spr_dark_blue_shark.png"), 27, 13));
 
-	SetFriction(4.0f);
+	SetFriction(90.0f);
 	//SetBehaviour(new WanderBehaviour(250));
 }
 
@@ -28,22 +29,35 @@ void DarkBlueShark::Update(float deltaTime)
 {
 	Agent::Update(deltaTime);
 
-	if (m_behaviour == nullptr)
+	switch (m_currentState)
 	{
-		auto nearest = m_level->GetGraph()->GetNearestNode(m_position);
-		auto randNode = m_level->GetGraph()->GetRandomNode();
-
-		auto nodeList = m_level->GetGraph()->ForEachAStar(nearest,randNode,NULL);
-
-		std::vector<Vector2> path;
-
-		for (auto const& node : nodeList)
+		case 0:
 		{
-			path.push_back(node->data);
-		}
+			if (m_behaviour == nullptr)
+			{
+				auto nearest = m_level->GetGraph()->GetNearestNode(m_position);
+				auto randNode = m_level->GetGraph()->GetRandomNode();
 
-		SetBehaviour(new FollowPathBehavior(new Path(path),50));
+				auto nodeList = m_level->GetGraph()->ForEachAStar(nearest, randNode, NULL);
+
+				std::vector<Vector2> path;
+
+				for (auto const& node : nodeList)
+				{
+					path.push_back(node->data);
+				}
+
+				SetBehaviour(new FollowPathBehavior(new Path(path), 50));
+			}
+
+			if (m_velocity.x != 0)
+			{
+				m_scale.x = Numbers::Sign<float>(m_velocity.x);
+			}
+			break;
+		}
 	}
+
 }
 
 void DarkBlueShark::Draw()

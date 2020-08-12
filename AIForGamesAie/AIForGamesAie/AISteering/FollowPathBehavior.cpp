@@ -49,7 +49,7 @@ void FollowPathBehavior::Update(Agent* obj, float deltaTime)
 
 bool FollowPathBehavior::MoveTowards(Agent* obj,Vector2 target,float deltaTime)
 {
-	Vector2 heading = Vector2Add(obj->GetPosition(), obj->GetPosition());
+	Vector2 heading = Vector2Add(obj->GetPosition(), target);
 	Vector2 dirvec = Vector2Subtract(target, obj->GetPosition());
 
 	float dir = atan2(dirvec.y, dirvec.x);
@@ -58,7 +58,7 @@ bool FollowPathBehavior::MoveTowards(Agent* obj,Vector2 target,float deltaTime)
 
 	obj->ApplyForce(Vector2Scale(force, m_speed));
 
-	if (Vector2Distance(obj->GetPosition(), target) < (obj->GetCollider().BBoxWidth()))
+	if (Vector2Distance(obj->GetPosition(), target) < (obj->GetCollider().BBoxWidth()*2))
 	{
 		return true;
 	}

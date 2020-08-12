@@ -263,9 +263,26 @@ void LevelEditorState::Draw()
 				m_loadMenuOpen = true;
 			}
 
-			if (ImGui::MenuItem("Run"))
+			ImGui::Separator();
+
+			if (ImGui::MenuItem("Run File"))
 			{
 				m_runMenuOpen = true;
+			}
+
+			if (ImGui::MenuItem("Run This"))
+			{
+				SaveMap("temp");
+
+				m_runMenuOpen = false;
+
+				m_gameRunning = true;
+				LevelState* newLevel = new LevelState(m_app, "Rooms\\temp.xml", m_objectFactory);
+				m_app->GetGameStateManager()->SetState("Level", newLevel);
+				m_app->GetGameStateManager()->PushState("Level");
+				
+				//Deletes the temp file.
+				remove("Rooms\\temp.xml");
 			}
 
 			ImGui::EndMenu();
