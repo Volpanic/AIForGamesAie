@@ -6,6 +6,7 @@
 #include "FollowPathBehavior.h"
 #include "WanderBehaviour.h"
 #include "Numbers.h"
+#include "raymath.h"
 
 DarkBlueShark::DarkBlueShark(LevelState* level) : Agent::Agent(level)
 {
@@ -31,7 +32,7 @@ void DarkBlueShark::Update(float deltaTime)
 
 	switch (m_currentState)
 	{
-		case 0:
+		case SharkState::Movement:
 		{
 			if (m_behaviour == nullptr)
 			{
@@ -52,12 +53,45 @@ void DarkBlueShark::Update(float deltaTime)
 
 			if (m_velocity.x != 0)
 			{
-				m_scale.x = Numbers::Sign<float>(m_velocity.x);
+				//m_scale.x = Numbers::Sign<float>(m_velocity.x);
+				//m_scale.y = m_scale.x;
+			}
+
+			//Check if can see player
+			m_checkCanSeePlayerTimer += deltaTime;
+
+			//Check every half second, opti.
+			if (m_checkCanSeePlayerTimer >= 0.5f)
+			{
+				auto player = m_level->GetObjectTracker()->First<PlayerFish>();
+				Vector2 newDirec = Vector2Subtract(player->GetPosition(), m_position);
+				if (m_collider->RaycastCheckAgainstSolids(atan2(newDirec.y, newDirec.x) * RAD2DEG, player->GetCollider().GetBBox(), m_level))
+				{
+					m_currentState = SharkState::Attack;
+					Vector2 norm = Vector2Normalize(newDirec);
+					m_velocity.x = norm.x * 200;
+					m_velocity.y = norm.y * 200;
+					std::cout << "Found" << std::endl;
+				}
+				m_checkCanSeePlayerTimer = 0.0f;
+			}
+
+			break;
+		}
+
+		case SharkState::Attack:
+		{
+			m_checkCanSeePlayerTimer += deltaTime;
+			if (m_checkCanSeePlayerTimer >= 1.5f)
+			{
+				m_currentState = SharkState::Movement;
+				m_checkCanSeePlayerTimer = 0.0f;
 			}
 			break;
 		}
 	}
-
+	m_rotation = atan2(m_velocity.y, m_velocity.x);
+	m_rotation = Clamp(m_rotation, -45, 45);
 }
 
 void DarkBlueShark::Draw()

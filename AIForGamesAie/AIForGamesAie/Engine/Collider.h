@@ -3,6 +3,7 @@
 #include <list>
 
 class GameObject;
+class LevelState;
 
 class Collider
 {
@@ -29,6 +30,8 @@ public:
 	bool CollideAt(std::list<Rectangle> rects, const Vector2& position);
 	bool CollideAt(Collider coll, const Vector2& position);
 	bool CollideAt(std::list<Collider> colls, const Vector2& position);
+
+	bool RaycastCheckAgainstSolids(float direction, Rectangle target, LevelState* level);
 
 	void DrawCollider();
 

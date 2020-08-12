@@ -1,6 +1,7 @@
 #include "Collider.h"
 #include "Numbers.h"
 #include "GameObject.h"
+#include "LevelState.h"
 
 Collider::Collider()
 {
@@ -98,6 +99,39 @@ bool Collider::CollideAt(std::list<Collider> colls, const Vector2& position)
 		if (CollideAt(coll, position))
 		{
 			return true;
+		}
+	}
+	return false;
+}
+
+bool Collider::RaycastCheckAgainstSolids(float direction, Rectangle target, LevelState* level)
+{
+	float xCurrent = m_parent->GetPosition().x;
+	float yCurrent = m_parent->GetPosition().y;
+	Vector2 move = Vector2Normalize(Vector2Subtract({ target.x,target.y }, m_parent->GetPosition()));
+	
+	float checks = 0;
+	float maxDistence = Vector2Distance({ target.x + (target.width / 2),target.y + (target.height / 2) }, {xCurrent,yCurrent});
+
+	while (checks < maxDistence)
+	{
+		xCurrent += move.x;
+		yCurrent += move.y;
+		checks++;
+
+		if (CheckCollisionPointRec({ xCurrent,yCurrent }, target))
+		{
+			return true;
+		}
+
+		auto walls = level->GetSolids({ xCurrent,yCurrent,1,1 }, {0,0});
+
+		for (auto const& rec : walls)
+		{
+			if (CheckCollisionPointRec({ xCurrent,yCurrent }, rec))
+			{
+				return false;
+			}
 		}
 	}
 	return false;
