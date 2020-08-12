@@ -12,12 +12,12 @@
 #include "tinyxml2.h"
 #include "imgui.h"
 
-//Ungodly huge file
-
+//Un-godly huge file
 LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(app)
 {
 	m_objectTracker = new ObjectTracker();
 	m_camera.zoom = 1;
+	m_camera.target =  Vector2Subtract(m_camera.offset, {m_app->GetGameWidth()/2.0f,m_app->GetGameHeight()/2.0f});
 	m_levelMap = new LevelMap(20, 12, app);
 
 	m_graphEditor = new Graph2DEditor(this);
@@ -70,30 +70,9 @@ Vector2 LevelEditorState::GetWorldMousePos()
 	}
 }
 
-void LevelEditorState::FloodFillTiles(int x, int y, int value, int targetValue)
+void LevelEditorState::FloodFillTiles(int x, int y,  int value, int targetValue)
 {
-
-	//if (!m_levelMap->WithinGrid(x, y))
-	//{
-	//	return;
-	//}
-
-	//if (m_levelMap->Get(x, y) == value)
-	//{
-	//	return;
-	//}
-
-	//if (m_levelMap->Get(x, y) != targetValue)
-	//{
-	//	return;
-	//}
-
-	//m_levelMap->Set(x, y, value);
-
-	//FloodFillTiles(x - 1, y, value, targetValue);
-	//FloodFillTiles(x + 1, y, value, targetValue);
-	//FloodFillTiles(x, y - 1, value, targetValue);
-	//FloodFillTiles(x, y + 1, value, targetValue);
+	m_levelMap->FloodFillTiles(x,y,m_selectedTileLayer,value,targetValue);
 }
 
 void LevelEditorState::Update(float deltaTime)
@@ -197,8 +176,8 @@ void LevelEditorState::Update(float deltaTime)
 					{
 						if (m_levelMap->WithinGrid((int)gridPos.x, (int)gridPos.y))
 						{
-							//int floodTarget = m_levelMap->Get((int)gridPos.x, (int)gridPos.y);
-							//FloodFillTiles((int)gridPos.x, (int)gridPos.y,1,floodTarget);
+							int floodTarget = m_levelMap->Get(m_selectedTileLayer,(int)gridPos.x, (int)gridPos.y);
+							FloodFillTiles((int)gridPos.x, (int)gridPos.y,m_selectedTile,floodTarget);
 						}
 					}
 
@@ -376,6 +355,7 @@ void LevelEditorState::Draw()
 					{
 						m_runMenuOpen = false;
 
+						m_gameRunning = true;
 						LevelState* newLevel = new LevelState(m_app, item.generic_string(), m_objectFactory);
 						m_app->GetGameStateManager()->SetState("Level",newLevel);
 						m_app->GetGameStateManager()->PushState("Level");
@@ -504,6 +484,16 @@ void LevelEditorState::EndDraw()
 				if (ImGui::Button("Load Map"))
 				{
 					m_loadMenuOpen = true;
+				}
+
+				if (m_gameRunning)
+				{
+					if (ImGui::Button("Stop Run"))
+					{
+						m_app->GetGameStateManager()->PopState();
+						m_gameRunning = false;
+					}
+					ImGui::Text(("FPS: " + std::to_string(GetFPS())).c_str());
 				}
 
 				ImGui::EndTabItem();

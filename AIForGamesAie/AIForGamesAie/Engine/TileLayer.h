@@ -24,7 +24,11 @@ public:
 	void SetTile(int gridPosition, int tileIndex);
 	void SetTile(Vector2 gridPosition, Vector2 tileIndex);
 	void SetTile(int gridPosition, Vector2 tileIndex);
+	void FloodFillTiles(int x, int y, int layer, int targetValue);
 	int GetSize() { return m_tileLayerData->GetSize(); };
+
+	int Get(int pos);
+	int Get(int x, int y);
 
 	void SetName(const char* newName);
 	const char* GetName();

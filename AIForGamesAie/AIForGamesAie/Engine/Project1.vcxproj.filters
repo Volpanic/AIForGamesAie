@@ -40,9 +40,6 @@
     <ClCompile Include="Path.cpp">
       <Filter>Resource Files\Structures</Filter>
     </ClCompile>
-    <ClCompile Include="Graph2D.cpp">
-      <Filter>Resource Files\LevelUtility</Filter>
-    </ClCompile>
     <ClCompile Include="Graph2DEditor.cpp">
       <Filter>Resource Files\LevelUtility</Filter>
     </ClCompile>
@@ -82,6 +79,9 @@
     <ClCompile Include="TileLayer.cpp">
       <Filter>Resource Files\LevelUtility</Filter>
     </ClCompile>
+    <ClCompile Include="Graph2D.cpp">
+      <Filter>Resource Files\Structures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -107,9 +107,6 @@
     </ClInclude>
     <ClInclude Include="Graph.h">
       <Filter>Resource Files\Structures</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph2D.h">
-      <Filter>Resource Files\LevelUtility</Filter>
     </ClInclude>
     <ClInclude Include="Graph2DEditor.h">
       <Filter>Resource Files\LevelUtility</Filter>
@@ -158,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="TileLayer.h">
       <Filter>Resource Files\LevelUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph2D.h">
+      <Filter>Resource Files\Structures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

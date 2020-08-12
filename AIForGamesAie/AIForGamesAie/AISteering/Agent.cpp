@@ -50,7 +50,7 @@ void Agent::Draw()
 		m_behaviour->Draw(this);
 	}
 
-	DrawLineV(m_position,Vector2Add(m_position,Vector2Scale(m_velocity,0.25f)),DARKGRAY);
+	//DrawLineV(m_position,Vector2Add(m_position,Vector2Scale(m_velocity,0.25f)),DARKGRAY);
 
 	GameObject::Draw();
 }

@@ -21,6 +21,11 @@ LevelMap::LevelMap(int width, int height, Application* app)
 	}
 }
 
+void LevelMap::FloodFillTiles(int x, int y,int layer, int value, int targetValue)
+{
+	m_tileLayers[layer].FloodFillTiles(x,y,value,targetValue);
+}
+
 void LevelMap::Set(int layer,int x, int y, int value)
 {
 	if (m_tileLayers[layer].WithinGrid(x,y))
@@ -40,6 +45,16 @@ void LevelMap::Set(int layer, int pos, int value)
 bool LevelMap::WithinGrid(int pos)
 {
 	return m_tileLayers[0].WithinGrid(pos);
+}
+
+int LevelMap::Get(int layer,int pos)
+{
+	return m_tileLayers[layer].Get(pos);
+}
+
+int LevelMap::Get(int layer,int x, int y)
+{
+	return m_tileLayers[layer].Get(x,y);
 }
 
 bool LevelMap::WithinGrid(int xPos, int yPos)

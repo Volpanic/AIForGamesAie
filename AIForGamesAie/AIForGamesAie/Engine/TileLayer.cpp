@@ -92,6 +92,41 @@ void TileLayer::SetTile(int gridPosition, Vector2 tileIndex)
 	m_tileLayerData->Set(gridPosition, Vector2ToTileIndex(tileIndex));
 }
 
+void TileLayer::FloodFillTiles(int x, int y, int value, int targetValue)
+{
+	if (!WithinGrid(x, y))
+	{
+		return;
+	}
+
+	if (m_tileLayerData->Get(x, y) == value)
+	{
+		return;
+	}
+
+	if (m_tileLayerData->Get(x, y) != targetValue)
+	{
+		return;
+	}
+
+	m_tileLayerData->Set(x, y, value);
+
+	FloodFillTiles(x - 1, y, value, targetValue);
+	FloodFillTiles(x + 1, y, value, targetValue);
+	FloodFillTiles(x, y - 1, value, targetValue);
+	FloodFillTiles(x, y + 1, value, targetValue);
+}
+
+int TileLayer::Get(int pos)
+{
+	return m_tileLayerData->Get(pos);
+}
+
+int TileLayer::Get(int x, int y)
+{
+	return m_tileLayerData->Get(x,y);
+}
+
 void TileLayer::SetName(const char* newName)
 {
 	m_layerName = newName;

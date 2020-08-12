@@ -15,9 +15,12 @@ public:
 	const int TILE_SIZE = 16;
 
 	LevelMap(int width, int height, Application* app);
+	void FloodFillTiles(int x, int y, int layer, int value, int targetValue);
 	void Set(int layer,int x, int y, int value);
 	void Set(int layer,int pos, int value);
 	bool WithinGrid(int pos);
+	int Get(int layer,int pos);
+	int Get(int layer,int x, int y);
 	bool WithinGrid(int xPos, int yPos);
 
 	void SaveMap(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* parentElement);

@@ -28,6 +28,7 @@ public:
 		Fill
 	};
 
+
 	LevelEditorState(Application* app);
 	virtual ~LevelEditorState();
 	virtual void Update(float deltaTime);
@@ -81,6 +82,7 @@ private:
 	bool m_loadMenuOpen = false;
 	bool m_runMenuOpen = false;
 	bool m_saveMenuOpen = false;
+	bool m_gameRunning = false;
 	int m_selectedLoadFile = 0;
 	float m_gameViewZoom = 2;
 
