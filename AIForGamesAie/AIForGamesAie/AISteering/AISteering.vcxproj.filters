@@ -1,85 +1,97 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Resource Files\GameObjects">
-      <UniqueIdentifier>{7807312f-8a0f-456a-81e9-6224cd185283}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\GameObjects\Behaviors">
-      <UniqueIdentifier>{f430775e-8365-4db9-bfdc-8d6f52bfd6c8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\States">
+    <Filter Include="States">
       <UniqueIdentifier>{5d853d8c-3f44-4920-841e-7db1e1ea076f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Application">
+    <Filter Include="Application">
       <UniqueIdentifier>{816fda30-ac8e-4d05-8fe8-7f3e2d7da54c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\GameObjects\Sharks">
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{7807312f-8a0f-456a-81e9-6224cd185283}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Behaviors">
+      <UniqueIdentifier>{f430775e-8365-4db9-bfdc-8d6f52bfd6c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Sharks">
       <UniqueIdentifier>{ff90193b-709b-4c2d-9b71-d62b28b04d44}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LevelEditorState.cpp">
-      <Filter>Resource Files\States</Filter>
+      <Filter>States</Filter>
     </ClCompile>
     <ClCompile Include="Agent.cpp">
-      <Filter>Resource Files\GameObjects</Filter>
+      <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="FollowPathBehavior.cpp">
-      <Filter>Resource Files\GameObjects\Behaviors</Filter>
+      <Filter>GameObjects\Behaviors</Filter>
     </ClCompile>
     <ClCompile Include="SteeringBehaviour.cpp">
-      <Filter>Resource Files\GameObjects\Behaviors</Filter>
+      <Filter>GameObjects\Behaviors</Filter>
     </ClCompile>
     <ClCompile Include="DemoState.cpp">
-      <Filter>Resource Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>States</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Resource Files\Application</Filter>
+      <Filter>Application</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="DarkBlueShark.cpp">
-      <Filter>Resource Files\GameObjects\Sharks</Filter>
+      <Filter>GameObjects\Sharks</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerFish.cpp" />
-    <ClCompile Include="WanderBehaviour.cpp" />
+    <ClCompile Include="PlayerFish.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="WanderBehaviour.cpp">
+      <Filter>GameObjects\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectFactory.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Clam.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LevelEditorState.h">
-      <Filter>Resource Files\States</Filter>
+      <Filter>States</Filter>
     </ClInclude>
     <ClInclude Include="Agent.h">
-      <Filter>Resource Files\GameObjects</Filter>
+      <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Behaviour.h">
-      <Filter>Resource Files\GameObjects\Behaviors</Filter>
+      <Filter>GameObjects\Behaviors</Filter>
     </ClInclude>
     <ClInclude Include="SteeringBehaviour.h">
-      <Filter>Resource Files\GameObjects\Behaviors</Filter>
+      <Filter>GameObjects\Behaviors</Filter>
     </ClInclude>
     <ClInclude Include="FollowPathBehavior.h">
-      <Filter>Resource Files\GameObjects\Behaviors</Filter>
+      <Filter>GameObjects\Behaviors</Filter>
     </ClInclude>
     <ClInclude Include="DemoState.h">
-      <Filter>Resource Files\States</Filter>
+      <Filter>States</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Resource Files\Application</Filter>
+      <Filter>Application</Filter>
     </ClInclude>
     <ClInclude Include="cimgui_impl_raylib.h">
-      <Filter>Resource Files\Application</Filter>
+      <Filter>Application</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="DarkBlueShark.h">
-      <Filter>Resource Files\GameObjects\Sharks</Filter>
+      <Filter>GameObjects\Sharks</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerFish.h" />
-    <ClInclude Include="WanderBehaviour.h" />
+    <ClInclude Include="PlayerFish.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="WanderBehaviour.h">
+      <Filter>GameObjects\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectFactory.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Clam.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

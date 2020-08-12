@@ -27,6 +27,11 @@ public:
 	void FloodFillTiles(int x, int y, int layer, int targetValue);
 	int GetSize() { return m_tileLayerData->GetSize(); };
 
+	void UpdateAutoTile(Vector2 gridPosition);
+	void UpdateAutoTile(int pos);
+	void SetAutoTile(Vector2 gridPosition);
+	void SetAutoTile(int pos);
+
 	int Get(int pos);
 	int Get(int x, int y);
 

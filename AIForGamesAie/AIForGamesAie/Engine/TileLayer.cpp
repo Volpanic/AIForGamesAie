@@ -117,6 +117,22 @@ void TileLayer::FloodFillTiles(int x, int y, int value, int targetValue)
 	FloodFillTiles(x, y + 1, value, targetValue);
 }
 
+void TileLayer::UpdateAutoTile(Vector2 gridPosition)
+{
+}
+
+void TileLayer::UpdateAutoTile(int pos)
+{
+}
+
+void TileLayer::SetAutoTile(Vector2 gridPosition)
+{
+}
+
+void TileLayer::SetAutoTile(int pos)
+{
+}
+
 int TileLayer::Get(int pos)
 {
 	return m_tileLayerData->Get(pos);

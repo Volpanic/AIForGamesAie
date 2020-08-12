@@ -1,163 +1,157 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Resource Files\ApplicationManagers">
+    <Filter Include="ApplicationManagers">
       <UniqueIdentifier>{3be4dac4-f075-4caa-b1cc-54d570db1aba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\GameStates">
-      <UniqueIdentifier>{15c7e4ab-e2d0-4df9-82d2-ec42cb48525f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Structures">
-      <UniqueIdentifier>{fba4070a-1f27-4922-a4cb-e9c25ebe28f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\LevelUtility">
-      <UniqueIdentifier>{a50c6070-60f8-4467-8261-11c784241da5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\GameObjects">
+    <Filter Include="GameObjects">
       <UniqueIdentifier>{2a64c840-a8c1-4487-9c1c-5fc080252004}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\GameObjects\Component">
+    <Filter Include="GameObjects\Component">
       <UniqueIdentifier>{714f23e9-8228-4d44-a5b8-206eeb6af9e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameStates">
+      <UniqueIdentifier>{15c7e4ab-e2d0-4df9-82d2-ec42cb48525f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelUtility">
+      <UniqueIdentifier>{a50c6070-60f8-4467-8261-11c784241da5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Structures">
+      <UniqueIdentifier>{fba4070a-1f27-4922-a4cb-e9c25ebe28f3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
-      <Filter>Resource Files\ApplicationManagers</Filter>
+      <Filter>ApplicationManagers</Filter>
     </ClCompile>
     <ClCompile Include="FadeTransition.cpp">
-      <Filter>Resource Files\ApplicationManagers</Filter>
+      <Filter>ApplicationManagers</Filter>
     </ClCompile>
     <ClCompile Include="MenuState.cpp">
-      <Filter>Resource Files\GameStates</Filter>
+      <Filter>GameStates</Filter>
     </ClCompile>
     <ClCompile Include="LevelState.cpp">
-      <Filter>Resource Files\GameStates</Filter>
+      <Filter>GameStates</Filter>
     </ClCompile>
     <ClCompile Include="Path.cpp">
-      <Filter>Resource Files\Structures</Filter>
+      <Filter>Structures</Filter>
     </ClCompile>
     <ClCompile Include="Graph2DEditor.cpp">
-      <Filter>Resource Files\LevelUtility</Filter>
+      <Filter>LevelUtility</Filter>
     </ClCompile>
     <ClCompile Include="LevelMap.cpp">
-      <Filter>Resource Files\LevelUtility</Filter>
+      <Filter>LevelUtility</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
-      <Filter>Resource Files\ApplicationManagers</Filter>
+      <Filter>ApplicationManagers</Filter>
     </ClCompile>
     <ClCompile Include="SplashState.cpp">
-      <Filter>Resource Files\GameStates</Filter>
+      <Filter>GameStates</Filter>
     </ClCompile>
     <ClCompile Include="GameStateManager.cpp">
-      <Filter>Resource Files\GameStates</Filter>
+      <Filter>GameStates</Filter>
     </ClCompile>
     <ClCompile Include="StateTransition.cpp">
-      <Filter>Resource Files\GameStates</Filter>
+      <Filter>GameStates</Filter>
     </ClCompile>
     <ClCompile Include="Actor.cpp">
-      <Filter>Resource Files\GameObjects</Filter>
+      <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="Collider.cpp">
-      <Filter>Resource Files\GameObjects</Filter>
+      <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="Drawable.cpp">
-      <Filter>Resource Files\GameObjects\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>GameObjects\Component</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectFactory.cpp">
-      <Filter>Resource Files\GameObjects</Filter>
+      <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="ObjectTracker.cpp">
-      <Filter>Resource Files\LevelUtility</Filter>
+      <Filter>LevelUtility</Filter>
     </ClCompile>
     <ClCompile Include="TileLayer.cpp">
-      <Filter>Resource Files\LevelUtility</Filter>
+      <Filter>LevelUtility</Filter>
     </ClCompile>
     <ClCompile Include="Graph2D.cpp">
-      <Filter>Resource Files\Structures</Filter>
+      <Filter>Structures</Filter>
     </ClCompile>
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
-      <Filter>Resource Files\ApplicationManagers</Filter>
+      <Filter>ApplicationManagers</Filter>
     </ClInclude>
     <ClInclude Include="FadeTransition.h">
-      <Filter>Resource Files\ApplicationManagers</Filter>
+      <Filter>ApplicationManagers</Filter>
     </ClInclude>
     <ClInclude Include="IGameState.h">
-      <Filter>Resource Files\GameStates</Filter>
+      <Filter>GameStates</Filter>
     </ClInclude>
     <ClInclude Include="LevelState.h">
-      <Filter>Resource Files\GameStates</Filter>
+      <Filter>GameStates</Filter>
     </ClInclude>
     <ClInclude Include="MenuState.h">
-      <Filter>Resource Files\GameStates</Filter>
+      <Filter>GameStates</Filter>
     </ClInclude>
     <ClInclude Include="Grid.h">
-      <Filter>Resource Files\Structures</Filter>
+      <Filter>Structures</Filter>
     </ClInclude>
     <ClInclude Include="Path.h">
-      <Filter>Resource Files\Structures</Filter>
+      <Filter>Structures</Filter>
     </ClInclude>
     <ClInclude Include="Graph.h">
-      <Filter>Resource Files\Structures</Filter>
+      <Filter>Structures</Filter>
     </ClInclude>
     <ClInclude Include="Graph2DEditor.h">
-      <Filter>Resource Files\LevelUtility</Filter>
+      <Filter>LevelUtility</Filter>
     </ClInclude>
     <ClInclude Include="LevelMap.h">
-      <Filter>Resource Files\LevelUtility</Filter>
+      <Filter>LevelUtility</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
-      <Filter>Resource Files\ApplicationManagers</Filter>
+      <Filter>ApplicationManagers</Filter>
     </ClInclude>
     <ClInclude Include="SplashState.h">
-      <Filter>Resource Files\GameStates</Filter>
+      <Filter>GameStates</Filter>
     </ClInclude>
     <ClInclude Include="GameStateManager.h">
-      <Filter>Resource Files\GameStates</Filter>
+      <Filter>GameStates</Filter>
     </ClInclude>
     <ClInclude Include="StateTransition.h">
-      <Filter>Resource Files\GameStates</Filter>
+      <Filter>GameStates</Filter>
     </ClInclude>
     <ClInclude Include="Actor.h">
-      <Filter>Resource Files\GameObjects</Filter>
+      <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Collider.h">
-      <Filter>Resource Files\GameObjects</Filter>
+      <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Resource Files\GameObjects</Filter>
+      <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>Resource Files\GameObjects\Component</Filter>
+      <Filter>GameObjects\Component</Filter>
     </ClInclude>
     <ClInclude Include="Numbers.h">
-      <Filter>Resource Files\GameObjects\Component</Filter>
+      <Filter>GameObjects\Component</Filter>
     </ClInclude>
     <ClInclude Include="Drawable.h">
-      <Filter>Resource Files\GameObjects\Component</Filter>
+      <Filter>GameObjects\Component</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectFactory.h">
-      <Filter>Resource Files\GameObjects</Filter>
+      <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Debug.h">
-      <Filter>Resource Files\ApplicationManagers</Filter>
+      <Filter>ApplicationManagers</Filter>
     </ClInclude>
     <ClInclude Include="ObjectTracker.h">
-      <Filter>Resource Files\LevelUtility</Filter>
+      <Filter>LevelUtility</Filter>
     </ClInclude>
     <ClInclude Include="TileLayer.h">
-      <Filter>Resource Files\LevelUtility</Filter>
+      <Filter>LevelUtility</Filter>
     </ClInclude>
     <ClInclude Include="Graph2D.h">
-      <Filter>Resource Files\Structures</Filter>
+      <Filter>Structures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

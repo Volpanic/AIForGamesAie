@@ -15,7 +15,7 @@ public:
 	int m_width = 0;
 	int m_height = 0;
 	int m_imageIndex = 0;
-	int m_imageSpeed = 5;
+	int m_imageSpeed = 0;
 
 	Color m_blend = WHITE;
 
