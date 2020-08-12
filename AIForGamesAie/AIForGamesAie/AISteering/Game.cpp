@@ -66,7 +66,7 @@ void Game::Create()
 	else
 	{
 		ObjectFactory* of = new ObjectFactory();
-		m_gameStateManager->SetState("Level", new LevelState(this,"Rooms\\dummy.xml",of));
+		m_gameStateManager->SetState("Level", new LevelState(this,"Rooms\\RoomTestAwNodes.xml",of));
 		m_gameStateManager->PushState("Level");
 		delete of;
 	}

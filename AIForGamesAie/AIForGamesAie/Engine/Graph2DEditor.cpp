@@ -17,7 +17,7 @@ Graph2DEditor::Graph2DEditor(LevelState* levelState) : m_level(levelState)
 
 Graph2DEditor::~Graph2DEditor()
 {
-	delete m_graph;
+
 }
 
 void Graph2DEditor::Update(Vector2 mousePos,float deltaTime)
@@ -268,6 +268,5 @@ void Graph2DEditor::SetGrapth(Graph2D* graph)
 	m_selectedNode = nullptr;
 	m_targetNode = nullptr;
 
-	delete m_graph;
 	m_graph = graph;
 }

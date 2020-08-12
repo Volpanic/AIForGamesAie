@@ -29,10 +29,13 @@ LevelState::LevelState(Application* app, std::string loadFileName,GameObjectFact
 	{
 		std::cout << "Failed to load " + loadFileName << std::endl;
 	}
+
+	std::cout << "AHGHhhhhhhhhhhhhhhhhhh" << std::endl;
 }
 
 LevelState::~LevelState()
 {
+	delete m_graph;
 	delete m_levelMap;
 	delete m_objectTracker;
 }
@@ -69,7 +72,7 @@ void LevelState::SetGraph(Graph2D* newGraph)
 {
 	if (m_graph != nullptr)
 	{
-		delete m_graph;
+		//delete m_graph;
 	}
 	m_graph = newGraph;
 }
@@ -250,8 +253,8 @@ bool LevelState::LoadMap(std::string fileName, GameObjectFactory* factory)
 			nodeListElement = nodeListElement->NextSiblingElement("NodeEntry");
 		}
 
-
-		Graph2D* newGraph = new Graph2D(newNodes);
+		delete m_graph;
+		m_graph = new Graph2D(newNodes);
 		//Connect nodes
 		nodeListPos = 0;
 		for (auto const& node : newNodes)
@@ -265,7 +268,7 @@ bool LevelState::LoadMap(std::string fileName, GameObjectFactory* factory)
 				{
 					if ((nodeOth->data.x == otherPos.x) && (nodeOth->data.y == otherPos.y))
 					{
-						newGraph->AddEdge(node, nodeOth, std::get<1>(connection));
+						m_graph->AddEdge(node, nodeOth, std::get<1>(connection));
 						continue;
 					}
 				}
@@ -273,10 +276,6 @@ bool LevelState::LoadMap(std::string fileName, GameObjectFactory* factory)
 
 			nodeListPos++;
 		}
-
-		//SetGraph
-		delete m_graph;
-		m_graph = newGraph;
 	}
 
 	//Load Entitites

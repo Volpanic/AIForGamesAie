@@ -344,6 +344,7 @@ void LevelEditorState::Draw()
 					{
 						m_loadMenuOpen = false;
 						LoadMap(item.generic_string(), m_objectFactory);
+						m_graphEditor->SetGrapth(m_graph);
 
 						//delete m_graphEditor;
 						//m_graphEditor = new Graph2DEditor(this);
