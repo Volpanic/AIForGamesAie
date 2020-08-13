@@ -69,7 +69,8 @@ void PlayerFish::Update(float deltaTime)
 	MoveX(m_velocity.x * deltaTime);
 	MoveY(m_velocity.y * deltaTime);
 
-	m_level->SetCameraPositoin(Vector2Subtract(m_position, {320/2.0f,180/2.0f}));
+	//m_level->SetCameraPositoin(Vector2Subtract(m_position, {320/2.0f,180/2.0f}));
+	m_level->SetCameraPositoin(Vector2Subtract(m_position, {320.0f,180.0f}));
 
 	m_hitTimer = Numbers::Approach(m_hitTimer,0.0f,deltaTime);
 	if (m_hitTimer == 0)
