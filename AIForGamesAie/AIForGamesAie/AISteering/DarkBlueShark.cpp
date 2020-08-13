@@ -10,7 +10,7 @@
 
 DarkBlueShark::DarkBlueShark(LevelState* level) : Agent::Agent(level)
 {
-	SetOrigin(11, 6);
+	SetOrigin(27/2, 13/2);
 	m_collider = new Collider();
 	m_collider->Setup(this, 14, 8);
 
@@ -39,16 +39,19 @@ void DarkBlueShark::Update(float deltaTime)
 				auto nearest = m_level->GetGraph()->GetNearestNode(m_position);
 				auto randNode = m_level->GetGraph()->GetRandomNode();
 
-				auto nodeList = m_level->GetGraph()->ForEachAStar(nearest, randNode, NULL);
-
-				std::vector<Vector2> path;
-
-				for (auto const& node : nodeList)
+				if (nearest != nullptr && randNode != nullptr)
 				{
-					path.push_back(node->data);
-				}
+					auto nodeList = m_level->GetGraph()->ForEachAStar(nearest, randNode, NULL);
 
-				SetBehaviour(new FollowPathBehavior(new Path(path), 50));
+					std::vector<Vector2> path;
+
+					for (auto const& node : nodeList)
+					{
+						path.push_back(node->data);
+					}
+
+					SetBehaviour(new FollowPathBehavior(new Path(path), 50));
+				}
 			}
 
 			//Check if can see player
@@ -90,10 +93,6 @@ void DarkBlueShark::Update(float deltaTime)
 	{
 		m_scale.x = Numbers::Sign<float>(m_velocity.x);
 	}
-
-	//Rotate
-	m_rotation = atan2(m_velocity.y, m_velocity.x);
-	if (m_scale.x < 0) { m_rotation = 180 - m_rotation; }
 }
 
 void DarkBlueShark::Draw()

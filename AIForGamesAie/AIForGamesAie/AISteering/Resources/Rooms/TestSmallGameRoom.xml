@@ -1,0 +1,1258 @@
+<Root>
+    <Map ClearR="1" ClearG="1" ClearB="1">
+        <TileLayer LayerName="Collision" TilesetTexture="tle_collision.png" LayerWidth="40" LayerHeight="24" LayerVisible="true" CollisionLayer="true">
+            <TileData>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+            </TileData>
+        </TileLayer>
+    </Map>
+    <Nodes>
+        <NodeData>
+            <NodeEntry PositionX="64" PositionY="64">
+                <NodeConnection OtherPositionX="64" OtherPositionY="64" Weight="0"/>
+                <NodeConnection OtherPositionX="64" OtherPositionY="64" Weight="0"/>
+                <NodeConnection OtherPositionX="64" OtherPositionY="96" Weight="32"/>
+                <NodeConnection OtherPositionX="96" OtherPositionY="64" Weight="32"/>
+            </NodeEntry>
+            <NodeEntry PositionX="64" PositionY="96">
+                <NodeConnection OtherPositionX="64" OtherPositionY="64" Weight="32"/>
+                <NodeConnection OtherPositionX="64" OtherPositionY="96" Weight="0"/>
+                <NodeConnection OtherPositionX="64" OtherPositionY="96" Weight="0"/>
+                <NodeConnection OtherPositionX="96" OtherPositionY="96" Weight="32"/>
+            </NodeEntry>
+            <NodeEntry PositionX="96" PositionY="96">
+                <NodeConnection OtherPositionX="64" OtherPositionY="96" Weight="32"/>
+                <NodeConnection OtherPositionX="96" OtherPositionY="96" Weight="0"/>
+                <NodeConnection OtherPositionX="96" OtherPositionY="96" Weight="0"/>
+                <NodeConnection OtherPositionX="96" OtherPositionY="64" Weight="32"/>
+                <NodeConnection OtherPositionX="112" OtherPositionY="112" Weight="22.627417"/>
+                <NodeConnection OtherPositionX="120" OtherPositionY="80" Weight="28.84441"/>
+            </NodeEntry>
+            <NodeEntry PositionX="96" PositionY="64">
+                <NodeConnection OtherPositionX="64" OtherPositionY="64" Weight="32"/>
+                <NodeConnection OtherPositionX="96" OtherPositionY="96" Weight="32"/>
+                <NodeConnection OtherPositionX="96" OtherPositionY="64" Weight="0"/>
+                <NodeConnection OtherPositionX="96" OtherPositionY="64" Weight="0"/>
+                <NodeConnection OtherPositionX="120" OtherPositionY="80" Weight="28.84441"/>
+            </NodeEntry>
+            <NodeEntry PositionX="112" PositionY="112">
+                <NodeConnection OtherPositionX="96" OtherPositionY="96" Weight="22.627417"/>
+                <NodeConnection OtherPositionX="112" OtherPositionY="112" Weight="0"/>
+                <NodeConnection OtherPositionX="112" OtherPositionY="112" Weight="0"/>
+                <NodeConnection OtherPositionX="136" OtherPositionY="104" Weight="25.298222"/>
+            </NodeEntry>
+            <NodeEntry PositionX="120" PositionY="80">
+                <NodeConnection OtherPositionX="96" OtherPositionY="96" Weight="28.84441"/>
+                <NodeConnection OtherPositionX="96" OtherPositionY="64" Weight="28.84441"/>
+                <NodeConnection OtherPositionX="120" OtherPositionY="80" Weight="0"/>
+                <NodeConnection OtherPositionX="120" OtherPositionY="80" Weight="0"/>
+                <NodeConnection OtherPositionX="136" OtherPositionY="104" Weight="28.84441"/>
+            </NodeEntry>
+            <NodeEntry PositionX="136" PositionY="104">
+                <NodeConnection OtherPositionX="112" OtherPositionY="112" Weight="25.298222"/>
+                <NodeConnection OtherPositionX="120" OtherPositionY="80" Weight="28.84441"/>
+                <NodeConnection OtherPositionX="136" OtherPositionY="104" Weight="0"/>
+                <NodeConnection OtherPositionX="136" OtherPositionY="104" Weight="0"/>
+                <NodeConnection OtherPositionX="160" OtherPositionY="104" Weight="24"/>
+            </NodeEntry>
+            <NodeEntry PositionX="160" PositionY="128">
+                <NodeConnection OtherPositionX="160" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="160" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="160" OtherPositionY="104" Weight="24"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="128" Weight="32"/>
+            </NodeEntry>
+            <NodeEntry PositionX="160" PositionY="104">
+                <NodeConnection OtherPositionX="136" OtherPositionY="104" Weight="24"/>
+                <NodeConnection OtherPositionX="160" OtherPositionY="128" Weight="24"/>
+                <NodeConnection OtherPositionX="160" OtherPositionY="104" Weight="0"/>
+                <NodeConnection OtherPositionX="160" OtherPositionY="104" Weight="0"/>
+            </NodeEntry>
+            <NodeEntry PositionX="192" PositionY="128">
+                <NodeConnection OtherPositionX="160" OtherPositionY="128" Weight="32"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="160" Weight="32"/>
+                <NodeConnection OtherPositionX="224" OtherPositionY="128" Weight="32"/>
+            </NodeEntry>
+            <NodeEntry PositionX="192" PositionY="160">
+                <NodeConnection OtherPositionX="192" OtherPositionY="128" Weight="32"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="160" Weight="0"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="160" Weight="0"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="192" Weight="32"/>
+                <NodeConnection OtherPositionX="224" OtherPositionY="128" Weight="45.254833"/>
+            </NodeEntry>
+            <NodeEntry PositionX="192" PositionY="192">
+                <NodeConnection OtherPositionX="192" OtherPositionY="160" Weight="32"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="192" Weight="0"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="192" Weight="0"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="224" Weight="32"/>
+            </NodeEntry>
+            <NodeEntry PositionX="192" PositionY="224">
+                <NodeConnection OtherPositionX="192" OtherPositionY="192" Weight="32"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="224" Weight="0"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="224" Weight="0"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="264" Weight="40"/>
+                <NodeConnection OtherPositionX="152" OtherPositionY="240" Weight="43.081318"/>
+            </NodeEntry>
+            <NodeEntry PositionX="192" PositionY="264">
+                <NodeConnection OtherPositionX="192" OtherPositionY="224" Weight="40"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="264" Weight="0"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="264" Weight="0"/>
+                <NodeConnection OtherPositionX="208" OtherPositionY="296" Weight="35.777088"/>
+            </NodeEntry>
+            <NodeEntry PositionX="208" PositionY="296">
+                <NodeConnection OtherPositionX="192" OtherPositionY="264" Weight="35.777088"/>
+                <NodeConnection OtherPositionX="208" OtherPositionY="296" Weight="0"/>
+                <NodeConnection OtherPositionX="208" OtherPositionY="296" Weight="0"/>
+                <NodeConnection OtherPositionX="248" OtherPositionY="304" Weight="40.792156"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="328" Weight="45.254833"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="336" Weight="40.792156"/>
+            </NodeEntry>
+            <NodeEntry PositionX="248" PositionY="304">
+                <NodeConnection OtherPositionX="208" OtherPositionY="296" Weight="40.792156"/>
+                <NodeConnection OtherPositionX="248" OtherPositionY="304" Weight="0"/>
+                <NodeConnection OtherPositionX="248" OtherPositionY="304" Weight="0"/>
+                <NodeConnection OtherPositionX="264" OtherPositionY="272" Weight="35.777088"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="336" Weight="45.254833"/>
+            </NodeEntry>
+            <NodeEntry PositionX="264" PositionY="272">
+                <NodeConnection OtherPositionX="248" OtherPositionY="304" Weight="35.777088"/>
+                <NodeConnection OtherPositionX="264" OtherPositionY="272" Weight="0"/>
+                <NodeConnection OtherPositionX="264" OtherPositionY="272" Weight="0"/>
+                <NodeConnection OtherPositionX="280" OtherPositionY="240" Weight="35.777088"/>
+            </NodeEntry>
+            <NodeEntry PositionX="280" PositionY="240">
+                <NodeConnection OtherPositionX="264" OtherPositionY="272" Weight="35.777088"/>
+                <NodeConnection OtherPositionX="280" OtherPositionY="240" Weight="0"/>
+                <NodeConnection OtherPositionX="280" OtherPositionY="240" Weight="0"/>
+                <NodeConnection OtherPositionX="304" OtherPositionY="216" Weight="33.941124"/>
+            </NodeEntry>
+            <NodeEntry PositionX="304" PositionY="216">
+                <NodeConnection OtherPositionX="280" OtherPositionY="240" Weight="33.941124"/>
+                <NodeConnection OtherPositionX="304" OtherPositionY="216" Weight="0"/>
+                <NodeConnection OtherPositionX="304" OtherPositionY="216" Weight="0"/>
+                <NodeConnection OtherPositionX="320" OtherPositionY="200" Weight="22.627417"/>
+            </NodeEntry>
+            <NodeEntry PositionX="320" PositionY="200">
+                <NodeConnection OtherPositionX="304" OtherPositionY="216" Weight="22.627417"/>
+                <NodeConnection OtherPositionX="320" OtherPositionY="200" Weight="0"/>
+                <NodeConnection OtherPositionX="320" OtherPositionY="200" Weight="0"/>
+                <NodeConnection OtherPositionX="320" OtherPositionY="160" Weight="40"/>
+                <NodeConnection OtherPositionX="352" OtherPositionY="232" Weight="45.254833"/>
+            </NodeEntry>
+            <NodeEntry PositionX="320" PositionY="160">
+                <NodeConnection OtherPositionX="320" OtherPositionY="200" Weight="40"/>
+                <NodeConnection OtherPositionX="320" OtherPositionY="160" Weight="0"/>
+                <NodeConnection OtherPositionX="320" OtherPositionY="160" Weight="0"/>
+                <NodeConnection OtherPositionX="296" OtherPositionY="128" Weight="40"/>
+                <NodeConnection OtherPositionX="336" OtherPositionY="136" Weight="28.84441"/>
+            </NodeEntry>
+            <NodeEntry PositionX="296" PositionY="128">
+                <NodeConnection OtherPositionX="320" OtherPositionY="160" Weight="40"/>
+                <NodeConnection OtherPositionX="296" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="296" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="264" OtherPositionY="128" Weight="32"/>
+                <NodeConnection OtherPositionX="336" OtherPositionY="136" Weight="40.792156"/>
+            </NodeEntry>
+            <NodeEntry PositionX="264" PositionY="128">
+                <NodeConnection OtherPositionX="296" OtherPositionY="128" Weight="32"/>
+                <NodeConnection OtherPositionX="264" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="264" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="224" OtherPositionY="128" Weight="40"/>
+            </NodeEntry>
+            <NodeEntry PositionX="224" PositionY="128">
+                <NodeConnection OtherPositionX="192" OtherPositionY="128" Weight="32"/>
+                <NodeConnection OtherPositionX="192" OtherPositionY="160" Weight="45.254833"/>
+                <NodeConnection OtherPositionX="264" OtherPositionY="128" Weight="40"/>
+                <NodeConnection OtherPositionX="224" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="224" OtherPositionY="128" Weight="0"/>
+            </NodeEntry>
+            <NodeEntry PositionX="352" PositionY="232">
+                <NodeConnection OtherPositionX="320" OtherPositionY="200" Weight="45.254833"/>
+                <NodeConnection OtherPositionX="352" OtherPositionY="232" Weight="0"/>
+                <NodeConnection OtherPositionX="352" OtherPositionY="232" Weight="0"/>
+                <NodeConnection OtherPositionX="384" OtherPositionY="264" Weight="45.254833"/>
+            </NodeEntry>
+            <NodeEntry PositionX="384" PositionY="264">
+                <NodeConnection OtherPositionX="352" OtherPositionY="232" Weight="45.254833"/>
+                <NodeConnection OtherPositionX="384" OtherPositionY="264" Weight="0"/>
+                <NodeConnection OtherPositionX="384" OtherPositionY="264" Weight="0"/>
+                <NodeConnection OtherPositionX="424" OtherPositionY="280" Weight="43.081318"/>
+            </NodeEntry>
+            <NodeEntry PositionX="424" PositionY="280">
+                <NodeConnection OtherPositionX="384" OtherPositionY="264" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="424" OtherPositionY="280" Weight="0"/>
+                <NodeConnection OtherPositionX="424" OtherPositionY="280" Weight="0"/>
+                <NodeConnection OtherPositionX="456" OtherPositionY="280" Weight="32"/>
+            </NodeEntry>
+            <NodeEntry PositionX="456" PositionY="280">
+                <NodeConnection OtherPositionX="424" OtherPositionY="280" Weight="32"/>
+                <NodeConnection OtherPositionX="456" OtherPositionY="280" Weight="0"/>
+                <NodeConnection OtherPositionX="456" OtherPositionY="280" Weight="0"/>
+                <NodeConnection OtherPositionX="496" OtherPositionY="272" Weight="40.792156"/>
+            </NodeEntry>
+            <NodeEntry PositionX="496" PositionY="272">
+                <NodeConnection OtherPositionX="456" OtherPositionY="280" Weight="40.792156"/>
+                <NodeConnection OtherPositionX="496" OtherPositionY="272" Weight="0"/>
+                <NodeConnection OtherPositionX="496" OtherPositionY="272" Weight="0"/>
+                <NodeConnection OtherPositionX="528" OtherPositionY="248" Weight="40"/>
+            </NodeEntry>
+            <NodeEntry PositionX="528" PositionY="248">
+                <NodeConnection OtherPositionX="496" OtherPositionY="272" Weight="40"/>
+                <NodeConnection OtherPositionX="528" OtherPositionY="248" Weight="0"/>
+                <NodeConnection OtherPositionX="528" OtherPositionY="248" Weight="0"/>
+                <NodeConnection OtherPositionX="560" OtherPositionY="216" Weight="45.254833"/>
+            </NodeEntry>
+            <NodeEntry PositionX="560" PositionY="216">
+                <NodeConnection OtherPositionX="528" OtherPositionY="248" Weight="45.254833"/>
+                <NodeConnection OtherPositionX="560" OtherPositionY="216" Weight="0"/>
+                <NodeConnection OtherPositionX="560" OtherPositionY="216" Weight="0"/>
+                <NodeConnection OtherPositionX="560" OtherPositionY="176" Weight="40"/>
+            </NodeEntry>
+            <NodeEntry PositionX="560" PositionY="176">
+                <NodeConnection OtherPositionX="560" OtherPositionY="216" Weight="40"/>
+                <NodeConnection OtherPositionX="560" OtherPositionY="176" Weight="0"/>
+                <NodeConnection OtherPositionX="560" OtherPositionY="176" Weight="0"/>
+                <NodeConnection OtherPositionX="536" OtherPositionY="144" Weight="40"/>
+            </NodeEntry>
+            <NodeEntry PositionX="536" PositionY="144">
+                <NodeConnection OtherPositionX="560" OtherPositionY="176" Weight="40"/>
+                <NodeConnection OtherPositionX="536" OtherPositionY="144" Weight="0"/>
+                <NodeConnection OtherPositionX="536" OtherPositionY="144" Weight="0"/>
+                <NodeConnection OtherPositionX="496" OtherPositionY="128" Weight="43.081318"/>
+            </NodeEntry>
+            <NodeEntry PositionX="496" PositionY="128">
+                <NodeConnection OtherPositionX="536" OtherPositionY="144" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="496" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="496" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="456" OtherPositionY="112" Weight="43.081318"/>
+            </NodeEntry>
+            <NodeEntry PositionX="456" PositionY="112">
+                <NodeConnection OtherPositionX="496" OtherPositionY="128" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="456" OtherPositionY="112" Weight="0"/>
+                <NodeConnection OtherPositionX="456" OtherPositionY="112" Weight="0"/>
+                <NodeConnection OtherPositionX="416" OtherPositionY="104" Weight="40.792156"/>
+            </NodeEntry>
+            <NodeEntry PositionX="416" PositionY="104">
+                <NodeConnection OtherPositionX="456" OtherPositionY="112" Weight="40.792156"/>
+                <NodeConnection OtherPositionX="416" OtherPositionY="104" Weight="0"/>
+                <NodeConnection OtherPositionX="416" OtherPositionY="104" Weight="0"/>
+                <NodeConnection OtherPositionX="376" OtherPositionY="120" Weight="43.081318"/>
+            </NodeEntry>
+            <NodeEntry PositionX="376" PositionY="120">
+                <NodeConnection OtherPositionX="416" OtherPositionY="104" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="376" OtherPositionY="120" Weight="0"/>
+                <NodeConnection OtherPositionX="376" OtherPositionY="120" Weight="0"/>
+                <NodeConnection OtherPositionX="336" OtherPositionY="136" Weight="43.081318"/>
+            </NodeEntry>
+            <NodeEntry PositionX="336" PositionY="136">
+                <NodeConnection OtherPositionX="320" OtherPositionY="160" Weight="28.84441"/>
+                <NodeConnection OtherPositionX="296" OtherPositionY="128" Weight="40.792156"/>
+                <NodeConnection OtherPositionX="376" OtherPositionY="120" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="336" OtherPositionY="136" Weight="0"/>
+                <NodeConnection OtherPositionX="336" OtherPositionY="136" Weight="0"/>
+            </NodeEntry>
+            <NodeEntry PositionX="152" PositionY="240">
+                <NodeConnection OtherPositionX="192" OtherPositionY="224" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="152" OtherPositionY="240" Weight="0"/>
+                <NodeConnection OtherPositionX="152" OtherPositionY="240" Weight="0"/>
+                <NodeConnection OtherPositionX="136" OtherPositionY="280" Weight="43.081318"/>
+            </NodeEntry>
+            <NodeEntry PositionX="136" PositionY="280">
+                <NodeConnection OtherPositionX="152" OtherPositionY="240" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="136" OtherPositionY="280" Weight="0"/>
+                <NodeConnection OtherPositionX="136" OtherPositionY="280" Weight="0"/>
+                <NodeConnection OtherPositionX="152" OtherPositionY="320" Weight="43.081318"/>
+            </NodeEntry>
+            <NodeEntry PositionX="152" PositionY="320">
+                <NodeConnection OtherPositionX="136" OtherPositionY="280" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="152" OtherPositionY="320" Weight="0"/>
+                <NodeConnection OtherPositionX="152" OtherPositionY="320" Weight="0"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="328" Weight="25.298222"/>
+            </NodeEntry>
+            <NodeEntry PositionX="176" PositionY="328">
+                <NodeConnection OtherPositionX="208" OtherPositionY="296" Weight="45.254833"/>
+                <NodeConnection OtherPositionX="152" OtherPositionY="320" Weight="25.298222"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="328" Weight="0"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="328" Weight="0"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="336" Weight="40.792156"/>
+            </NodeEntry>
+            <NodeEntry PositionX="216" PositionY="336">
+                <NodeConnection OtherPositionX="208" OtherPositionY="296" Weight="40.792156"/>
+                <NodeConnection OtherPositionX="248" OtherPositionY="304" Weight="45.254833"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="328" Weight="40.792156"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="336" Weight="0"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="336" Weight="0"/>
+            </NodeEntry>
+        </NodeData>
+    </Nodes>
+    <Entities>
+        <EntityData>
+            <EntityEntry Type="BrownShark" PositionX="465" PositionY="281"/>
+            <EntityEntry Type="Clam" PositionX="216" PositionY="336"/>
+            <EntityEntry Type="Clam" PositionX="256" PositionY="144"/>
+            <EntityEntry Type="Clam" PositionX="464" PositionY="144"/>
+            <EntityEntry Type="Clam" PositionX="512" PositionY="320"/>
+            <EntityEntry Type="PlayerFish" PositionX="69" PositionY="75"/>
+        </EntityData>
+    </Entities>
+</Root>

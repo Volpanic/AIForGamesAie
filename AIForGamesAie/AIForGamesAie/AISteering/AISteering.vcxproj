@@ -187,6 +187,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
+    <ClCompile Include="BrownShark.cpp" />
     <ClCompile Include="Clam.cpp" />
     <ClCompile Include="DarkBlueShark.cpp" />
     <ClCompile Include="DemoState.cpp" />
@@ -202,6 +203,7 @@
   <ItemGroup>
     <ClInclude Include="Agent.h" />
     <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="BrownShark.h" />
     <ClInclude Include="cimgui_impl_raylib.h" />
     <ClInclude Include="Clam.h" />
     <ClInclude Include="DarkBlueShark.h" />

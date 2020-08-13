@@ -52,6 +52,9 @@
     <ClCompile Include="Clam.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="BrownShark.cpp">
+      <Filter>GameObjects\Sharks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LevelEditorState.h">
@@ -92,6 +95,9 @@
     </ClInclude>
     <ClInclude Include="Clam.h">
       <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="BrownShark.h">
+      <Filter>GameObjects\Sharks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

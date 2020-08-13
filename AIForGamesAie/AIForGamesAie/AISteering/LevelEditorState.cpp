@@ -556,6 +556,8 @@ void LevelEditorState::EndDraw()
 							if (tilePallateMousePos.x != 0.0f) toCells.x = floor(tilePallateMousePos.x / (m_levelMap->TILE_SIZE * tilemapScale));
 							if (tilePallateMousePos.y != 0.0f) toCells.y = floor(tilePallateMousePos.y / (m_levelMap->TILE_SIZE * tilemapScale));
 
+							ImGui::Text( (std::to_string(toCells.x) + "," + std::to_string(toCells.y)).c_str());
+
 							m_selectedTile = (int)((toCells.y * (tex.width/ m_levelMap->TILE_SIZE)) + toCells.x);
 						}
 					}

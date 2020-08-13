@@ -52,6 +52,9 @@ public:
 protected:
 
 private:
+
+	static int AutoTileToTilesetTile(int autoTileValue);
+
 	const int TILE_SIZE = 16;
 	const char* m_tilesetPath;
 	const char* m_layerName = "";

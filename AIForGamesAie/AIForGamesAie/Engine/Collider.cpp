@@ -19,10 +19,10 @@ Rectangle Collider::GetBBox()
 {
 	if (m_parent == nullptr) return {-4,-4,1,1};
 
-	Rectangle rect = {0,0,(float)m_boxWidth,(float)m_boxHeight };
+	Rectangle rect = { m_parent->GetPosition().x,m_parent->GetPosition().y,(float)m_boxWidth,(float)m_boxHeight };
 	
-	return Numbers::CenterRectangle(rect, m_parent->GetPosition());
-	//return {m_parent->GetPosition().x - m_parent->GetOrigin().x, m_parent->GetPosition().y - m_parent->GetOrigin().y,(float)m_boxWidth,(float)m_boxHeight};
+	//return rect;
+	return {m_parent->GetPosition().x - (m_parent->GetOrigin().x/2.0f), m_parent->GetPosition().y - (m_parent->GetOrigin().y/2.0f),(float)m_boxWidth,(float)m_boxHeight};
 }
 
 
@@ -117,6 +117,7 @@ bool Collider::RaycastCheckAgainstSolids(float direction, Rectangle target, Leve
 	{
 		xCurrent += move.x;
 		yCurrent += move.y;
+		checks++;
 
 		if (CheckCollisionPointRec({ xCurrent,yCurrent }, target))
 		{

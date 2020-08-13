@@ -119,6 +119,22 @@ void TileLayer::FloodFillTiles(int x, int y, int value, int targetValue)
 
 void TileLayer::UpdateAutoTile(Vector2 gridPosition)
 {
+	int x = (int)gridPosition.x;
+	int y = (int)gridPosition.y;
+
+	bool north     = (!WithinGrid(x,y-1))?      true : (Get(x,y-1) > 0);
+	bool northEast = (!WithinGrid(x+1, y - 1))? true : (Get(x+1, y - 1) > 0);
+	bool northWest = (!WithinGrid(x-1, y-1))?   true : (Get(x + 1, y - 1) > 0);
+	bool west      = (!WithinGrid(x-1, y))?     true : (Get(x-1, y) > 0);
+	bool east      = (!WithinGrid(x+1, y))?     true : (Get(x+1, y) > 0);
+	bool southWest = (!WithinGrid(x-1, y+1))?   true : (Get(x-1, y+1) > 0);
+	bool south     = (!WithinGrid(x, y+1))?     true : (Get(x, y+1) > 0);
+	bool southEast = (!WithinGrid(x+1, y+1))?   true : (Get(x+1, y+1) > 0);
+
+	int slotValue = (1*northWest) + (2*north) + (4*northEast) + (8*west) +
+		        (16 * east) + (32*southWest) + (64*south) + (128 * southEast);
+
+
 }
 
 void TileLayer::UpdateAutoTile(int pos)
@@ -230,4 +246,69 @@ void TileLayer::SaveLayer(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* pa
 
 	tileLayer->InsertEndChild(tileData);
 	parentElement->InsertEndChild(tileLayer);
+}
+
+int TileLayer::AutoTileToTilesetTile(int autoTileValue)
+{
+	//Un-godly
+	int x = 0;
+	int y = 0;
+
+	switch (autoTileValue)
+	{
+		case 2:  {x = 3; y = 1; break; }
+		case 8:  {x = 0; y = 4; break; }
+		case 10: {x = 7; y = 3; break; }
+		case 11: {x = 2; y = 3; break; }			  	 
+		case 16: {x = 0; y = 4; break; }
+		case 18: {x = 4; y = 3; break; }			  		 
+		case 22: {x = 0; y = 3; break; }
+		case 24: {x = 1; y = 4; break; }
+		case 26: {x = 8; y = 3; break; } // Line 1 Complete 
+
+		case 27: {x = 5; y = 3; break; }
+		case 30: {x = 6; y = 3; break; }
+		case 31: {x = 1; y = 3; break; }
+		case 64: {x = 3; y = 1; break; }
+		case 66: {x = 3; y = 2; break; }
+		case 72: {x = 7; y = 0; break; }
+		case 74: {x = 7; y = 4; break; }
+		case 75: {x = 7; y = 1; break; } // Line 2 Complete
+
+		case 80: {x = 4; y = 0; break; }
+		case 82: {x = 4; y = 4; break; }
+		case 86: {x = 4; y = 1; break; }
+		case 88: {x = 8; y = 0; break; }//--/--
+		case 90: {x = 9; y = 4; break; }
+		case 91: {x = 10; y = 3; break; }
+		case 94: {x = 9; y = 3; break; }
+		case 95: {x = 8; y = 1; break; } // Line 3 Complete //Half
+		
+		case 104: {x = 2; y = 1; break; }
+		case 106: {x = 7; y = 2; break; }
+		case 107: {x = 2; y = 2; break; }
+		case 120: {x = 5; y = 0; break; }
+		case 122: {x = 10; y = 2; break; }
+		case 123: {x = 5; y = 4; break; }
+		case 126: {x = 9; y = 1; break; } // Line 4 Complete
+
+		case 127: {x = 5; y = 1; break; }
+		case 208: {x = 0; y = 1; break; }
+		case 210: {x = 4; y = 2; break; }
+		case 214: {x = 0; y = 2; break; }
+		case 216: {x = 6; y = 0; break; }
+		case 218: {x = 9; y = 2; break; }
+		case 219: {x = 9; y = 0; break; } // Line 5 Complete
+
+		case 222: {x = 6; y = 4; break; }
+		case 223: {x = 6; y = 1; break; }
+		case 248: {x = 1; y = 1; break; }
+		case 250: {x = 8; y = 2; break; }
+		case 251: {x = 5; y = 2; break; }
+		case 254: {x = 6; y = 2; break; }
+		case 255: {x = 1; y = 2; break; } // Line 6 Complete
+
+		case 0: {x = 3; y = 4; break; } // Line 6 Complete
+	}
+	return 0;
 }
