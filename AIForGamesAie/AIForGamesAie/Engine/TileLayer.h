@@ -14,7 +14,7 @@ public:
 	void DrawTile(Vector2 worldPos, int tileIndex);
 	void DrawTile(Vector2 worldPos, Vector2 tileIndex);
 
-	int Vector2ToTileIndex(Vector2& gridPosition);
+	int Vector2ToTileIndex(Vector2 gridPosition);
 	Rectangle GetTileDrawRect(int tileIndex);
 
 	bool WithinGrid(int pos) { return m_tileLayerData->WithinGrid(pos); };
@@ -24,13 +24,14 @@ public:
 	void SetTile(int gridPosition, int tileIndex);
 	void SetTile(Vector2 gridPosition, Vector2 tileIndex);
 	void SetTile(int gridPosition, Vector2 tileIndex);
-	void FloodFillTiles(int x, int y, int layer, int targetValue);
+	void FloodFillTiles(int x, int y, int value, int targetValue, bool autoTile);
+	
 	int GetSize() { return m_tileLayerData->GetSize(); };
 
 	void UpdateAutoTile(Vector2 gridPosition);
-	void UpdateAutoTile(int pos);
-	void SetAutoTile(Vector2 gridPosition);
-	void SetAutoTile(int pos);
+	void SetAutoTile(Vector2 gridPosition, int value);
+
+	void SetAutoTile(int pos, int value);
 
 	int Get(int pos);
 	int Get(int x, int y);
@@ -53,7 +54,9 @@ protected:
 
 private:
 
-	static int AutoTileToTilesetTile(int autoTileValue);
+	int AutoTileToTilesetTile(int autoTileValue);
+
+	int CalculateAutoTileBitmask(int x, int y);
 
 	const int TILE_SIZE = 16;
 	const char* m_tilesetPath;

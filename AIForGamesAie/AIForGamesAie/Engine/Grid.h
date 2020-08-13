@@ -16,6 +16,8 @@ public:
 	bool WithinGrid(int pos);
 	bool WithinGrid(int xPos, int yPos);
 	int PositionToInt(int xPos, int yPos);
+	int IntToPositionX(int pos);
+	int IntToPositionY(int pos);
 
 	int GetWidth() { return m_width; };
 	int GetHeight() { return m_height; };
@@ -94,6 +96,18 @@ template<typename T>
 int Grid<T>::PositionToInt(int xPos, int yPos)
 {
 	return ((yPos * m_width) + xPos);
+}
+
+template<typename T>
+inline int Grid<T>::IntToPositionX(int pos)
+{
+	return pos % m_width;
+}
+
+template<typename T>
+inline int Grid<T>::IntToPositionY(int pos)
+{
+	return pos / m_width;
 }
 
 template<typename T>

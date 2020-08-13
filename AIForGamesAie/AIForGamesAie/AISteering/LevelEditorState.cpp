@@ -72,7 +72,7 @@ Vector2 LevelEditorState::GetWorldMousePos()
 
 void LevelEditorState::FloodFillTiles(int x, int y,  int value, int targetValue)
 {
-	m_levelMap->FloodFillTiles(x,y,m_selectedTileLayer,value,targetValue);
+	m_levelMap->FloodFillTiles(x,y,m_selectedTileLayer,value,targetValue,m_autoTile);
 }
 
 void LevelEditorState::Update(float deltaTime)
@@ -112,7 +112,14 @@ void LevelEditorState::Update(float deltaTime)
 					//Create
 					if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 					{
-						m_levelMap->Set(m_selectedTileLayer,(int)gridPos.x, (int)gridPos.y, m_selectedTile);
+						if(m_autoTile)
+						{
+							m_levelMap->SetAutoTile(m_selectedTileLayer, (int)gridPos.x, (int)gridPos.y, m_selectedTile);
+						}
+						else
+						{
+							m_levelMap->Set(m_selectedTileLayer, (int)gridPos.x, (int)gridPos.y, m_selectedTile);
+						}
 					}
 
 					//Delete
@@ -156,7 +163,14 @@ void LevelEditorState::Update(float deltaTime)
 						{
 							for (int yy = (int)y1; yy < (int)y2; yy++)
 							{
-								m_levelMap->Set(m_selectedTileLayer,xx, yy, (m_placeTileValue == MOUSE_RIGHT_BUTTON)? 0 : m_selectedTile);
+								if (m_autoTile)
+								{
+									m_levelMap->SetAutoTile(m_selectedTileLayer, xx, yy, m_selectedTile);
+								}
+								else
+								{
+									m_levelMap->Set(m_selectedTileLayer, xx, yy, (m_placeTileValue == MOUSE_RIGHT_BUTTON) ? 0 : m_selectedTile);
+								}
 							}
 						}
 					}
@@ -583,6 +597,8 @@ void LevelEditorState::EndDraw()
 				{
 					m_tileState = TilePlacementState::Fill;
 				}
+
+				ImGui::Checkbox("Auto Tile", &m_autoTile);
 
 				ImGui::EndGroup();
 

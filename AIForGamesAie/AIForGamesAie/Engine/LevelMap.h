@@ -15,9 +15,11 @@ public:
 	const int TILE_SIZE = 16;
 
 	LevelMap(int width, int height, Application* app);
-	void FloodFillTiles(int x, int y, int layer, int value, int targetValue);
+	void FloodFillTiles(int x, int y, int layer, int value, int targetValue, bool autoTile);
 	void Set(int layer,int x, int y, int value);
 	void Set(int layer,int pos, int value);
+	void SetAutoTile(int layer, int x, int y, int value);
+	void SetAutoTile(int layer, int pos, int value);
 	bool WithinGrid(int pos);
 	int Get(int layer,int pos);
 	int Get(int layer,int x, int y);

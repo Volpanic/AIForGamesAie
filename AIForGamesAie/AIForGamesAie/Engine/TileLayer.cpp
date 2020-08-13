@@ -37,7 +37,10 @@ void TileLayer::DrawTilesLayer()
 			if (m_tileLayerData != nullptr)
 			{
 				DrawTile({ (float)(xx * TILE_SIZE),(float)(yy * TILE_SIZE) }, m_tileLayerData->Get(xx, yy));
-				//DrawText(std::to_string(m_tileLayerData->Get(xx, yy)).c_str(), (xx * TILE_SIZE), (float)(yy * TILE_SIZE),12,BLACK);
+				if (IsKeyDown(KEY_M))
+				{
+					DrawText(std::to_string(CalculateAutoTileBitmask(xx, yy)).c_str(), (xx * TILE_SIZE), (float)(yy * TILE_SIZE), 8, BLACK);
+				}
 			}
 		}
 	}
@@ -53,21 +56,16 @@ void TileLayer::DrawTile(Vector2 worldPos, Vector2 tileIndex)
 	DrawTile(worldPos,Vector2ToTileIndex(tileIndex));
 }
 
-int TileLayer::Vector2ToTileIndex(Vector2& gridPosition)
+
+int TileLayer::Vector2ToTileIndex(Vector2 gridPosition)
 {
 	return (((int)(gridPosition.y) * m_tilesetWidth) + (int)(gridPosition.x));
 }
 
 Rectangle TileLayer::GetTileDrawRect(int tileIndex)
 {
-	int xx = tileIndex;
-	int yy = 0;
-
-	while (xx >= m_tilesetWidth)
-	{
-		xx -= m_tilesetWidth;
-		yy++;
-	}
+	int xx = tileIndex % m_tilesetWidth;
+	int yy = tileIndex / m_tilesetWidth;
 
 	return {(float)(xx * TILE_SIZE),(float)(yy * TILE_SIZE),(float)(TILE_SIZE),(float)(TILE_SIZE)};
 }
@@ -92,14 +90,14 @@ void TileLayer::SetTile(int gridPosition, Vector2 tileIndex)
 	m_tileLayerData->Set(gridPosition, Vector2ToTileIndex(tileIndex));
 }
 
-void TileLayer::FloodFillTiles(int x, int y, int value, int targetValue)
+void TileLayer::FloodFillTiles(int x, int y, int value, int targetValue, bool autoTile)
 {
 	if (!WithinGrid(x, y))
 	{
 		return;
 	}
 
-	if (m_tileLayerData->Get(x, y) == value)
+	if (!autoTile && m_tileLayerData->Get(x, y) == value)
 	{
 		return;
 	}
@@ -111,10 +109,30 @@ void TileLayer::FloodFillTiles(int x, int y, int value, int targetValue)
 
 	m_tileLayerData->Set(x, y, value);
 
-	FloodFillTiles(x - 1, y, value, targetValue);
-	FloodFillTiles(x + 1, y, value, targetValue);
-	FloodFillTiles(x, y - 1, value, targetValue);
-	FloodFillTiles(x, y + 1, value, targetValue);
+	FloodFillTiles(x - 1, y, value, targetValue, autoTile);
+	FloodFillTiles(x + 1, y, value, targetValue, autoTile);
+	FloodFillTiles(x, y - 1, value, targetValue, autoTile);
+	FloodFillTiles(x, y + 1, value, targetValue, autoTile);
+
+	if (autoTile)
+	{
+		UpdateAutoTile({(float)x,(float)y});
+	}
+}
+
+int TileLayer::CalculateAutoTileBitmask(int x, int y)
+{
+	bool north = (!WithinGrid(x, y - 1)) ? true : (Get(x, y - 1) > 0);
+	bool south = (!WithinGrid(x, y + 1)) ? true : (Get(x, y + 1) > 0);
+	bool east = (!WithinGrid(x + 1, y)) ? true : (Get(x + 1, y) > 0);
+	bool west = (!WithinGrid(x - 1, y)) ? true : (Get(x - 1, y) > 0);
+	bool northEast = north && east;
+	bool northWest = north && west;
+	bool southWest = south && west;
+	bool southEast = south && east;
+
+	return (1 * northWest) + (2 * north) + (4 * northEast) + (8 * west) +
+		(16 * east) + (32 * southWest) + (64 * south) + (128 * southEast);
 }
 
 void TileLayer::UpdateAutoTile(Vector2 gridPosition)
@@ -122,31 +140,62 @@ void TileLayer::UpdateAutoTile(Vector2 gridPosition)
 	int x = (int)gridPosition.x;
 	int y = (int)gridPosition.y;
 
-	bool north     = (!WithinGrid(x,y-1))?      true : (Get(x,y-1) > 0);
-	bool northEast = (!WithinGrid(x+1, y - 1))? true : (Get(x+1, y - 1) > 0);
-	bool northWest = (!WithinGrid(x-1, y-1))?   true : (Get(x + 1, y - 1) > 0);
-	bool west      = (!WithinGrid(x-1, y))?     true : (Get(x-1, y) > 0);
-	bool east      = (!WithinGrid(x+1, y))?     true : (Get(x+1, y) > 0);
-	bool southWest = (!WithinGrid(x-1, y+1))?   true : (Get(x-1, y+1) > 0);
-	bool south     = (!WithinGrid(x, y+1))?     true : (Get(x, y+1) > 0);
-	bool southEast = (!WithinGrid(x+1, y+1))?   true : (Get(x+1, y+1) > 0);
+	
+	int newIndex = AutoTileToTilesetTile(CalculateAutoTileBitmask(x,y));
 
-	int slotValue = (1*northWest) + (2*north) + (4*northEast) + (8*west) +
-		        (16 * east) + (32*southWest) + (64*south) + (128 * southEast);
-
-
+	if (newIndex >= 4)
+	{
+		SetTile(gridPosition,newIndex);
+	}
 }
 
-void TileLayer::UpdateAutoTile(int pos)
+void TileLayer::SetAutoTile(Vector2 gridPosition,int value)
 {
+	SetTile(gridPosition, value);
+	int xl = (int)gridPosition.x - 1;
+	int yl = (int)gridPosition.y - 1;
+
+	for (int xx = xl; xx <= xl + 2; xx++)
+	{
+		for (int yy = yl; yy <= yl + 2; yy++)
+		{
+			//if (xx == xl + 1 && yy == yl + 1)
+			//{
+			//	continue;
+			//}
+
+			if (WithinGrid(xx, yy) && Get(xx,yy) > 0)
+			{
+				UpdateAutoTile({(float)xx,(float)yy});
+			}
+		}
+	}
 }
 
-void TileLayer::SetAutoTile(Vector2 gridPosition)
+void TileLayer::SetAutoTile(int pos, int value)
 {
-}
+	int xx = m_tileLayerData->IntToPositionX(pos);
+	int yy = m_tileLayerData->IntToPositionY(pos);
 
-void TileLayer::SetAutoTile(int pos)
-{
+	SetTile({(float)xx,(float)yy}, value);
+	int xl = xx - 1;
+	int yl = yy - 1;
+
+	for (int xx = xl; xx <= xl + 2; xx++)
+	{
+		for (int yy = yl; yy <= yl + 2; yy++)
+		{
+			//if (xx == xl + 1 && yy == yl + 1)
+			//{
+			//	continue;
+			//}
+
+			if (WithinGrid(xx, yy) && Get(xx, yy) > 0)
+			{
+				UpdateAutoTile({ (float)xx,(float)yy });
+			}
+		}
+	}
 }
 
 int TileLayer::Get(int pos)
@@ -256,8 +305,10 @@ int TileLayer::AutoTileToTilesetTile(int autoTileValue)
 
 	switch (autoTileValue)
 	{
-		case 2:  {x = 3; y = 1; break; }
-		case 8:  {x = 0; y = 4; break; }
+		//case 41: {x = 2; y = 4; break; }
+
+		case 2:  {x = 3; y = 3; break; }
+		case 8:  {x = 2; y = 4; break; }
 		case 10: {x = 7; y = 3; break; }
 		case 11: {x = 2; y = 3; break; }			  	 
 		case 16: {x = 0; y = 4; break; }
@@ -279,7 +330,8 @@ int TileLayer::AutoTileToTilesetTile(int autoTileValue)
 		case 82: {x = 4; y = 4; break; }
 		case 86: {x = 4; y = 1; break; }
 		case 88: {x = 8; y = 0; break; }//--/--
-		case 90: {x = 9; y = 4; break; }
+		case 90: {x = 1; y = 2; break; }
+		//case 90: {x = 8; y = 4; break; }
 		case 91: {x = 10; y = 3; break; }
 		case 94: {x = 9; y = 3; break; }
 		case 95: {x = 8; y = 1; break; } // Line 3 Complete //Half
@@ -308,7 +360,8 @@ int TileLayer::AutoTileToTilesetTile(int autoTileValue)
 		case 254: {x = 6; y = 2; break; }
 		case 255: {x = 1; y = 2; break; } // Line 6 Complete
 
-		case 0: {x = 3; y = 4; break; } // Line 6 Complete
+		case 0: {x = 3; y = 4; break; }
 	}
-	return 0;
+
+	return Vector2ToTileIndex({(float)x,(float)y});
 }

@@ -67,6 +67,7 @@ private:
 		std::string m_tilesetSelected = "";
 		char m_newTileName[32] = "";
 		bool m_openNewTileWindow = false;
+		bool m_autoTile = false;
 		
 		MouseButton m_placeTileValue = MouseButton::MOUSE_LEFT_BUTTON;
 		Vector2 m_tileRectTopleft = { 0,0 };

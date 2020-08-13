@@ -21,9 +21,9 @@ LevelMap::LevelMap(int width, int height, Application* app)
 	}
 }
 
-void LevelMap::FloodFillTiles(int x, int y,int layer, int value, int targetValue)
+void LevelMap::FloodFillTiles(int x, int y,int layer, int value, int targetValue,bool autoTile)
 {
-	m_tileLayers[layer].FloodFillTiles(x,y,value,targetValue);
+	m_tileLayers[layer].FloodFillTiles(x,y,value,targetValue, autoTile);
 }
 
 void LevelMap::Set(int layer,int x, int y, int value)
@@ -39,6 +39,22 @@ void LevelMap::Set(int layer, int pos, int value)
 	if (m_tileLayers[layer].WithinGrid(pos))
 	{
 		m_tileLayers[layer].SetTile(pos, value);
+	}
+}
+
+void LevelMap::SetAutoTile(int layer, int x, int y, int value)
+{
+	if (m_tileLayers[layer].WithinGrid(x, y))
+	{
+		m_tileLayers[layer].SetAutoTile({ (float)x,(float)y},value);
+	}
+}
+
+void LevelMap::SetAutoTile(int layer, int pos, int value)
+{
+	if (m_tileLayers[layer].WithinGrid(pos))
+	{
+		m_tileLayers[layer].SetAutoTile(pos,value);
 	}
 }
 
