@@ -24,51 +24,34 @@
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
                 <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
@@ -78,8 +61,9 @@
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
@@ -96,6 +80,10 @@
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
@@ -114,6 +102,8 @@
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
@@ -132,6 +122,8 @@
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
@@ -151,7 +143,7 @@
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
-                <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
@@ -168,6 +160,9 @@
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
+                <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
@@ -179,31 +174,32 @@
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
-                <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
                 <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
@@ -214,6 +210,8 @@
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
@@ -232,6 +230,8 @@
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
                 <Tile TileValue="1"/>
@@ -244,68 +244,73 @@
                 <Tile TileValue="1"/>
             </TileData>
         </TileLayer>
-        <TileLayer LayerName="Sand" TilesetTexture="tle_sand.png" LayerWidth="20" LayerHeight="12" LayerVisible="true" CollisionLayer="true">
+        <TileLayer LayerName="Willow" TilesetTexture="tle_sand.png" LayerWidth="20" LayerHeight="12" LayerVisible="true" CollisionLayer="true">
             <TileData>
                 <Tile TileValue="23"/>
                 <Tile TileValue="23"/>
+                <Tile TileValue="34"/>
                 <Tile TileValue="23"/>
+                <Tile TileValue="34"/>
+                <Tile TileValue="34"/>
+                <Tile TileValue="34"/>
+                <Tile TileValue="34"/>
+                <Tile TileValue="34"/>
                 <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="16"/>
                 <Tile TileValue="34"/>
                 <Tile TileValue="34"/>
                 <Tile TileValue="34"/>
                 <Tile TileValue="34"/>
                 <Tile TileValue="34"/>
                 <Tile TileValue="34"/>
+                <Tile TileValue="23"/>
                 <Tile TileValue="34"/>
-                <Tile TileValue="34"/>
-                <Tile TileValue="34"/>
-                <Tile TileValue="17"/>
                 <Tile TileValue="23"/>
                 <Tile TileValue="23"/>
                 <Tile TileValue="23"/>
+                <Tile TileValue="24"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="25"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="25"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="25"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="22"/>
                 <Tile TileValue="23"/>
                 <Tile TileValue="23"/>
                 <Tile TileValue="23"/>
-                <Tile TileValue="34"/>
-                <Tile TileValue="34"/>
-                <Tile TileValue="34"/>
+                <Tile TileValue="45"/>
                 <Tile TileValue="35"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
+                <Tile TileValue="36"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
-                <Tile TileValue="22"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="33"/>
+                <Tile TileValue="45"/>
                 <Tile TileValue="23"/>
-                <Tile TileValue="16"/>
-                <Tile TileValue="34"/>
-                <Tile TileValue="34"/>
-                <Tile TileValue="34"/>
-                <Tile TileValue="34"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="24"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
@@ -321,7 +326,8 @@
                 <Tile TileValue="0"/>
                 <Tile TileValue="33"/>
                 <Tile TileValue="34"/>
-                <Tile TileValue="35"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="24"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
@@ -340,6 +346,8 @@
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="24"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
@@ -358,24 +366,8 @@
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="24"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
@@ -394,8 +386,8 @@
                 <Tile TileValue="0"/>
                 <Tile TileValue="11"/>
                 <Tile TileValue="12"/>
-                <Tile TileValue="13"/>
-                <Tile TileValue="0"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="24"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
@@ -414,13 +406,54 @@
                 <Tile TileValue="0"/>
                 <Tile TileValue="22"/>
                 <Tile TileValue="23"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="45"/>
+                <Tile TileValue="13"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="11"/>
+                <Tile TileValue="45"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="23"/>
                 <Tile TileValue="24"/>
                 <Tile TileValue="0"/>
+                <Tile TileValue="25"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="25"/>
+                <Tile TileValue="0"/>
+                <Tile TileValue="22"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="12"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="12"/>
+                <Tile TileValue="12"/>
+                <Tile TileValue="12"/>
+                <Tile TileValue="13"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="11"/>
@@ -429,54 +462,21 @@
                 <Tile TileValue="12"/>
                 <Tile TileValue="12"/>
                 <Tile TileValue="12"/>
+                <Tile TileValue="23"/>
                 <Tile TileValue="12"/>
-                <Tile TileValue="12"/>
-                <Tile TileValue="12"/>
-                <Tile TileValue="28"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="23"/>
+                <Tile TileValue="23"/>
                 <Tile TileValue="23"/>
                 <Tile TileValue="24"/>
                 <Tile TileValue="0"/>
                 <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="0"/>
-                <Tile TileValue="11"/>
-                <Tile TileValue="12"/>
-                <Tile TileValue="12"/>
-                <Tile TileValue="28"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="27"/>
-                <Tile TileValue="12"/>
-                <Tile TileValue="12"/>
-                <Tile TileValue="12"/>
-                <Tile TileValue="12"/>
-                <Tile TileValue="12"/>
-                <Tile TileValue="28"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
-                <Tile TileValue="23"/>
+                <Tile TileValue="22"/>
                 <Tile TileValue="23"/>
                 <Tile TileValue="23"/>
                 <Tile TileValue="23"/>
@@ -490,11 +490,142 @@
         </TileLayer>
     </Map>
     <Nodes>
-        <NodeData/>
+        <NodeData>
+            <NodeEntry PositionX="216" PositionY="144">
+                <NodeConnection OtherPositionX="216" OtherPositionY="144" Weight="0"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="144" Weight="0"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="112" Weight="32"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="104" Weight="56.568542"/>
+                <NodeConnection OtherPositionX="160" OtherPositionY="128" Weight="58.240879"/>
+            </NodeEntry>
+            <NodeEntry PositionX="216" PositionY="112">
+                <NodeConnection OtherPositionX="216" OtherPositionY="144" Weight="32"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="112" Weight="0"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="112" Weight="0"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="72" Weight="40"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="104" Weight="40.792156"/>
+                <NodeConnection OtherPositionX="160" OtherPositionY="128" Weight="58.240879"/>
+                <NodeConnection OtherPositionX="256" OtherPositionY="88" Weight="46.647614"/>
+            </NodeEntry>
+            <NodeEntry PositionX="216" PositionY="72">
+                <NodeConnection OtherPositionX="216" OtherPositionY="112" Weight="40"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="72" Weight="0"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="72" Weight="0"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="40" Weight="32"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="48" Weight="46.647614"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="104" Weight="51.224995"/>
+                <NodeConnection OtherPositionX="256" OtherPositionY="88" Weight="43.081318"/>
+            </NodeEntry>
+            <NodeEntry PositionX="216" PositionY="40">
+                <NodeConnection OtherPositionX="216" OtherPositionY="72" Weight="32"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="40" Weight="0"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="40" Weight="0"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="48" Weight="40.792156"/>
+            </NodeEntry>
+            <NodeEntry PositionX="176" PositionY="48">
+                <NodeConnection OtherPositionX="216" OtherPositionY="72" Weight="46.647614"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="40" Weight="40.792156"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="48" Weight="0"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="48" Weight="0"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="104" Weight="56"/>
+                <NodeConnection OtherPositionX="144" OtherPositionY="80" Weight="45.254833"/>
+                <NodeConnection OtherPositionX="120" OtherPositionY="48" Weight="56"/>
+            </NodeEntry>
+            <NodeEntry PositionX="176" PositionY="104">
+                <NodeConnection OtherPositionX="216" OtherPositionY="144" Weight="56.568542"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="112" Weight="40.792156"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="72" Weight="51.224995"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="48" Weight="56"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="104" Weight="0"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="104" Weight="0"/>
+                <NodeConnection OtherPositionX="160" OtherPositionY="128" Weight="28.84441"/>
+                <NodeConnection OtherPositionX="144" OtherPositionY="80" Weight="40"/>
+                <NodeConnection OtherPositionX="128" OtherPositionY="120" Weight="50.596443"/>
+            </NodeEntry>
+            <NodeEntry PositionX="160" PositionY="128">
+                <NodeConnection OtherPositionX="216" OtherPositionY="144" Weight="58.240879"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="112" Weight="58.240879"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="104" Weight="28.84441"/>
+                <NodeConnection OtherPositionX="160" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="160" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="144" OtherPositionY="80" Weight="50.596443"/>
+                <NodeConnection OtherPositionX="128" OtherPositionY="120" Weight="32.984844"/>
+            </NodeEntry>
+            <NodeEntry PositionX="144" PositionY="80">
+                <NodeConnection OtherPositionX="176" OtherPositionY="48" Weight="45.254833"/>
+                <NodeConnection OtherPositionX="176" OtherPositionY="104" Weight="40"/>
+                <NodeConnection OtherPositionX="160" OtherPositionY="128" Weight="50.596443"/>
+                <NodeConnection OtherPositionX="144" OtherPositionY="80" Weight="0"/>
+                <NodeConnection OtherPositionX="144" OtherPositionY="80" Weight="0"/>
+                <NodeConnection OtherPositionX="128" OtherPositionY="120" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="120" OtherPositionY="48" Weight="40"/>
+                <NodeConnection OtherPositionX="104" OtherPositionY="88" Weight="40.792156"/>
+            </NodeEntry>
+            <NodeEntry PositionX="128" PositionY="120">
+                <NodeConnection OtherPositionX="176" OtherPositionY="104" Weight="50.596443"/>
+                <NodeConnection OtherPositionX="160" OtherPositionY="128" Weight="32.984844"/>
+                <NodeConnection OtherPositionX="144" OtherPositionY="80" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="128" OtherPositionY="120" Weight="0"/>
+                <NodeConnection OtherPositionX="128" OtherPositionY="120" Weight="0"/>
+                <NodeConnection OtherPositionX="104" OtherPositionY="88" Weight="40"/>
+                <NodeConnection OtherPositionX="88" OtherPositionY="128" Weight="40.792156"/>
+            </NodeEntry>
+            <NodeEntry PositionX="120" PositionY="48">
+                <NodeConnection OtherPositionX="176" OtherPositionY="48" Weight="56"/>
+                <NodeConnection OtherPositionX="144" OtherPositionY="80" Weight="40"/>
+                <NodeConnection OtherPositionX="120" OtherPositionY="48" Weight="0"/>
+                <NodeConnection OtherPositionX="120" OtherPositionY="48" Weight="0"/>
+                <NodeConnection OtherPositionX="104" OtherPositionY="88" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="72" OtherPositionY="72" Weight="53.66563"/>
+                <NodeConnection OtherPositionX="88" OtherPositionY="40" Weight="32.984844"/>
+            </NodeEntry>
+            <NodeEntry PositionX="104" PositionY="88">
+                <NodeConnection OtherPositionX="144" OtherPositionY="80" Weight="40.792156"/>
+                <NodeConnection OtherPositionX="128" OtherPositionY="120" Weight="40"/>
+                <NodeConnection OtherPositionX="120" OtherPositionY="48" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="104" OtherPositionY="88" Weight="0"/>
+                <NodeConnection OtherPositionX="104" OtherPositionY="88" Weight="0"/>
+                <NodeConnection OtherPositionX="88" OtherPositionY="128" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="72" OtherPositionY="72" Weight="35.777088"/>
+                <NodeConnection OtherPositionX="88" OtherPositionY="40" Weight="50.596443"/>
+            </NodeEntry>
+            <NodeEntry PositionX="88" PositionY="128">
+                <NodeConnection OtherPositionX="128" OtherPositionY="120" Weight="40.792156"/>
+                <NodeConnection OtherPositionX="104" OtherPositionY="88" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="88" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="88" OtherPositionY="128" Weight="0"/>
+                <NodeConnection OtherPositionX="72" OtherPositionY="72" Weight="58.240879"/>
+            </NodeEntry>
+            <NodeEntry PositionX="72" PositionY="72">
+                <NodeConnection OtherPositionX="120" OtherPositionY="48" Weight="53.66563"/>
+                <NodeConnection OtherPositionX="104" OtherPositionY="88" Weight="35.777088"/>
+                <NodeConnection OtherPositionX="88" OtherPositionY="128" Weight="58.240879"/>
+                <NodeConnection OtherPositionX="72" OtherPositionY="72" Weight="0"/>
+                <NodeConnection OtherPositionX="72" OtherPositionY="72" Weight="0"/>
+                <NodeConnection OtherPositionX="88" OtherPositionY="40" Weight="35.777088"/>
+            </NodeEntry>
+            <NodeEntry PositionX="88" PositionY="40">
+                <NodeConnection OtherPositionX="120" OtherPositionY="48" Weight="32.984844"/>
+                <NodeConnection OtherPositionX="104" OtherPositionY="88" Weight="50.596443"/>
+                <NodeConnection OtherPositionX="72" OtherPositionY="72" Weight="35.777088"/>
+                <NodeConnection OtherPositionX="88" OtherPositionY="40" Weight="0"/>
+                <NodeConnection OtherPositionX="88" OtherPositionY="40" Weight="0"/>
+            </NodeEntry>
+            <NodeEntry PositionX="256" PositionY="88">
+                <NodeConnection OtherPositionX="216" OtherPositionY="112" Weight="46.647614"/>
+                <NodeConnection OtherPositionX="216" OtherPositionY="72" Weight="43.081318"/>
+                <NodeConnection OtherPositionX="256" OtherPositionY="88" Weight="0"/>
+                <NodeConnection OtherPositionX="256" OtherPositionY="88" Weight="0"/>
+            </NodeEntry>
+        </NodeData>
     </Nodes>
     <Entities>
         <EntityData>
-            <EntityEntry Type="PlayerFish" PositionX="36" PositionY="101"/>
+            <EntityEntry Type="DarkBlueShark" PositionX="207" PositionY="41"/>
+            <EntityEntry Type="BrownShark" PositionX="221" PositionY="139"/>
+            <EntityEntry Type="Clam" PositionX="88" PositionY="144"/>
+            <EntityEntry Type="Clam" PositionX="296" PositionY="80"/>
+            <EntityEntry Type="PlayerFish" PositionX="53" PositionY="87"/>
         </EntityData>
     </Entities>
 </Root>

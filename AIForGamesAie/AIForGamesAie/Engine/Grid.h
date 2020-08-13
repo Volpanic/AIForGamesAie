@@ -6,6 +6,7 @@ class Grid
 {
 public:
 	Grid(int width, int height);
+	Grid(int width, int height,T emptyValue);
 	~Grid();
 
 	void Set(int xPos, int yPos, T value);
@@ -41,6 +42,21 @@ Grid<T>::Grid(int width, int height)
 	auto size = width * height;
 	m_gridArray = new T[size];
 }
+
+template<typename T>
+Grid<T>::Grid(int width, int height,T emptyValue)
+{
+	m_width = width;
+	m_height = height;
+	auto size = width * height;
+	m_gridArray = new T[size];
+
+	for (int i = 0; i < size; i++)
+	{
+		m_gridArray[i] = emptyValue;
+	}
+}
+
 
 template<typename T>
 Grid<T>::~Grid()

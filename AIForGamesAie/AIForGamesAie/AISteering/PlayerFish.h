@@ -13,8 +13,11 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 	virtual void DrawInEditor(const Vector2& mousePos);
+	virtual void Hurt();
 
 private:
 	Drawable* m_drawable;
+	float m_hitTimer = 0;
+	bool m_recentlyHit = false;
 };
 

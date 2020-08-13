@@ -26,7 +26,7 @@ protected:
 private:
 
 	float m_checkCanSeePlayerTimer = 0;
-	DarkBlueShark::SharkState m_currentState = SharkState::Movement;
+	DarkBlueShark::SharkState m_currentState = DarkBlueShark::SharkState::Movement;
 };
 
 

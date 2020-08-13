@@ -84,6 +84,14 @@ void DarkBlueShark::Update(float deltaTime)
 				m_currentState = SharkState::Movement;
 				m_checkCanSeePlayerTimer = 0.0f;
 			}
+
+			//Hurt Player
+			auto player = m_level->GetObjectTracker()->First<PlayerFish>();
+			if (player != NULL && m_collider->CollideAt(player->GetCollider(), m_position))
+			{
+				player->Hurt();
+			}
+
 			break;
 		}
 	}

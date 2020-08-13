@@ -2,15 +2,15 @@
 #include <algorithm>
 #include <string>
 
-TileLayer::TileLayer(const char* layerName,const char* tilesetKey,Texture2D& texture, int worldWidth, int worldHeight)
+TileLayer::TileLayer(std::string layerName,const char* tilesetKey,Texture2D& texture, int worldWidth, int worldHeight)
 {
 	m_layerName = layerName;
 	m_tilesetTexture = texture;
 	m_tilesetPath = tilesetKey;
-	m_tilesetWidth = texture.width / TILE_SIZE;
-	m_tilesetHeight = texture.height / TILE_SIZE;
+	m_tilesetWidth = ceil(texture.width / TILE_SIZE);
+	m_tilesetHeight = ceil(texture.height / TILE_SIZE);
 	
-	m_tileLayerData = new Grid<int>(worldWidth, worldHeight);
+	m_tileLayerData = new Grid<int>(worldWidth, worldHeight,0);
 
 	for (int xx = 0; xx < m_tileLayerData->GetWidth(); xx++)
 	{
@@ -36,11 +36,7 @@ void TileLayer::DrawTilesLayer()
 		{
 			if (m_tileLayerData != nullptr)
 			{
-				DrawTile({ (float)(xx * TILE_SIZE),(float)(yy * TILE_SIZE) }, m_tileLayerData->Get(xx, yy));
-				if (IsKeyDown(KEY_M))
-				{
-					DrawText(std::to_string(CalculateAutoTileBitmask(xx, yy)).c_str(), (xx * TILE_SIZE), (float)(yy * TILE_SIZE), 8, BLACK);
-				}
+				DrawTile({(float)(xx * TILE_SIZE),(float)(yy * TILE_SIZE)}, m_tileLayerData->Get(xx, yy));
 			}
 		}
 	}
@@ -97,7 +93,7 @@ void TileLayer::FloodFillTiles(int x, int y, int value, int targetValue, bool au
 		return;
 	}
 
-	if (!autoTile && m_tileLayerData->Get(x, y) == value)
+	if (m_tileLayerData->Get(x, y) == value)
 	{
 		return;
 	}
@@ -213,14 +209,14 @@ void TileLayer::SetName(const char* newName)
 	m_layerName = newName;
 }
 
-const char* TileLayer::GetName()
+std::string TileLayer::GetName()
 {
 	return m_layerName;
 }
 
 void TileLayer::Resize(int newWidth, int newHeight)
 {
-	Grid<int>* newlevelGrid = new Grid<int>(newWidth, newHeight);
+	Grid<int>* newlevelGrid = new Grid<int>(newWidth, newHeight,0);
 
 	for (int xx = 0; xx < m_tileLayerData->GetWidth() && xx < newWidth; xx++)
 	{
@@ -274,7 +270,7 @@ void TileLayer::SaveLayer(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* pa
 {
 	auto tileLayer = level.NewElement("TileLayer");
 
-	tileLayer->SetAttribute("LayerName", m_layerName);
+	tileLayer->SetAttribute("LayerName", m_layerName.c_str());
 	tileLayer->SetAttribute("TilesetTexture", m_tilesetPath);
 	tileLayer->SetAttribute("LayerWidth",m_tileLayerData->GetWidth());
 	tileLayer->SetAttribute("LayerHeight", m_tileLayerData->GetHeight());

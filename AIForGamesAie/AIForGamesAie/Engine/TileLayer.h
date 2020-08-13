@@ -4,11 +4,12 @@
 #include <vector>
 #include <list>
 #include <tinyxml2.h>
+#include <string>
 
 class TileLayer
 {
 public:
-	TileLayer(const char* layerName,const char* tilesetKey,Texture2D& texture, int worldWidth, int worldHeight);
+	TileLayer(std::string layerName,const char* tilesetKey,Texture2D& texture, int worldWidth, int worldHeight);
 	~TileLayer();
 	void DrawTilesLayer();
 	void DrawTile(Vector2 worldPos, int tileIndex);
@@ -37,7 +38,7 @@ public:
 	int Get(int x, int y);
 
 	void SetName(const char* newName);
-	const char* GetName();
+	std::string GetName();
 
 	void Resize(int newWidth, int newHeight);
 	void GetSolids(Rectangle boundingBox, Vector2 position,std::list<Rectangle>& output);
@@ -60,7 +61,7 @@ private:
 
 	const int TILE_SIZE = 16;
 	const char* m_tilesetPath;
-	const char* m_layerName = "";
+	std::string m_layerName = "";
 	Texture2D m_tilesetTexture;
 	Grid<int>* m_tileLayerData = nullptr;
 	bool m_collisionLayer = true;

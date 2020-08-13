@@ -201,6 +201,7 @@ bool LevelState::LoadMap(std::string fileName, GameObjectFactory* factory)
 		m_mapClearColour[2] = mClearB;
 
 		m_levelMap->LoadMap(level, pMap, m_app);
+		
 	}
 
 	//Load Nodes

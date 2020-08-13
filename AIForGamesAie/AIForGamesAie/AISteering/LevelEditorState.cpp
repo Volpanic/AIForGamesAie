@@ -614,7 +614,7 @@ void LevelEditorState::EndDraw()
 					{
 						auto& layer = m_levelMap->GetTileLayer(i);
 
-						auto tree = ImGui::TreeNode(layer.GetName());
+						auto tree = ImGui::TreeNode(layer.GetName().c_str());
 
 						if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_::ImGuiMouseButton_Left) && ImGui::IsItemHovered())
 						{
@@ -677,6 +677,10 @@ void LevelEditorState::EndDraw()
 				m_tilesetSelected = "tle_collision.png";
 				m_openNewTileWindow = false;
 			}
+
+			//center this window when appearing
+			ImVec2 center(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f);
+			ImGui::SetNextWindowPos(center, ImGuiCond_::ImGuiCond_Always, ImVec2(0.5f, 0.5f));
 
 			if (ImGui::BeginPopupModal("OpenNewTileWindow"))
 			{
@@ -765,7 +769,7 @@ void LevelEditorState::EndDraw()
 			ImGui::SetCursorPosX((ImGui::GetWindowSize().x - gameImageSize.x) * 0.5f);
 			ImGui::SetCursorPosY((ImGui::GetWindowSize().y - gameImageSize.y) * 0.08f);
 
-			ImGui::ImageButton((void*)rt.texture.id, gameImageSize, { 0,1 }, { 1,0 },0);
+			ImGui::ImageButton((void*)rt.texture.id, gameImageSize, { 0,1 }, { 1,0 }, 0);
 			
 			//Get mouse pos
 			ImVec2 editorTopLeft = ImGui::GetItemRectMin();

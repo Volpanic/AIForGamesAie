@@ -90,13 +90,13 @@ void LevelMap::LoadMap(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* paren
 {
 	m_tileLayers.clear();
 	tinyxml2::XMLElement* tileLayer = parentElement->FirstChildElement("TileLayer");
+	int width = 1;
+	int height = 1;
 
 	while (tileLayer != nullptr)
 	{
 		const char* layerName = "";
 		const char* texturePath = "";
-		int width = 1;
-		int height = 1;
 
 		bool visible = true;
 		bool collisionLayer = false;
@@ -140,6 +140,8 @@ void LevelMap::LoadMap(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* paren
 		tl.SetName(layerName);
 		m_tileLayers.push_back(tl);
 	}
+
+	Resize(width,height);
 }
 
 int LevelMap::GetSize()

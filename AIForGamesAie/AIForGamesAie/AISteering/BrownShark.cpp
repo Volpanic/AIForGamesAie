@@ -71,8 +71,8 @@ void BrownShark::Update(float deltaTime)
 						m_currentState = SharkState::Attack;
 						Vector2 norm = Vector2Normalize(newDirec);
 
-						m_velocity.x = norm.x * (dist);
-						m_velocity.y = norm.y * (dist);
+						m_velocity.x = norm.x * (dist*2.0f);
+						m_velocity.y = norm.y * (dist*2.0f);
 						std::cout << "Found" << std::endl;
 					}
 				}
@@ -92,6 +92,13 @@ void BrownShark::Update(float deltaTime)
 			{
 				m_currentState = SharkState::Movement;
 				m_checkCanSeePlayerTimer = 0.0f;
+			}
+
+			//Hurt Player
+			auto player = m_level->GetObjectTracker()->First<PlayerFish>();
+			if (player != NULL && m_collider->CollideAt(player->GetCollider(), m_position))
+			{
+				player->Hurt();
 			}
 			break;
 		}

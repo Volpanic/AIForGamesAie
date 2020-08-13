@@ -21,7 +21,6 @@ PlayerFish::~PlayerFish()
 
 void PlayerFish::Update(float deltaTime)
 {
-
 	auto KeyUp = IsKeyDown(KEY_UP);
 	auto KeyDown = IsKeyDown(KEY_DOWN);
 	auto KeyLeft = IsKeyDown(KEY_LEFT);
@@ -71,11 +70,27 @@ void PlayerFish::Update(float deltaTime)
 	MoveY(m_velocity.y * deltaTime);
 
 	m_level->SetCameraPositoin(Vector2Subtract(m_position, {320/2.0f,180/2.0f}));
+
+	m_hitTimer = Numbers::Approach(m_hitTimer,0.0f,deltaTime);
+	if (m_hitTimer == 0)
+	{
+		m_recentlyHit = false;
+	}
 }
 
 void PlayerFish::Draw()
 {
-	Agent::Draw();
+	if (!m_recentlyHit)
+	{
+		Agent::Draw();
+	}
+	else
+	{
+		if (fmod(m_hitTimer,0.10f) <= 0.05f)
+		{
+			Agent::Draw();
+		}
+	}
 }
 
 void PlayerFish::DrawInEditor(const Vector2& mousePos)
@@ -83,4 +98,13 @@ void PlayerFish::DrawInEditor(const Vector2& mousePos)
 	m_position = mousePos;
 	Agent::Draw();
 	DrawRectangleLinesEx(m_collider->GetBBox(), 1 , GREEN);
+}
+
+void PlayerFish::Hurt()
+{
+	if (!m_recentlyHit)
+	{
+		m_recentlyHit = true;
+		m_hitTimer = 1.5f;
+	}
 }
