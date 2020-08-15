@@ -196,8 +196,10 @@
     <ClCompile Include="LevelEditorState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
+    <ClCompile Include="Orca.cpp" />
     <ClCompile Include="PlayerFish.cpp" />
     <ClCompile Include="SteeringBehaviour.cpp" />
+    <ClCompile Include="UnderwaterLevelState.cpp" />
     <ClCompile Include="WanderBehaviour.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -212,8 +214,10 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="LevelEditorState.h" />
     <ClInclude Include="ObjectFactory.h" />
+    <ClInclude Include="Orca.h" />
     <ClInclude Include="PlayerFish.h" />
     <ClInclude Include="SteeringBehaviour.h" />
+    <ClInclude Include="UnderwaterLevelState.h" />
     <ClInclude Include="WanderBehaviour.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -14,6 +14,7 @@ public:
 	virtual void Draw();
 	virtual void DrawInEditor(const Vector2& mousePos);
 
+	bool HasPearl() { return m_hasPearl; };
 private:
 	LevelState* m_level = nullptr;
 	Drawable* m_drawable = nullptr;

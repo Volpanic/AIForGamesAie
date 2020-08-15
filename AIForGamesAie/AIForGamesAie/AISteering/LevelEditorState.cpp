@@ -6,6 +6,7 @@
 #include "FollowPathBehavior.h"
 #include "ObjectFactory.h"
 #include "GameStateManager.h"
+#include "UnderwaterLevelState.h"
 
 #include "ObjectTracker.h"
 
@@ -291,7 +292,7 @@ void LevelEditorState::Draw()
 				m_runMenuOpen = false;
 
 				m_gameRunning = true;
-				LevelState* newLevel = new LevelState(m_app, "Rooms\\temp.xml", m_objectFactory);
+				UnderwaterLevelState* newLevel = new UnderwaterLevelState(m_app, "Rooms\\temp.xml", m_objectFactory);
 				m_app->GetGameStateManager()->SetState("Level", newLevel);
 				m_app->GetGameStateManager()->PushState("Level");
 				
@@ -388,7 +389,7 @@ void LevelEditorState::Draw()
 						m_runMenuOpen = false;
 
 						m_gameRunning = true;
-						LevelState* newLevel = new LevelState(m_app, item.generic_string(), m_objectFactory);
+						UnderwaterLevelState* newLevel = new UnderwaterLevelState(m_app, item.generic_string(), m_objectFactory);
 						m_app->GetGameStateManager()->SetState("Level",newLevel);
 						m_app->GetGameStateManager()->PushState("Level");
 					}

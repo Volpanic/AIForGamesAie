@@ -16,6 +16,6 @@ public:
 private:
 	ImDrawData* m_drawData = nullptr;
 
-	bool m_Editor = true;
+	bool m_Editor = false;
 };
 

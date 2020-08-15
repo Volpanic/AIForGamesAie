@@ -55,6 +55,12 @@
     <ClCompile Include="BrownShark.cpp">
       <Filter>GameObjects\Sharks</Filter>
     </ClCompile>
+    <ClCompile Include="Orca.cpp">
+      <Filter>GameObjects\Sharks</Filter>
+    </ClCompile>
+    <ClCompile Include="UnderwaterLevelState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LevelEditorState.h">
@@ -98,6 +104,12 @@
     </ClInclude>
     <ClInclude Include="BrownShark.h">
       <Filter>GameObjects\Sharks</Filter>
+    </ClInclude>
+    <ClInclude Include="Orca.h">
+      <Filter>GameObjects\Sharks</Filter>
+    </ClInclude>
+    <ClInclude Include="UnderwaterLevelState.h">
+      <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

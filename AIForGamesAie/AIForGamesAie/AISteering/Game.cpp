@@ -7,6 +7,7 @@
 #include "cimgui_impl_raylib.h"
 #include "ObjectFactory.h"
 #include "Numbers.h"
+#include "UnderwaterLevelState.h"
 #include "rlgl.h"
 
 Game::Game(int gameWidth, int gameHeight, int gameZoom) : Application::Application(gameWidth,gameHeight,gameZoom)
@@ -66,7 +67,7 @@ void Game::Create()
 	else
 	{
 		ObjectFactory* of = new ObjectFactory();
-		m_gameStateManager->SetState("Level", new LevelState(this,"Rooms\\RoomTestAwNodes.xml",of));
+		m_gameStateManager->SetState("Level", new UnderwaterLevelState(this,"Rooms\\FinalLevelProgress2.xml",of));
 		m_gameStateManager->PushState("Level");
 		delete of;
 	}

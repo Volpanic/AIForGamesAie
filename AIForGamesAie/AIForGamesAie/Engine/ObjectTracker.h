@@ -31,6 +31,9 @@ public:
 	int Count();
 
 	template<typename T>
+	int Count(std::function<bool(T * object)> process);
+
+	template<typename T>
 	T* First();
 
 	template<typename T>
@@ -84,6 +87,29 @@ int ObjectTracker::Count()
 	}
 
 	return (*m_objectTracker)[typeid(T)].size();
+}
+
+template<typename T>
+int ObjectTracker::Count(std::function<bool(T* object)> process)
+{
+	if (m_objectTracker->find(typeid(T)) == m_objectTracker->end())
+	{
+		//No Entry
+		return -1;
+	}
+
+	int count = 0;
+	auto list = GetAll<T>();
+
+	for (auto const& object : list)
+	{
+		if (process(object))
+		{
+			count++;
+		}
+	}
+
+	return count;
 }
 
 template<typename T>
