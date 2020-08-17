@@ -30,7 +30,7 @@ void Application::Create()
 void Application::Run()
 {
 	InitWindow(m_gameWidth * m_gameZoom, m_gameHeight * m_gameZoom, "Voyage ep");
-	//SetTargetFPS(60);
+	SetTargetFPS(60);
 
 	//Render textures
 	m_gameSurface = LoadRenderTexture(m_gameWidth,m_gameHeight);

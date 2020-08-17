@@ -1,5 +1,6 @@
 #pragma once
 #include "Agent.h"
+#include "Clam.h"
 
 class PlayerFish : public Agent
 {
@@ -19,5 +20,8 @@ private:
 	Drawable* m_drawable;
 	float m_hitTimer = 0;
 	bool m_recentlyHit = false;
+
+	Clam* m_nearestClam = nullptr;
+	float m_nearestClamRotation = 0;
 };
 

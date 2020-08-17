@@ -1,5 +1,6 @@
 #include "PlayerFish.h"
 #include "Numbers.h"
+#include "ObjectTracker.h"
 
 PlayerFish::PlayerFish(LevelState* level) : Agent::Agent(level)
 {
@@ -77,6 +78,12 @@ void PlayerFish::Update(float deltaTime)
 	{
 		m_recentlyHit = false;
 	}
+
+	//Get nearest clam with a pearl
+	m_nearestClam = m_level->GetObjectTracker()->GetNearest<Clam>(this, m_position,[](Clam* object) 
+	{
+		return object->HasPearl();
+	});
 }
 
 void PlayerFish::Draw()
@@ -91,6 +98,17 @@ void PlayerFish::Draw()
 		{
 			Agent::Draw();
 		}
+	}
+
+	if (m_nearestClam != nullptr)
+	{
+		Vector2 direction = Vector2Normalize(Vector2Subtract(m_nearestClam->GetPosition(), m_position));
+		float dir = atan2(direction.y,direction.x);
+		m_nearestClamRotation = Lerp(m_nearestClamRotation,dir,0.08f);
+		//Vector2 arrowPos = {16*direction.x,16*direction.y};
+		Vector2 arrowPos = {0,-16.0f};
+
+		DrawTexturePro(m_level->GetResources()->GetTexture("spr_arrow.png"), { 0,0,14,13 }, { m_position.x + arrowPos.x,m_position.y + arrowPos.y,14,13}, { 14.0f / 2,13.0f / 2 },Numbers::FloorMultiple(m_nearestClamRotation *RAD2DEG,45), WHITE);
 	}
 }
 

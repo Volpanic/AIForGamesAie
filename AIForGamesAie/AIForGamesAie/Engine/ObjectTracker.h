@@ -46,6 +46,9 @@ public:
 	T* GetNearest(GameObject* self, const Vector2& position);
 
 	template<typename T>
+	T* GetNearest(GameObject* self, const Vector2& position, std::function<bool(T * object)> condition);
+
+	template<typename T>
 	bool Exists(T* gameObject);
 protected:
 	
@@ -158,7 +161,7 @@ T* ObjectTracker::GetNearest(GameObject* self, const Vector2& position)
 	GameObject* nearest = nullptr;
 	int dist = 0;
 
-	for (auto const& oldItm : (*m_objectTracker)[self->GetCategory()])
+	for (auto const& oldItm : (*m_objectTracker)[typeid(T)])
 	{
 		if (oldItm == self)
 		{
@@ -180,6 +183,45 @@ T* ObjectTracker::GetNearest(GameObject* self, const Vector2& position)
 		}
 	}
 
+	return dynamic_cast<T*>(nearest);
+}
+
+//Returns the nearest based on a lambda condition.(E.g nearest clam with HasPearl() in the case of the game.)
+template<typename T>
+T* ObjectTracker::GetNearest(GameObject* self, const Vector2& position, std::function<bool(T * object)> condition)
+{
+	GameObject* nearest = nullptr;
+	int dist = 0;
+
+	for (auto const& oldItm : (*m_objectTracker)[typeid(T)])
+	{
+		if (oldItm == self)
+		{
+			continue;
+		}
+
+		if (nearest == nullptr)
+		{
+			if (condition(dynamic_cast<T*>(oldItm)))
+			{
+				nearest = oldItm;
+				dist = Vector2Distance(position, oldItm->GetPosition());
+			}
+		}
+		else
+		{
+			if (condition(dynamic_cast<T*>(oldItm)))
+			{
+				if (Vector2Distance(position, oldItm->GetPosition()) < dist)
+				{
+					nearest = oldItm;
+					dist = Vector2Distance(position, oldItm->GetPosition());
+				}
+			}
+		}
+	}
+
+	if (nearest == nullptr) return nullptr;
 	return dynamic_cast<T*>(nearest);
 }
 
