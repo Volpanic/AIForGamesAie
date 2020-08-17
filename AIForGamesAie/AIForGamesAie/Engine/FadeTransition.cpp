@@ -21,6 +21,7 @@ void FadeTransition::Update(float deltaTime)
 		if (m_tranTimer >= m_fadeTime)
 		{
 			//Change state and fade out
+			m_app->GetGameStateManager()->PopState();
 			m_app->GetGameStateManager()->PushState(m_stateName);
 			m_fadeIn = false;
 		}

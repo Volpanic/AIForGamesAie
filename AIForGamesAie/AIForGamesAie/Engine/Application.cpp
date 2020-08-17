@@ -2,7 +2,6 @@
 #include "raylib.h"
 #include "GameStateManager.h"
 #include "SplashState.h"
-#include "MenuState.h"
 #include "LevelState.h"
 
 Application::Application(int gameWidth, int gameHeight, int gameZoom)

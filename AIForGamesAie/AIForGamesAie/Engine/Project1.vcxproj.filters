@@ -27,9 +27,6 @@
     <ClCompile Include="FadeTransition.cpp">
       <Filter>ApplicationManagers</Filter>
     </ClCompile>
-    <ClCompile Include="MenuState.cpp">
-      <Filter>GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="LevelState.cpp">
       <Filter>GameStates</Filter>
     </ClCompile>
@@ -88,9 +85,6 @@
       <Filter>GameStates</Filter>
     </ClInclude>
     <ClInclude Include="LevelState.h">
-      <Filter>GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuState.h">
       <Filter>GameStates</Filter>
     </ClInclude>
     <ClInclude Include="Grid.h">

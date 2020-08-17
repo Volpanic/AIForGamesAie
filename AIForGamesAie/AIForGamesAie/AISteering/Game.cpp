@@ -9,6 +9,7 @@
 #include "Numbers.h"
 #include "UnderwaterLevelState.h"
 #include "rlgl.h"
+#include "MenuState.h"
 
 Game::Game(int gameWidth, int gameHeight, int gameZoom) : Application::Application(gameWidth,gameHeight,gameZoom)
 {
@@ -23,54 +24,57 @@ Game::~Game()
 void Game::Create()
 {
 	//Change to switch from editor to player ya hear?
-	if (m_Editor)
-	{
-		//ImGui
-		ImGui::CreateContext();
-		ImGui::StyleColorsDark();
-		ImGui_ImplRaylib_Init();
+	//if (m_Editor)
+	//{
+	//	//ImGui
+	//	ImGui::CreateContext();
+	//	ImGui::StyleColorsDark();
+	//	ImGui_ImplRaylib_Init();
 
-		//Build Texture atlas
-		int width;
-		int height;
+	//	//Build Texture atlas
+	//	int width;
+	//	int height;
 
-		ImGuiContext* ctx;
-		ImGuiIO& io = ImGui::GetIO();
-		ImGui::GetIO().DisplaySize = { (float)(GetGameWidth() * m_gameZoom),(float)(GetGameHeight() * m_gameZoom) };
+	//	ImGuiContext* ctx;
+	//	ImGuiIO& io = ImGui::GetIO();
+	//	ImGui::GetIO().DisplaySize = { (float)(GetGameWidth() * m_gameZoom),(float)(GetGameHeight() * m_gameZoom) };
 
-		unsigned char* pixels;
-		io.Fonts->AddFontDefault();
-		io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height, NULL);
+	//	unsigned char* pixels;
+	//	io.Fonts->AddFontDefault();
+	//	io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height, NULL);
 
-		unsigned int texID = rlLoadTexture(pixels, width, height, PixelFormat::UNCOMPRESSED_R8G8B8A8, 1);
+	//	unsigned int texID = rlLoadTexture(pixels, width, height, PixelFormat::UNCOMPRESSED_R8G8B8A8, 1);
 
-		io.Fonts->TexID = (ImTextureID)texID;
+	//	io.Fonts->TexID = (ImTextureID)texID;
 
-		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	//	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
-		ImGui::GetStyle().AntiAliasedLines = false;
-		//ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_WindowBorderSize, -1.0f);
-		//ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_ChildBorderSize, -1.0f);
-		//ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_PopupBorderSize, -1.0f);
-		//ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_FrameBorderSize, -1.0f);
-		ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_FrameRounding, 2.0f);
+	//	ImGui::GetStyle().AntiAliasedLines = false;
+	//	//ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_WindowBorderSize, -1.0f);
+	//	//ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_ChildBorderSize, -1.0f);
+	//	//ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_PopupBorderSize, -1.0f);
+	//	//ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_FrameBorderSize, -1.0f);
+	//	ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_FrameRounding, 2.0f);
 
-		//ImGui
+	//	//ImGui
 
-		m_gameStateManager->SetState("Editor", new LevelEditorState(this));
-		m_gameStateManager->PushState("Editor", new FadeTransition(this, "Editor", 0.25f));
-		SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+	//	m_gameStateManager->SetState("Editor", new LevelEditorState(this));
+	//	m_gameStateManager->PushState("Editor", new FadeTransition(this, "Editor", 0.25f));
+	//	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 
-		UnloadRenderTexture(m_gameSurface);
-		m_gameSurface = LoadRenderTexture(m_gameWidth*2, m_gameHeight*2);
-	}
-	else
-	{
-		ObjectFactory* of = new ObjectFactory();
-		m_gameStateManager->SetState("Level", new UnderwaterLevelState(this,"Rooms\\FinalLevelProgress2.xml",of));
-		m_gameStateManager->PushState("Level");
-		delete of;
-	}
+	//	UnloadRenderTexture(m_gameSurface);
+	//	m_gameSurface = LoadRenderTexture(m_gameWidth*2, m_gameHeight*2);
+	//}
+	//else
+	//{
+	//	ObjectFactory* of = new ObjectFactory();
+	//	m_gameStateManager->SetState("Level", new UnderwaterLevelState(this,"Rooms\\FinalLevelProgress2.xml",of));
+	//	m_gameStateManager->PushState("Level");
+	//	delete of;
+	//}
+
+	m_gameStateManager->SetState("MainMenu", new MenuState(this));
+	m_gameStateManager->PushState("MainMenu");
 }
 
 void Game::StartDraw()

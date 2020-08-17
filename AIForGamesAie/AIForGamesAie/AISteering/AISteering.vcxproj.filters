@@ -61,6 +61,9 @@
     <ClCompile Include="UnderwaterLevelState.cpp">
       <Filter>States</Filter>
     </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LevelEditorState.h">
@@ -109,6 +112,9 @@
       <Filter>GameObjects\Sharks</Filter>
     </ClInclude>
     <ClInclude Include="UnderwaterLevelState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
       <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>

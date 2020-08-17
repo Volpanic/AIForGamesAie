@@ -10,6 +10,14 @@ public:
 		return (T(0) < val) - (val < T(0));
 	}
 
+	template <typename T>
+	static T WrapValue(T val, T min, T max)
+	{
+		T mod = (val - min) % (max - min);
+		if (mod < 0) { return mod + max; }
+		else { return mod + min; }
+	}
+
 	static float Approach(float value, float target, float amount)
 	{
 		if (value < target)

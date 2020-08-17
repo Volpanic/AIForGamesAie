@@ -26,7 +26,7 @@ void PlayerFish::Update(float deltaTime)
 	auto KeyLeft = IsKeyDown(KEY_LEFT);
 	auto KeyRight = IsKeyDown(KEY_RIGHT);
 
-	float drag = 150.0f * deltaTime;
+	float drag = 250.0f * deltaTime;
 
 	if (KeyUp)
 	{
