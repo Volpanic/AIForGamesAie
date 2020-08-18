@@ -27,6 +27,7 @@ public:
 	Vector2 GetScaledMousePos() { return m_app->GetScaledMousePos(); };
 	Graph2D* GetGraph() { return m_graph; };
 	ObjectTracker* GetObjectTracker() { return m_objectTracker; };
+	Rectangle GetCameraRect() { return {m_camera.target.x, m_camera.target.y,(float)m_app->GetGameWidth(),(float)m_app->GetGameHeight()}; };
 
 	void SetGraph(Graph2D* newGraph);
 	void SetMap(LevelMap* newMap);

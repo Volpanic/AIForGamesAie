@@ -36,30 +36,33 @@ void Orca::Update(float deltaTime)
 	{
 		if (m_behaviour == nullptr)
 		{
-			if (m_targetClam == nullptr || m_targetClam == NULL)
+			if (m_targetClam == nullptr)
 			{
-				auto nearestClam = m_level->GetObjectTracker()->GetNearest<Clam>(this, m_position);
-				if (nearestClam->HasPearl())
+				//Get nearest clam with a pearl
+				m_targetClam = m_level->GetObjectTracker()->GetNearest<Clam>(this, m_position, [](Clam* object)
 				{
-					
-				}
+					return object->HasPearl();
+				});
+
 			}
-
-			auto nearest = m_level->GetGraph()->GetNearestNode(m_position);
-			auto randNode = m_level->GetGraph()->GetRandomNode();
-
-			if (nearest != nullptr && randNode != nullptr)
+			else if(m_behaviour == nullptr)
 			{
-				auto nodeList = m_level->GetGraph()->ForEachAStar(nearest, randNode, NULL);
+				auto nearest = m_level->GetGraph()->GetNearestNode(m_position);
+				auto clamNode = m_level->GetGraph()->GetNearestNode(m_targetClam->GetPosition());
 
-				std::vector<Vector2> path;
-
-				for (auto const& node : nodeList)
+				if (nearest != nullptr && clamNode != nullptr)
 				{
-					path.push_back(node->data);
-				}
+					auto nodeList = m_level->GetGraph()->ForEachAStar(nearest, clamNode, NULL);
 
-				SetBehaviour(new FollowPathBehavior(new Path(path), 50));
+					std::vector<Vector2> path;
+
+					for (auto const& node : nodeList)
+					{
+						path.push_back(node->data);
+					}
+
+					SetBehaviour(new FollowPathBehavior(new Path(path), 50));
+				}
 			}
 		}
 

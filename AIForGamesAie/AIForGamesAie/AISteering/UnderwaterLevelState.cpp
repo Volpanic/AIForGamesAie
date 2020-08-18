@@ -30,6 +30,9 @@ void UnderwaterLevelState::Unload()
 void UnderwaterLevelState::Update(float deltaTime)
 {
 	LevelState::Update(deltaTime);
+
+	m_camera.target.x = Clamp(m_camera.target.x,0,m_levelMap->GetWidth() * m_levelMap->TILE_SIZE - (m_app->GetGameWidth()));
+	m_camera.target.y = Clamp(m_camera.target.y,0, m_levelMap->GetHeight() * m_levelMap->TILE_SIZE - (m_app->GetGameHeight()));
 }
 
 void UnderwaterLevelState::Draw()

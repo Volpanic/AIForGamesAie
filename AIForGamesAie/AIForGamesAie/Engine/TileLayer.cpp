@@ -1,6 +1,7 @@
 #include "TileLayer.h"
 #include <algorithm>
 #include <string>
+#include "LevelState.h"
 
 TileLayer::TileLayer(std::string layerName,const char* tilesetKey,Texture2D& texture, int worldWidth, int worldHeight)
 {
@@ -26,13 +27,27 @@ TileLayer::~TileLayer()
 	//delete m_tileLayerData;
 }
 
-void TileLayer::DrawTilesLayer()
+//Get level data to cull drawing
+void TileLayer::DrawTilesLayer(LevelState* level)
 {
 	if (!m_visible) return;
 
-	for (int xx = 0; xx < m_tileLayerData->GetWidth(); xx++)
+	Rectangle rect = level->GetCameraRect();
+
+	//GetBounds
+	int left =   floor(rect.x / TILE_SIZE);
+	int top =    floor(rect.y / TILE_SIZE);
+	int right =  ceil((rect.x + rect.width) / TILE_SIZE);
+	int bottem = ceil((rect.y + rect.height) / TILE_SIZE);
+
+	if (left < 0) left = 0;
+	if (top < 0) top = 0;
+	if (right > m_tileLayerData->GetWidth()) right = m_tileLayerData->GetWidth();
+	if (bottem > m_tileLayerData->GetHeight()) bottem = m_tileLayerData->GetHeight();
+
+	for (int xx = left; xx < right; xx++)
 	{
-		for (int yy = 0; yy < m_tileLayerData->GetHeight(); yy++)
+		for (int yy = top; yy < bottem; yy++)
 		{
 			if (m_tileLayerData != nullptr)
 			{

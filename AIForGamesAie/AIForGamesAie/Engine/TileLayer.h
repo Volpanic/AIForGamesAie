@@ -6,12 +6,14 @@
 #include <tinyxml2.h>
 #include <string>
 
+class LevelState;
+
 class TileLayer
 {
 public:
 	TileLayer(std::string layerName,const char* tilesetKey,Texture2D& texture, int worldWidth, int worldHeight);
 	~TileLayer();
-	void DrawTilesLayer();
+	void DrawTilesLayer(LevelState* level);
 	void DrawTile(Vector2 worldPos, int tileIndex);
 	void DrawTile(Vector2 worldPos, Vector2 tileIndex);
 

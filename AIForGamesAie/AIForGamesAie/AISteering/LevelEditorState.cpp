@@ -261,7 +261,7 @@ void LevelEditorState::Draw()
 	}
 
 	//Draws the level map (Tiles)
-	m_levelMap->Draw();
+	m_levelMap->Draw(this);
 
 	//Main Tab
 	if (ImGui::BeginMainMenuBar())

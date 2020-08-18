@@ -60,7 +60,7 @@ void DemoState::Draw()
 	LevelState::Draw();
 
 	m_path.DrawPath();
-	m_levelMap->Draw();
+	m_levelMap->Draw(this);
 
 	DrawCircleV(GetScaledMousePos(), 4, RED);
 

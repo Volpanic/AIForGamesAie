@@ -62,7 +62,7 @@ void LevelState::Draw()
 	Color clear = { (unsigned char)(m_mapClearColour[0] * 255.0f),(unsigned char)(m_mapClearColour[1] * 255.0f),(unsigned char)(m_mapClearColour[2] * 255.0f),255 };
 	ClearBackground(clear);
 
-	m_levelMap->Draw();
+	m_levelMap->Draw(this);
 	m_objectTracker->Draw();
 
 	EndMode2D();

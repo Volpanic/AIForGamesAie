@@ -8,6 +8,8 @@
 #include "Application.h"
 #include "TileLayer.h"
 
+class LevelState;
+
 class LevelMap
 {
 public:
@@ -36,7 +38,7 @@ public:
 	void Resize(int newWidth, int newHeight);
 
 	std::list<Rectangle> GetSolids(Rectangle worldRec, Vector2 offset);
-	void Draw();
+	void Draw(LevelState* level);
 	Vector2 ToGridPos(const Vector2& pos);
 
 	int GetWidth() { return m_worldWidth; };

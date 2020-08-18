@@ -1,6 +1,7 @@
 #include "LevelMap.h"
 #include "Application.h"
 #include "TileLayer.h"
+#include "LevelState.h"
 
 LevelMap::LevelMap(int width, int height, Application* app)
 {
@@ -172,11 +173,11 @@ std::list<Rectangle> LevelMap::GetSolids(Rectangle boundingBox, Vector2 position
 	return returnList;
 }
 
-void LevelMap::Draw()
+void LevelMap::Draw(LevelState* level)
 {
 	for (int i = 0; i < m_tileLayers.size(); i++)
 	{
-		m_tileLayers[i].DrawTilesLayer();
+		m_tileLayers[i].DrawTilesLayer(level);
 	}
 }
 
