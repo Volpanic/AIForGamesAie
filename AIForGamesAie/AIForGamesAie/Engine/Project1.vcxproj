@@ -110,7 +110,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Imgui\include;$(SolutionDir)\Dependencies\Raylib\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Raylib\include;$(SolutionDir)\Dependencies\Imgui\include;$(SolutionDir)\Dependencies\Raylib\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -124,7 +124,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Imgui\include;$(SolutionDir)\Dependencies\Raylib\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Raylib\include;$(SolutionDir)\Dependencies\Imgui\include;$(SolutionDir)\Dependencies\Raylib\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>raylib.lib;kernel32.lib;user32.lib;gdi32.lib;winmm.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -138,7 +139,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Imgui\include;$(SolutionDir)\Dependencies\Raylib\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Raylib\include;$(SolutionDir)\Dependencies\Imgui\include;$(SolutionDir)\Dependencies\Raylib\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -154,7 +156,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Imgui\include;$(SolutionDir)\Dependencies\Raylib\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Raylib\include;$(SolutionDir)\Dependencies\Imgui\include;$(SolutionDir)\Dependencies\Raylib\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -165,7 +168,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Lib|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Imgui\include;$(SolutionDir)\Dependencies\Raylib\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Raylib\include;$(SolutionDir)\Dependencies\Imgui\include;$(SolutionDir)\Dependencies\Raylib\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>raylib.lib;kernel32.lib;user32.lib;gdi32.lib;winmm.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -178,7 +182,8 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\Raylib\lib</AdditionalLibraryDirectories>
     </Lib>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Imgui\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Raylib\include;$(SolutionDir)\Dependencies\Imgui\include;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>

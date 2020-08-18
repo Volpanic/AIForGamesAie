@@ -114,7 +114,7 @@ bool Collider::RaycastCheckAgainstSolids(float direction, Rectangle target, Leve
 	float maxDistence = Vector2Distance({ target.x + (target.width / 2),target.y + (target.height / 2) }, {xCurrent,yCurrent});
 	if (maxDistence < 2) { return true;}
 
-	while (checks < maxDistence)
+	while (checks < abs(maxDistence))
 	{
 		xCurrent += move.x;
 		yCurrent += move.y;

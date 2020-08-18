@@ -7,6 +7,7 @@
 #include "Clam.h"
 #include "BrownShark.h"
 #include "Orca.h"
+#include "PinkOrca.h"
 
 ObjectFactory::ObjectFactory()
 {
@@ -24,6 +25,7 @@ GameObject* ObjectFactory::CreateGameObject(std::type_index index, LevelState* l
 	if (index == typeid(DarkBlueShark)) return new DarkBlueShark(level);
 	if (index == typeid(BrownShark)) return new BrownShark(level);
 	if (index == typeid(Orca)) return new Orca(level);
+	if (index == typeid(PinkOrca)) return new PinkOrca(level);
 	if (index == typeid(PlayerFish)) return new PlayerFish(level);
 	if (index == typeid(Clam)) return new Clam(level);
 
@@ -35,6 +37,7 @@ GameObject* ObjectFactory::CreateGameObject(std::string index, LevelState* level
 	if (index == "DarkBlueShark") return new DarkBlueShark(level);
 	if (index == "BrownShark") return new BrownShark(level);
 	if (index == "Orca") return new Orca(level);
+	if (index == "PinkOrca") return new PinkOrca(level);
 	if (index == "PlayerFish") return new PlayerFish(level);
 	if (index == "Clam") return new Clam(level);
 
@@ -47,6 +50,7 @@ void ObjectFactory::GetAllGameObjectTypes(std::vector<std::type_index>& output)
 	output.push_back(typeid(DarkBlueShark));
 	output.push_back(typeid(BrownShark));
 	output.push_back(typeid(Orca));
+	output.push_back(typeid(PinkOrca));
 	output.push_back(typeid(PlayerFish));
 	output.push_back(typeid(Clam));
 }

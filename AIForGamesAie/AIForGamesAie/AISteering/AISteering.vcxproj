@@ -110,7 +110,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(SolutionDir)\Engine\lib\$(Configuration)\Engine.lib;$(SolutionDir)\Dependencies\Raylib\lib\raylib.lib;$(SolutionDir)\Dependencies\Imgui\lib\$(Configuration)\ImguiBuild.lib;$(SolutionDir)\Dependencies\TinyXml2\lib\Debug\tinyxml2.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)\Engine\lib\$(Configuration)\Engine.lib;$(SolutionDir)\Dependencies\Raylib\lib\$(Configuration)\raylib.lib;$(SolutionDir)\Dependencies\Imgui\lib\$(Configuration)\ImguiBuild.lib;$(SolutionDir)\Dependencies\TinyXml2\lib\Debug\tinyxml2.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -122,11 +122,12 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Engine;$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Raylib\include;$(SolutionDir)\Dependencies\Imgui\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(SolutionDir)\Engine\lib\$(Configuration)\Engine.lib;$(SolutionDir)\Dependencies\Raylib\lib\raylib.lib;$(SolutionDir)\Dependencies\Imgui\lib\$(Configuration)\ImguiBuild.lib;$(SolutionDir)\Dependencies\TinyXml2\lib\tinyxml2.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)\Engine\lib\$(Configuration)\Engine.lib;$(SolutionDir)\Dependencies\Raylib\lib\$(Configuration)\raylib.lib;$(SolutionDir)\Dependencies\Imgui\lib\$(Configuration)\ImguiBuild.lib;$(SolutionDir)\Dependencies\TinyXml2\lib\tinyxml2.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -140,13 +141,14 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Engine;$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Raylib\include;$(SolutionDir)\Dependencies\Imgui\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(SolutionDir)\Engine\lib\$(Configuration)\Engine.lib;$(SolutionDir)\Dependencies\Raylib\lib\raylib.lib;$(SolutionDir)\Dependencies\Imgui\lib\$(Configuration)\ImguiBuild.lib;$(SolutionDir)\Dependencies\TinyXml2\lib\tinyxml2.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)\Engine\lib\$(Configuration)\Engine.lib;$(SolutionDir)\Dependencies\Raylib\lib\$(Configuration)\raylib.lib;$(SolutionDir)\Dependencies\Imgui\lib\$(Configuration)\ImguiBuild.lib;$(SolutionDir)\Dependencies\TinyXml2\lib\tinyxml2.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -160,29 +162,32 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Engine;$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Raylib\include;$(SolutionDir)\Dependencies\Imgui\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(SolutionDir)\Engine\lib\$(Configuration)\Engine.lib;$(SolutionDir)\Dependencies\Raylib\lib\raylib.lib;$(SolutionDir)\Dependencies\Imgui\lib\$(Configuration)\ImguiBuild.lib;$(SolutionDir)\Dependencies\TinyXml2\lib\tinyxml2.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)\Engine\lib\$(Configuration)\Engine.lib;$(SolutionDir)\Dependencies\Raylib\lib\$(Configuration)\raylib.lib;$(SolutionDir)\Dependencies\Imgui\lib\$(Configuration)\ImguiBuild.lib;$(SolutionDir)\Dependencies\TinyXml2\lib\tinyxml2.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Lib|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)Engine;$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Raylib\include;$(SolutionDir)\Dependencies\Imgui\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)\Engine\lib\$(Configuration)\Engine.lib;$(SolutionDir)\Dependencies\Raylib\lib\raylib.lib;$(SolutionDir)\Dependencies\Imgui\lib\$(Configuration)\ImguiBuild.lib;$(SolutionDir)\Dependencies\TinyXml2\lib\tinyxml2.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)\Engine\lib\$(Configuration)\Engine.lib;$(SolutionDir)\Dependencies\Raylib\lib\$(Configuration)\raylib.lib;$(SolutionDir)\Dependencies\Imgui\lib\$(Configuration)\ImguiBuild.lib;$(SolutionDir)\Dependencies\TinyXml2\lib\tinyxml2.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Lib|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)Engine;$(SolutionDir)\Dependencies\TinyXml2\include;$(SolutionDir)\Dependencies\Raylib\include;$(SolutionDir)\Dependencies\Imgui\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)\Engine\lib\$(Configuration)\Engine.lib;$(SolutionDir)\Dependencies\Raylib\lib\raylib.lib;$(SolutionDir)\Dependencies\Imgui\lib\$(Configuration)\ImguiBuild.lib;$(SolutionDir)\Dependencies\TinyXml2\lib\tinyxml2.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)\Engine\lib\$(Configuration)\Engine.lib;$(SolutionDir)\Dependencies\Raylib\lib\$(Configuration)\raylib.lib;$(SolutionDir)\Dependencies\Imgui\lib\$(Configuration)\ImguiBuild.lib;$(SolutionDir)\Dependencies\TinyXml2\lib\tinyxml2.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -198,6 +203,7 @@
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="Orca.cpp" />
+    <ClCompile Include="PinkOrca.cpp" />
     <ClCompile Include="PlayerFish.cpp" />
     <ClCompile Include="SteeringBehaviour.cpp" />
     <ClCompile Include="UnderwaterLevelState.cpp" />
@@ -217,6 +223,7 @@
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="Orca.h" />
+    <ClInclude Include="PinkOrca.h" />
     <ClInclude Include="PlayerFish.h" />
     <ClInclude Include="SteeringBehaviour.h" />
     <ClInclude Include="UnderwaterLevelState.h" />

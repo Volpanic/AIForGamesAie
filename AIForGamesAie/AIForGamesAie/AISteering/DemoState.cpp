@@ -3,10 +3,6 @@
 #include "raylib.h"
 #include "FollowPathBehavior.h"
 
-#define RAYGUI_IMPLEMENTATION
-#define RAYGUI_SUPPORT_ICONS
-#include "raygui.h"
-
 DemoState::DemoState(Application* app) : LevelState::LevelState(app)
 {
 	//Add<Agent>(new Agent(this));
@@ -55,7 +51,6 @@ void DemoState::Update(float deltaTime)
 
 void DemoState::Draw()
 {
-	guiFont.baseSize = 12;
 
 	LevelState::Draw();
 

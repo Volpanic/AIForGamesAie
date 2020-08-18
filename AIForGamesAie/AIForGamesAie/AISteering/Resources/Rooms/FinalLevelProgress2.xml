@@ -9922,6 +9922,7 @@
             <EntityEntry Type="BrownShark" PositionX="1051" PositionY="154"/>
             <EntityEntry Type="DarkBlueShark" PositionX="1204" PositionY="876"/>
             <EntityEntry Type="Orca" PositionX="618" PositionY="594"/>
+            <EntityEntry Type="PinkOrca" PositionX="309" PositionY="961"/>
             <EntityEntry Type="Clam" PositionX="312" PositionY="144"/>
             <EntityEntry Type="Clam" PositionX="344" PositionY="272"/>
             <EntityEntry Type="Clam" PositionX="624" PositionY="336"/>
