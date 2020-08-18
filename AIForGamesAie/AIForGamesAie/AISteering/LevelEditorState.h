@@ -42,6 +42,8 @@ public:
 	void FloodFillTiles(int x, int y, int value, int targetValue);
 
 private:
+	ImDrawData* m_drawData = nullptr;
+
 	EditorStates m_editorState = EditorStates::Tiles;
 	Vector2 m_gameWindowMousePos = {};
 

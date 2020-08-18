@@ -286,7 +286,7 @@ void TileLayer::SaveLayer(tinyxml2::XMLDocument& level, tinyxml2::XMLElement* pa
 	auto tileLayer = level.NewElement("TileLayer");
 
 	tileLayer->SetAttribute("LayerName", m_layerName.c_str());
-	tileLayer->SetAttribute("TilesetTexture", m_tilesetPath);
+	tileLayer->SetAttribute("TilesetTexture", m_tilesetPath.c_str());
 	tileLayer->SetAttribute("LayerWidth",m_tileLayerData->GetWidth());
 	tileLayer->SetAttribute("LayerHeight", m_tileLayerData->GetHeight());
 

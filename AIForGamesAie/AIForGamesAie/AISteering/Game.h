@@ -1,8 +1,6 @@
 #pragma once
 #include "Application.h"
 
-struct ImDrawData;
-
 class Game : public Application
 {
 public:
@@ -14,8 +12,8 @@ public:
 	virtual void EndDraw();
 
 private:
-	ImDrawData* m_drawData = nullptr;
+	
 
-	bool m_Editor = false;
+	//bool m_Editor = true;
 };
 

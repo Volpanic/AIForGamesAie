@@ -11,11 +11,44 @@
 #include "ObjectTracker.h"
 
 #include "tinyxml2.h"
-#include "imgui.h"
+//#include "imgui.h"
+#include "cimgui_impl_raylib.h"
 
 //Un-godly huge file
 LevelEditorState::LevelEditorState(Application* app) : LevelState::LevelState(app)
 {
+	//Change to switch from editor to player ya hear?
+
+//ImGui
+	ImGui::CreateContext();
+	ImGui::StyleColorsDark();
+	ImGui_ImplRaylib_Init();
+
+	//Build Texture atlas
+	int width;
+	int height;
+
+	ImGuiContext* ctx;
+	ImGuiIO& io = ImGui::GetIO();
+	ImGui::GetIO().DisplaySize = { (float)(m_app->GetGameWidth() * m_app->GetGameZoom()),(float)(m_app->GetGameHeight() * m_app->GetGameZoom()) };
+
+	unsigned char* pixels;
+	io.Fonts->AddFontDefault();
+	io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height, NULL);
+
+	unsigned int texID = rlLoadTexture(pixels, width, height, PixelFormat::UNCOMPRESSED_R8G8B8A8, 1);
+
+	io.Fonts->TexID = (ImTextureID)texID;
+
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
+	ImGui::GetStyle().AntiAliasedLines = false;
+	//ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_WindowBorderSize, -1.0f);
+	//ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_ChildBorderSize, -1.0f);
+	//ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_PopupBorderSize, -1.0f);
+	//ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_FrameBorderSize, -1.0f);
+	ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_FrameRounding, 2.0f);
+
 	m_objectTracker = new ObjectTracker();
 	m_camera.zoom = 1;
 	m_camera.target =  Vector2Subtract(m_camera.offset, {m_app->GetGameWidth()/2.0f,m_app->GetGameHeight()/2.0f});
@@ -220,6 +253,13 @@ void LevelEditorState::Update(float deltaTime)
 void LevelEditorState::Draw()
 {
 	
+	//StartDraw
+	ImGui_ImplRaylib_NewFrame(m_app->GetGameZoom());
+	ImGui_ImplRaylib_ProcessEvent();
+	ImGui::NewFrame();
+
+	ImGui::DockSpaceOverViewport(0);
+
 	LevelState::Draw();
 
 	BeginMode2D(m_camera);
@@ -787,6 +827,11 @@ void LevelEditorState::EndDraw()
 
 		ImGui::End();
 	}
+
+	//EndDraw
+	ImGui::Render();
+	m_drawData = ImGui::GetDrawData();
+	raylib_render_cimgui(m_drawData);
 }
 
 void LevelEditorState::UpdateRoomFilePaths()

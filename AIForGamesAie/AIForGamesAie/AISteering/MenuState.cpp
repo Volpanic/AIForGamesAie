@@ -7,6 +7,7 @@
 #include "Application.h"
 #include "GameStateManager.h"
 #include "UnderwaterLevelState.h"
+#include "FadeTransition.h"
 #include <iostream>
 
 MenuState::MenuState(Application* app) : IGameState::IGameState(app)
@@ -62,13 +63,30 @@ void MenuState::Draw()
 	{
 		switch (m_menuPos)
 		{
-			case 0:
+			case 0: // New Game
 			{
 				ObjectFactory* of = new ObjectFactory();
 				m_app->GetGameStateManager()->SetState("Level", new UnderwaterLevelState(m_app,"Rooms\\FinalLevelProgress2.xml",of));
 				m_app->GetGameStateManager()->PopState();
 				m_app->GetGameStateManager()->PushState("Level");
 				delete of;
+				break;
+			}
+
+			case 1: // Demo
+			{
+				ObjectFactory* of = new ObjectFactory();
+				m_app->GetGameStateManager()->SetState("Level", new UnderwaterLevelState(m_app, "Rooms\\FinalLevelProgress2.xml", of));
+				m_app->GetGameStateManager()->PopState();
+				m_app->GetGameStateManager()->PushState("Level");
+				delete of;
+				break;
+			}
+
+			case 2: // Editor
+			{
+
+				m_app->GetGameStateManager()->PushState("Editor",new FadeTransition(m_app,"Editor",1.0f));
 				break;
 			}
 		}

@@ -1,5 +1,5 @@
 <Root>
-    <Map ClearR="1" ClearG="1" ClearB="1">
+    <Map ClearR="0.035683069" ClearG="0.012254905" ClearB="0.073529422">
         <TileLayer LayerName="Collision" TilesetTexture="tle_collision.png" LayerWidth="120" LayerHeight="72" LayerVisible="true" CollisionLayer="true">
             <TileData>
                 <Tile TileValue="1"/>
@@ -9921,6 +9921,7 @@
         <EntityData>
             <EntityEntry Type="BrownShark" PositionX="1051" PositionY="154"/>
             <EntityEntry Type="DarkBlueShark" PositionX="1204" PositionY="876"/>
+            <EntityEntry Type="Orca" PositionX="618" PositionY="594"/>
             <EntityEntry Type="Clam" PositionX="312" PositionY="144"/>
             <EntityEntry Type="Clam" PositionX="344" PositionY="272"/>
             <EntityEntry Type="Clam" PositionX="624" PositionY="336"/>

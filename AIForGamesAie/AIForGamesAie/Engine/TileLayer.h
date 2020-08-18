@@ -62,7 +62,7 @@ private:
 	int CalculateAutoTileBitmask(int x, int y);
 
 	const int TILE_SIZE = 16;
-	const char* m_tilesetPath;
+	std::string m_tilesetPath;
 	std::string m_layerName = "";
 	Texture2D m_tilesetTexture;
 	Grid<int>* m_tileLayerData = nullptr;
