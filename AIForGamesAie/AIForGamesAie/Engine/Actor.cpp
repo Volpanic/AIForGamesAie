@@ -27,6 +27,7 @@ void Actor::Draw()
 
 void Actor::MoveX(float x)
 {
+	if (isnan(x)) x = 0.0f;
 	m_subPixelMovement.x += x;
 	int move = round(m_subPixelMovement.x);
 
@@ -56,6 +57,7 @@ void Actor::MoveX(float x)
 
 void Actor::MoveY(float y)
 {
+	if (isnan(y)) y = 0.0f;
 	m_subPixelMovement.y += y;
 	int move = round(m_subPixelMovement.y);
 

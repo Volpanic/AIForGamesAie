@@ -53,6 +53,11 @@ void Agent::Draw()
 	//DrawLineV(m_position,Vector2Add(m_position,Vector2Scale(m_velocity,0.25f)),DARKGRAY);
 
 	GameObject::Draw();
+
+	if (IsKeyDown(KEY_M))
+	{
+		m_collider->DrawCollider();
+	}
 }
 
 void Agent::SetBehaviour(Behaviour* behaviour)

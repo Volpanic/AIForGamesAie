@@ -9,7 +9,7 @@ PlayerFish::PlayerFish(LevelState* level) : Agent::Agent(level)
 {
 	SetOrigin(17/2, 9/2);
 	m_collider = new Collider();
-	m_collider->Setup(this, 15, 7);
+	m_collider->Setup(this, 14, 6);
 
 	AddComponent<Drawable>(new Drawable(m_level->GetResources()->GetTexture("spr_player_fish.png"), 17, 9));
 

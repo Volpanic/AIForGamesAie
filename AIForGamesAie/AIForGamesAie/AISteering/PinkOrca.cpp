@@ -122,8 +122,8 @@ void PinkOrca::Update(float deltaTime)
 						m_currentState = SharkState::Attack;
 						Vector2 norm = Vector2Normalize(newDirec);
 
-						m_velocity.x = norm.x * (dist * 2.0f);
-						m_velocity.y = norm.y * (dist * 2.0f);
+						m_velocity.x = norm.x * (dist * 1.25f);
+						m_velocity.y = norm.y * (dist * 1.25f);
 						std::cout << "Found" << std::endl;
 					}
 				}
@@ -166,6 +166,7 @@ void PinkOrca::Update(float deltaTime)
 void PinkOrca::Draw()
 {
 	Agent::Draw();
+	DrawRing(m_position, 124.0f, 128.0f, 0, 360, 8, { 255,255,255,32 });
 }
 
 void PinkOrca::DrawInEditor(const Vector2& mousePos)

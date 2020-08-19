@@ -5,7 +5,7 @@ class BrownShark : public Agent
 {
 public:
 
-	enum SharkState
+	enum class SharkState
 	{
 		Movement,
 		Attack

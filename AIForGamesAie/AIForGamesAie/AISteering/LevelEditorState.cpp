@@ -320,12 +320,12 @@ void LevelEditorState::Draw()
 
 			ImGui::Separator();
 
-			if (ImGui::MenuItem("Run File"))
+			if (ImGui::MenuItem("Run File (Will Crash)"))
 			{
 				m_runMenuOpen = true;
 			}
 
-			if (ImGui::MenuItem("Run This"))
+			if (ImGui::MenuItem("Run This (Will Crash)"))
 			{
 				SaveMap("temp");
 
