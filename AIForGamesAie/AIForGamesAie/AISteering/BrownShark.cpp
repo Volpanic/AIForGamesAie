@@ -75,7 +75,6 @@ void BrownShark::Update(float deltaTime)
 
 							m_velocity.x = norm.x * (dist * 1.75f);
 							m_velocity.y = norm.y * (dist * 1.75f);
-							std::cout << "Found" << std::endl;
 						}
 					}
 				}

@@ -53,7 +53,6 @@ void Graph2DEditor::Update(Vector2 mousePos,float deltaTime)
 			{
 				m_graph->ConnectNodes(newNode, nearby, Vector2Distance(newNode->data, nearby->data));
 			}
-			std::cout << "Node Amount: " << m_graph->NodeCount() << std::endl;
 		}
 		else
 		{

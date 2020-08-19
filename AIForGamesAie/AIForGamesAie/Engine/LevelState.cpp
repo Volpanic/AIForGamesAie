@@ -29,8 +29,6 @@ LevelState::LevelState(Application* app, std::string loadFileName,GameObjectFact
 	{
 		std::cout << "Failed to load " + loadFileName << std::endl;
 	}
-
-	std::cout << "AHGHhhhhhhhhhhhhhhhhhh" << std::endl;
 }
 
 LevelState::~LevelState()
@@ -302,6 +300,4 @@ bool LevelState::LoadMap(std::string fileName, GameObjectFactory* factory)
 			entityListElement = entityListElement->NextSiblingElement("EntityEntry");
 		}
 	}
-
-	std::cout << "Loaded " << fileName << std::endl;
 }

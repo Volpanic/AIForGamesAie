@@ -70,7 +70,6 @@ void DarkBlueShark::Update(float deltaTime)
 						Vector2 norm = Vector2Normalize(newDirec);
 						m_velocity.x = norm.x * 200;
 						m_velocity.y = norm.y * 200;
-						std::cout << "Found" << std::endl;
 					}
 				}
 				m_checkCanSeePlayerTimer = 0.0f;

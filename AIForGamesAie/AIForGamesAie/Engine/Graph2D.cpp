@@ -42,7 +42,6 @@ std::vector<Graph2D::Node*> Graph2D::ForEachDijkstra(Graph2D::Node* startNode, G
 		//End
 		if (current->graphNode == endNode)
 		{
-			std::cout << current->gScore << std::endl;
 			while (current->parent != nullptr)
 			{
 				returnNodes.push_back(current->graphNode);
@@ -116,7 +115,6 @@ std::vector<Graph2D::Node*> Graph2D::ForEachAStar(Graph2D::Node* startNode, Grap
 		//End
 		if (current->graphNode == endNode)
 		{
-			std::cout << current->gScore << std::endl;
 			while (current->parent != nullptr)
 			{
 				returnNodes.push_back(current->graphNode);

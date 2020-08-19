@@ -87,7 +87,6 @@ void Orca::Update(float deltaTime)
 
 						m_velocity.x = norm.x * (dist * 1.5f);
 						m_velocity.y = norm.y * (dist * 1.5f);
-						std::cout << "Found" << std::endl;
 					}
 				}
 			}

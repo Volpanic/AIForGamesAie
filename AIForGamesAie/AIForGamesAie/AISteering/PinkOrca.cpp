@@ -99,8 +99,6 @@ void PinkOrca::Update(float deltaTime)
 				m_targetClamIndex += m_targetClamDirection;
 			}
 			RefreshNearestClam(m_targetClamIndex);
-
-			std::cout << "SOCOR: " + std::to_string(m_targetClamIndex) << std::endl;
 		}
 
 		//Check if can see player
@@ -124,7 +122,6 @@ void PinkOrca::Update(float deltaTime)
 
 						m_velocity.x = norm.x * (dist * 1.25f);
 						m_velocity.y = norm.y * (dist * 1.25f);
-						std::cout << "Found" << std::endl;
 					}
 				}
 			}
