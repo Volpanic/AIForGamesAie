@@ -13,7 +13,7 @@ public:
 
 private:
 	
-
+	Music m_song;
 	//bool m_Editor = true;
 };
 

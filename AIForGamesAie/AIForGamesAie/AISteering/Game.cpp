@@ -20,11 +20,16 @@ Game::Game(int gameWidth, int gameHeight, int gameZoom) : Application::Applicati
 
 Game::~Game()
 {
-
+	CloseAudioDevice();
+	UnloadMusicStream(m_song);
 }
 
 void Game::Create()
 {
+
+	InitAudioDevice();
+	m_song = LoadMusicStream("Music\\mus_water.mp3");
+
 	ObjectFactory* of = new ObjectFactory();
 	m_gameStateManager->SetState("Level", new UnderwaterLevelState(this, "Rooms\\FinalLevelProgress2.xml", of));;
 	delete of;
@@ -36,6 +41,8 @@ void Game::Create()
 
 	m_gameStateManager->SetState("MainMenu", new MenuState(this));
 	m_gameStateManager->PushState("MainMenu");
+
+	PlayMusicStream(m_song);
 }
 
 void Game::StartDraw()
