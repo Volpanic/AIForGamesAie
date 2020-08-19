@@ -1,6 +1,9 @@
 #include "PlayerFish.h"
 #include "Numbers.h"
 #include "ObjectTracker.h"
+#include "GameOverState.h"
+#include "GameStateManager.h"
+#include "FadeTransition.h"
 
 PlayerFish::PlayerFish(LevelState* level) : Agent::Agent(level)
 {
@@ -98,6 +101,11 @@ void PlayerFish::Draw()
 		{
 			Agent::Draw();
 		}
+
+		for (int i = 0; i < m_playerHealth; i++)
+		{
+			DrawTextureEx(m_level->GetResources()->GetTexture("spr_player_heart.png"), {m_position.x  + (16 * (i-1)),m_position.y - 24.0f},0,1,WHITE);
+		}
 	}
 
 	if (m_nearestClam != nullptr)
@@ -128,5 +136,13 @@ void PlayerFish::Hurt()
 	{
 		m_recentlyHit = true;
 		m_hitTimer = 1.5f;
+		m_playerHealth--;
+	}
+
+	if (!m_dead && m_playerHealth <= 0)
+	{
+		m_level->GetGameStateManager()->SetState("GameOver", new GameOverState(m_level->GetGameApp()));
+		m_level->GetGameStateManager()->PushState("GameOver",new FadeTransition(m_level->GetGameApp(),"GameOver",1.0f));
+		m_dead = true;
 	}
 }

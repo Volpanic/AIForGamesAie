@@ -19,6 +19,8 @@ public:
 private:
 	Drawable* m_drawable;
 	float m_hitTimer = 0;
+	int m_playerHealth = 3;
+	bool m_dead = false;
 	bool m_recentlyHit = false;
 
 	Clam* m_nearestClam = nullptr;

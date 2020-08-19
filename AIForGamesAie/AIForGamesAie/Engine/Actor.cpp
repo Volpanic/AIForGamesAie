@@ -35,7 +35,7 @@ void Actor::MoveX(float x)
 	if (move != 0)
 	{
 		m_subPixelMovement.x -= move;
-		int sign = Numbers::Sign(move);
+		int sign = Numbers::Sign<float>(move);
 
 		while (move != 0)
 		{
@@ -64,7 +64,7 @@ void Actor::MoveY(float y)
 	if (move != 0)
 	{
 		m_subPixelMovement.y -= move;
-		int sign = Numbers::Sign(move);
+		int sign = Numbers::Sign<float>(move);
 
 		while (move != 0)
 		{

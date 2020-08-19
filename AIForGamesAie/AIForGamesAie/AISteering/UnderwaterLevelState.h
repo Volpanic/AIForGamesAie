@@ -13,5 +13,9 @@ public:
 
 	virtual void Update(float deltaTime);
 	virtual void Draw();
+
+private:
+	bool m_finished = false;
+	bool m_hasInputed = false;
 };
 

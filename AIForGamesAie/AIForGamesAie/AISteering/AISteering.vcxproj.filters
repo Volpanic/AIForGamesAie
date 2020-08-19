@@ -67,6 +67,7 @@
     <ClCompile Include="PinkOrca.cpp">
       <Filter>GameObjects\Sharks</Filter>
     </ClCompile>
+    <ClCompile Include="GameOverState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LevelEditorState.h">
@@ -123,5 +124,6 @@
     <ClInclude Include="PinkOrca.h">
       <Filter>GameObjects\Sharks</Filter>
     </ClInclude>
+    <ClInclude Include="GameOverState.h" />
   </ItemGroup>
 </Project>

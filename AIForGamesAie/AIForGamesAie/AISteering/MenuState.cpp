@@ -66,20 +66,15 @@ void MenuState::Draw()
 			case 0: // New Game
 			{
 				ObjectFactory* of = new ObjectFactory();
-				m_app->GetGameStateManager()->SetState("Level", new UnderwaterLevelState(m_app,"Rooms\\FinalLevelProgress2.xml",of));
-				m_app->GetGameStateManager()->PopState();
-				m_app->GetGameStateManager()->PushState("Level");
+				m_app->GetGameStateManager()->SetState("Level", new UnderwaterLevelState(m_app, "Rooms\\FinalLevelProgress2.xml", of));
+				m_app->GetGameStateManager()->PushState("Level", new FadeTransition(m_app, "Level", 1.0f));
 				delete of;
 				break;
 			}
 
 			case 1: // Demo
 			{
-				ObjectFactory* of = new ObjectFactory();
-				m_app->GetGameStateManager()->SetState("Level", new UnderwaterLevelState(m_app, "Rooms\\FinalLevelProgress2.xml", of));
-				m_app->GetGameStateManager()->PopState();
-				m_app->GetGameStateManager()->PushState("Level");
-				delete of;
+
 				break;
 			}
 

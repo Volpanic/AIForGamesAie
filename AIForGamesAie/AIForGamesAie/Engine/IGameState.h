@@ -15,6 +15,8 @@ public:
 	virtual void Draw() { };
 	virtual void EndDraw() {};
 
+	Application* GetGameApp() { return m_app;};
+	GameStateManager* GetGameStateManager() { return m_app->GetGameStateManager(); };
 	ResourceManager* GetResources() { return m_app->GetResources(); };
 
 protected:
