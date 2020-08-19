@@ -8,6 +8,7 @@
 #include "GameStateManager.h"
 #include "UnderwaterLevelState.h"
 #include "FadeTransition.h"
+#include "DemoState.h"
 #include <iostream>
 
 MenuState::MenuState(Application* app) : IGameState::IGameState(app)
@@ -74,7 +75,10 @@ void MenuState::Draw()
 
 			case 1: // Demo
 			{
-
+				ObjectFactory* of = new ObjectFactory();
+				m_app->GetGameStateManager()->SetState("Demo", new DemoState(m_app, "Rooms\\PathfindingDemo.xml", of));
+				m_app->GetGameStateManager()->PushState("Demo", new FadeTransition(m_app, "Demo", 1.0f));
+				delete of;
 				break;
 			}
 

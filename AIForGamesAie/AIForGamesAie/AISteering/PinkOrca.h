@@ -32,7 +32,7 @@ private:
 	float m_checkCanSeePlayerTimer = 0;
 	std::vector<Clam*> m_targetClams;
 	int m_targetClamIndex = 0;
-	int m_targetClamDirection = 0;
+	int m_targetClamDirection = 1;
 	bool m_firstRun = true;
 	PinkOrca::SharkState m_currentState = PinkOrca::Movement;
 };

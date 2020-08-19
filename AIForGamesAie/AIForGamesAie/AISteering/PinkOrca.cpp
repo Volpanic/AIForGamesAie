@@ -29,12 +29,14 @@ PinkOrca::~PinkOrca()
 
 void PinkOrca::RefreshNearestClam(int pos)
 {
+	if (pos < 0 || pos >=  m_targetClams.size() || m_targetClams[pos]->HasPearl()) return;
+
 	auto m_targetClam = m_level->GetObjectTracker()->GetNearest<Clam>(this, m_position, [&](Clam* object)
 	{
-		return object->HasPearl() && std::find(m_targetClams.begin(), m_targetClams.end(), object) == m_targetClams.end();
+		return (object->HasPearl() && std::find(m_targetClams.begin(), m_targetClams.end(), object) == m_targetClams.end());
 	});
 
-	if (m_targetClam != nullptr)
+	if (!m_targetClams[pos]->HasPearl() && m_targetClam != nullptr)
 	{
 		m_targetClams[pos] = m_targetClam;
 	}
@@ -89,12 +91,16 @@ void PinkOrca::Update(float deltaTime)
 				SetBehaviour(new FollowPathBehavior(new Path(path), 50));
 			}
 			
-			if (m_targetClamIndex + m_targetClamDirection >= m_targetClams.size() || m_targetClamIndex + m_targetClamDirection < 0)
+			m_targetClamIndex += m_targetClamDirection;
+
+			if (m_targetClamIndex > m_targetClams.size() || m_targetClamIndex < 0)
 			{
 				m_targetClamDirection = -m_targetClamDirection;
+				m_targetClamIndex += m_targetClamDirection;
 			}
 			RefreshNearestClam(m_targetClamIndex);
-			m_targetClamIndex += m_targetClamDirection;
+
+			std::cout << "SOCOR: " + std::to_string(m_targetClamIndex) << std::endl;
 		}
 
 		//Check if can see player
@@ -104,19 +110,22 @@ void PinkOrca::Update(float deltaTime)
 		if (m_checkCanSeePlayerTimer >= 0.5f)
 		{
 			auto player = m_level->GetObjectTracker()->First<PlayerFish>();
-			auto dist = Vector2Distance(m_position, player->GetPosition());
-
-			if (dist < 128.0f)
+			if (player != nullptr)
 			{
-				Vector2 newDirec = Vector2Subtract(player->GetPosition(), m_position);
-				if (m_collider->RaycastCheckAgainstSolids(atan2(newDirec.y, newDirec.x) * RAD2DEG, player->GetCollider().GetBBox(), m_level))
-				{
-					m_currentState = SharkState::Attack;
-					Vector2 norm = Vector2Normalize(newDirec);
+				auto dist = Vector2Distance(m_position, player->GetPosition());
 
-					m_velocity.x = norm.x * (dist * 2.0f);
-					m_velocity.y = norm.y * (dist * 2.0f);
-					std::cout << "Found" << std::endl;
+				if (dist < 128.0f)
+				{
+					Vector2 newDirec = Vector2Subtract(player->GetPosition(), m_position);
+					if (m_collider->RaycastCheckAgainstSolids(atan2(newDirec.y, newDirec.x) * RAD2DEG, player->GetCollider().GetBBox(), m_level))
+					{
+						m_currentState = SharkState::Attack;
+						Vector2 norm = Vector2Normalize(newDirec);
+
+						m_velocity.x = norm.x * (dist * 2.0f);
+						m_velocity.y = norm.y * (dist * 2.0f);
+						std::cout << "Found" << std::endl;
+					}
 				}
 			}
 			m_checkCanSeePlayerTimer = 0.0f;

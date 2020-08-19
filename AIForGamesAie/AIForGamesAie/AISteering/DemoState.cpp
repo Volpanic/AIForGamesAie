@@ -8,6 +8,10 @@ DemoState::DemoState(Application* app) : LevelState::LevelState(app)
 	//Add<Agent>(new Agent(this));
 }
 
+DemoState::DemoState(Application* app, std::string loadFileName, GameObjectFactory* factory) : LevelState::LevelState(app,loadFileName,factory)
+{
+}
+
 DemoState::~DemoState()
 {
 
@@ -16,17 +20,6 @@ DemoState::~DemoState()
 void DemoState::Update(float deltaTime)
 {
 	Vector2 gridPos = m_levelMap->ToGridPos(m_app->GetScaledMousePos());
-	
-	if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
-	{
-		m_levelMap->Set((int)gridPos.x, (int)gridPos.y, 1);
-	}
-
-	if (IsMouseButtonPressed(MOUSE_MIDDLE_BUTTON))
-	{
-		m_path.PathAddNode(GetScaledMousePos());
-
-	}
 
 	if (IsKeyPressed(KEY_Z))
 	{
@@ -56,7 +49,4 @@ void DemoState::Draw()
 
 	m_path.DrawPath();
 	m_levelMap->Draw(this);
-
-	DrawCircleV(GetScaledMousePos(), 4, RED);
-
 }

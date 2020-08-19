@@ -61,14 +61,17 @@ void DarkBlueShark::Update(float deltaTime)
 			if (m_checkCanSeePlayerTimer >= 0.5f)
 			{
 				auto player = m_level->GetObjectTracker()->First<PlayerFish>();
-				Vector2 newDirec = Vector2Subtract(player->GetPosition(), m_position);
-				if (m_collider->RaycastCheckAgainstSolids(atan2(newDirec.y, newDirec.x) * RAD2DEG, player->GetCollider().GetBBox(), m_level))
+				if (player != nullptr)
 				{
-					m_currentState = SharkState::Attack;
-					Vector2 norm = Vector2Normalize(newDirec);
-					m_velocity.x = norm.x * 200;
-					m_velocity.y = norm.y * 200;
-					std::cout << "Found" << std::endl;
+					Vector2 newDirec = Vector2Subtract(player->GetPosition(), m_position);
+					if (m_collider->RaycastCheckAgainstSolids(atan2(newDirec.y, newDirec.x) * RAD2DEG, player->GetCollider().GetBBox(), m_level))
+					{
+						m_currentState = SharkState::Attack;
+						Vector2 norm = Vector2Normalize(newDirec);
+						m_velocity.x = norm.x * 200;
+						m_velocity.y = norm.y * 200;
+						std::cout << "Found" << std::endl;
+					}
 				}
 				m_checkCanSeePlayerTimer = 0.0f;
 			}

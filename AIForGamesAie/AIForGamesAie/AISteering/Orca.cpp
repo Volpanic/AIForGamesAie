@@ -73,19 +73,22 @@ void Orca::Update(float deltaTime)
 		if (m_checkCanSeePlayerTimer >= 0.5f)
 		{
 			auto player = m_level->GetObjectTracker()->First<PlayerFish>();
-			auto dist = Vector2Distance(m_position, player->GetPosition());
-
-			if (dist < 128.0f)
+			if (player != nullptr)
 			{
-				Vector2 newDirec = Vector2Subtract(player->GetPosition(), m_position);
-				if (m_collider->RaycastCheckAgainstSolids(atan2(newDirec.y, newDirec.x) * RAD2DEG, player->GetCollider().GetBBox(), m_level))
-				{
-					m_currentState = SharkState::Attack;
-					Vector2 norm = Vector2Normalize(newDirec);
+				auto dist = Vector2Distance(m_position, player->GetPosition());
 
-					m_velocity.x = norm.x * (dist * 2.0f);
-					m_velocity.y = norm.y * (dist * 2.0f);
-					std::cout << "Found" << std::endl;
+				if (dist < 128.0f)
+				{
+					Vector2 newDirec = Vector2Subtract(player->GetPosition(), m_position);
+					if (m_collider->RaycastCheckAgainstSolids(atan2(newDirec.y, newDirec.x) * RAD2DEG, player->GetCollider().GetBBox(), m_level))
+					{
+						m_currentState = SharkState::Attack;
+						Vector2 norm = Vector2Normalize(newDirec);
+
+						m_velocity.x = norm.x * (dist * 2.0f);
+						m_velocity.y = norm.y * (dist * 2.0f);
+						std::cout << "Found" << std::endl;
+					}
 				}
 			}
 			m_checkCanSeePlayerTimer = 0.0f;

@@ -44,7 +44,8 @@ void Application::Run()
 	while (!WindowShouldClose())
 	{
 		float dt = GetFrameTime();
-		
+		if (IsWindowMinimized() || IsWindowHidden()) { dt = 0.0f; }
+
 		StartUpdate(dt);
 
 			Update(dt);
