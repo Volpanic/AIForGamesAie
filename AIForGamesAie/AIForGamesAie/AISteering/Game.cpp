@@ -28,10 +28,10 @@ void Game::Create()
 {
 
 	InitAudioDevice();
-	m_song = LoadMusicStream("Music\\mus_water.mp3");
+	m_song = LoadMusicStream("Music\\mus_water.wav");
 
 	ObjectFactory* of = new ObjectFactory();
-	m_gameStateManager->SetState("Level", new UnderwaterLevelState(this, "Rooms\\FinalLevelProgress2.xml", of));;
+	m_gameStateManager->SetState("Level", new UnderwaterLevelState(this, "Rooms\\FinalLevel.xml", of));;
 	delete of;
 
 	m_gameStateManager->SetState("Editor", new LevelEditorState(this));
@@ -47,9 +47,10 @@ void Game::Create()
 
 void Game::StartDraw()
 {
+	UpdateMusicStream(m_song);
 }
 
 void Game::EndDraw()
 {
-
+	
 }
