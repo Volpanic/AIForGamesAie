@@ -93,7 +93,7 @@ void PinkOrca::Update(float deltaTime)
 			
 			m_targetClamIndex += m_targetClamDirection;
 
-			if (m_targetClamIndex > m_targetClams.size() || m_targetClamIndex < 0)
+			if (m_targetClamIndex >= m_targetClams.size() || m_targetClamIndex < 0)
 			{
 				m_targetClamDirection = -m_targetClamDirection;
 				m_targetClamIndex += m_targetClamDirection;
