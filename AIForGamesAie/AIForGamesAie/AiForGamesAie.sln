@@ -5,10 +5,7 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Project1.vcxproj", "{0F4CE3E0-AF5F-4BC2-9ADB-51F25270E058}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AISteering", "AISteering\AISteering.vcxproj", "{DF68DBD8-223C-4F3F-800B-F9E4C816DF6D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{0F4CE3E0-AF5F-4BC2-9ADB-51F25270E058} = {0F4CE3E0-AF5F-4BC2-9ADB-51F25270E058}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FishGame", "FishGame\FishGame.vcxproj", "{DF68DBD8-223C-4F3F-800B-F9E4C816DF6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
