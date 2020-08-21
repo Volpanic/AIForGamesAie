@@ -8,6 +8,7 @@ A C++ Game project (Focusing on path finding) made using Raylib, ImGui and TinyX
 
 #####  Visual Studio
 Open the project solution and running the project should compile the game successfully.
+M Can be held to view path information aswell as hitboxes.
 
 ### Controls
 Arrow keys for movement and menu navigation, Enter to select a menu option.
