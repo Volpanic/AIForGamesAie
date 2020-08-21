@@ -520,10 +520,8 @@ void LevelEditorState::Draw()
 
 void LevelEditorState::EndDraw()
 {
-
-
 	DrawRectangle(0,0,GetScreenWidth(),GetScreenHeight(),BLACK);
-	ImGui::ShowDemoWindow();
+	//ImGui::ShowDemoWindow();
 	//Controls Window
 	ImGui::Begin("Controls (2)");
 	{
